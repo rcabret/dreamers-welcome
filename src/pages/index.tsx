@@ -1,12 +1,20 @@
-import type { NextPage } from 'next'
 import styles from '../styles/Home.module.css'
+import { getHomepage } from '../_lib/api'
 
-const Home: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      Dreamers Welcome web will live here
-    </div>
-  )
+// @ts-ignore
+const Home = ({ homepageResponse }) => {
+    console.log('homepage', homepageResponse)
+    return <div className={styles.container}>{homepageResponse?.title}</div>
 }
 
-export default Home;
+export default Home
+
+export async function getStaticProps() {
+    const homepageResponse = await getHomepage()
+
+    return {
+        props: {
+            homepageResponse,
+        },
+    }
+}
