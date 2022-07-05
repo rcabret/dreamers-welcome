@@ -1,7 +1,7 @@
-import Document, {Html, Head, Main, NextScript, DocumentContext} from 'next/document'
-import {ServerStyleSheet} from 'styled-components'
+import Document, { DocumentContext } from 'next/document'
+import { ServerStyleSheet } from 'styled-components'
 
-class MyDocument extends Document {
+export default class MyDocument extends Document {
     static async getInitialProps(ctx: DocumentContext) {
         const sheet = new ServerStyleSheet()
         const originalRenderPage = ctx.renderPage
@@ -27,18 +27,4 @@ class MyDocument extends Document {
             sheet.seal()
         }
     }
-
-    render() {
-        return (
-            <Html lang="en">
-                <Head/>
-                <body>
-                <Main/>
-                <NextScript/>
-                </body>
-            </Html>
-        )
-    }
 }
-
-export default MyDocument
