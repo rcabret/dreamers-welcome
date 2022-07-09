@@ -3,6 +3,7 @@ import { HighlightBlurb, HighlightWrapper, Name, SliderWrap } from './styles'
 import BodyText from '../../Typography/BodyText'
 import ImageSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
+import { Separator } from '../../Typography/MarkdownModule/styles'
 
 interface HighlightProps {
     data: {
@@ -20,6 +21,7 @@ const Hightlight = ({ data }: HighlightProps) => {
     console.log(fields)
     return (
         <HighlightWrapper>
+            <div className="separator" />
             <Name>{highlightName}</Name>
             <SliderWrap>
                 {/*@ts-ignore*/}

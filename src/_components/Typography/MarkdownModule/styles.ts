@@ -8,8 +8,14 @@ const ColumnsMap = {
     three: 3,
 }
 
+interface MarkdownStyleProps {
+    padding?: boolean
+    columns?: number
+}
+
 export const MarkupWrapper = styled.div`
-    padding: ${({ padding }) => (padding ? rem('20px') : 0)};
+    padding: ${({ padding }: MarkdownStyleProps) =>
+        padding ? rem('20px') : 0};
     column-count: ${({ columns = ColumnsMap.one }) => ColumnsMap[columns]};
 
     table {
@@ -82,7 +88,7 @@ export const MarkupWrapper = styled.div`
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
-        column-count: ${({ columns = ColumnsMap.one }) =>
+        column-count: ${({ columns = ColumnsMap.one }: MarkdownStyleProps) =>
             ColumnsMap[columns] - 1};
 
         h1:last-of-type,

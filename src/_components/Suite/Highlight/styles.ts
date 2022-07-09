@@ -4,9 +4,18 @@ import { rem } from 'polished'
 export const HighlightWrapper = styled.div`
     padding: ${rem('40px')} 0 ${rem('80px')} 0;
     // margin: 0 ${rem('30px')};
-    border-top: 1px solid #c1c1c1;
     display: inline-block;
-    width: 100%;
+    width: calc(100%);
+    position: relative;
+
+    .separator {
+        margin: 0 30px;
+        height: 1px;
+        background-color: #c1c1c1;
+        width: calc(100% - 60px);
+        position: absolute;
+        top: 0;
+    }
 `
 
 export const Name = styled.div`
