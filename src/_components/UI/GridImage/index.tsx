@@ -2,16 +2,32 @@ import React from 'react'
 import Image from 'next/image'
 import { ImageMask, Container } from './styles'
 
+interface ContentfulImage {
+    fields: {
+        file: {
+            url: string
+            details: {
+                image: {
+                    width: number
+                    height: number
+                }
+            }
+        }
+    }
+    title: string
+}
+
 interface GridImageProps {
     badge?: JSX.Element
     border?: boolean
     borderRadius?: boolean
     className?: string
+    children?: JSX.Element
     hasHover?: boolean
     ratio?: number | string
     metadata?: JSX.Element
     showMetadata?: boolean
-    imageObj?: { height: number; width: number; url: string }
+    imageObj: ContentfulImage
     fullHeight?: boolean
     disabled?: boolean
     sizes?: string
@@ -21,6 +37,7 @@ const GridImage = ({
     border = true,
     borderRadius = true,
     className,
+    children,
     hasHover = false,
     fullHeight = false,
     metadata,
@@ -28,13 +45,16 @@ const GridImage = ({
     imageObj,
     sizes = '100vw',
 }: GridImageProps) => {
-    const imageData = imageObj
-
-    if (!imageData) {
+    if (!imageObj) {
         return null
     }
 
-    const { height, width } = imageData
+    const { fields } = imageObj
+
+    const { file } = fields
+    const { details, url } = file
+    const { image } = details
+    const { width, height } = image
 
     const getCorrectRatio = (
         dimensions: number[],
@@ -66,19 +86,20 @@ const GridImage = ({
                 fullHeight={fullHeight}
                 ratio={getCorrectRatio([height, width], ratio)}
             >
-                {imageData ? (
+                {imageObj ? (
                     <>
                         <aside />
                         <Image
-                            src={imageData.url || '/'}
+                            src={`https:${url}` || '/'}
                             layout="fill"
                             sizes={sizes}
                             objectFit={
                                 ratio !== 'lightbox' ? 'cover' : 'contain'
                             }
-                            //placeholder="blur"
-                            //blurDataURL={`${attributes.landingImage.data.attributes.url}`}
+                            // placeholder="blur"
+                            // blurDataURL={`${attributes.landingImage.data.attributes.url}`}
                         />
+                        {children && children}
                     </>
                 ) : (
                     <aside />

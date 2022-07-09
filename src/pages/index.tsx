@@ -1,18 +1,21 @@
 import styles from '../styles/Home.module.css'
-import { getHomepage } from '../_lib/api'
+import { getHomepage, getProperty } from '../_lib/api'
 
 interface HomepageProps {
     homepageResponse: any
 }
 
 const Home = ({ homepageResponse }: HomepageProps) => {
-    return <div className={styles.container}>{homepageResponse?.title}</div>
+    console.log(homepageResponse)
+    return (
+        <div className={styles.container}>{homepageResponse?.propertyName}</div>
+    )
 }
 
 export default Home
 
 export async function getStaticProps() {
-    const homepageResponse = await getHomepage()
+    const homepageResponse = await getProperty('selva')
 
     return {
         props: {

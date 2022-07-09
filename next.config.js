@@ -4,6 +4,12 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  images: {
+    domains: [
+      'images.ctfassets.net',
+      'downloads.ctfassets.net'
+    ],
+  }
 };
 
 module.exports = nextConfig
