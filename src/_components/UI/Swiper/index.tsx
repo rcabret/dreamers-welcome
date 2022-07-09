@@ -3,33 +3,38 @@ import { SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import React, { Component } from 'react'
 import GridImage from '../GridImage'
-import { CaptionWrapper, StyledSwiper } from './styles'
+import { Spacer, StyledSwiper } from './styles'
 import { Navigation } from 'swiper'
+import { ContentfulImage } from '../../../_constants/DataTypes'
+import { rem } from 'polished'
 
+interface SwiperProps {
+    items: ContentfulImage[]
+    slidesPerView?: number
+}
 class ImageSlider extends Component {
-    private readonly links: any
+    private readonly images: any
+    private readonly slidesPer: number
 
-    constructor(props) {
+    constructor(props: SwiperProps) {
         super(props)
-        const { items } = props.data
-        this.links = items.data
-
+        const { items, slidesPerView } = props
+        this.images = items
+        this.slidesPer = slidesPerView || 1
         this.state = {
             activeIndex: 0,
-            activeCaption: this.links[0].attributes.caption,
         }
     }
 
     nextSlide = (index: number) => {
         let nextIndex: number
         if (index == 0) {
-            nextIndex = this.links.length - 1
+            nextIndex = this.images.length - 1
         } else {
-            nextIndex = index - 1 >= this.links.length ? 0 : index - 1
+            nextIndex = index - 1 >= this.images.length ? 0 : index - 1
         }
         this.setState({
             activeIndex: nextIndex,
-            activeCaption: this.links[nextIndex].attributes.caption,
         })
     }
 
@@ -37,41 +42,35 @@ class ImageSlider extends Component {
         return (
             <>
                 <StyledSwiper
-                    loop={true}
-                    spaceBetween={0}
-                    slidesPerView={1}
+                    loop={false}
+                    spaceBetween={20}
+                    slidesPerView={this.slidesPer}
                     onSlideChange={(swiper) =>
                         this.nextSlide(swiper.activeIndex)
                     }
                     navigation={true}
                     modules={[Navigation]}
                 >
-                    {this.links &&
-                        this.links.length &&
-                        this.links.map((x: {}, i) => {
+                    {this.images &&
+                        this.images.length &&
+                        this.images.map((x: ContentfulImage, i: number) => {
                             return (
-                                <SwiperSlide
-                                    className="next"
-                                    key={Math.random() * i}
-                                >
-                                    <GridImage
-                                        sizes="75vw"
-                                        imageObj={x}
-                                        border={false}
-                                        borderRadius={false}
-                                    />
-                                </SwiperSlide>
+                                <>
+                                    <SwiperSlide
+                                        className="next"
+                                        key={Math.random() * i}
+                                    >
+                                        <GridImage
+                                            sizes="75vw"
+                                            imageObj={x}
+                                            border={false}
+                                            borderRadius={true}
+                                        />
+                                    </SwiperSlide>
+                                </>
                             )
                         })}
                 </StyledSwiper>
-                <CaptionWrapper>
-                    {/* @ts-ignore */}
-                    <p>{this.state.activeCaption}</p>
-                    <span>
-                        {/* @ts-ignore */}
-                        {this.state.activeIndex + 1}/{this.links.length}
-                    </span>
-                </CaptionWrapper>
             </>
         )
     }

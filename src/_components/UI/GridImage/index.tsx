@@ -1,21 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import { ImageMask, Container } from './styles'
-
-interface ContentfulImage {
-    fields: {
-        file: {
-            url: string
-            details: {
-                image: {
-                    width: number
-                    height: number
-                }
-            }
-        }
-    }
-    title: string
-}
+import { ContentfulImage } from '../../../_constants/DataTypes'
 
 interface GridImageProps {
     badge?: JSX.Element
