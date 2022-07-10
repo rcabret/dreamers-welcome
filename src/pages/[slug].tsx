@@ -2,7 +2,7 @@ import styles from '../styles/Home.module.css'
 import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
 import GridImage from '../_components/UI/GridImage'
 import Blurb from '../_components/UI/Blurb'
-import Suite from "../_components/Suite";
+import Suite from '../_components/Suite'
 
 interface PropertyProps {
     propertyResponse: any
@@ -10,7 +10,8 @@ interface PropertyProps {
 
 const Home = ({ propertyResponse }: PropertyProps) => {
     console.log(propertyResponse)
-    const { bannerImage, bannerHeader, blurb, suites } = propertyResponse
+    const { bannerImage, bannerHeader, blurb, suites, bottomBlurb } =
+        propertyResponse
     return (
         <>
             <GridImage
@@ -23,6 +24,7 @@ const Home = ({ propertyResponse }: PropertyProps) => {
             </GridImage>
             <Blurb text={blurb} />
             <Suite data={suites[0]} />
+            <Blurb text={bottomBlurb} borderTop />
         </>
     )
 }

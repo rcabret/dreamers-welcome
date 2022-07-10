@@ -44,6 +44,7 @@ class ImageSlider extends Component {
                 <StyledSwiper
                     loop={false}
                     spaceBetween={20}
+                    freeMode={true}
                     slidesPerView={this.slidesPer}
                     onSlideChange={(swiper) =>
                         this.nextSlide(swiper.activeIndex)

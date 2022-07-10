@@ -2,7 +2,7 @@ import { rem } from 'polished'
 import styled from 'styled-components'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
-const ColumnsMap = {
+const ColumnsMap: Record<string, number> = {
     one: 1,
     two: 2,
     three: 3,

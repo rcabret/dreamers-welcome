@@ -40,10 +40,12 @@ export const SliderWrap = styled.div`
 
     .swiper {
         overflow: visible;
-        width: calc(75% + ${rem('80px')});
-        float: right;
+        margin-left: 25%;
+        width: 45%;
+        //width: calc(75% + ${rem('80px')});
+        //float: right;
         position: relative;
-        right: -${rem('80px')};
+        // right: -${rem('80px')};
 
         .last {
             width: ${rem('80px')};

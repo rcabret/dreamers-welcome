@@ -10,15 +10,26 @@ const BlurbWrap = styled.div`
     justify-content: center;
     padding: ${rem('20px')};
     text-align: center;
+    position: relative;
 
     span {
         max-width: ${rem('1220px')};
     }
+
+    .separator {
+        margin: 0 30px;
+        height: 1px;
+        background-color: #c1c1c1;
+        width: calc(100% - 60px);
+        position: absolute;
+        top: 0;
+    }
 `
 
-const Blurb = ({ text }: { text: string }) => {
+const Blurb = ({ text, borderTop }: { text: string; borderTop?: boolean }) => {
     return (
         <BlurbWrap>
+            {borderTop && <div className="separator" />}
             <span>{text}</span>
         </BlurbWrap>
     )

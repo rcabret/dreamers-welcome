@@ -14,7 +14,7 @@ interface HighlightProps {
         }
     }
 }
-const Hightlight = ({ data }: HighlightProps) => {
+const Highlight = ({ data }: HighlightProps) => {
     const { fields } = data
     const { highlightName, blurb, images } = fields
 
@@ -25,7 +25,7 @@ const Hightlight = ({ data }: HighlightProps) => {
             <Name>{highlightName}</Name>
             <SliderWrap>
                 {/*@ts-ignore*/}
-                <ImageSlider items={images} slidesPerView={2} />
+                <ImageSlider items={images} slidesPerView={1} />
             </SliderWrap>
             <HighlightBlurb>
                 {blurb && <BodyText size="lg">{blurb}</BodyText>}
@@ -34,4 +34,4 @@ const Hightlight = ({ data }: HighlightProps) => {
     )
 }
 
-export default Hightlight
+export default Highlight
