@@ -3,15 +3,25 @@ import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
 import GridImage from '../_components/UI/GridImage'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
+import BannerContent from '../_components/UI/BannerContent'
 
 interface PropertyProps {
     propertyResponse: any
 }
 
 const Home = ({ propertyResponse }: PropertyProps) => {
-    console.log(propertyResponse)
-    const { bannerImage, bannerHeader, blurb, suites, bottomBlurb } =
-        propertyResponse
+    const {
+        bannerImage,
+        bannerHeader,
+        blurb,
+        suites,
+        bottomBlurb,
+        location,
+        propertyType,
+        bannerDescriptionList,
+    } = propertyResponse
+
+    console.log(bannerDescriptionList)
     return (
         <>
             <GridImage
@@ -20,7 +30,11 @@ const Home = ({ propertyResponse }: PropertyProps) => {
                 borderRadius={false}
                 ratio={0.5}
             >
-                <>{bannerHeader}</>
+                <BannerContent
+                    headerText={bannerHeader}
+                    headerSubheader={`${propertyType} in ${location}`}
+                    description={bannerDescriptionList}
+                />
             </GridImage>
             <Blurb text={blurb} />
             <Suite data={suites[0]} />

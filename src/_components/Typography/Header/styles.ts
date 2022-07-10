@@ -18,6 +18,7 @@ export const H1Styled = styled.h1.attrs({ lan: 'en' })`
     -moz-hyphens: auto;
     -ms-hyphens: auto;
     hyphens: auto;
+    margin: 0;
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         font-size: ${({ responsive }) =>
