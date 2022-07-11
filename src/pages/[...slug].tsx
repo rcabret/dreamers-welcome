@@ -4,12 +4,14 @@ import GridImage from '../_components/UI/GridImage'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
+import { useEffect } from 'react'
 
 interface PropertyProps {
     propertyResponse: any
+    setBucket: any
 }
 
-const Home = ({ propertyResponse }: PropertyProps) => {
+const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
     const {
         bannerImage,
         bannerHeader,
@@ -19,7 +21,12 @@ const Home = ({ propertyResponse }: PropertyProps) => {
         location,
         propertyType,
         bannerDescriptionList,
+        bucket,
     } = propertyResponse
+
+    useEffect(() => {
+        setBucket(bucket[0])
+    }, [])
 
     return (
         <>
