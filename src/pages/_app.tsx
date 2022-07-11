@@ -1,7 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { ViewportProvider } from '../_utils/ViewportProvider'
-import { ReactNode, useEffect, useState } from 'react'
+import { ReactNode, useState } from 'react'
+import TopNav from '../_components/Navigation'
 
 function MyApp({ Component, pageProps }: AppProps) {
     // @ts-ignore
@@ -11,7 +12,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <ViewportProvider>
-            <div>{bucket}</div>
+            <TopNav bucket={bucket} />
             <Layout>
                 <Component {...pageProps} setBucket={setBucket} />
             </Layout>

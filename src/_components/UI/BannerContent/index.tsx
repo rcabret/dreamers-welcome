@@ -57,10 +57,10 @@ const BannerContent = ({
                 <Header size={1} uppercase>
                     {headerText}
                 </Header>
-                <BodyText size="md">{headerSubheader}</BodyText>
+                <BodyText size="lg">{headerSubheader}</BodyText>
             </Text>
             <Description>
-                <BodyText size="md">
+                <BodyText size="lg">
                     {Array.isArray(description)
                         ? description.map((x, i) => {
                               return `${x} ${
