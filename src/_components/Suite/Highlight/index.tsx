@@ -18,7 +18,6 @@ const Highlight = ({ data }: HighlightProps) => {
     const { fields } = data
     const { highlightName, blurb, images } = fields
 
-    console.log(fields)
     return (
         <HighlightWrapper>
             <div className="separator" />

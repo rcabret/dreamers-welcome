@@ -6,7 +6,6 @@ interface HomepageProps {
 }
 
 const Home = ({ homepageResponse }: HomepageProps) => {
-    console.log(homepageResponse)
     return (
         <div className={styles.container}>{homepageResponse?.propertyName}</div>
     )

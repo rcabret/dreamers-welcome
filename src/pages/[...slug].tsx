@@ -21,7 +21,6 @@ const Home = ({ propertyResponse }: PropertyProps) => {
         bannerDescriptionList,
     } = propertyResponse
 
-    console.log(bannerDescriptionList)
     return (
         <>
             <GridImage
@@ -46,7 +45,7 @@ const Home = ({ propertyResponse }: PropertyProps) => {
 export default Home
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const propertyResponse = await getProperty(context.params.slug)
+    const propertyResponse = await getProperty(context.params.slug[0])
 
     return {
         props: {
@@ -63,7 +62,19 @@ export async function getStaticPaths() {
 
     // @ts-ignore
     allProperties.forEach((x) => {
-        paths.push({ params: { slug: x.propertyName } })
+        let slugArray = [x.propertyName]
+        const pathObj = { params: { slug: slugArray } }
+        paths.push(pathObj)
+
+        // Check for suite routes
+        if (x.suites && x.suites.length > 1) {
+            x.suites.map((y: { fields: { suiteName: string } }) => {
+                const pathObj = {
+                    params: { slug: [x.propertyName, y.fields.suiteName] },
+                }
+                paths.push(pathObj)
+            })
+        }
     })
 
     return {

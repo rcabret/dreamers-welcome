@@ -44,12 +44,13 @@ class ImageSlider extends Component {
                     loop={false}
                     spaceBetween={20}
                     freeMode
+                    grabCursor={true}
                     slidesPerView={this.slidesPer}
                     onSlideChange={(swiper) =>
                         this.nextSlide(swiper.activeIndex)
                     }
-                    navigation={true}
-                    modules={[Navigation]}
+                   /* navigation={true}
+                    modules={[Navigation]}*/
                 >
                     {this.images &&
                         this.images.length &&

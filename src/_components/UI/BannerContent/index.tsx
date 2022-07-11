@@ -20,6 +20,10 @@ const Text = styled.div`
     width: 100%;
     align-self: center;
     justify-content: center;
+
+    p {
+        margin-top: ${rem('20px')};
+    }
 `
 
 const Description = styled.div`
@@ -28,7 +32,7 @@ const Description = styled.div`
     justify-content: center;
     position: absolute;
     bottom: ${rem('30px')};
-    
+
     * {
         margin: 0;
         padding: 0;
@@ -50,7 +54,9 @@ const BannerContent = ({
     return (
         <BannerContentWrap>
             <Text>
-                <Header size={1} uppercase>{headerText}</Header>
+                <Header size={1} uppercase>
+                    {headerText}
+                </Header>
                 <BodyText size="md">{headerSubheader}</BodyText>
             </Text>
             <Description>

@@ -43,7 +43,8 @@ export const getPropertiesViaBucket = async (
 export const getAllPropertiesForPaths = async () => {
     const entries = await client.getEntries({
         content_type: 'property',
-        select: 'fields.propertyName',
+        select: 'fields.propertyName,fields.suites',
+        include: 1
     })
     if (entries.items) {
         return entries.items.map((x: { fields: {} }) => x.fields)
