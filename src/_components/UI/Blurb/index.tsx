@@ -1,19 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import Header from '../../Typography/Header'
 
 const BlurbWrap = styled.div`
-    min-height: ${rem('600px')};
+    min-height: ${rem('550px')};
     font-size: ${rem('70px')};
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: ${rem('20px')};
+    padding: ${rem('30px')};
     text-align: center;
     position: relative;
 
-    span {
-        max-width: ${rem('1220px')};
+    > div {
+        max-width: ${rem('1000px')};
     }
 
     .separator {
@@ -29,8 +30,10 @@ const BlurbWrap = styled.div`
 const Blurb = ({ text, borderTop }: { text: string; borderTop?: boolean }) => {
     return (
         <BlurbWrap>
-            {borderTop && <div className="separator" />}
-            <span>{text}</span>
+            {borderTop && <figure className="separator" />}
+            <div>
+                <Header size={1}>{text}</Header>
+            </div>
         </BlurbWrap>
     )
 }

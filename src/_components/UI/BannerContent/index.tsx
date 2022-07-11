@@ -50,7 +50,7 @@ const BannerContent = ({
     return (
         <BannerContentWrap>
             <Text>
-                <Header size={1}>{headerText}</Header>
+                <Header size={1} uppercase>{headerText}</Header>
                 <BodyText size="md">{headerSubheader}</BodyText>
             </Text>
             <Description>

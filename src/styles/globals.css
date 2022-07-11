@@ -1,16 +1,54 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Yellix';
+    font-weight: 400;
+    src: url('/fonts/Yellix/Yellix-Regular.otf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-display: swap;
+    font-weight: 200;
+    font-family: 'Yellix';
+    src: url('/fonts/Yellix/Yellix-Light.otf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-display: swap;
+    font-weight: 200;
+    font-style: italic;
+    font-family: 'Yellix';
+    src: url('/fonts/Yellix/Yellix-LightItalic.otf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Yellix';
+    font-weight: 900;
+    src: url('/fonts/Yellix/Yellix-Bold.otf'); /* IE9 Compat Modes */
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Yellix';
+    font-weight: 900;
+    font-style: italic;
+    src: url('/fonts/Yellix/Yellix-BoldItalic.otf'); /* IE9 Compat Modes */
+}
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    padding: 0;
+    margin: 0;
+    font-family: Yellix, sans-serif;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }

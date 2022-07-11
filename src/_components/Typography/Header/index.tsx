@@ -24,7 +24,7 @@ const Header = ({
     bold = false,
     responsive = false,
     size = 1,
-    uppercase = true,
+    uppercase = false,
 }: HeaderProps) => {
     switch (size) {
         default:

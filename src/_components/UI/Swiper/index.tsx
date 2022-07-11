@@ -3,10 +3,9 @@ import { SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import React, { Component } from 'react'
 import GridImage from '../GridImage'
-import { Spacer, StyledSwiper } from './styles'
+import { StyledSwiper } from './styles'
 import { Navigation } from 'swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
-import { rem } from 'polished'
 
 interface SwiperProps {
     items: ContentfulImage[]
@@ -44,7 +43,7 @@ class ImageSlider extends Component {
                 <StyledSwiper
                     loop={false}
                     spaceBetween={20}
-                    freeMode={true}
+                    freeMode
                     slidesPerView={this.slidesPer}
                     onSlideChange={(swiper) =>
                         this.nextSlide(swiper.activeIndex)
