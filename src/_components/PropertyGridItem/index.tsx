@@ -1,5 +1,13 @@
 import React from 'react'
-import { BottomContainer, ItemWrapper, Location, Metadata } from './styles'
+import Link from 'next/link'
+
+import {
+    BottomContainer,
+    ItemWrapper,
+    Location,
+    Metadata,
+    TopContainer,
+} from './styles'
 import GridImage from '../UI/GridImage'
 import Header from '../Typography/Header'
 import BodyText from '../Typography/BodyText'
@@ -16,31 +24,51 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
         propertyName,
         location,
         propertyType,
+        bucket,
+        slug,
+        bookNowLink,
     } = propertyObj
+
+    const url = slug
+        ? `/${bucket[0].toLowerCase().replace(/\s/g, '')}/${slug}`
+        : '/'
 
     return (
         <ItemWrapper>
-            <GridImage
-                borderRadius={false}
-                border={false}
-                ratio={0.68}
-                imageObj={tileImage}
-            />
+            <Link href={url} passHref>
+                <a>
+                    <GridImage
+                        borderRadius={false}
+                        border={false}
+                        ratio={0.68}
+                        imageObj={tileImage}
+                    />
+                </a>
+            </Link>
             <Metadata>
-                <BodyText size="sm">
-                    {Array.isArray(bannerDescriptionList)
-                        ? bannerDescriptionList.map((x, i) => {
-                              return `${x} ${
-                                  i < bannerDescriptionList.length - 1
-                                      ? '· '
-                                      : ''
-                              }`
-                          })
-                        : bannerDescriptionList}
-                </BodyText>
-                <Header bold={false} size={2}>
-                    {propertyName}
-                </Header>
+                <TopContainer>
+                    <BodyText size="sm">
+                        {Array.isArray(bannerDescriptionList)
+                            ? bannerDescriptionList.map((x, i) => {
+                                  return `${x} ${
+                                      i < bannerDescriptionList.length - 1
+                                          ? '· '
+                                          : ''
+                                  }`
+                              })
+                            : bannerDescriptionList}
+                    </BodyText>
+                    <BodyText className="share" size="sm">
+                        Share
+                    </BodyText>
+                </TopContainer>
+                <Link href={url} passHref>
+                    <a>
+                        <Header bold={false} size={2}>
+                            {propertyName}
+                        </Header>
+                    </a>
+                </Link>
                 <BottomContainer>
                     <Location>
                         <LocationPin />
@@ -48,7 +76,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
                             {propertyType[0]}, {location}
                         </BodyText>
                     </Location>
-                    <Button>BOOK NOW</Button>
+                    <Button href={bookNowLink}>BOOK NOW</Button>
                 </BottomContainer>
             </Metadata>
         </ItemWrapper>

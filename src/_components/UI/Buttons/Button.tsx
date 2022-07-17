@@ -22,7 +22,7 @@ const StyledButton = styled.button`
     border: 1px solid black;
     font-size: ${rem('16px')};
     text-align: center;
-    margin-right: ${rem('10px')};
+    margin-left: ${rem('10px')};
     float: ${({ right }) => (right ? 'right' : 'none')};
     transition: all 0.3s;
     cursor: pointer;

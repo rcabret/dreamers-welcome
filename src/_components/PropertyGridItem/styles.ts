@@ -9,11 +9,7 @@ export const ItemWrapper = styled.div`
 `
 
 export const Metadata = styled.aside`
-    padding: ${rem('10px')} ${rem('14px')} ${rem('14px')} ${rem('14px')};
-
-    p {
-        opacity: 0.4;
-    }
+    padding: ${rem('10px')} ${rem('14px')} ${rem('10px')} ${rem('14px')};
 
     h2 {
         margin-top: ${rem('10px')};
@@ -44,6 +40,23 @@ export const BottomContainer = styled.div`
     width: 100%;
 
     button {
+        float: right;
+    }
+`
+export const TopContainer = styled.div`
+    width: 100%;
+    display: inline-block;
+
+    p {
+        font-weight: 400;
+    }
+
+    p:first-child {
+        opacity: 0.4;
+        display: inline-block;
+    }
+
+    .share {
         float: right;
     }
 `

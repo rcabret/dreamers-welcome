@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 
-import Link from 'next/link'
 
 import { Content, GridModule, GridWrapper } from '../../styles/globla'
 import { viewportContext } from '../../_utils/ViewportProvider'
@@ -26,30 +25,12 @@ const Stays = ({ properties }: Props) => {
                 <GridModule columns={3} sideScrollOnMobile={false}>
                     {properties &&
                         properties.map(
-                            (
-                                property: { bucket: string[]; slug: string },
-                                i: number
-                            ) => {
-                                const { bucket, slug } = property
-                                const url = slug
-                                    ? `/${bucket[0]
-                                          .toLowerCase()
-                                          .replace(/\s/g, '')}/${slug}`
-                                    : '/'
-                                return (
-                                    <Link
-                                        href={url}
-                                        passHref
-                                        key={Math.random() * i}
-                                    >
-                                        <a>
-                                            <PropertyGridItem
-                                                propertyObj={property}
-                                            />
-                                        </a>
-                                    </Link>
-                                )
-                            }
+                            (property: { slug: string }, i: number) => (
+                                <PropertyGridItem
+                                    key={property.slug + i}
+                                    propertyObj={property}
+                                />
+                            )
                         )}
                 </GridModule>
             </GridWrapper>
