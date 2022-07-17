@@ -22,3 +22,15 @@ export const Metadata = styled.aside`
         width: 100%;
     }
 `
+
+export const Location = styled.div`
+    margin-top: ${rem('24px')};
+    display: flex;
+
+    p {
+        opacity: 1;
+        font-weight: 400;
+        display: inline-block;
+        margin-left: ${rem('4px')};
+    }
+`
