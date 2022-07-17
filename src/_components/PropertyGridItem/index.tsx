@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 
 import {
@@ -13,6 +13,7 @@ import Header from '../Typography/Header'
 import BodyText from '../Typography/BodyText'
 import LocationPin from '../UI/Icons/LocationPin'
 import Button from '../UI/Buttons/Button'
+import Share from '../UI/Icons/Share'
 
 interface GridItemProps {
     propertyObj: any
@@ -32,6 +33,18 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
     const url = slug
         ? `/${bucket[0].toLowerCase().replace(/\s/g, '')}/${slug}`
         : '/'
+
+    const [copiedToClipboard, setClipboard] = useState(false)
+
+    const copyToClipboard = () => {
+        const copyText = `https://www.dreamerswelcome.com${url}`
+        navigator.clipboard.writeText(copyText)
+        setClipboard(true)
+
+        setTimeout(() => {
+            setClipboard(false)
+        }, 3000)
+    }
 
     return (
         <ItemWrapper>
@@ -58,9 +71,16 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
                               })
                             : bannerDescriptionList}
                     </BodyText>
-                    <BodyText className="share" size="sm">
-                        Share
-                    </BodyText>
+                    <div className="share" onClick={() => copyToClipboard()}>
+                        {!copiedToClipboard ? (
+                            <>
+                                <Share />
+                                <BodyText size="sm">Share</BodyText>
+                            </>
+                        ) : (
+                            <BodyText size="sm">Copied to clipboard</BodyText>
+                        )}
+                    </div>
                 </TopContainer>
                 <Link href={url} passHref>
                     <a>

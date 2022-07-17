@@ -49,14 +49,24 @@ export const TopContainer = styled.div`
 
     p {
         font-weight: 400;
-    }
-
-    p:first-child {
         opacity: 0.4;
         display: inline-block;
     }
 
     .share {
         float: right;
+        cursor: pointer;
+
+        p,
+        svg {
+            opacity: 1;
+            float: right;
+        }
+
+        svg {
+            height: ${rem('18px')};
+            width: ${rem('18px')};
+            margin-left: ${rem('10px')};
+        }
     }
 `
