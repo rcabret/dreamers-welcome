@@ -1,4 +1,3 @@
-import styles from '../styles/Home.module.css'
 import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
 import GridImage from '../_components/UI/GridImage'
 import Blurb from '../_components/UI/Blurb'
@@ -52,7 +51,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
 export default Home
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const propertyResponse = await getProperty(context.params.slug[0])
+    const propertyResponse = await getProperty(context.params.slug[1])
 
     return {
         props: {
@@ -69,15 +68,17 @@ export async function getStaticPaths() {
 
     // @ts-ignore
     allProperties.forEach((x) => {
-        let slugArray = [x.propertyName]
-        const pathObj = { params: { slug: slugArray } }
+        const bucket = x.bucket[0].toLowerCase().replace(/\s/g, '');
+        const pathObj = { params: { slug: [bucket, x.slug] } }
         paths.push(pathObj)
 
         // Check for suite routes
         if (x.suites && x.suites.length > 1) {
-            x.suites.map((y: { fields: { suiteName: string } }) => {
+            x.suites.map((y: { fields: { slug: string } }) => {
                 const pathObj = {
-                    params: { slug: [x.propertyName, y.fields.suiteName] },
+                    params: {
+                        slug: [bucket, x.slug, y.fields.slug],
+                    },
                 }
                 paths.push(pathObj)
             })

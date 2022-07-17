@@ -16,14 +16,24 @@ export const getHomepage = async () => {
     }
 }
 
-export const getProperty = async (propertyName: string) => {
+export const getProperty = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
-        'fields.propertyName': propertyName,
+        'fields.slug': slug,
         include: 5,
     })
     if (entries.items) {
         return entries.items[0].fields
+    }
+}
+
+export const getAllProperties = async () => {
+    const entries = await client.getEntries({
+        content_type: 'property',
+        include: 5,
+    })
+    if (entries.items) {
+        return entries.items.map((x: { fields: {} }) => x.fields)
     }
 }
 
@@ -33,7 +43,7 @@ export const getPropertiesViaBucket = async (
     const entries = await client.getEntries({
         content_type: 'property',
         'fields.bucket': bucket,
-        select: 'fields.propertyName,fields.bannerDescriptionList,fields.location,fields.tileImage,fields.bookNowLink',
+        select: 'fields.propertyName,fields.bannerDescriptionList,fields.location,fields.tileImage,fields.bookNowLink,fields.slug',
     })
     if (entries.items) {
         return entries.items[0].fields
@@ -43,8 +53,8 @@ export const getPropertiesViaBucket = async (
 export const getAllPropertiesForPaths = async () => {
     const entries = await client.getEntries({
         content_type: 'property',
-        select: 'fields.propertyName,fields.suites',
-        include: 1
+        select: 'fields.propertyName,fields.suites,fields.bucket,fields.slug',
+        include: 1,
     })
     if (entries.items) {
         return entries.items.map((x: { fields: {} }) => x.fields)
