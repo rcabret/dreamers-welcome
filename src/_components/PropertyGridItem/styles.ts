@@ -14,7 +14,7 @@ export const Metadata = styled.aside`
     h2 {
         margin-top: ${rem('10px')};
         font-size: ${rem('32px')};
-        font-weight: 200;
+        font-weight: 400;
         width: 100%;
     }
 `

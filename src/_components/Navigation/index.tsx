@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import DWLogo from '../UI/Icons/DWLogo'
+import DWLogoType from '../UI/Icons/DWLogoType'
 
 interface NavigationStyleProps {
     active: boolean
@@ -13,7 +15,6 @@ const Navigation = styled.nav`
         active ? 'black%' : 'white'};
     height: ${rem('50px')};
     z-index: 100;
-
     padding: 0 ${rem('30px')};
     width: 100%;
 
@@ -37,6 +38,13 @@ const Navigation = styled.nav`
         opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
     }
 `
+
+const StyledDWLogoType = styled(DWLogoType)`
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+`
+
 const TopNav = ({ bucket }: { bucket?: string }) => {
     const [top, setTop] = useState(false)
 
@@ -69,6 +77,8 @@ const TopNav = ({ bucket }: { bucket?: string }) => {
     })
     return (
         <Navigation active={top}>
+            <DWLogo />
+            <StyledDWLogoType />
             <div>{bucket}</div>
             <aside />
         </Navigation>
