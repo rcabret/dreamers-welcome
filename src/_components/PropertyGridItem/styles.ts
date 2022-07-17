@@ -24,13 +24,26 @@ export const Metadata = styled.aside`
 `
 
 export const Location = styled.div`
-    margin-top: ${rem('24px')};
     display: flex;
+    position: absolute;
+    align-items: center;
+    height: 100%;
 
     p {
         opacity: 1;
         font-weight: 400;
         display: inline-block;
         margin-left: ${rem('4px')};
+    }
+`
+
+export const BottomContainer = styled.div`
+    margin-top: ${rem('14px')};
+    display: inline-block;
+    position: relative;
+    width: 100%;
+
+    button {
+        float: right;
     }
 `
