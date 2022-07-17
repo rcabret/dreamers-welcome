@@ -27,12 +27,14 @@ const Stays = ({ properties }: Props) => {
                     {properties &&
                         properties.map(
                             (
-                                property: { bucket: string[]; name: string },
+                                property: { bucket: string[]; slug: string },
                                 i: number
                             ) => {
-                                const { bucket, name } = property
-                                const url = name
-                                    ? `/${bucket[0]}/${name.toLowerCase()}`
+                                const { bucket, slug } = property
+                                const url = slug
+                                    ? `/${bucket[0]
+                                          .toLowerCase()
+                                          .replace(/\s/g, '')}/${slug}`
                                     : '/'
                                 return (
                                     <Link
