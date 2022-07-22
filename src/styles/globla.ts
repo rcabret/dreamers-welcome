@@ -63,3 +63,10 @@ export const GridWrapper = styled.div`
         padding-top: ${rem('10px')};
     }
 `
+
+export const ItemWrapper = styled.div`
+    border: 1px solid #c1c1c1;
+    border-radius: ${rem('10px')};
+    overflow: hidden;
+    margin: ${rem('10px')};
+`

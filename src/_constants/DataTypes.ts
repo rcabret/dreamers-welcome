@@ -12,3 +12,11 @@ export interface ContentfulImage {
     }
     title: string
 }
+
+export interface News {
+    title: string
+    text: string
+    tileImage: ContentfulImage
+    slug: string
+    date: Date
+}

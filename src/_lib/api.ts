@@ -60,3 +60,13 @@ export const getAllPropertiesForPaths = async () => {
         return entries.items.map((x: { fields: {} }) => x.fields)
     }
 }
+
+export const getNews = async () => {
+    const entries = await client.getEntries({
+        content_type: 'news',
+        include: 1,
+    })
+    if (entries.items) {
+        return entries.items.map((x: { fields: {} }) => x.fields)
+    }
+}
