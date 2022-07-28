@@ -81,7 +81,6 @@ export const Backdrop = styled.div`
         opened ? 'rgba(0, 0, 0, 0.5)' : 'none'};
     transition: 0.3s all;
 `
-
 export const StyledDropdown = styled.div`
     position: absolute;
     top: 0;

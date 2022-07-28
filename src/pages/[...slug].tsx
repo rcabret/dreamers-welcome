@@ -27,6 +27,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         propertyType,
         bannerDescriptionList,
         bucket,
+        features,
     } = propertyResponse
 
     useEffect(() => {
@@ -50,7 +51,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
             </StyledGridImage>
             <Blurb text={blurb} />
             <Suite data={suites[0]} />
-            <Blurb text={bottomBlurb} borderTop />
+            {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
         </>
     )
 }

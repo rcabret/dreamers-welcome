@@ -58,7 +58,6 @@ const TopNav = ({ bucket }: { bucket?: string }) => {
                         active={top}
                     />
                 </HamburgerWrap>
-
                 <aside />
             </Navigation>
             <Backdrop opened={opened} />
