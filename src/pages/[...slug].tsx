@@ -4,11 +4,17 @@ import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
 import { useEffect } from 'react'
+import styled from 'styled-components'
 
 interface PropertyProps {
     propertyResponse: any
     setBucket: any
 }
+
+const StyledGridImage = styled(GridImage)`
+    height: calc(100vh);
+    min-height: 700px;
+`
 
 const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
     const {
@@ -29,18 +35,19 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
 
     return (
         <>
-            <GridImage
+            <StyledGridImage
                 imageObj={bannerImage}
                 border={false}
                 borderRadius={false}
-                ratio={0.5}
+                fullHeight
+                //ratio={0.5}
             >
                 <BannerContent
                     headerText={bannerHeader}
                     headerSubheader={`${propertyType} in ${location}`}
                     description={bannerDescriptionList}
                 />
-            </GridImage>
+            </StyledGridImage>
             <Blurb text={blurb} />
             <Suite data={suites[0]} />
             <Blurb text={bottomBlurb} borderTop />
@@ -68,7 +75,7 @@ export async function getStaticPaths() {
 
     // @ts-ignore
     allProperties.forEach((x) => {
-        const bucket = x.bucket[0].toLowerCase().replace(/\s/g, '');
+        const bucket = x.bucket[0].toLowerCase().replace(/\s/g, '')
         const pathObj = { params: { slug: [bucket, x.slug] } }
         paths.push(pathObj)
 

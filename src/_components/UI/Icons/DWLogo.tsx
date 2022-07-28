@@ -1,7 +1,8 @@
 import React from 'react'
 
-const DWLogo = () => (
+const DWLogo = ({ className }: { className?: string }) => (
     <svg
+        className={className}
         width="28"
         height="100%"
         viewBox="0 0 28 40"
