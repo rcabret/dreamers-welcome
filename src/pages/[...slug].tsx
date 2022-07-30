@@ -3,9 +3,11 @@ import GridImage from '../_components/UI/GridImage'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import SubNavigation from '../_components/Navigation/SubNavigation'
+import { useRouter } from 'next/router'
+import { viewportContext } from '../_utils/ViewportProvider'
 
 interface PropertyProps {
     propertyResponse: any
@@ -32,12 +34,13 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         features,
     } = propertyResponse
 
-    console.log('suites', suites, rooms)
-    console.log('propertyType', propertyType[0])
+    const router = useRouter()
 
     setBucket(bucket[0])
     const pType = propertyType[0]
     const showSubNav = pType === 'Suites' || pType === 'Hotel'
+
+    const [activeView, setView] = useState(suites[0])
 
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
@@ -51,6 +54,21 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
             ]
         }
     }
+
+    useEffect(() => {
+        const a = router.query.slug
+        let viewToShow: string | undefined
+        if (Array.isArray(a) && a.length > 2) {
+            viewToShow = a.pop()
+        } else {
+            viewToShow = suites[0].fields.slug
+        }
+
+        const finalView = suites.find(
+            (x: { fields: { slug: string } }) => x.fields.slug === viewToShow
+        )
+        setView(finalView)
+    }, [router.query])
 
     return (
         <>
@@ -69,7 +87,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
             </StyledGridImage>
             <Blurb text={blurb} />
             {showSubNav && <SubNavigation data={getSubNavigationData()} />}
-            <Suite data={suites[0]} />
+            <Suite data={activeView} />
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
         </>
     )

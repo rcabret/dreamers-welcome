@@ -13,12 +13,12 @@ const Suite = ({ data }: SuiteProps) => {
     const { highlights } = fields
     return (
         <>
-            {highlights &&
-                highlights.length &&
-                highlights.map((x, i) => (
-                    // @ts-ignore
-                    <Highlight key={~~(i * Math.random())} data={x} />
-                ))}
+            {highlights && highlights.length
+                ? highlights.map((x, i) => (
+                      // @ts-ignore
+                      <Highlight key={~~(i * Math.random())} data={x} />
+                  ))
+                : null}
         </>
     )
 }
