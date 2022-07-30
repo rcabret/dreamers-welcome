@@ -67,7 +67,7 @@ const TopNav = ({
             </Navigation>
             <Backdrop opened={opened} />
             <Panel opened={opened}>
-                <PanelNavigation active={top} navTheme="dark">
+                <PanelNavigation active={false} navTheme="dark">
                     <PanelDropdown dark>{bucket}</PanelDropdown>
                     <HamburgerWrap onClick={() => setPanel(!opened)}>
                         <NavToggle activate={setPanel} opened={opened} dark />

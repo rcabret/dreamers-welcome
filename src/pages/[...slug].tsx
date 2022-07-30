@@ -7,7 +7,6 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
-import { viewportContext } from '../_utils/ViewportProvider'
 
 interface PropertyProps {
     propertyResponse: any
