@@ -9,12 +9,17 @@ function MyApp({ Component, pageProps }: AppProps) {
     const Layout = Component.Layout || EmptyLayout
 
     const [bucket, setBucket] = useState(undefined)
+    const [navTheme, setNavTheme] = useState(undefined)
 
     return (
         <ViewportProvider>
-            <TopNav bucket={bucket} />
+            <TopNav bucket={bucket} navTheme={navTheme} />
             <Layout>
-                <Component {...pageProps} setBucket={setBucket} />
+                <Component
+                    {...pageProps}
+                    setBucket={setBucket}
+                    setNavTheme={setNavTheme}
+                />
             </Layout>
         </ViewportProvider>
     )

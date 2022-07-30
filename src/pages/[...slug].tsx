@@ -5,6 +5,7 @@ import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
 import { useEffect } from 'react'
 import styled from 'styled-components'
+import SubNavigation from '../_components/Navigation/SubNavigation'
 
 interface PropertyProps {
     propertyResponse: any
@@ -22,6 +23,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         bannerHeader,
         blurb,
         suites,
+        rooms,
         bottomBlurb,
         location,
         propertyType,
@@ -30,9 +32,25 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         features,
     } = propertyResponse
 
-    useEffect(() => {
-        setBucket(bucket[0])
-    }, [])
+    console.log('suites', suites, rooms)
+    console.log('propertyType', propertyType[0])
+
+    setBucket(bucket[0])
+    const pType = propertyType[0]
+    const showSubNav = pType === 'Suites' || pType === 'Hotel'
+
+    const getSubNavigationData = () => {
+        if (pType === 'Suites') {
+            return suites.map((x: { fields: any }) => {
+                return { name: x.fields.suiteName, slug: x.fields.slug }
+            })
+        } else if (pType === 'Hotel') {
+            return [
+                { name: 'Suites', slug: 'suites' },
+                { name: 'Rooms', slug: 'rooms' },
+            ]
+        }
+    }
 
     return (
         <>
@@ -50,6 +68,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
                 />
             </StyledGridImage>
             <Blurb text={blurb} />
+            {showSubNav && <SubNavigation data={getSubNavigationData()} />}
             <Suite data={suites[0]} />
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
         </>

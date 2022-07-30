@@ -4,15 +4,17 @@ import DWLogoType from '../UI/Icons/DWLogoType'
 import DWLogo from '../UI/Icons/DWLogo'
 
 interface NavigationStyleProps {
+    dark?: boolean
     active?: boolean
     opened?: boolean
+    navTheme?: string
 }
 
 export const Navigation = styled.nav`
     position: fixed;
     top: 0;
-    color: ${({ active }: NavigationStyleProps) =>
-        active ? 'black%' : 'white'};
+    color: ${({ dark, navTheme }: NavigationStyleProps) =>
+        dark || navTheme === 'dark' ? 'black' : 'white'};
     height: ${({ active }: NavigationStyleProps) =>
         active ? rem('50px') : rem('100px')};
     z-index: 101;
@@ -41,20 +43,21 @@ export const Navigation = styled.nav`
     }
 `
 
+export const PanelNavigation = styled(Navigation)`
+    position: absolute;
+`
 export const StyledDWLogoType = styled(DWLogoType)`
     display: block;
     margin: 0 auto;
     * {
-        fill: ${({ active }: NavigationStyleProps) =>
-            active ? 'black' : 'white'};
+        fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     }
 `
 export const StyledDWLogo = styled(DWLogo)`
     position: absolute;
 
     path {
-        fill: ${({ active }: NavigationStyleProps) =>
-            active ? 'black' : 'white'};
+        fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     }
 `
 
@@ -63,9 +66,9 @@ export const Panel = styled.div`
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
     width: ${rem('500px')};
     height: 100vh;
-    z-index: 99;
+    z-index: 200;
     top: 0;
-    transition: 0.35s right cubic-bezier(0,.8,.86,1.01);
+    transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;
 `
 
@@ -84,12 +87,16 @@ export const Backdrop = styled.div`
 export const StyledDropdown = styled.div`
     position: absolute;
     top: 0;
-    right: ${rem('330px')};
+    right: 20%;
     height: 100%;
-    color: ${({ opened, active }: NavigationStyleProps) =>
-        opened || active ? 'black' : 'white'};
+    color: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     display: flex;
     align-items: center;
+`
+
+export const PanelDropdown = styled(StyledDropdown)`
+    left: ${rem('40px')};
+    right: auto;
 `
 
 export const HamburgerWrap = styled.div`

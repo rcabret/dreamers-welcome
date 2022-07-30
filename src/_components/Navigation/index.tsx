@@ -4,13 +4,20 @@ import {
     HamburgerWrap,
     Navigation,
     Panel,
+    PanelDropdown, PanelNavigation,
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
 } from './styles'
 import NavToggle from '../UI/Icons/NavToggle'
 
-const TopNav = ({ bucket }: { bucket?: string }) => {
+const TopNav = ({
+    bucket,
+    navTheme,
+}: {
+    bucket?: string
+    navTheme?: string
+}) => {
     const [top, setTop] = useState(false)
 
     useEffect(() => {
@@ -45,23 +52,28 @@ const TopNav = ({ bucket }: { bucket?: string }) => {
 
     return (
         <>
-            <Navigation active={top}>
-                <StyledDWLogo active={top} />
-                <StyledDWLogoType active={top} />
-                <StyledDropdown opened={opened} active={top}>
-                    {bucket}
-                </StyledDropdown>
+            <Navigation active={top} navTheme={navTheme}>
+                <StyledDWLogo dark={top} />
+                <StyledDWLogoType dark={top} />
+                <StyledDropdown dark={top}>{bucket}</StyledDropdown>
                 <HamburgerWrap onClick={() => setPanel(!opened)}>
                     <NavToggle
                         activate={setPanel}
                         opened={opened}
-                        active={top}
+                        dark={top || navTheme === 'dark'}
                     />
                 </HamburgerWrap>
                 <aside />
             </Navigation>
             <Backdrop opened={opened} />
-            <Panel opened={opened} />
+            <Panel opened={opened}>
+                <PanelNavigation active={top} navTheme="dark">
+                    <PanelDropdown dark>{bucket}</PanelDropdown>
+                    <HamburgerWrap onClick={() => setPanel(!opened)}>
+                        <NavToggle activate={setPanel} opened={opened} dark />
+                    </HamburgerWrap>
+                </PanelNavigation>
+            </Panel>
         </>
     )
 }

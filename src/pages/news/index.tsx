@@ -1,17 +1,24 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Content, GridModule, GridWrapper, TopSection } from '../../styles/globla'
+import {
+    Content,
+    GridModule,
+    GridWrapper,
+    TopSection,
+} from '../../styles/globla'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews } from '../../_lib/api'
 import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
 import Link from 'next/link'
-import Header from "../../_components/Typography/Header";
+import Header from '../../_components/Typography/Header'
 
-const News = ({ news }: { news: any }) => {
+const News = ({ news, setNavTheme }: { news: any; setNavTheme: any }) => {
     const breakpoint = useContext(viewportContext)
 
-    useEffect(() => {})
+    useEffect(() => {
+        setNavTheme('dark')
+    }, [])
 
     if (!news.length) {
         return null
@@ -20,7 +27,9 @@ const News = ({ news }: { news: any }) => {
     return (
         <Content padding>
             <TopSection>
-                <Header size={4} uppercase>NEWS & UPDATES</Header>
+                <Header size={4} uppercase>
+                    NEWS & UPDATES
+                </Header>
             </TopSection>
             <GridWrapper border={false} padding>
                 <GridModule columns={4} sideScrollOnMobile={false}>

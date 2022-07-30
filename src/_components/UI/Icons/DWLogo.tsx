@@ -2,6 +2,7 @@ import React from 'react'
 
 const DWLogo = ({ className }: { className?: string }) => (
     <svg
+        id="dw_logo"
         className={className}
         width="28"
         height="100%"

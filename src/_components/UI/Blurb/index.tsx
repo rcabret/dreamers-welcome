@@ -14,7 +14,7 @@ const BlurbWrap = styled.div`
     position: relative;
 
     > div {
-        max-width: ${rem('1000px')};
+        max-width: ${rem('1100px')};
     }
 
     .separator {

@@ -10,7 +10,7 @@ export interface HeaderStyleProps {
 
 export const H1Styled = styled.h1.attrs({ lan: 'en' })`
     font-size: ${({ responsive }: HeaderStyleProps) =>
-        responsive ? '4.5vw' : rem('72px')} !important; // 72px
+        responsive ? '4vw' : rem('60px')} !important; // 72px
     line-height: 1;
     font-weight: ${(props) => (props.bold ? 900 : 500)};
     text-transform: ${(props) => (props.uppercase ? 'uppercase' : 'none')};

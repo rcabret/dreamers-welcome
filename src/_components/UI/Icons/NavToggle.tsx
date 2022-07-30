@@ -2,7 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react'
 import styled from 'styled-components'
 
 interface NavTProps {
-    active: boolean
+    dark: boolean
     opened: boolean
     activate?: Dispatch<SetStateAction<boolean>>
 }
@@ -13,7 +13,8 @@ const StyledSVG = styled.svg`
     polyline {
         transition: 0.3s transform;
         stroke-width: 1.5;
-        stroke: ${({ active, opened }: NavTProps) => (active || opened ? 'black' : 'white')};
+        stroke: ${({ dark, opened }: NavTProps) =>
+            dark || opened ? 'black' : 'white'};
     }
 
     polyline:first-child {
@@ -27,8 +28,13 @@ const StyledSVG = styled.svg`
     }
 `
 
-const NavToggle = ({ opened, active }: NavTProps) => (
-    <StyledSVG opened={opened} active={active} viewBox="0 0 40 40">
+const NavToggle = ({ opened, dark }: NavTProps) => (
+    <StyledSVG
+        id="nav_toggle"
+        opened={opened}
+        dark={dark}
+        viewBox="0 0 40 40"
+    >
         <polyline points="5,14 35,14" />
         <polyline points="5,26 35,26" />
     </StyledSVG>
