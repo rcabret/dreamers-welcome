@@ -7,8 +7,9 @@ interface SuiteProps {
             highlights: []
         }
     }
+    hideFirstSeparator?: boolean
 }
-const Suite = ({ data }: SuiteProps) => {
+const Suite = ({ data, hideFirstSeparator }: SuiteProps) => {
     const { fields } = data
     const { highlights } = fields
     return (
@@ -16,7 +17,11 @@ const Suite = ({ data }: SuiteProps) => {
             {highlights && highlights.length
                 ? highlights.map((x, i) => (
                       // @ts-ignore
-                      <Highlight key={~~(i * Math.random())} data={x} />
+                      <Highlight
+                          key={~~(i * Math.random())}
+                          data={x}
+                          hideSeparator={hideFirstSeparator && i === 0}
+                      />
                   ))
                 : null}
         </>

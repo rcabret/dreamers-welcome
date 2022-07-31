@@ -56,6 +56,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
 
     useEffect(() => {
         const a = router.query.slug
+        console.log('a', a)
         let viewToShow: string | undefined
         if (Array.isArray(a) && a.length > 2) {
             viewToShow = a.pop()
@@ -66,6 +67,8 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         const finalView = suites.find(
             (x: { fields: { slug: string } }) => x.fields.slug === viewToShow
         )
+
+        console.log(finalView)
         setView(finalView)
     }, [router.query])
 
@@ -85,8 +88,17 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
                 />
             </StyledGridImage>
             <Blurb text={blurb} />
-            {showSubNav && <SubNavigation data={getSubNavigationData()} />}
-            <Suite data={activeView} />
+            {showSubNav && (
+                <SubNavigation
+                    activeState={activeView.fields.slug}
+                    queryArray={router.query.slug}
+                    data={getSubNavigationData()}
+                />
+            )}
+            <Suite
+                data={activeView}
+                hideFirstSeparator={showSubNav && suites.length > 1}
+            />
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
         </>
     )
