@@ -8,12 +8,13 @@ interface SuiteProps {
         }
     }
     hideFirstSeparator?: boolean
+    id?: string
 }
-const Suite = ({ data, hideFirstSeparator }: SuiteProps) => {
+const Suite = ({ data, hideFirstSeparator, id }: SuiteProps) => {
     const { fields } = data
     const { highlights } = fields
     return (
-        <>
+        <div id={id}>
             {highlights && highlights.length
                 ? highlights.map((x, i) => (
                       // @ts-ignore
@@ -24,7 +25,7 @@ const Suite = ({ data, hideFirstSeparator }: SuiteProps) => {
                       />
                   ))
                 : null}
-        </>
+        </div>
     )
 }
 

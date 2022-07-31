@@ -96,6 +96,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
                 />
             )}
             <Suite
+                id="suites_view"
                 data={activeView}
                 hideFirstSeparator={showSubNav && suites.length > 1}
             />

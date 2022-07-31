@@ -12,7 +12,7 @@ const SubNav = styled.div`
     top: 50px;
     z-index: 10;
     background: white;
-    
+
     .separator {
         margin: 0 30px;
         height: 1px;
@@ -48,6 +48,16 @@ const SubNavigation = ({
             return
         }
         const baseUrl = `/${queryArray[0]}/${queryArray[1]}`
+        const anchor = document.getElementById('suites_view')
+        if (anchor) {
+            console.log(anchor.offsetTop)
+            setTimeout(function () {
+                window.scrollTo({
+                    behavior: 'smooth',
+                    top: anchor.offsetTop - 100,
+                })
+            }, 100)
+        }
         router.push(`${baseUrl}/${slug}`, undefined, { shallow: true })
     }
 
@@ -65,7 +75,7 @@ const SubNavigation = ({
                     data.map((x, i: number) => {
                         return (
                             <SubLink
-                                key={i}
+                                key={i * Math.random()}
                                 onClick={() => shallowRoute(x.slug)}
                             >
                                 <BodyText
