@@ -66,7 +66,7 @@ export const Panel = styled.div`
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
     width: ${rem('500px')};
     height: 100vh;
-    z-index: 200;
+    z-index: 201;
     top: 0;
     transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;
@@ -76,7 +76,7 @@ export const Backdrop = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 80;
+    z-index: 200;
     top: 0;
     visibility: ${({ opened }: NavigationStyleProps) =>
         opened ? 'visible' : 'hidden'};

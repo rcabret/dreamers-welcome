@@ -10,7 +10,7 @@ const SubNav = styled.div`
     align-items: center;
     justify-content: center;
     top: 50px;
-    z-index: 100;
+    z-index: 10;
     background: white;
     
     .separator {
