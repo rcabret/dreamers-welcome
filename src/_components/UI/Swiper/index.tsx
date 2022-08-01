@@ -4,7 +4,7 @@ import 'swiper/css'
 import React, { Component } from 'react'
 import GridImage from '../GridImage'
 import { StyledSwiper } from './styles'
-import { Navigation } from 'swiper'
+import Swiper, { Navigation } from 'swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 
 interface SwiperProps {
@@ -15,11 +15,13 @@ interface SwiperProps {
 class ImageSlider extends Component {
     private readonly images: any
     private readonly slidesPer: number
+    private readonly slug: string
 
     constructor(props: SwiperProps) {
         super(props)
-        const { items, slidesPerView } = props
+        const { items, slidesPerView, slug } = props
         this.images = items
+        this.slug = slug;
         this.slidesPer = slidesPerView || 1
         this.state = {
             swiper: undefined,
@@ -39,12 +41,12 @@ class ImageSlider extends Component {
     }
 
     componentDidUpdate(
-        prevProps: Readonly<{}>,
-        prevState: Readonly<{}>,
+        prevProps: Readonly<{ slug: string }>,
+        prevState: Readonly<{ swiper: Swiper }>,
         snapshot?: any
     ) {
-        if (prevState.slug !== this.props.slug) {
-            this.state.swiper.slideTo(0)
+        if (prevProps.slug !== this.slug) {
+            prevState.swiper.slideTo(0)
         }
     }
 
@@ -62,7 +64,6 @@ class ImageSlider extends Component {
                     }}*/
                     onSwiper={(swiper) => this.setState({ swiper: swiper })}
                     onUpdate={(swiper) => {
-                        console.log('destroy', swiper)
                         swiper.slideTo(0)
                     }}
                     /* navigation={true}
