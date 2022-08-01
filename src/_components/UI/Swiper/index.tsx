@@ -10,6 +10,7 @@ import { ContentfulImage } from '../../../_constants/DataTypes'
 interface SwiperProps {
     items: ContentfulImage[]
     slidesPerView?: number
+    slug: string
 }
 class ImageSlider extends Component {
     private readonly images: any
@@ -21,7 +22,7 @@ class ImageSlider extends Component {
         this.images = items
         this.slidesPer = slidesPerView || 1
         this.state = {
-            activeIndex: 0,
+            swiper: undefined,
         }
     }
 
@@ -37,6 +38,16 @@ class ImageSlider extends Component {
         })
     }
 
+    componentDidUpdate(
+        prevProps: Readonly<{}>,
+        prevState: Readonly<{}>,
+        snapshot?: any
+    ) {
+        if (prevState.slug !== this.props.slug) {
+            this.state.swiper.slideTo(0)
+        }
+    }
+
     render() {
         return (
             <>
@@ -46,10 +57,15 @@ class ImageSlider extends Component {
                     freeMode
                     grabCursor={true}
                     slidesPerView={this.slidesPer}
-                    onSlideChange={(swiper) =>
+                    /*onSlideChange={(swiper) => {
                         this.nextSlide(swiper.activeIndex)
-                    }
-                   /* navigation={true}
+                    }}*/
+                    onSwiper={(swiper) => this.setState({ swiper: swiper })}
+                    onUpdate={(swiper) => {
+                        console.log('destroy', swiper)
+                        swiper.slideTo(0)
+                    }}
+                    /* navigation={true}
                     modules={[Navigation]}*/
                 >
                     {this.images &&

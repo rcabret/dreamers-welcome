@@ -13,18 +13,26 @@ interface HighlightProps {
         }
     }
     hideSeparator?: boolean
+    propertySlug: string
 }
-const Highlight = ({ data, hideSeparator = false }: HighlightProps) => {
+const Highlight = ({
+    data,
+    hideSeparator = false,
+    propertySlug,
+}: HighlightProps) => {
     const { fields } = data
     const { highlightName, blurb, images } = fields
-
     return (
         <HighlightWrapper>
             {!hideSeparator && <div className="separator" />}
             <Name>{highlightName}</Name>
             <SliderWrap>
                 {/*@ts-ignore*/}
-                <ImageSlider items={images} slidesPerView={1} />
+                <ImageSlider
+                    slug={propertySlug}
+                    items={images}
+                    slidesPerView={1}
+                />
             </SliderWrap>
             <HighlightBlurb>
                 {blurb && <BodyText size="lg">{blurb}</BodyText>}
