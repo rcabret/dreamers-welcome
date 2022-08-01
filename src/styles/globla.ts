@@ -65,17 +65,22 @@ export const GridWrapper = styled.div`
 `
 
 export const ItemWrapper = styled.div`
-    border: 1px solid #c1c1c1;
-    border-radius: ${rem('10px')};
-    overflow: hidden;
-    margin: ${rem('10px')};
+    position: relative;
+    border: ${rem('10px')} solid transparent;
+
+    .border {
+        border: 1px solid #c1c1c1;
+        border-radius: ${rem('10px')};
+        overflow: hidden;
+        border-radius: ${rem('10px')};
+    }
 `
 
 export const TopSection = styled.div`
     width: 100%;
     padding: 0 ${rem('20px')};
     display: inline-block;
-    
+
     button {
         float: right;
     }

@@ -43,57 +43,64 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
 
     return (
         <ItemWrapper>
-            <Link href={url} passHref>
-                <a>
-                    <GridImage
-                        borderRadius={false}
-                        border={false}
-                        ratio={0.68}
-                        imageObj={tileImage}
-                    />
-                </a>
-            </Link>
-            <Metadata>
-                <TopContainer>
-                    <BodyText size="sm">
-                        {Array.isArray(bannerDescriptionList)
-                            ? bannerDescriptionList.map((x, i) => {
-                                  return `${x} ${
-                                      i < bannerDescriptionList.length - 1
-                                          ? '· '
-                                          : ''
-                                  }`
-                              })
-                            : bannerDescriptionList}
-                    </BodyText>
-                    <div className="share" onClick={() => copyToClipboard()}>
-                        {!copiedToClipboard ? (
-                            <>
-                                <Share />
-                                <BodyText size="sm">Share</BodyText>
-                            </>
-                        ) : (
-                            <BodyText size="sm">Copied to clipboard</BodyText>
-                        )}
-                    </div>
-                </TopContainer>
+            <div className="border">
                 <Link href={url} passHref>
                     <a>
-                        <Header bold={false} size={2}>
-                            {propertyName}
-                        </Header>
+                        <GridImage
+                            borderRadius={false}
+                            border={false}
+                            ratio={0.68}
+                            imageObj={tileImage}
+                        />
                     </a>
                 </Link>
-                <BottomContainer>
-                    <Location>
-                        <LocationPin />
-                        <BodyText size={'sm'}>
-                            {propertyType[0]}, {location}
+                <Metadata>
+                    <TopContainer>
+                        <BodyText size="sm">
+                            {Array.isArray(bannerDescriptionList)
+                                ? bannerDescriptionList.map((x, i) => {
+                                      return `${x} ${
+                                          i < bannerDescriptionList.length - 1
+                                              ? '· '
+                                              : ''
+                                      }`
+                                  })
+                                : bannerDescriptionList}
                         </BodyText>
-                    </Location>
-                    <Button href={bookNowLink}>BOOK NOW</Button>
-                </BottomContainer>
-            </Metadata>
+                        <div
+                            className="share"
+                            onClick={() => copyToClipboard()}
+                        >
+                            {!copiedToClipboard ? (
+                                <>
+                                    <Share />
+                                    <BodyText size="sm">Share</BodyText>
+                                </>
+                            ) : (
+                                <BodyText size="sm">
+                                    Copied to clipboard
+                                </BodyText>
+                            )}
+                        </div>
+                    </TopContainer>
+                    <Link href={url} passHref>
+                        <a>
+                            <Header bold={false} size={2}>
+                                {propertyName}
+                            </Header>
+                        </a>
+                    </Link>
+                    <BottomContainer>
+                        <Location>
+                            <LocationPin />
+                            <BodyText size={'sm'}>
+                                {propertyType[0]}, {location}
+                            </BodyText>
+                        </Location>
+                        <Button href={bookNowLink}>BOOK NOW</Button>
+                    </BottomContainer>
+                </Metadata>
+            </div>
         </ItemWrapper>
     )
 }

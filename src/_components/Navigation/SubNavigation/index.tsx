@@ -5,7 +5,7 @@ import BodyText from '../../Typography/BodyText'
 
 const SubNav = styled.div`
     position: sticky;
-    height: 50px;
+    height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
