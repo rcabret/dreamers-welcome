@@ -56,7 +56,6 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
 
     useEffect(() => {
         const a = router.query.slug
-        console.log('a', a)
         let viewToShow: string | undefined
         if (Array.isArray(a) && a.length > 2) {
             viewToShow = a.pop()
@@ -67,8 +66,6 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         const finalView = suites.find(
             (x: { fields: { slug: string } }) => x.fields.slug === viewToShow
         )
-
-        console.log(finalView)
         setView(finalView)
     }, [router.query])
 
@@ -121,24 +118,45 @@ export async function getStaticPaths() {
     const allProperties = await getAllPropertiesForPaths()
 
     // @ts-ignore
-    let paths = []
+    let paths: { params: { slug: string[] } }[] = []
 
     // @ts-ignore
-    allProperties.forEach((x) => {
-        const bucket = x.bucket[0].toLowerCase().replace(/\s/g, '')
-        const pathObj = { params: { slug: [bucket, x.slug] } }
+    allProperties.forEach((property) => {
+        const bucket = property.bucket[0].toLowerCase().replace(/\s/g, '')
+        const propertyType = property.propertyType[0]
+        const pathObj = { params: { slug: [bucket, property.slug] } }
         paths.push(pathObj)
 
         // Check for suite routes
-        if (x.suites && x.suites.length > 1) {
-            x.suites.map((y: { fields: { slug: string } }) => {
+        if (
+            property.suites &&
+            property.suites.length > 1 &&
+            propertyType === 'Suites'
+        ) {
+            property.suites.map((y: { fields: { slug: string } }) => {
                 const pathObj = {
                     params: {
-                        slug: [bucket, x.slug, y.fields.slug],
+                        slug: [bucket, property.slug, y.fields.slug],
                     },
                 }
                 paths.push(pathObj)
             })
+        } else if (propertyType === 'Hotel') {
+            // Do some stuff
+
+            const addition = [
+                {
+                    params: {
+                        slug: [bucket, property.slug, 'suites'],
+                    },
+                },
+                {
+                    params: {
+                        slug: [bucket, property.slug, 'rooms'],
+                    },
+                },
+            ]
+            paths.push(...addition);
         }
     })
 
