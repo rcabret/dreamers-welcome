@@ -4,7 +4,8 @@ import {
     HamburgerWrap,
     Navigation,
     Panel,
-    PanelDropdown, PanelNavigation,
+    PanelDropdown,
+    PanelNavigation,
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
@@ -50,9 +51,24 @@ const TopNav = ({
 
     const [opened, setPanel] = useState(false)
 
+    useEffect(() => {
+        if (opened) {
+            // @ts-ignore
+            document.querySelector('#main').style.width = `calc(100% - 400px)`
+            // @ts-ignore
+            document.querySelector(
+                '#top_nav'
+            ).style.width = `calc(100% - 400px)`
+        } else {
+            // @ts-ignore
+            document.querySelector('#main').style.width = `calc(100%)`
+            // @ts-ignore
+            document.querySelector('#top_nav').style.width = `calc(100%)`
+        }
+    }, [opened])
     return (
         <>
-            <Navigation active={top} navTheme={navTheme}>
+            <Navigation active={top} navTheme={navTheme} id="top_nav">
                 <StyledDWLogo dark={top} />
                 <StyledDWLogoType dark={top} />
                 <StyledDropdown dark={top}>{bucket}</StyledDropdown>
@@ -65,13 +81,15 @@ const TopNav = ({
                 </HamburgerWrap>
                 <aside />
             </Navigation>
+            {/*
             <Backdrop opened={opened} />
+*/}
             <Panel opened={opened}>
                 <PanelNavigation active={false} navTheme="dark">
-                    <PanelDropdown dark>{bucket}</PanelDropdown>
+                    {/* <PanelDropdown dark>{bucket}</PanelDropdown>
                     <HamburgerWrap onClick={() => setPanel(!opened)}>
                         <NavToggle activate={setPanel} opened={opened} dark />
-                    </HamburgerWrap>
+                    </HamburgerWrap>*/}
                 </PanelNavigation>
             </Panel>
         </>

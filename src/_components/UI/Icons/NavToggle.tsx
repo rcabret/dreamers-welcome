@@ -14,7 +14,7 @@ const StyledSVG = styled.svg`
         transition: 0.3s transform;
         stroke-width: 1.5;
         stroke: ${({ dark, opened }: NavTProps) =>
-            dark || opened ? 'black' : 'white'};
+            dark ? 'black' : 'white'};
     }
 
     polyline:first-child {

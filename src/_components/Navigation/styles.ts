@@ -8,6 +8,7 @@ interface NavigationStyleProps {
     active?: boolean
     opened?: boolean
     navTheme?: string
+    collapse?: boolean
 }
 
 export const Navigation = styled.nav`
@@ -20,7 +21,7 @@ export const Navigation = styled.nav`
     z-index: 101;
     padding: 0 ${rem('30px')};
     width: 100%;
-    transition: 0.2s height;
+    transition: 0.4s all cubic-bezier(0, 0.8, 0.86, 1.01);
 
     svg:first-child,
     svg:nth-child(2) {
@@ -64,11 +65,11 @@ export const StyledDWLogo = styled(DWLogo)`
 export const Panel = styled.div`
     position: fixed;
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
-    width: ${rem('500px')};
+    width: ${rem('400px')};
     height: 100vh;
     z-index: 201;
     top: 0;
-    transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
+    transition: 0.4s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;
 `
 
@@ -76,13 +77,13 @@ export const Backdrop = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 200;
+    z-index: 100;
     top: 0;
     visibility: ${({ opened }: NavigationStyleProps) =>
         opened ? 'visible' : 'hidden'};
     background: ${({ opened }: NavigationStyleProps) =>
         opened ? 'rgba(0, 0, 0, 0.5)' : 'none'};
-    transition: 0.3s all;
+    transition: 0.4s cubic-bezier(0, 0.8, 0.86, 1.01);
 `
 export const StyledDropdown = styled.div`
     position: absolute;
