@@ -41,12 +41,12 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
     const showSubNav = pType === 'Suites' || pType === 'Hotel'
 
     const [activeView, setView] = useState(suites[0])
-    const [activeSlug, setSlug] = useState(suites[0])
+    const [activeSlug, setSlug] = useState()
 
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
             return suites.map((x: { fields: any }) => {
-                return { name: x.fields.suiteName, slug: x.fields.slug }
+                return { name: x.fields.name, slug: x.fields.slug }
             })
         } else if (pType === 'Hotel') {
             return [
@@ -61,7 +61,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
     }
 
     useEffect(() => {
-        const a = router.query.slug
+        const a = router.query.slug as string[]
         let viewToShow: string | undefined
         if (Array.isArray(a) && a.length > 2) {
             viewToShow = a.pop()
@@ -71,6 +71,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         }
 
         // set slug
+        // @ts-ignore
         setSlug(viewToShow)
 
         const finalView =
@@ -81,7 +82,6 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
                           x.fields.slug === viewToShow
                   )
 
-        console.log('final', finalView)
         setView(finalView)
     }, [router.query])
 
@@ -113,7 +113,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
                 {pType !== 'Hotel' ? (
                     // Suites and Houses
                     <Suite
-                        slug={activeSlug}
+                        slug={activeSlug || ''}
                         data={activeView}
                         hideFirstSeparator={showSubNav && suites.length > 1}
                     />
@@ -129,7 +129,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
                                 title={name}
                                 blurb={blurb}
                                 images={images}
-                                slug={activeSlug}
+                                slug={activeSlug || ''}
                                 hideSeparator={i === 0}
                             />
                         )

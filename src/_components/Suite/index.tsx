@@ -10,7 +10,7 @@ interface SuiteProps {
     slug: string
     hideFirstSeparator?: boolean
 }
-const Suite = ({ data, hideFirstSeparator, slug }: SuiteProps) => {
+const Suite = ({ data, hideFirstSeparator, slug = '' }: SuiteProps) => {
     const { fields } = data
     const { highlights } = fields
     return (
