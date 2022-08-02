@@ -56,7 +56,7 @@ export const GridWrapper = styled.div`
     border-top: ${({ border }: { border: boolean; padding: boolean }) =>
         border ? '1px solid black' : 'none'};
     padding: ${({ padding }) => (padding ? rem('10px') : 0)};
-    //padding-top: ${rem('20px')};
+    padding-top: ${rem('40px')};
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         padding: 0 ${rem('5px')};

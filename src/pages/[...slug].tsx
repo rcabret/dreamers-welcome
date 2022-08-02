@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
+import Highlight from '../_components/Suite/Highlight'
 
 interface PropertyProps {
     propertyResponse: any
@@ -40,6 +41,7 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
     const showSubNav = pType === 'Suites' || pType === 'Hotel'
 
     const [activeView, setView] = useState(suites[0])
+    const [activeSlug, setSlug] = useState(suites[0])
 
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
@@ -54,18 +56,32 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
         }
     }
 
+    const getHotelView = (a = 'suites') => {
+        return a === 'suites' ? suites : rooms
+    }
+
     useEffect(() => {
         const a = router.query.slug
         let viewToShow: string | undefined
         if (Array.isArray(a) && a.length > 2) {
             viewToShow = a.pop()
         } else {
-            viewToShow = suites[0].fields.slug
+            // If type is Hotel show Suites as default route
+            viewToShow = pType === 'Hotel' ? 'suites' : suites[0].fields.slug
         }
 
-        const finalView = suites.find(
-            (x: { fields: { slug: string } }) => x.fields.slug === viewToShow
-        )
+        // set slug
+        setSlug(viewToShow)
+
+        const finalView =
+            pType === 'Hotel'
+                ? getHotelView(viewToShow)
+                : suites.find(
+                      (x: { fields: { slug: string } }) =>
+                          x.fields.slug === viewToShow
+                  )
+
+        console.log('final', finalView)
         setView(finalView)
     }, [router.query])
 
@@ -87,16 +103,40 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
             <Blurb text={blurb} />
             {showSubNav && (
                 <SubNavigation
-                    activeState={activeView.fields.slug}
+                    activeState={activeSlug}
                     queryArray={router.query.slug}
                     data={getSubNavigationData()}
                 />
             )}
-            <Suite
-                id="suites_view"
-                data={activeView}
-                hideFirstSeparator={showSubNav && suites.length > 1}
-            />
+            {/* Suites view for 'Suites' and House*/}
+            <div id="suites_view">
+                {pType !== 'Hotel' ? (
+                    // Suites and Houses
+                    <Suite
+                        slug={activeSlug}
+                        data={activeView}
+                        hideFirstSeparator={showSubNav && suites.length > 1}
+                    />
+                ) : (
+                    // Hotel
+                    activeView &&
+                    Array.isArray(activeView) &&
+                    activeView.map((x, i) => {
+                        const { name, blurb, images } = x.fields
+                        return (
+                            <Highlight
+                                key={~~(Math.random() * i)}
+                                title={name}
+                                blurb={blurb}
+                                images={images}
+                                slug={activeSlug}
+                                hideSeparator={i === 0}
+                            />
+                        )
+                    })
+                )}
+            </div>
+
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
         </>
     )
@@ -142,8 +182,6 @@ export async function getStaticPaths() {
                 paths.push(pathObj)
             })
         } else if (propertyType === 'Hotel') {
-            // Do some stuff
-
             const addition = [
                 {
                     params: {
@@ -156,7 +194,7 @@ export async function getStaticPaths() {
                     },
                 },
             ]
-            paths.push(...addition);
+            paths.push(...addition)
         }
     })
 

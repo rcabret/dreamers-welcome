@@ -5,34 +5,26 @@ import ImageSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 
 interface HighlightProps {
-    data: {
-        fields: {
-            highlightName: string
-            blurb: string
-            images: ContentfulImage[]
-        }
-    }
+    title: string
+    blurb: string
+    images: ContentfulImage[]
     hideSeparator?: boolean
-    propertySlug: string
+    slug: string
 }
 const Highlight = ({
-    data,
+    title,
+    blurb,
+    images,
     hideSeparator = false,
-    propertySlug,
+    slug,
 }: HighlightProps) => {
-    const { fields } = data
-    const { highlightName, blurb, images } = fields
     return (
         <HighlightWrapper>
             {!hideSeparator && <div className="separator" />}
-            <Name>{highlightName}</Name>
+            <Name>{title}</Name>
             <SliderWrap>
                 {/*@ts-ignore*/}
-                <ImageSlider
-                    slug={propertySlug}
-                    items={images}
-                    slidesPerView={1}
-                />
+                <ImageSlider slug={slug} items={images} slidesPerView={1} />
             </SliderWrap>
             <HighlightBlurb>
                 {blurb && <BodyText size="lg">{blurb}</BodyText>}
