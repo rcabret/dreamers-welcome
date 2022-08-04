@@ -50,7 +50,6 @@ const SubNavigation = ({
         const baseUrl = `/${queryArray[0]}/${queryArray[1]}`
         const anchor = document.getElementById('suites_view')
         if (anchor) {
-            console.log(anchor.offsetTop)
             setTimeout(function () {
                 window.scrollTo({
                     behavior: 'smooth',

@@ -11,7 +11,7 @@ const StyledSVG = styled.svg`
     width: 40px;
 
     polyline {
-        transition: 0.3s transform;
+        transition: 0.4s transform;
         stroke-width: 1.5;
         stroke: ${({ dark, opened }: NavTProps) =>
             dark ? 'black' : 'white'};

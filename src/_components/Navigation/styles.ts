@@ -19,22 +19,29 @@ export const Navigation = styled.nav`
     height: ${({ active }: NavigationStyleProps) =>
         active ? rem('50px') : rem('100px')};
     z-index: 101;
-    padding: 0 ${rem('30px')};
     width: 100%;
-    transition: 0.4s all cubic-bezier(0, 0.8, 0.86, 1.01);
+    transition: 0.4s height;
+
+    .inner_wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 0 ${rem('30px')};
+        transition: 0.5s cubic-bezier(0, 0.8, 0.86, 1.01);
+    }
 
     svg:first-child,
     svg:nth-child(2) {
         transform: ${({ active }: NavigationStyleProps) =>
             active ? 'scale(0.85)' : 'scale(1)'};
-        transition: 0.2s transform;
+        transition: 0.3s transform;
     }
 
     aside {
         z-index: -1;
         top: 0;
         left: 0;
-        transition: 0.2s all;
+        transition: 0.3s all;
         background: white;
         position: absolute;
         width: 100%;
@@ -65,11 +72,11 @@ export const StyledDWLogo = styled(DWLogo)`
 export const Panel = styled.div`
     position: fixed;
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
-    width: ${rem('400px')};
+    width: ${rem('300px')};
     height: 100vh;
     z-index: 201;
     top: 0;
-    transition: 0.4s right cubic-bezier(0, 0.8, 0.86, 1.01);
+    transition: 0.5s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;
 `
 
@@ -77,13 +84,14 @@ export const Backdrop = styled.div`
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 100;
+    z-index: -1;
     top: 0;
     visibility: ${({ opened }: NavigationStyleProps) =>
         opened ? 'visible' : 'hidden'};
     background: ${({ opened }: NavigationStyleProps) =>
-        opened ? 'rgba(0, 0, 0, 0.5)' : 'none'};
-    transition: 0.4s cubic-bezier(0, 0.8, 0.86, 1.01);
+        opened ? 'rgba(0, 0, 0, 0.75)' : 'none'};
+    backdrop-filter: blur(6px);
+    transition: 0.5s all;
 `
 export const StyledDropdown = styled.div`
     position: absolute;
