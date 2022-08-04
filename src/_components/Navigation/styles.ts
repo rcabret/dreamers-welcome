@@ -89,7 +89,7 @@ export const Backdrop = styled.div`
     visibility: ${({ opened }: NavigationStyleProps) =>
         opened ? 'visible' : 'hidden'};
     background: ${({ opened }: NavigationStyleProps) =>
-        opened ? 'rgba(0, 0, 0, 0.6)' : 'none'};
+        opened ? 'rgba(0, 0, 0, 0.7)' : 'none'};
     backdrop-filter: blur(6px);
     transition: 0.5s all;
 `
