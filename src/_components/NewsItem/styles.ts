@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 
 export const ItemWrapperStyled = styled(ItemWrapper)`
-    padding: ${rem('14px')};
+    .border {
+        padding: ${rem('14px')};
+    }
 
     > p {
         color: #818080;

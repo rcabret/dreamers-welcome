@@ -27,7 +27,7 @@ export const Navigation = styled.nav`
         width: 100%;
         height: 100%;
         padding: 0 ${rem('30px')};
-        transition: 0.5s cubic-bezier(0, 0.8, 0.86, 1.01);
+        transition: 0.5s width cubic-bezier(0, 0.8, 0.86, 1.01);
     }
 
     svg:first-child,
@@ -89,7 +89,7 @@ export const Backdrop = styled.div`
     visibility: ${({ opened }: NavigationStyleProps) =>
         opened ? 'visible' : 'hidden'};
     background: ${({ opened }: NavigationStyleProps) =>
-        opened ? 'rgba(0, 0, 0, 0.75)' : 'none'};
+        opened ? 'rgba(0, 0, 0, 0.6)' : 'none'};
     backdrop-filter: blur(6px);
     transition: 0.5s all;
 `

@@ -12,12 +12,14 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
 
     return (
         <ItemWrapperStyled>
-            <BodyText size="sm">{stringDate}</BodyText>
-            <Header size={3}>{title}</Header>
-            <NewsTextWrapper>
-                <BodyText size="sm">{text}</BodyText>
-            </NewsTextWrapper>
-            <GridImage border={false} imageObj={tileImage} />
+            <div className="border">
+                <BodyText size="sm">{stringDate}</BodyText>
+                <Header size={3}>{title}</Header>
+                <NewsTextWrapper>
+                    <BodyText size="sm">{text}</BodyText>
+                </NewsTextWrapper>
+                <GridImage border={false} imageObj={tileImage} />
+            </div>
         </ItemWrapperStyled>
     )
 }
