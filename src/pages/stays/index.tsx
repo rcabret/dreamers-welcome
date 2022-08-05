@@ -8,9 +8,10 @@ import { getAllProperties } from '../../_lib/api'
 interface Props {
     properties: any
     setNavTheme: any
+    setBucket: any
 }
 
-const Stays = ({ properties, setNavTheme }: Props) => {
+const Stays = ({ properties, setNavTheme, setBucket }: Props) => {
     const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
