@@ -46,7 +46,7 @@ export const GridModule = styled.div`
 
 export const Content = styled.div`
     padding-top: ${({ padding }: { padding?: boolean }) =>
-        padding ? rem('120px') : rem('50px')}; // 50 navbar height
+        padding ? rem('80px') : rem('50px')}; // 50 navbar height
     min-height: calc(
         100vh - ${rem('390px')}
     ); // 300 + 50  footer  height plus navbar height
@@ -56,7 +56,7 @@ export const GridWrapper = styled.div`
     border-top: ${({ border }: { border: boolean; padding: boolean }) =>
         border ? '1px solid black' : 'none'};
     padding: ${({ padding }) => (padding ? rem('10px') : 0)};
-    padding-top: ${rem('40px')};
+    padding-top: ${rem('30px')};
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         padding: 0 ${rem('5px')};
@@ -79,6 +79,8 @@ export const ItemWrapper = styled.div`
 export const TopSection = styled.div`
     width: 100%;
     padding: 0 ${rem('20px')};
+    padding-top: ${({ padding }: { padding?: boolean }) =>
+        padding && rem('40px')};
     display: inline-block;
 
     button {

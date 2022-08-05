@@ -35,7 +35,7 @@ const News = ({
 
     return (
         <Content padding>
-            <TopSection>
+            <TopSection padding>
                 <Header size={4} uppercase>
                     NEWS & UPDATES
                 </Header>
