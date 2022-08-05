@@ -24,7 +24,7 @@ const Stays = ({ properties, setNavTheme, setBucket }: Props) => {
     }
 
     return (
-        <Content>
+        <Content padding>
             <GridWrapper border={false} padding>
                 <GridModule columns={3} sideScrollOnMobile={false}>
                     {properties &&
