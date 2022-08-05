@@ -13,11 +13,20 @@ import { News } from '../../_constants/DataTypes'
 import Link from 'next/link'
 import Header from '../../_components/Typography/Header'
 
-const News = ({ news, setNavTheme }: { news: any; setNavTheme: any }) => {
+const News = ({
+    news,
+    setNavTheme,
+    setBucket,
+}: {
+    news: any
+    setNavTheme: any
+    setBucket: any
+}) => {
     const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('dark')
+        setBucket('Puerto Rico')
     }, [])
 
     if (!news.length) {

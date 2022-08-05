@@ -46,7 +46,11 @@ const TopNav = ({
                 throttle(onScroll)
             })
         }
-    })
+    }, [])
+
+    useEffect(() => {
+        console.log('navTheme', navTheme)
+    }, [navTheme])
 
     const [opened, setPanel] = useState(false)
 
@@ -59,20 +63,23 @@ const TopNav = ({
             document.querySelector('body').style.overflow = 'auto'
         }
     }, [opened])
+
+    const showDarkTheme = (navTheme === 'dark' && !opened) || (top && !opened)
+
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>
                 <NavInnerContainer opened={opened}>
-                    <StyledDWLogo dark={top && !opened} />
-                    <StyledDWLogoType dark={top && !opened} />
-                    <StyledDropdown dark={top && !opened}>
+                    <StyledDWLogo dark={showDarkTheme} />
+                    <StyledDWLogoType dark={showDarkTheme} />
+                    <StyledDropdown dark={showDarkTheme}>
                         {bucket}
                     </StyledDropdown>
                     <HamburgerWrap onClick={() => setPanel(!opened)}>
                         <NavToggle
                             activate={setPanel}
                             opened={opened}
-                            dark={(top && !opened) || navTheme === 'dark'}
+                            dark={showDarkTheme}
                         />
                     </HamburgerWrap>
                 </NavInnerContainer>
