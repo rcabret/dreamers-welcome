@@ -19,6 +19,13 @@ export const GridModule = styled.div`
         text-decoration: none;
     }
 
+    @media (max-width: 1200px) {
+        > div,
+        > a {
+            width: 50%;
+        }
+    }
+
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         ${({ sideScrollOnMobile }: GMProps) =>
             sideScrollOnMobile
