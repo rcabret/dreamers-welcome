@@ -48,10 +48,6 @@ const TopNav = ({
         }
     }, [])
 
-    useEffect(() => {
-        console.log('navTheme', navTheme)
-    }, [navTheme])
-
     const [opened, setPanel] = useState(false)
 
     useEffect(() => {

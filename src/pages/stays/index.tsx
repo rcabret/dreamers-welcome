@@ -1,6 +1,5 @@
 import React, { useContext, useEffect } from 'react'
 
-
 import { Content, GridModule, GridWrapper } from '../../styles/globla'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
@@ -8,12 +7,16 @@ import { getAllProperties } from '../../_lib/api'
 
 interface Props {
     properties: any
+    setNavTheme: any
 }
 
-const Stays = ({ properties }: Props) => {
+const Stays = ({ properties, setNavTheme }: Props) => {
     const breakpoint = useContext(viewportContext)
 
-    useEffect(() => {})
+    useEffect(() => {
+        setNavTheme('dark')
+        setBucket('Puerto Rico')
+    })
 
     if (!properties.length) {
         return null
