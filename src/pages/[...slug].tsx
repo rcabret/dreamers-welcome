@@ -12,6 +12,7 @@ import Highlight from '../_components/Suite/Highlight'
 interface PropertyProps {
     propertyResponse: any
     setBucket: any
+    setNavTheme: any
 }
 
 const StyledGridImage = styled(GridImage)`
@@ -19,7 +20,7 @@ const StyledGridImage = styled(GridImage)`
     min-height: 700px;
 `
 
-const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
+const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
     const {
         bannerImage,
         bannerHeader,
@@ -42,6 +43,10 @@ const Home = ({ propertyResponse, setBucket }: PropertyProps) => {
 
     const [activeView, setView] = useState(suites[0])
     const [activeSlug, setSlug] = useState()
+
+    useEffect(() => {
+        setNavTheme('light')
+    }, [])
 
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
