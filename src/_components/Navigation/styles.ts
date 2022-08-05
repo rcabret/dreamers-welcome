@@ -11,6 +11,15 @@ interface NavigationStyleProps {
     collapse?: boolean
 }
 
+export const NavInnerContainer = styled.div`
+    position: relative;
+    width: ${({ opened }: NavigationStyleProps) =>
+        opened ? 'calc(100% - 380px)' : '100%'};
+    height: 100%;
+    padding: 0 ${rem('30px')};
+    transition: 0.35s width cubic-bezier(0, 0.8, 0.86, 1.01);
+`
+
 export const Navigation = styled.nav`
     position: fixed;
     top: 0;
@@ -21,14 +30,6 @@ export const Navigation = styled.nav`
     z-index: 101;
     width: 100%;
     transition: 0.4s height;
-
-    .inner_wrap {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        padding: 0 ${rem('30px')};
-        transition: 0.5s width cubic-bezier(0, 0.8, 0.86, 1.01);
-    }
 
     svg:first-child,
     svg:nth-child(2) {
@@ -72,11 +73,11 @@ export const StyledDWLogo = styled(DWLogo)`
 export const Panel = styled.div`
     position: fixed;
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
-    width: ${rem('300px')};
+    width: ${rem('380px')};
     height: 100vh;
     z-index: 201;
     top: 0;
-    transition: 0.5s right cubic-bezier(0, 0.8, 0.86, 1.01);
+    transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;
 `
 

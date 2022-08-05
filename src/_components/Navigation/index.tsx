@@ -3,9 +3,8 @@ import {
     Backdrop,
     HamburgerWrap,
     Navigation,
+    NavInnerContainer,
     Panel,
-    PanelDropdown,
-    PanelNavigation,
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
@@ -54,20 +53,16 @@ const TopNav = ({
     useEffect(() => {
         if (opened) {
             // @ts-ignore
-            document.querySelector(
-                '#top_nav'
-            ).style.width = `calc(100% - 300px)`
             document.querySelector('body').style.overflow = 'hidden'
         } else {
             // @ts-ignore
-            document.querySelector('#top_nav').style.width = `calc(100%)`
             document.querySelector('body').style.overflow = 'auto'
         }
     }, [opened])
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>
-                <div className="inner_wrap" id="top_nav">
+                <NavInnerContainer opened={opened}>
                     <StyledDWLogo dark={top && !opened} />
                     <StyledDWLogoType dark={top && !opened} />
                     <StyledDropdown dark={top && !opened}>
@@ -80,7 +75,7 @@ const TopNav = ({
                             dark={(top && !opened) || navTheme === 'dark'}
                         />
                     </HamburgerWrap>
-                </div>
+                </NavInnerContainer>
                 <aside />
                 <Backdrop opened={opened} />
             </Navigation>
