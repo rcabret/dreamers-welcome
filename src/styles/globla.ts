@@ -55,7 +55,7 @@ export const Content = styled.div`
 export const GridWrapper = styled.div`
     border-top: ${({ border }: { border: boolean; padding: boolean }) =>
         border ? '1px solid black' : 'none'};
-    padding: ${({ padding }) => (padding ? rem('10px') : 0)};
+    padding: ${({ padding }) => (padding ? rem('20px') : 0)};
     padding-top: ${rem('30px')};
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
@@ -78,7 +78,7 @@ export const ItemWrapper = styled.div`
 
 export const TopSection = styled.div`
     width: 100%;
-    padding: 0 ${rem('20px')};
+    padding: 0 ${rem('30px')};
     padding-top: ${({ padding }: { padding?: boolean }) =>
         padding && rem('40px')};
     display: inline-block;
