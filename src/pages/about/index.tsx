@@ -23,7 +23,12 @@ const About = ({ about }: any) => {
         monthlyGuests,
     } = about
 
-    const stats = [countries, properties, awards, monthlyGuests]
+    const stats = [
+        { name: 'Countries', data: countries },
+        { name: 'Properties', data: properties },
+        { name: 'Awards', data: awards },
+        { name: 'Guests Hosted', data: monthlyGuests },
+    ]
 
     return (
         <>
@@ -75,13 +80,16 @@ const About = ({ about }: any) => {
             <Block
                 title="OUR REACH"
                 content={
-                    <GridModule columns={4} sideScrollOnMobile>
+                    <GridModule columns={4} sideScrollOnMobile dontBreak>
                         {stats &&
-                            stats.map((stat: string, i: number) => {
+                            stats.map((stat, i: number) => {
                                 return (
-                                    <Stat key={~~(Math.random() * i)}>
-                                        {stat}
-                                    </Stat>
+                                    <div key={~~(Math.random() * i)}>
+                                        <Stat>{stat.data}</Stat>
+                                        <BodyText size="md">
+                                            {stat.name}
+                                        </BodyText>
+                                    </div>
                                 )
                             })}
                     </GridModule>

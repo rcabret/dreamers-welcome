@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import { BREAKPOINTS } from '../_constants/brekpoints'
 import GridImage from '../_components/UI/GridImage'
@@ -22,36 +22,42 @@ export const GridModule = styled.div`
         text-decoration: none;
     }
 
-    @media (max-width: 1200px) {
-        > div,
-        > a {
-            width: 50%;
-        }
-    }
-
-    @media (max-width: ${BREAKPOINTS.TABLET}) {
-        ${({ sideScrollOnMobile }: GMProps) =>
-            sideScrollOnMobile
-                ? `   
-                overflow-x: scroll;
-                white-space: nowrap;
-                
-                > div,
-                > a {
-                    width: 40%;
-                    min-width: ${rem('170px')};
-                    white-space: normal;
-                }`
-                : `
+    ${({ dontBreak = false }) =>
+        !dontBreak &&
+        css`
+            @media (max-width: 1200px) {
                 > div,
                 > a {
                     width: 50%;
-                }`}
-    }
+                }
+            }
 
-    @media (max-width: ${BREAKPOINTS.MOBILE}) {
-        padding-bottom: ${rem('25px')};
-    }
+            @media (max-width: ${BREAKPOINTS.TABLET}) {
+                ${({ sideScrollOnMobile }: GMProps) =>
+                    sideScrollOnMobile
+                        ? css`
+                              overflow-x: scroll;
+                              white-space: nowrap;
+
+                              > div,
+                              > a {
+                                  width: 40%;
+                                  min-width: ${rem('170px')};
+                                  white-space: normal;
+                              }
+                          `
+                        : css`
+                              > div,
+                              > a {
+                                  width: 50%;
+                              }
+                          `}
+            }
+
+            @media (max-width: ${BREAKPOINTS.MOBILE}) {
+                padding-bottom: ${rem('25px')};
+            }
+        `}
 `
 
 export const Content = styled.div`

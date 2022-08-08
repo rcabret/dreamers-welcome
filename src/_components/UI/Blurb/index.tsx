@@ -31,11 +31,29 @@ const BlurbWrap = styled.div`
     }
 `
 
-const Blurb = ({ text, borderTop }: { text: string; borderTop?: boolean }) => {
+const StyledHeader = styled(Header)`
+    margin-bottom: ${rem('60px')};
+    text-align: center;
+`
+
+const Blurb = ({
+    text,
+    borderTop,
+    eyebrow,
+}: {
+    text: string
+    borderTop?: boolean
+    eyebrow?: string
+}) => {
     return (
         <BlurbWrap>
             {borderTop && <figure className="separator" />}
             <div>
+                {eyebrow && (
+                    <StyledHeader size={4} uppercase>
+                        {eyebrow}
+                    </StyledHeader>
+                )}
                 <Header size={1}>{text}</Header>
             </div>
         </BlurbWrap>

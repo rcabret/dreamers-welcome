@@ -3,7 +3,6 @@ import { rem } from 'polished'
 
 export const HighlightWrapper = styled.div`
     padding: ${rem('40px')} 0 ${rem('80px')} 0;
-    // margin: 0 ${rem('30px')};
     display: inline-block;
     width: calc(100%);
     position: relative;
