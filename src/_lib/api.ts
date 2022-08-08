@@ -70,3 +70,13 @@ export const getNews = async () => {
         return entries.items.map((x: { fields: {} }) => x.fields)
     }
 }
+
+export const getAbout = async () => {
+    const entries = await client.getEntries({
+        content_type: 'about',
+        include: 3,
+    })
+    if (entries.items) {
+        return entries.items[0].fields
+    }
+}

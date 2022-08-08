@@ -41,7 +41,7 @@ const Description = styled.div`
 
 interface BannerContentProps {
     headerText: string
-    headerSubheader: string
+    headerSubheader?: string
     bookNowLink?: string
     description?: string[] | string
 }
@@ -57,19 +57,23 @@ const BannerContent = ({
                 <Header size={1} uppercase>
                     {headerText}
                 </Header>
-                <BodyText size="lg">{headerSubheader}</BodyText>
+                {headerSubheader && (
+                    <BodyText size="lg">{headerSubheader}</BodyText>
+                )}
             </Text>
-            <Description>
-                <BodyText size="lg">
-                    {Array.isArray(description)
-                        ? description.map((x, i) => {
-                              return `${x} ${
-                                  i < description.length - 1 ? '· ' : ''
-                              }`
-                          })
-                        : description}
-                </BodyText>
-            </Description>
+            {description && (
+                <Description>
+                    <BodyText size="lg">
+                        {Array.isArray(description)
+                            ? description.map((x, i) => {
+                                  return `${x} ${
+                                      i < description.length - 1 ? '· ' : ''
+                                  }`
+                              })
+                            : description}
+                    </BodyText>
+                </Description>
+            )}
         </BannerContentWrap>
     )
 }

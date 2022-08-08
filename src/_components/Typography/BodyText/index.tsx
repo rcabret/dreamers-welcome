@@ -10,12 +10,12 @@ import { BREAKPOINTS } from '../../../_constants/brekpoints'
 interface HeaderProps {
     children: any
     className?: string
-    size?: 'sm' | 'md' | 'lg'
+    size?: 'sm' | 'md' | 'lg' | 'xlg'
     bold?: boolean
     uppercase?: boolean
 }
 
-const getBodySize = (size: 'sm' | 'md' | 'lg') => {
+const getBodySize = (size: HeaderProps['size']) => {
     switch (size) {
         default:
         case 'sm':
@@ -24,10 +24,12 @@ const getBodySize = (size: 'sm' | 'md' | 'lg') => {
             return rem('18px')
         case 'lg':
             return rem('24px')
+        case 'xlg':
+            return rem('48px')
     }
 }
 
-const getMobileBodySize = (size: 'sm' | 'md' | 'lg') => {
+const getMobileBodySize = (size: HeaderProps['size']) => {
     switch (size) {
         default:
         case 'sm':
@@ -36,19 +38,21 @@ const getMobileBodySize = (size: 'sm' | 'md' | 'lg') => {
             return rem('16px')
         case 'lg':
             return rem('18px')
+        case 'xlg':
+            return rem('28px')
     }
 }
 
 interface BodyProps {
     bold?: boolean
-    size: 'sm' | 'md' | 'lg'
+    size: HeaderProps['size']
     uppercase: boolean
 }
 
 const BodyStyled = styled.p`
     font-size: ${(props: BodyProps) => getBodySize(props.size)}; // 72px
     font-weight: ${(props: BodyProps) => (props.bold ? 900 : 300)};
-    line-height: 1.5;
+    line-height: 1.3;
     text-transform: ${(props: BodyProps) =>
         props.uppercase ? 'uppercase' : 'none'};
 

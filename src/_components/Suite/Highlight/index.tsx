@@ -3,6 +3,7 @@ import { HighlightBlurb, HighlightWrapper, Name, SliderWrap } from './styles'
 import BodyText from '../../Typography/BodyText'
 import ImageSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
+import Header from '../../Typography/Header'
 
 interface HighlightProps {
     title: string
@@ -21,7 +22,11 @@ const Highlight = ({
     return (
         <HighlightWrapper>
             {!hideSeparator && <div className="separator" />}
-            <Name>{title}</Name>
+            <Name>
+                <Header size={4} uppercase>
+                    {title}
+                </Header>
+            </Name>
             <SliderWrap>
                 {/*@ts-ignore*/}
                 <ImageSlider slug={slug} items={images} slidesPerView={1} />

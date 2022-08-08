@@ -1,10 +1,11 @@
 import styled from 'styled-components'
 import { rem } from 'polished'
 import { BREAKPOINTS } from '../_constants/brekpoints'
+import GridImage from '../_components/UI/GridImage'
 
 interface GMProps {
     sideScrollOnMobile: boolean
-    columns: number
+    columns: number,
 }
 export const GridModule = styled.div`
     position: relative;
@@ -93,4 +94,14 @@ export const TopSection = styled.div`
     button {
         float: right;
     }
+`
+
+export const BannerGridImage = styled(GridImage)`
+    height: calc(100vh);
+    min-height: 700px;
+`
+
+export const Stat = styled.div`
+    font-size: ${rem('100px')};
+    font-weight: 400;
 `

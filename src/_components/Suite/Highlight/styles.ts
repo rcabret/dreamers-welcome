@@ -19,7 +19,6 @@ export const HighlightWrapper = styled.div`
 `
 
 export const Name = styled.div`
-    text-transform: uppercase;
     padding-left: ${rem('30px')};
 `
 
@@ -42,10 +41,7 @@ export const SliderWrap = styled.div`
         overflow: visible;
         margin-left: 25%;
         width: 45%;
-        //width: calc(75% + ${rem('80px')});
-        //float: right;
         position: relative;
-        // right: -${rem('80px')};
 
         .last {
             width: ${rem('80px')};

@@ -1,24 +1,18 @@
 import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
-import GridImage from '../_components/UI/GridImage'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
 import { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
 import Highlight from '../_components/Suite/Highlight'
+import { BannerGridImage } from '../styles/globla'
 
 interface PropertyProps {
     propertyResponse: any
     setBucket: any
     setNavTheme: any
 }
-
-const StyledGridImage = styled(GridImage)`
-    height: calc(100vh);
-    min-height: 700px;
-`
 
 const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
     const {
@@ -92,7 +86,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
 
     return (
         <>
-            <StyledGridImage
+            <BannerGridImage
                 imageObj={bannerImage}
                 border={false}
                 borderRadius={false}
@@ -104,7 +98,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
                     headerSubheader={`${propertyType} in ${location}`}
                     description={bannerDescriptionList}
                 />
-            </StyledGridImage>
+            </BannerGridImage>
             <Blurb text={blurb} />
             {showSubNav && (
                 <SubNavigation
