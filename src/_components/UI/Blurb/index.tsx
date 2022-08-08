@@ -17,6 +17,10 @@ const BlurbWrap = styled.div`
         max-width: ${rem('1100px')};
     }
 
+    h1 {
+        line-height: 1.2;
+    }
+
     .separator {
         margin: 0 30px;
         height: 1px;

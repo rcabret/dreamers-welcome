@@ -5,7 +5,7 @@ import {
     GridModule,
     GridWrapper,
     TopSection,
-} from '../../styles/globla'
+} from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews } from '../../_lib/api'
 import NewsItem from '../../_components/NewsItem'

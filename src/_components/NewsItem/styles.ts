@@ -1,4 +1,4 @@
-import { ItemWrapper } from '../../styles/globla'
+import { ItemWrapper } from '../../styles/global'
 import styled from 'styled-components'
 import { rem } from 'polished'
 

@@ -1,11 +1,14 @@
 import React from 'react'
-import { BannerGridImage, GridModule, Stat } from '../../styles/globla'
+import { BannerGridImage, GridModule, Stat } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import { getAbout } from '../../_lib/api'
 import Block from '../../_components/UI/Block'
 import Header from '../../_components/Typography/Header'
 import BodyText from '../../_components/Typography/BodyText'
+import GridImage from '../../_components/UI/GridImage'
+import { NewsTextWrapper } from '../../_components/NewsItem/styles'
+import { ConceptTextContainer, StaffMetadata } from '../../styles/about/styles'
 
 const About = ({ about }: any) => {
     const {
@@ -35,7 +38,11 @@ const About = ({ about }: any) => {
             <Blurb text={blurb} />
             <Block
                 title="CONCEPT"
-                content={<BodyText size="xlg">{concept}</BodyText>}
+                content={
+                    <ConceptTextContainer>
+                        <BodyText size="xlg">{concept}</BodyText>
+                    </ConceptTextContainer>
+                }
             />
             <Block
                 title="FOUNDERS"
@@ -45,7 +52,20 @@ const About = ({ about }: any) => {
                             founders.map((founder: any, i: number) => {
                                 return (
                                     <div key={~~(Math.random() * i)}>
-                                        {founder.fields.name}
+                                        <GridImage
+                                            imageObj={founder.fields.coverImage}
+                                            ratio={1}
+                                        />
+                                        <StaffMetadata>
+                                            <Header size={3}>
+                                                {founder.fields.name}
+                                            </Header>
+                                            <NewsTextWrapper>
+                                                <BodyText size="md">
+                                                    {founder.fields.description}
+                                                </BodyText>
+                                            </NewsTextWrapper>
+                                        </StaffMetadata>
                                     </div>
                                 )
                             })}

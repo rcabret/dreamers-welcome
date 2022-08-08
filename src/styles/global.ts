@@ -4,9 +4,11 @@ import { BREAKPOINTS } from '../_constants/brekpoints'
 import GridImage from '../_components/UI/GridImage'
 
 interface GMProps {
-    sideScrollOnMobile: boolean
-    columns: number,
+    columns: number
+    dontBreak?: boolean
+    sideScrollOnMobile?: boolean
 }
+
 export const GridModule = styled.div`
     position: relative;
     padding-bottom: ${rem('20px')};

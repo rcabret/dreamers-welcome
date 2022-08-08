@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
 import Highlight from '../_components/Suite/Highlight'
-import { BannerGridImage } from '../styles/globla'
+import { BannerGridImage } from '../styles/global'
 
 interface PropertyProps {
     propertyResponse: any

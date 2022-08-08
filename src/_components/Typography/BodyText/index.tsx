@@ -25,7 +25,7 @@ const getBodySize = (size: HeaderProps['size']) => {
         case 'lg':
             return rem('24px')
         case 'xlg':
-            return rem('48px')
+            return rem('40px')
     }
 }
 

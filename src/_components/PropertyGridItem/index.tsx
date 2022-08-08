@@ -8,7 +8,7 @@ import BodyText from '../Typography/BodyText'
 import LocationPin from '../UI/Icons/LocationPin'
 import Button from '../UI/Buttons/Button'
 import Share from '../UI/Icons/Share'
-import { ItemWrapper } from '../../styles/globla'
+import { ItemWrapper } from '../../styles/global'
 
 interface GridItemProps {
     propertyObj: any

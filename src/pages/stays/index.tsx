@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 
-import { Content, GridModule, GridWrapper } from '../../styles/globla'
+import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
 import { getAllProperties } from '../../_lib/api'
