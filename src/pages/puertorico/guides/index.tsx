@@ -51,9 +51,8 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
         setSlug(location)
         const guidesToView =
             location !== 'view_all'
-                ? guides.filter(
-                      (guide: { location: string }) =>
-                          guide.location.includes(location)
+                ? guides.filter((guide: { location: string }) =>
+                      guide.location.includes(location)
                   )
                 : guides
 
@@ -69,36 +68,36 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
                 queryArray={['puertorico', 'guides']}
                 activeState={activeSlug}
             />
-            <GridWrapper padding>
+            <GridWrapper padding id="anchor_view">
                 <GridModule columns={3}>
-                    {activeGuides &&
-                        activeGuides.length &&
-                        activeGuides.map((guide: any) => (
-                            <Link
-                                key={guide.title}
-                                href={`/guide/${guide.slug}`}
-                                passHref
-                            >
-                                <a>
-                                    <GridImage
-                                        imageObj={guide.tileImage}
-                                        metadata={
-                                            <GuidesMetadata>
-                                                <BodyText size="sm">
-                                                    {guide.labels[0]}
-                                                </BodyText>
-                                                <Header size={3}>
-                                                    {guide.title}
-                                                </Header>
-                                                <BodyText size="sm">
-                                                    {guide.description}
-                                                </BodyText>
-                                            </GuidesMetadata>
-                                        }
-                                    />
-                                </a>
-                            </Link>
-                        ))}
+                    {activeGuides && activeGuides.length
+                        ? activeGuides.map((guide: any) => (
+                              <Link
+                                  key={guide.title}
+                                  href={`/guide/${guide.slug}`}
+                                  passHref
+                              >
+                                  <a>
+                                      <GridImage
+                                          imageObj={guide.tileImage}
+                                          metadata={
+                                              <GuidesMetadata>
+                                                  <BodyText size="sm">
+                                                      {guide.labels[0]}
+                                                  </BodyText>
+                                                  <Header size={3}>
+                                                      {guide.title}
+                                                  </Header>
+                                                  <BodyText size="sm">
+                                                      {guide.description}
+                                                  </BodyText>
+                                              </GuidesMetadata>
+                                          }
+                                      />
+                                  </a>
+                              </Link>
+                          ))
+                        : null}
                 </GridModule>
             </GridWrapper>
         </>
