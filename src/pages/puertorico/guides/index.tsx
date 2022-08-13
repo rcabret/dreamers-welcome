@@ -61,7 +61,7 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
 
     return (
         <>
-            <Blurb text={guidesPage.blurb} eyebrow="GUIDES" />
+            <Blurb text={guidesPage.blurb} eyebrow="GUIDES" fullHeight />
             <SubNavigation
                 data={links}
                 queryParam="location"

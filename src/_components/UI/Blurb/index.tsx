@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import Header from '../../Typography/Header'
 
@@ -12,6 +12,12 @@ const BlurbWrap = styled.div`
     padding: ${rem('30px')};
     text-align: center;
     position: relative;
+
+    ${({ fullHeight }: { fullHeight?: boolean }) =>
+        fullHeight &&
+        css`
+            height: 100vh;
+        `}
 
     > div {
         max-width: ${rem('1100px')};
@@ -40,13 +46,15 @@ const Blurb = ({
     text,
     borderTop,
     eyebrow,
+    fullHeight,
 }: {
     text: string
     borderTop?: boolean
     eyebrow?: string
+    fullHeight?: boolean
 }) => {
     return (
-        <BlurbWrap>
+        <BlurbWrap fullHeight={fullHeight}>
             {borderTop && <figure className="separator" />}
             <div>
                 {eyebrow && (
