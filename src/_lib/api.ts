@@ -1,7 +1,14 @@
-import { EntryCollection } from 'contentful'
-
 export {}
 
+const pathToBucket = (bucket) => {
+    switch (bucket) {
+        default:
+        case 'puertorico':
+            return 'Puerto Rico'
+        case 'northcarolina':
+            return 'North Carolina'
+    }
+}
 const client = require('contentful').createClient({
     space: process.env.CONTENTFUL_SPACE_ID,
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
@@ -42,7 +49,7 @@ export const getPropertiesViaBucket = async (
 ) => {
     const entries = await client.getEntries({
         content_type: 'property',
-        'fields.bucket': bucket,
+        'fields.bucket': pathToBucket(bucket),
         select: 'fields.propertyName,fields.bannerDescriptionList,fields.location,fields.tileImage,fields.bookNowLink,fields.slug',
     })
     if (entries.items) {
@@ -78,5 +85,26 @@ export const getAbout = async () => {
     })
     if (entries.items) {
         return entries.items[0].fields
+    }
+}
+
+export const getGuides = async (bucket: string, location?: string) => {
+    const entries = await client.getEntries({
+        content_type: 'guide',
+        'fields.bucket[in]': pathToBucket(bucket),
+        'fields.location': location,
+    })
+    if (entries.items) {
+        return entries.items.map((x: { fields: {} }) => x.fields)
+    }
+}
+
+export const getGuidesPage = async (url: string) => {
+    const entries = await client.getEntries({
+        content_type: 'guidesPage',
+        'fields.url': url,
+    })
+    if (entries.items) {
+        return entries.items[0].fields;
     }
 }

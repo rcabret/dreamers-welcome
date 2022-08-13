@@ -45,7 +45,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
             return suites.map((x: { fields: any }) => {
-                return { name: x.fields.name, slug: x.fields.slug }
+                return { name: x.fields.name, slug: `${x.fields.slug}` }
             })
         } else if (pType === 'Hotel') {
             return [
@@ -108,7 +108,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
                 />
             )}
             {/* Suites view for 'Suites' and House*/}
-            <div id="suites_view">
+            <div id="anchor_view">
                 {pType !== 'Hotel' ? (
                     // Suites and Houses
                     <Suite

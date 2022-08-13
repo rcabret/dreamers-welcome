@@ -69,7 +69,7 @@ export const Content = styled.div`
 `
 
 export const GridWrapper = styled.div`
-    border-top: ${({ border }: { border: boolean; padding: boolean }) =>
+    border-top: ${({ border }: { border?: boolean; padding: boolean }) =>
         border ? '1px solid black' : 'none'};
     padding: ${({ padding }) => (padding ? rem('20px') : 0)};
     padding-top: ${rem('30px')};

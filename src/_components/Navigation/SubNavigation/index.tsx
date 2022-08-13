@@ -1,46 +1,18 @@
 import React from 'react'
-import styled from 'styled-components'
 import { useRouter } from 'next/router'
 import BodyText from '../../Typography/BodyText'
-
-const SubNav = styled.div`
-    position: sticky;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 50px;
-    z-index: 10;
-    background: white;
-
-    .separator {
-        margin: 0 30px;
-        height: 1px;
-        background-color: #c1c1c1;
-        width: calc(100% - 60px);
-        position: absolute;
-        bottom: 0;
-    }
-`
-
-const SubLink = styled.div`
-    display: inline-block;
-    margin: 0 40px;
-    cursor: pointer;
-
-    .active {
-        text-decoration: underline;
-    }
-`
+import { SubLink, SubNav } from '../../../styles/navigation/styles'
 
 const SubNavigation = ({
     data,
     queryArray,
     activeState,
+    queryParam,
 }: {
-    data: [{ name: string; slug: string }]
+    data: { name: string; slug: string }[]
     queryArray?: string | string[]
     activeState?: string
+    queryParam?: string
 }) => {
     const router = useRouter()
     const shallowRoute = (slug: string): void => {
@@ -48,7 +20,7 @@ const SubNavigation = ({
             return
         }
         const baseUrl = `/${queryArray[0]}/${queryArray[1]}`
-        const anchor = document.getElementById('suites_view')
+        const anchor = document.getElementById('anchor_view')
         if (anchor) {
             setTimeout(function () {
                 window.scrollTo({
@@ -57,7 +29,9 @@ const SubNavigation = ({
                 })
             }, 100)
         }
-        router.push(`${baseUrl}/${slug}`, undefined, { shallow: true })
+        const pre = queryParam ? `?${queryParam}=` : '/'
+
+        router.push(`${baseUrl}${pre}${slug}`, undefined, { shallow: true })
     }
 
     const getSubClass = (slug: string): string => {
