@@ -42,10 +42,22 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
     const [activeSlug, setSlug] = useState<string>(
         router.query.location || 'view_all'
     )
+    const [activeGuides, setGuides] = useState<any[]>(guides)
 
     useEffect(() => {
+        const location =
+            (router.query.location as string) || ('view_all' as string)
         // @ts-ignore
-        setSlug(router.query.location || 'view_all')
+        setSlug(location)
+        const guidesToView =
+            location !== 'view_all'
+                ? guides.filter(
+                      (guide: { location: string }) =>
+                          guide.location.includes(location)
+                  )
+                : guides
+
+        setGuides(guidesToView)
     }, [router, router.query])
 
     return (
@@ -59,9 +71,9 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
             />
             <GridWrapper padding>
                 <GridModule columns={3}>
-                    {guides &&
-                        guides.length &&
-                        guides.map((guide: any) => (
+                    {activeGuides &&
+                        activeGuides.length &&
+                        activeGuides.map((guide: any) => (
                             <Link
                                 key={guide.title}
                                 href={`/guide/${guide.slug}`}
