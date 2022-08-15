@@ -42,7 +42,7 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
     const [activeSlug, setSlug] = useState<string>(
         router.query.location || 'view_all'
     )
-    const [activeGuides, setGuides] = useState<any[]>(guides)
+    const [activeGuides, setGuides] = useState<any[]>([...guides])
 
     useEffect(() => {
         const location =
@@ -51,10 +51,10 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
         setSlug(location)
         const guidesToView =
             location !== 'view_all'
-                ? guides.filter((guide: { location: string }) =>
+                ? [...guides].filter((guide: { location: string }) =>
                       guide.location.includes(location)
                   )
-                : guides
+                : [...guides]
 
         setGuides(guidesToView)
     }, [router, router.query])
