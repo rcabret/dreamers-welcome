@@ -11,24 +11,10 @@ import { NewsTextWrapper } from '../../_components/NewsItem/styles'
 import { ConceptTextContainer, StaffMetadata } from '../../styles/about/styles'
 
 const About = ({ about }: any) => {
-    const {
-        bannerImage,
-        bannerHeader,
-        blurb,
-        concept,
-        countries,
-        properties,
-        awards,
-        founders,
-        monthlyGuests,
-    } = about
+    const { bannerImage, bannerHeader, blurb, concept, founders, ourReach } =
+        about
 
-    const stats = [
-        { name: 'Countries', data: countries },
-        { name: 'Properties', data: properties },
-        { name: 'Awards', data: awards },
-        { name: 'Guests Hosted', data: monthlyGuests },
-    ]
+    console.log('about', about);
 
     return (
         <>
@@ -81,13 +67,14 @@ const About = ({ about }: any) => {
                 title="OUR REACH"
                 content={
                     <GridModule columns={4} sideScrollOnMobile dontBreak>
-                        {stats &&
-                            stats.map((stat, i: number) => {
+                        {ourReach &&
+                            ourReach.map((stat: any, i: number) => {
+                                const {title, text} = stat.fields;
                                 return (
                                     <div key={~~(Math.random() * i)}>
-                                        <Stat>{stat.data}</Stat>
+                                        <Stat>{text}</Stat>
                                         <BodyText size="md">
-                                            {stat.name}
+                                            {title}
                                         </BodyText>
                                     </div>
                                 )

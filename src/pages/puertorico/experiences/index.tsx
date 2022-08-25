@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { getGuides, getGuidesPage } from '../../../_lib/api'
 import Blurb from '../../../_components/UI/Blurb'
 import SubNavigation from '../../../_components/Navigation/SubNavigation'
 import GridImage from '../../../_components/UI/GridImage'
@@ -8,7 +7,9 @@ import Link from 'next/link'
 import BodyText from '../../../_components/Typography/BodyText'
 import Header from '../../../_components/Typography/Header'
 import { GuidesMetadata } from '../../../styles/guides/styles'
+import { PriceText } from '../../../styles/experiences/styles'
 import { useRouter } from 'next/router'
+import { getExperiences, getExperiencesPage } from '../../../_lib/api'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -16,20 +17,20 @@ const links: { name: string; slug: string }[] = [
         slug: 'view_all',
     },
     {
-        name: 'CULTURE',
-        slug: 'culture',
+        name: 'OUTDOOR',
+        slug: 'outdoor',
     },
     {
         name: 'FOOD',
         slug: 'food',
     },
     {
-        name: 'OUTDOOR',
-        slug: 'outdoor',
-    }
+        name: 'WELLNESS',
+        slug: 'wellness',
+    },
 ]
 
-const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
+const PRExperiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     setNavTheme('dark')
     const router = useRouter()
 
@@ -37,54 +38,62 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
     const [activeSlug, setSlug] = useState<string>(
         router.query.type || 'view_all'
     )
-    const [activeGuides, setGuides] = useState<any[]>([...guides])
+    const [activeExperiences, setExperiences] = useState<any[]>([
+        ...experiences,
+    ])
 
     useEffect(() => {
-        const type =
-            (router.query.type as string) || ('view_all' as string)
+        const type = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
         setSlug(type)
-        const guidesToView =
+        const expToView =
             type !== 'view_all'
-                ? [...guides].filter((guide: { type: string }) =>
-                      guide.type.includes(type)
+                ? [...experiences].filter((exp: { type: string }) =>
+                      exp.type.includes(type)
                   )
-                : [...guides]
+                : [...experiences]
 
-        setGuides(guidesToView)
+        setExperiences(expToView)
     }, [router, router.query])
 
     return (
         <>
-            <Blurb text={guidesPage.blurb} eyebrow="GUIDES" fullHeight />
+            <Blurb
+                text={experiencesPage.blurb}
+                eyebrow="EXPERIENCES"
+                fullHeight
+            />
             <SubNavigation
                 data={links}
                 queryParam="type"
-                queryArray={['puertorico', 'guides']}
+                queryArray={['puertorico', 'experiences']}
                 activeState={activeSlug}
             />
             <GridWrapper padding id="anchor_view">
                 <GridModule columns={3}>
-                    {activeGuides && activeGuides.length
-                        ? activeGuides.map((guide: any) => (
+                    {activeExperiences && activeExperiences.length
+                        ? activeExperiences.map((exp: any) => (
                               <Link
-                                  key={guide.title}
-                                  href={`/guide/${guide.slug}`}
+                                  key={exp.title}
+                                  href={`/experience/${exp.slug}`}
                                   passHref
                               >
                                   <a>
                                       <GridImage
-                                          imageObj={guide.tileImage}
+                                          imageObj={exp.tileImage}
                                           metadata={
                                               <GuidesMetadata>
-                                                  <BodyText size="sm">
-                                                      {guide.labels[0]}
-                                                  </BodyText>
                                                   <Header size={3}>
-                                                      {guide.title}
+                                                      {exp.title}
                                                   </Header>
+                                                  <PriceText>
+                                                      <Header size={2}>
+                                                          {exp.price}
+                                                      </Header>
+                                                      <span> per person</span>
+                                                  </PriceText>
                                                   <BodyText size="sm">
-                                                      {guide.description}
+                                                      {exp.tileText}
                                                   </BodyText>
                                               </GuidesMetadata>
                                           }
@@ -99,15 +108,15 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
     )
 }
 
-export default PRGuides
+export default PRExperiences
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const guides = await getGuides('puertorico')
-    const guidesPage = await getGuidesPage('puertorico')
+    const experiences = await getExperiences('puertorico')
+    const experiencesPage = await getExperiencesPage('puertorico')
     return {
         props: {
-            guides,
-            guidesPage,
+            experiences,
+            experiencesPage,
         },
     }
 }
