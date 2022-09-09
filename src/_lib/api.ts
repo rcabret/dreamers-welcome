@@ -119,12 +119,12 @@ export const getExperiences = async (bucket: string) => {
     }
 }
 
-export const getExperiencesPage = async (url: string) => {
+export const getExperiencesPage = async (bucket: string) => {
     const entries = await client.getEntries({
         content_type: 'activitiesPage',
-        'fields.url': url,
+        'fields.bucket[in]': pathToBucket(bucket),
     })
     if (entries.items) {
-        return entries.items[0].fields
+        return entries.items[0] ? entries.items[0] : null
     }
 }
