@@ -2,11 +2,16 @@ import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
 import Highlight from '../_components/Suite/Highlight'
-import { BannerGridImage } from '../styles/global'
+import { BannerGridImage, BlockListWrap, GridModule } from '../styles/global'
+import { ConceptTextContainer } from '../styles/about/styles'
+import BodyText from '../_components/Typography/BodyText'
+import Block from '../_components/UI/Block'
+import Header from '../_components/Typography/Header'
+import MarkdownModule from '../_components/Typography/MarkdownModule'
 
 interface PropertyProps {
     propertyResponse: any
@@ -18,6 +23,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
     const {
         bannerImage,
         bannerHeader,
+        bookNowLink,
         blurb,
         suites,
         rooms,
@@ -27,7 +33,11 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
         bannerDescriptionList,
         bucket,
         features,
+        thingsToKnow,
+        concept,
     } = propertyResponse
+
+    console.log('property', propertyResponse)
 
     const router = useRouter()
 
@@ -97,9 +107,20 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
                     headerText={bannerHeader}
                     headerSubheader={`${propertyType} in ${location}`}
                     description={bannerDescriptionList}
+                    bookNowLink={bookNowLink}
                 />
             </BannerGridImage>
             <Blurb text={blurb} />
+            {concept && (
+                <Block
+                    title="CONCEPT"
+                    content={
+                        <ConceptTextContainer>
+                            <BodyText size="xlg">{concept}</BodyText>
+                        </ConceptTextContainer>
+                    }
+                />
+            )}
             {showSubNav && (
                 <SubNavigation
                     activeState={activeSlug}
@@ -135,6 +156,54 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
                     })
                 )}
             </div>
+
+            {features && (
+                <Block
+                    title="FEATURES"
+                    content={
+                        <GridModule
+                            columns={features.length}
+                            sideScrollOnMobile={false}
+                        >
+                            {features &&
+                                features.map((feature: any) => (
+                                    <BlockListWrap key={feature.fields.title}>
+                                        <Header size={4}>
+                                            {feature.fields.title}
+                                        </Header>
+                                        <MarkdownModule
+                                            data={feature.fields.text}
+                                        />
+                                    </BlockListWrap>
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
+
+            {thingsToKnow && (
+                <Block
+                    title="THINGS TO KNOW"
+                    content={
+                        <GridModule
+                            columns={thingsToKnow.length}
+                            sideScrollOnMobile={false}
+                        >
+                            {thingsToKnow &&
+                                thingsToKnow.map((thing: any) => (
+                                    <BlockListWrap key={thing.fields.title}>
+                                        <Header size={4}>
+                                            {thing.fields.title}
+                                        </Header>
+                                        <MarkdownModule
+                                            data={thing.fields.text}
+                                        />
+                                    </BlockListWrap>
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
 
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
         </>

@@ -26,7 +26,7 @@ export const HighlightBlurb = styled.div`
     margin-top: ${rem('20px')};
 
     > p {
-        margin-left: 25%;
+        margin-left: calc(25% + 20px);
         max-width: ${rem('570px')};
     }
 `
@@ -38,7 +38,7 @@ export const SliderWrap = styled.div`
 
     .swiper {
         overflow: visible;
-        margin-left: 25%;
+        margin-left: calc(25% + 20px);
         width: 45%;
         position: relative;
 

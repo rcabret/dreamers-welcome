@@ -110,6 +110,16 @@ export const BannerGridImage = styled(GridImage)`
 `
 
 export const Stat = styled.div`
-    font-size: ${rem('100px')};
+    font-size: ${rem(100)};
     font-weight: 400;
+`
+
+export const BlockListWrap = styled.div`
+    h4 {
+        margin-bottom: ${rem(30)};
+    }
+
+    p {
+        line-height: 1.7;
+    }
 `

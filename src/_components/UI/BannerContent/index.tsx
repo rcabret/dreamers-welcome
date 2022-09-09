@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import BodyText from '../../Typography/BodyText'
+import Button from '../Buttons/Button'
 
 const BannerContentWrap = styled.div`
     display: flex;
@@ -39,6 +40,12 @@ const Description = styled.div`
     }
 `
 
+const StyledButton = styled(Button)`
+    position: absolute !important;
+    right: ${rem(30)};
+    bottom: ${rem(26)};
+`
+
 interface BannerContentProps {
     headerText: string
     headerSubheader?: string
@@ -73,6 +80,10 @@ const BannerContent = ({
                             : description}
                     </BodyText>
                 </Description>
+            )}
+
+            {bookNowLink && (
+                <StyledButton href={bookNowLink}>BOOK NOW</StyledButton>
             )}
         </BannerContentWrap>
     )

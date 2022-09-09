@@ -9,6 +9,7 @@ interface ButtonProps {
     right?: boolean
     href?: string
     onClick?: Function
+    className?: string
 }
 
 const StyledButton = styled.button`
@@ -45,9 +46,10 @@ const Button = ({
     inverse = false,
     children,
     href,
+    className,
     onClick = () => {},
 }: ButtonProps) => (
-    <StyledButton inverse={inverse} onClick={onClick()}>
+    <StyledButton inverse={inverse} onClick={onClick()} className={className}>
         {/* @ts-ignore */}
         {href ? <Link href={href}>{children}</Link> : <span>{children}</span>}
     </StyledButton>
