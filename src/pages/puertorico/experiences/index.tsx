@@ -34,6 +34,7 @@ const PRExperiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     setNavTheme('dark')
     const router = useRouter()
 
+    const { blurb } = experiencesPage
     // @ts-ignore
     const [activeSlug, setSlug] = useState<string>(
         router.query.type || 'view_all'
@@ -62,7 +63,9 @@ const PRExperiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
                 text={experiencesPage.blurb}
                 eyebrow="EXPERIENCES"
                 fullHeight
-            />
+            >
+                {blurb}
+            </Blurb>
             <SubNavigation
                 data={links}
                 queryParam="type"

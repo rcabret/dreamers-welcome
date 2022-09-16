@@ -125,6 +125,6 @@ export const getExperiencesPage = async (bucket: string) => {
         'fields.bucket[in]': pathToBucket(bucket),
     })
     if (entries.items) {
-        return entries.items[0] ? entries.items[0] : null
+        return entries.items[0] ? entries.items[0].fields : null
     }
 }

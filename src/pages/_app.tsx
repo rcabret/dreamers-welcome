@@ -4,6 +4,7 @@ import { ViewportProvider } from '../_utils/ViewportProvider'
 import { ReactNode, useState } from 'react'
 import TopNav from '../_components/Navigation'
 import styled from 'styled-components'
+import Footer from '../_components/Footer'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -27,6 +28,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                         setNavTheme={setNavTheme}
                     />
                 </Layout>
+                <Footer />
             </StyledMain>
         </ViewportProvider>
     )
