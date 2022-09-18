@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import Blurb from '../../../_components/UI/Blurb'
-import SubNavigation from '../../../_components/Navigation/SubNavigation'
-import GridImage from '../../../_components/UI/GridImage'
-import { GridModule, GridWrapper } from '../../../styles/global'
+import Blurb from '../../_components/UI/Blurb'
+import SubNavigation from '../../_components/Navigation/SubNavigation'
+import GridImage from '../../_components/UI/GridImage'
+import { GridModule, GridWrapper } from '../../styles/global'
 import Link from 'next/link'
-import BodyText from '../../../_components/Typography/BodyText'
-import Header from '../../../_components/Typography/Header'
-import { GuidesMetadata } from '../../../styles/guides/styles'
-import { PriceText } from '../../../styles/experiences/styles'
+import BodyText from '../../_components/Typography/BodyText'
+import Header from '../../_components/Typography/Header'
+import { GuidesMetadata } from '../../styles/guides/styles'
+import { PriceText } from '../../styles/experiences/styles'
 import { useRouter } from 'next/router'
-import { getExperiences, getExperiencesPage } from '../../../_lib/api'
+import { getExperiences, getExperiencesPage } from '../../_lib/api'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -30,7 +30,7 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const PRExperiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
+const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     setNavTheme('dark')
     const router = useRouter()
 
@@ -59,13 +59,7 @@ const PRExperiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
 
     return (
         <>
-            <Blurb
-                text={experiencesPage.blurb}
-                eyebrow="EXPERIENCES"
-                fullHeight
-            >
-                {blurb}
-            </Blurb>
+            <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
             <SubNavigation
                 data={links}
                 queryParam="type"
@@ -111,15 +105,26 @@ const PRExperiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     )
 }
 
-export default PRExperiences
+export default Experiences
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const experiences = await getExperiences('puertorico')
-    const experiencesPage = await getExperiencesPage('puertorico')
+    const experiences = await getExperiences(context.params.slug)
+    const experiencesPage = await getExperiencesPage(context.params.slug)
     return {
         props: {
             experiences,
             experiencesPage,
         },
+    }
+}
+
+export async function getStaticPaths(context: { params: { slug: string } }) {
+    const paths = [
+        { params: { slug: 'puertorico' } },
+    ]
+    return {
+        // @ts-ignore
+        paths: paths,
+        fallback: false,
     }
 }

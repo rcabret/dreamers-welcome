@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { getGuides, getGuidesPage } from '../../../_lib/api'
-import Blurb from '../../../_components/UI/Blurb'
-import SubNavigation from '../../../_components/Navigation/SubNavigation'
-import GridImage from '../../../_components/UI/GridImage'
-import { GridModule, GridWrapper } from '../../../styles/global'
+import { getGuides, getGuidesPage } from '../../_lib/api'
+import Blurb from '../../_components/UI/Blurb'
+import SubNavigation from '../../_components/Navigation/SubNavigation'
+import GridImage from '../../_components/UI/GridImage'
+import { GridModule, GridWrapper } from '../../styles/global'
 import Link from 'next/link'
-import BodyText from '../../../_components/Typography/BodyText'
-import Header from '../../../_components/Typography/Header'
-import { GuidesMetadata } from '../../../styles/guides/styles'
+import BodyText from '../../_components/Typography/BodyText'
+import Header from '../../_components/Typography/Header'
+import { GuidesMetadata } from '../../styles/guides/styles'
 import { useRouter } from 'next/router'
 
 const links: { name: string; slug: string }[] = [
@@ -26,10 +26,10 @@ const links: { name: string; slug: string }[] = [
     {
         name: 'OUTDOOR',
         slug: 'outdoor',
-    }
+    },
 ]
 
-const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
+const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
     setNavTheme('dark')
     const router = useRouter()
 
@@ -40,8 +40,7 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
     const [activeGuides, setGuides] = useState<any[]>([...guides])
 
     useEffect(() => {
-        const type =
-            (router.query.type as string) || ('view_all' as string)
+        const type = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
         setSlug(type)
         const guidesToView =
@@ -99,15 +98,26 @@ const PRGuides = ({ guides, guidesPage, setNavTheme }: any) => {
     )
 }
 
-export default PRGuides
+export default Guides
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const guides = await getGuides('puertorico')
-    const guidesPage = await getGuidesPage('puertorico')
+    const guides = await getGuides(context.params.slug)
+    const guidesPage = await getGuidesPage(context.params.slug)
     return {
         props: {
             guides,
             guidesPage,
         },
+    }
+}
+
+export async function getStaticPaths(context: { params: { slug: string } }) {
+    const paths = [
+        { params: { slug: 'puertorico' } },
+    ]
+    return {
+        // @ts-ignore
+        paths: paths,
+        fallback: false,
     }
 }

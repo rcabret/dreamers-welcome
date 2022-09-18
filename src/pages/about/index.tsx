@@ -14,8 +14,6 @@ const About = ({ about }: any) => {
     const { bannerImage, bannerHeader, blurb, concept, founders, ourReach } =
         about
 
-    console.log('about', about);
-
     return (
         <>
             <BannerGridImage

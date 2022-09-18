@@ -37,8 +37,6 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
         concept,
     } = propertyResponse
 
-    console.log('property', propertyResponse)
-
     const router = useRouter()
 
     setBucket(bucket[0])
@@ -72,7 +70,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
     useEffect(() => {
         const a = router.query.slug as string[]
         let viewToShow: string | undefined
-        if (Array.isArray(a) && a.length > 2) {
+        if (Array.isArray(a) && a.length > 1) {
             viewToShow = a.pop()
         } else {
             // If type is Hotel show Suites as default route
@@ -213,7 +211,7 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
 export default Home
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const propertyResponse = await getProperty(context.params.slug[1])
+    const propertyResponse = await getProperty(context.params.slug[0])
 
     return {
         props: {
@@ -230,9 +228,8 @@ export async function getStaticPaths() {
 
     // @ts-ignore
     allProperties.forEach((property) => {
-        const bucket = property.bucket[0].toLowerCase().replace(/\s/g, '')
         const propertyType = property.propertyType[0]
-        const pathObj = { params: { slug: [bucket, property.slug] } }
+        const pathObj = { params: { slug: [property.slug] } }
         paths.push(pathObj)
 
         // Check for suite routes
@@ -244,7 +241,7 @@ export async function getStaticPaths() {
             property.suites.map((y: { fields: { slug: string } }) => {
                 const pathObj = {
                     params: {
-                        slug: [bucket, property.slug, y.fields.slug],
+                        slug: [property.slug, y.fields.slug],
                     },
                 }
                 paths.push(pathObj)
@@ -253,12 +250,12 @@ export async function getStaticPaths() {
             const addition = [
                 {
                     params: {
-                        slug: [bucket, property.slug, 'suites'],
+                        slug: [property.slug, 'suites'],
                     },
                 },
                 {
                     params: {
-                        slug: [bucket, property.slug, 'rooms'],
+                        slug: [property.slug, 'rooms'],
                     },
                 },
             ]

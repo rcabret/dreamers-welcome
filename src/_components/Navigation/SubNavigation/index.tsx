@@ -19,7 +19,8 @@ const SubNavigation = ({
         if (queryArray === undefined) {
             return
         }
-        const baseUrl = `/${queryArray[0]}/${queryArray[1]}`
+
+        const baseUrl = `/${queryArray[0]}`
         const anchor = document.getElementById('anchor_view')
         if (anchor) {
             setTimeout(function () {
