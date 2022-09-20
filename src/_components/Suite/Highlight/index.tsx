@@ -29,7 +29,13 @@ const Highlight = ({
             </Name>
             <SliderWrap>
                 {/*@ts-ignore*/}
-                <ImageSlider slug={slug} items={images} slidesPerView={1} />
+                <ImageSlider
+                    slug={slug}
+                    items={images}
+                    slidesPerView={1}
+                    widthQuery={1000}
+
+                />
             </SliderWrap>
             <HighlightBlurb>
                 {blurb && <BodyText size="lg">{blurb}</BodyText>}

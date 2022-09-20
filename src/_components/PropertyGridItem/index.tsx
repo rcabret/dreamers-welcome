@@ -20,19 +20,14 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
         propertyName,
         location,
         propertyType,
-        bucket,
         slug,
         bookNowLink,
     } = propertyObj
 
-    const url = slug
-        ? `/${bucket[0].toLowerCase().replace(/\s/g, '')}/${slug}`
-        : '/'
-
     const [copiedToClipboard, setClipboard] = useState(false)
 
     const copyToClipboard = () => {
-        const copyText = `https://www.dreamerswelcome.com${url}`
+        const copyText = `https://www.dreamerswelcome.com/${slug}`
         navigator.clipboard.writeText(copyText)
         setClipboard(true)
 
@@ -44,7 +39,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
     return (
         <ItemWrapper>
             <div className="border">
-                <Link href={url} passHref>
+                <Link href={`/${slug}`} passHref>
                     <a>
                         <GridImage
                             borderRadius={false}
@@ -83,7 +78,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
                             )}
                         </div>
                     </TopContainer>
-                    <Link href={url} passHref>
+                    <Link href={`/${slug}`} passHref>
                         <a>
                             <Header bold={false} size={2}>
                                 {propertyName}

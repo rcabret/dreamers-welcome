@@ -16,17 +16,19 @@ import Header from '../../_components/Typography/Header'
 const News = ({
     news,
     setNavTheme,
-    setBucket,
+    setHeaderData,
 }: {
     news: any
     setNavTheme: any
-    setBucket: any
+    setHeaderData: any
 }) => {
     const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('dark')
-        setBucket('Puerto Rico')
+        setHeaderData({
+            bucket: 'Puerto Rico',
+        })
     }, [])
 
     if (!news.length) {

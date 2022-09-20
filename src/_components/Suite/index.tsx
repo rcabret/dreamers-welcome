@@ -22,7 +22,7 @@ const Suite = ({ data, hideFirstSeparator, slug = '' }: SuiteProps) => {
                           // @ts-ignore
                           <Highlight
                               slug={slug}
-                              key={~~(i * Math.random())}
+                              key={~~(i * Math.random()) + highlightName}
                               title={highlightName}
                               blurb={blurb}
                               images={images}

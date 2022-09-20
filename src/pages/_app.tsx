@@ -16,15 +16,16 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     const [bucket, setBucket] = useState(undefined)
     const [navTheme, setNavTheme] = useState(undefined)
+    const [headerData, setHeaderData] = useState(undefined)
 
     return (
         <ViewportProvider>
             <StyledMain id="main">
-                <TopNav bucket={bucket} navTheme={navTheme} />
+                <TopNav navTheme={navTheme} headerData={headerData}/>
                 <Layout>
                     <Component
                         {...pageProps}
-                        setBucket={setBucket}
+                        setHeaderData={setHeaderData}
                         setNavTheme={setNavTheme}
                     />
                 </Layout>

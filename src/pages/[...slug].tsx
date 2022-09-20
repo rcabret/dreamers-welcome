@@ -15,12 +15,17 @@ import MarkdownModule from '../_components/Typography/MarkdownModule'
 
 interface PropertyProps {
     propertyResponse: any
-    setBucket: any
+    setHeaderData: any
     setNavTheme: any
 }
 
-const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
+const Home = ({
+    propertyResponse,
+    setHeaderData,
+    setNavTheme,
+}: PropertyProps) => {
     const {
+        propertyName,
         bannerImage,
         bannerHeader,
         bookNowLink,
@@ -39,7 +44,6 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
 
     const router = useRouter()
 
-    setBucket(bucket[0])
     const pType = propertyType[0]
     const showSubNav = pType === 'Suites' || pType === 'Hotel'
 
@@ -48,6 +52,10 @@ const Home = ({ propertyResponse, setBucket, setNavTheme }: PropertyProps) => {
 
     useEffect(() => {
         setNavTheme('light')
+        setHeaderData({
+            bucket: bucket[0],
+            property: propertyName,
+        })
     }, [])
 
     const getSubNavigationData = () => {

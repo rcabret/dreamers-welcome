@@ -16,13 +16,15 @@ class ImageSlider extends Component {
     private readonly images: any
     private readonly slidesPer: number
     private readonly slug: string
+    private readonly widthQuery?: number
 
     constructor(props: SwiperProps) {
         super(props)
-        const { items, slidesPerView, slug } = props
+        const { items, slidesPerView, slug, widthQuery } = props
         this.images = items
-        this.slug = slug;
+        this.slug = slug
         this.slidesPer = slidesPerView || 1
+        this.widthQuery = widthQuery
         this.state = {
             swiper: undefined,
         }
@@ -79,7 +81,7 @@ class ImageSlider extends Component {
                                         key={Math.random() * i}
                                     >
                                         <GridImage
-                                            sizes="75vw"
+                                            sizes="25vw"
                                             imageObj={x}
                                             border={false}
                                             borderRadius={true}

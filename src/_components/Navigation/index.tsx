@@ -12,10 +12,10 @@ import {
 import NavToggle from '../UI/Icons/NavToggle'
 
 const TopNav = ({
-    bucket,
+    headerData,
     navTheme,
 }: {
-    bucket?: string
+    headerData?: { bucket: string; property: string }
     navTheme?: string
 }) => {
     const [top, setTop] = useState(false)
@@ -67,9 +67,11 @@ const TopNav = ({
             <Navigation active={top} navTheme={navTheme} opened={opened}>
                 <NavInnerContainer opened={opened}>
                     <StyledDWLogo dark={showDarkTheme} />
-                    <StyledDWLogoType dark={showDarkTheme} />
+                    {!headerData?.property && (
+                        <StyledDWLogoType dark={showDarkTheme} />
+                    )}
                     <StyledDropdown dark={showDarkTheme}>
-                        {bucket}
+                        {headerData?.bucket}
                     </StyledDropdown>
                     <HamburgerWrap onClick={() => setPanel(!opened)}>
                         <NavToggle

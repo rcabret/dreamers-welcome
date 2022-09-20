@@ -11,13 +11,15 @@ interface Props {
     setBucket: any
 }
 
-const Stays = ({ properties, setNavTheme, setBucket }: Props) => {
+const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
     const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('dark')
-        setBucket('Puerto Rico')
-    })
+        setHeaderData({
+            bucket: 'Puerto Rico',
+        })
+    }, [])
 
     if (!properties.length) {
         return null

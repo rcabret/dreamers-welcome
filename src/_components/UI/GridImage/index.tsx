@@ -17,6 +17,7 @@ interface GridImageProps {
     fullHeight?: boolean
     disabled?: boolean
     sizes?: string
+    widthQuery?: number
 }
 
 const GridImage = ({
@@ -29,7 +30,8 @@ const GridImage = ({
     metadata,
     ratio = 0.67,
     imageObj,
-    sizes = '100vw',
+    sizes,
+    widthQuery,
 }: GridImageProps) => {
     if (!imageObj) {
         return null
@@ -76,14 +78,20 @@ const GridImage = ({
                     <>
                         <aside />
                         <Image
-                            src={`https:${url}` || '/'}
+                            src={
+                                `https:${url}${
+                                    widthQuery && !sizes
+                                        ? `?w=${widthQuery}`
+                                        : ''
+                                }` || '/'
+                            }
                             layout="fill"
                             sizes={sizes}
                             objectFit={
                                 ratio !== 'lightbox' ? 'cover' : 'contain'
                             }
-                            // placeholder="blur"
-                            // blurDataURL={`${attributes.landingImage.data.attributes.url}`}
+                            placeholder="blur"
+                            blurDataURL={`https:${url}?q=10`}
                         />
                         {children && children}
                     </>
