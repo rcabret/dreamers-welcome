@@ -12,6 +12,11 @@ import BodyText from '../_components/Typography/BodyText'
 import Block from '../_components/UI/Block'
 import Header from '../_components/Typography/Header'
 import MarkdownModule from '../_components/Typography/MarkdownModule'
+import dynamic from 'next/dynamic'
+
+const CollapsableList = dynamic(
+    () => import('../_components/UI/CollapsableList')
+)
 
 interface PropertyProps {
     propertyResponse: any
@@ -40,6 +45,7 @@ const Home = ({
         features,
         thingsToKnow,
         concept,
+        faq,
     } = propertyResponse
 
     const router = useRouter()
@@ -100,6 +106,7 @@ const Home = ({
         setView(finalView)
     }, [router.query])
 
+    // @ts-ignore
     return (
         <>
             <BannerGridImage
@@ -212,6 +219,17 @@ const Home = ({
             )}
 
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
+
+            {faq && (
+                <Block
+                    title="FAQs"
+                    content={
+                        <CollapsableList
+                            data={faq.fields.list}
+                        />
+                    }
+                />
+            )}
         </>
     )
 }
@@ -220,6 +238,8 @@ export default Home
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
+
+    console.log('propertyResponse', propertyResponse)
 
     return {
         props: {

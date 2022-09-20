@@ -4,12 +4,11 @@ import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import Cross from '../../UI/Icons/Cross'
 import MarkdownModule from '../../Typography/MarkdownModule'
-import dynamic from 'next/dynamic'
 
-const AnimateHeight = dynamic(() => import('react-animate-height'))
+import AnimateHeight from 'react-animate-height'
 
 interface ListProps {
-    data: { items: any }
+    data: any[]
 }
 
 interface ListStyleProps {
@@ -44,7 +43,7 @@ const ListWrapper = styled.div`
 
 const Title = styled.div`
     padding: ${rem('14px')} 0;
-    border-top: 1px solid black;
+    border-top: 1px solid #c1c1c1;
     display: flex;
     cursor: pointer;
     ${({ noPaddingBottom }: ListStyleProps) =>
@@ -60,13 +59,13 @@ const Title = styled.div`
     `}
 `
 
-class CollapsableList extends Component {
+class CollapsableList extends Component<any, any> {
     constructor(props: ListProps) {
         super(props)
     }
 
     state = {
-        activeIndex: 0,
+        activeIndex: -1,
     }
 
     toggle = (index: number) => {
@@ -78,24 +77,26 @@ class CollapsableList extends Component {
     }
 
     render() {
-        const { data } = this.props as ListProps
-        const { items } = data
+        const { data = [] } = this.props as ListProps
+
         return (
             <ListWrapper>
-                {items &&
-                    items.map(
+                {data &&
+                    data.length &&
+                    data.map(
                         (
-                            item: { title: string; content: string },
+                            item: { fields: { title: string; text: string } },
                             i: number
                         ) => {
+                            const { title, text } = item.fields
                             return (
                                 <>
                                     <Title
                                         noPaddingTop={i === 0}
-                                        noPaddingBottom={i === items.length - 1}
+                                        noPaddingBottom={i === data.length - 1}
                                         onClick={() => this.toggle(i)}
                                     >
-                                        <Header size={3}>{item?.title}</Header>
+                                        <Header size={3}>{title}</Header>
                                         <Cross
                                             expanded={
                                                 i == this.state.activeIndex
@@ -109,13 +110,13 @@ class CollapsableList extends Component {
                                                 : 0
                                         }
                                         className={
-                                            i === items.length - 1
+                                            i === data.length - 1
                                                 ? 'extraPadding'
                                                 : ''
                                         }
                                         duration={500}
                                     >
-                                        <MarkdownModule data={item.content} />
+                                        <MarkdownModule data={text} />
                                     </AnimateHeight>
                                 </>
                             )

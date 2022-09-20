@@ -62,6 +62,7 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
                 queryArray={['puertorico', 'guides']}
                 activeState={activeSlug}
             />
+
             <GridWrapper padding id="anchor_view">
                 <GridModule columns={3}>
                     {activeGuides && activeGuides.length
@@ -112,9 +113,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths(context: { params: { slug: string } }) {
-    const paths = [
-        { params: { slug: 'puertorico' } },
-    ]
+    const paths = [{ params: { slug: 'puertorico' } }]
     return {
         // @ts-ignore
         paths: paths,

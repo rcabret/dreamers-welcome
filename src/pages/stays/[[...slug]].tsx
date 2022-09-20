@@ -3,7 +3,7 @@ import React, { useContext, useEffect } from 'react'
 import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
-import { getAllProperties } from '../../_lib/api'
+import { getAllProperties, getPropertiesViaBucket } from '../../_lib/api'
 
 interface Props {
     properties: any
@@ -47,11 +47,26 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
 export default Stays
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const properties = await getAllProperties()
+    const properties = await getPropertiesViaBucket(
+        context.params.slug ? context.params.slug[0] : undefined
+    )
 
     return {
         props: {
             properties,
         },
+    }
+}
+
+export async function getStaticPaths(context: { params: { slug: string } }) {
+    const paths = [
+        { params: { slug: ['puertorico'] } },
+        { params: { slug: ['northcarolina'] } },
+        { params: { slug: [''] } },
+    ]
+    return {
+        // @ts-ignore
+        paths: paths,
+        fallback: false,
     }
 }

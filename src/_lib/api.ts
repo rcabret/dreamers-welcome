@@ -44,16 +44,19 @@ export const getAllProperties = async () => {
     }
 }
 
-export const getPropertiesViaBucket = async (
-    bucket: 'Puerto Rico' | 'North Carolina'
-) => {
-    const entries = await client.getEntries({
+export const getPropertiesViaBucket = async (bucket?: string) => {
+    let query: any = {
         content_type: 'property',
-        'fields.bucket': pathToBucket(bucket),
-        select: 'fields.propertyName,fields.bannerDescriptionList,fields.location,fields.tileImage,fields.bookNowLink,fields.slug',
-    })
+        select: 'fields.propertyName,fields.propertyType,fields.bannerDescriptionList,fields.location,fields.tileImage,fields.bookNowLink,fields.slug',
+    }
+
+    if (bucket) {
+        query['fields.bucket[in]'] = pathToBucket(bucket)
+    }
+
+    const entries = await client.getEntries(query)
     if (entries.items) {
-        return entries.items[0].fields
+        return entries.items.map((x: { fields: {} }) => x.fields)
     }
 }
 
