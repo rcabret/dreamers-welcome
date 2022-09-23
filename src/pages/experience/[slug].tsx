@@ -54,6 +54,7 @@ const Experience = ({ experience }: any) => {
                     </GridModule>
                 }
             />
+
             <Block
                 title="THINGS TO KNOW"
                 content={
