@@ -20,7 +20,7 @@ class ImageSlider extends Component {
 
     constructor(props: SwiperProps) {
         super(props)
-        const { items, slidesPerView, slug, widthQuery } = props
+        const { items, slidesPerView, slug } = props
         this.images = items
         this.slug = slug
         this.slidesPer = slidesPerView || 1

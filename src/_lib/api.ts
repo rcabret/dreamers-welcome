@@ -140,3 +140,13 @@ export const getExperiencesPage = async (bucket: string) => {
         return entries.items[0] ? entries.items[0].fields : null
     }
 }
+
+export const getExperience = async (slug: string) => {
+    const entries = await client.getEntries({
+        content_type: 'experience',
+        'fields.slug': slug,
+    })
+    if (entries.items) {
+        return entries.items[0].fields
+    }
+}

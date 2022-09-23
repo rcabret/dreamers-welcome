@@ -239,8 +239,6 @@ export default Home
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
 
-    console.log('propertyResponse', propertyResponse)
-
     return {
         props: {
             propertyResponse,
