@@ -1,7 +1,7 @@
 import React from 'react'
 import { BannerGridImage, GridModule, Stat } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
-import { getExperience } from '../../_lib/api'
+import { getExperience, getExperiences } from '../../_lib/api'
 import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
@@ -10,7 +10,7 @@ import Blurb from '../../_components/UI/Blurb'
 const Experience = ({ about }: any) => {
     const {
         bannerImage,
-        bannerHeader,
+        title,
         blurb,
         info,
         details,
@@ -26,10 +26,7 @@ const Experience = ({ about }: any) => {
                 borderRadius={false}
                 fullHeight
             >
-                <BannerContent
-                    headerText={bannerHeader}
-                    bookNowLink={bookNowLink}
-                />
+                <BannerContent headerText={title} bookNowLink={bookNowLink} />
             </BannerGridImage>
             <Blurb text={blurb} />
             <Block
@@ -89,11 +86,11 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     }
 }
 
-export async function getStaticPaths(context: { params: { slug: string } }) {
-    const experience = await getExperience(context.params.slug)
+export async function getStaticPaths() {
+    const experience = await getExperiences()
     const paths: any = []
-    experience.forEach((x: { slug: string }) => {
-        paths.push({ params: { slug: x.slug } })
+    experience.forEach((x: { url: string }) => {
+        paths.push({ params: { slug: x.url } })
     })
     return {
         // @ts-ignore

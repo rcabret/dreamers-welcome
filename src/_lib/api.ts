@@ -121,11 +121,15 @@ export const getGuidesPages = async () => {
     }
 }
 
-export const getExperiences = async (bucket: string) => {
-    const entries = await client.getEntries({
+export const getExperiences = async (bucket?: string) => {
+    const query: any = {
         content_type: 'activity',
-        'fields.bucket[in]': pathToBucket(bucket),
-    })
+    }
+
+    if (bucket) {
+        query['fields.bucket[in]'] = pathToBucket(bucket)
+    }
+    const entries = await client.getEntries(query)
     if (entries.items) {
         return entries.items.map((x: { fields: {} }) => x.fields)
     }
