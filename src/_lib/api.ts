@@ -147,8 +147,8 @@ export const getExperiencesPage = async (bucket: string) => {
 
 export const getExperience = async (slug: string) => {
     const entries = await client.getEntries({
-        content_type: 'experience',
-        'fields.slug': slug,
+        content_type: 'activity',
+        'fields.url': slug,
     })
     if (entries.items) {
         return entries.items[0].fields

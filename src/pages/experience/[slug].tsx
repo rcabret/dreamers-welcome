@@ -7,7 +7,7 @@ import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import Blurb from '../../_components/UI/Blurb'
 
-const Experience = ({ about }: any) => {
+const Experience = ({ experience }: any) => {
     const {
         bannerImage,
         title,
@@ -16,7 +16,7 @@ const Experience = ({ about }: any) => {
         details,
         bookNowLink,
         thingsToKnow,
-    } = about
+    } = experience
 
     return (
         <>

@@ -118,7 +118,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     }
 }
 
-export async function getStaticPaths(context: { params: { slug: string } }) {
+export async function getStaticPaths() {
     const paths = [
         { params: { slug: 'puertorico' } },
     ]

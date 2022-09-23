@@ -16,7 +16,6 @@ class ImageSlider extends Component {
     private readonly images: any
     private readonly slidesPer: number
     private readonly slug: string
-    private readonly widthQuery?: number
 
     constructor(props: SwiperProps) {
         super(props)
@@ -24,7 +23,6 @@ class ImageSlider extends Component {
         this.images = items
         this.slug = slug
         this.slidesPer = slidesPerView || 1
-        this.widthQuery = widthQuery
         this.state = {
             swiper: undefined,
         }
