@@ -1,4 +1,8 @@
-import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
+import {
+    getAllPropertiesForPaths,
+    getNewsViaProperty,
+    getProperty,
+} from '../_lib/api'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
@@ -6,13 +10,20 @@ import React, { useEffect, useState } from 'react'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
 import Highlight from '../_components/Suite/Highlight'
-import { BannerGridImage, BlockListWrap, GridModule } from '../styles/global'
+import {
+    BannerGridImage,
+    BlockListWrap,
+    GridAdjustWrapper,
+    GridModule,
+} from '../styles/global'
 import { ConceptTextContainer } from '../styles/about/styles'
 import BodyText from '../_components/Typography/BodyText'
 import Block from '../_components/UI/Block'
 import Header from '../_components/Typography/Header'
 import MarkdownModule from '../_components/Typography/MarkdownModule'
 import dynamic from 'next/dynamic'
+import NewsItem from '../_components/NewsItem'
+import Link from 'next/link'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -20,12 +31,14 @@ const CollapsableList = dynamic(
 
 interface PropertyProps {
     propertyResponse: any
+    news: any
     setHeaderData: any
     setNavTheme: any
 }
 
-const Home = ({
+const Property = ({
     propertyResponse,
+    news,
     setHeaderData,
     setNavTheme,
 }: PropertyProps) => {
@@ -223,10 +236,34 @@ const Home = ({
             {faq && (
                 <Block
                     title="FAQs"
+                    noPaddingBottom
+                    content={<CollapsableList data={faq.fields.list} />}
+                />
+            )}
+            {news && (
+                <Block
+                    title="IN THE NEWS"
+                    fullWidth
                     content={
-                        <CollapsableList
-                            data={faq.fields.list}
-                        />
+                        <GridAdjustWrapper>
+                            <GridModule columns={4} sideScrollOnMobile={false}>
+                                {news &&
+                                    news.map((x: any, i: number) => (
+                                        <Link
+                                            key={i}
+                                            href={`/news/${x.slug}`}
+                                            passHref
+                                        >
+                                            <a>
+                                                <NewsItem
+                                                    key={x.slug + i}
+                                                    newsObj={x}
+                                                />
+                                            </a>
+                                        </Link>
+                                    ))}
+                            </GridModule>
+                        </GridAdjustWrapper>
                     }
                 />
             )}
@@ -234,14 +271,16 @@ const Home = ({
     )
 }
 
-export default Home
+export default Property
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
+    const news = await getNewsViaProperty(context.params.slug[0])
 
     return {
         props: {
             propertyResponse,
+            news,
         },
     }
 }

@@ -46,7 +46,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
 
 export default Stays
 
-export async function getStaticProps(context: { params: { slug: string } }) {
+export async function getStaticProps(context: { params: { slug: string[] } }) {
     const properties = await getPropertiesViaBucket(
         context.params.slug ? context.params.slug[0] : undefined
     )

@@ -6,17 +6,25 @@ interface BlockProps {
     title: string
     content: ReactNode
     hideSeparator?: boolean
+    fullWidth?: boolean
+    noPaddingBottom?: boolean
 }
-const Block = ({ title, content, hideSeparator = false }: BlockProps) => {
+const Block = ({
+    title,
+    content,
+    hideSeparator = false,
+    fullWidth = false,
+    noPaddingBottom = false,
+}: BlockProps) => {
     return (
-        <BlockWrapper>
+        <BlockWrapper noPaddingBottom={noPaddingBottom}>
             {!hideSeparator && <div className="separator" />}
-            <Title>
+            <Title fullWidth={fullWidth}>
                 <Header size={4} uppercase>
                     {title}
                 </Header>
             </Title>
-            <BlockContent>{content}</BlockContent>
+            <BlockContent fullWidth={fullWidth}>{content}</BlockContent>
         </BlockWrapper>
     )
 }

@@ -81,6 +81,19 @@ export const getNews = async () => {
     }
 }
 
+export const getNewsViaProperty = async (propertySlug?: string) => {
+    const entries = await client.getEntries({
+        content_type: 'news',
+        'metadata.tags.sys.id[in]': 'showInProperty',
+        'fields.property.sys.contentType.sys.id': 'property',
+        'fields.property.fields.slug': propertySlug,
+        include: 5,
+    })
+    if (entries.items) {
+        return entries.items.map((x: { fields: {} }) => x.fields)
+    }
+}
+
 export const getAbout = async () => {
     const entries = await client.getEntries({
         content_type: 'about',

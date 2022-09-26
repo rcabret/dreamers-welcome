@@ -1,11 +1,21 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 
 export const BlockWrapper = styled.div`
-    padding: ${rem('40px')} ${rem('30px')} ${rem('80px')} ${rem('30px')};
     display: inline-block;
     width: calc(100%);
     position: relative;
+
+    ${({ noPaddingBottom }: { noPaddingBottom?: boolean }) =>
+        !noPaddingBottom
+            ? css`
+                  padding: ${rem('40px')} ${rem('30px')} ${rem('80px')}
+                      ${rem('30px')};
+              `
+            : css`
+                  padding: ${rem('40px')} ${rem('30px')} ${rem('40px')}
+                      ${rem('30px')};
+              `}
 
     .separator {
         height: 1px;
@@ -17,15 +27,29 @@ export const BlockWrapper = styled.div`
 `
 
 export const Title = styled.div`
-    width: 25%;
-    float: left;
+    ${({ fullWidth }: { fullWidth?: boolean }) =>
+        fullWidth
+            ? css`
+                  width: 100%;
+              `
+            : css`
+                  width: 25%;
+                  float: left;
+              `}
 `
-
 
 export const BlockContent = styled.div`
         overflow: visible;
-        margin-left: 25%;
-        width: 75%;
         position: relative;
+    
+    ${({ fullWidth }: { fullWidth?: boolean }) =>
+        fullWidth
+            ? css`
+                  width: 100%;
+              `
+            : css`
+                  margin-left: 25%;
+                  width: 75%;
+              `}
     }
 `

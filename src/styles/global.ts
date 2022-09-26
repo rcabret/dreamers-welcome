@@ -123,3 +123,10 @@ export const BlockListWrap = styled.div`
         line-height: 1.7;
     }
 `
+
+export const GridAdjustWrapper = styled.div`
+    position: relative;
+    left: -${rem(10)};
+    width: calc(100% + ${rem(20)});
+    margin-top: ${rem(20)};
+`
