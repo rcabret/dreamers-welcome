@@ -10,17 +10,22 @@ const SubNavigation = ({
     queryParam,
 }: {
     data: { name: string; slug: string }[]
-    queryArray?: string | string[]
+    queryArray: string | string[]
     activeState?: string
     queryParam?: string
 }) => {
     const router = useRouter()
+
+    const baseUrl =
+        queryArray && Array.isArray(queryArray)
+            ? queryArray.join('/')
+            : queryArray
+
     const shallowRoute = (slug: string): void => {
         if (queryArray === undefined) {
             return
         }
 
-        const baseUrl = `/${queryArray[0]}`
         const anchor = document.getElementById('anchor_view')
         if (anchor) {
             setTimeout(function () {
@@ -30,9 +35,10 @@ const SubNavigation = ({
                 })
             }, 100)
         }
-        const pre = queryParam ? `?${queryParam}=` : '/'
 
-        router.push(`${baseUrl}${pre}${slug}`, undefined, { shallow: true })
+        const tail = queryParam ? `?${queryParam}=${slug}` : `/${slug}`
+
+        router.push(`${baseUrl}${tail}`, undefined, { shallow: true })
     }
 
     const getSubClass = (slug: string): string => {

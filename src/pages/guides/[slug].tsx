@@ -33,20 +33,20 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
     setNavTheme('dark')
     const router = useRouter()
 
-    // @ts-ignore
     const [activeSlug, setSlug] = useState<string>(
-        router.query.type || 'view_all'
+        (router.query.type as string) || 'view_all'
     )
     const [activeGuides, setGuides] = useState<any[]>([...guides])
 
     useEffect(() => {
-        const type = (router.query.type as string) || ('view_all' as string)
+        const queryTag = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
-        setSlug(type)
+        setSlug(queryTag)
         const guidesToView =
-            type !== 'view_all'
-                ? [...guides].filter((guide: { type: string }) =>
-                      guide.type.includes(type)
+            queryTag !== 'view_all'
+                ? [...guides].filter(
+                      (guide: { metadata: { tags: { id: string }[] } }) =>
+                          guide.metadata.tags.find((tag) => tag.id === queryTag)
                   )
                 : [...guides]
 
@@ -59,39 +59,44 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
             <SubNavigation
                 data={links}
                 queryParam="type"
-                queryArray={['puertorico', 'guides']}
+                queryArray={router.query.slug || []}
                 activeState={activeSlug}
             />
 
             <GridWrapper padding id="anchor_view">
                 <GridModule columns={3}>
                     {activeGuides && activeGuides.length
-                        ? activeGuides.map((guide: any) => (
-                              <Link
-                                  key={guide.title}
-                                  href={`/guide/${guide.slug}`}
-                                  passHref
-                              >
-                                  <a>
-                                      <GridImage
-                                          imageObj={guide.tileImage}
-                                          metadata={
-                                              <GuidesMetadata>
-                                                  <BodyText size="sm">
+                        ? activeGuides.map((guide: { fields: any }) => {
+                              const { title, description, slug, tileImage } =
+                                  guide.fields
+
+                              return (
+                                  <Link
+                                      key={title}
+                                      href={`/guide/${slug}`}
+                                      passHref
+                                  >
+                                      <a>
+                                          <GridImage
+                                              imageObj={tileImage}
+                                              metadata={
+                                                  <GuidesMetadata>
+                                                      {/*<BodyText size="sm">
                                                       {guide.labels[0]}
-                                                  </BodyText>
-                                                  <Header size={3}>
-                                                      {guide.title}
-                                                  </Header>
-                                                  <BodyText size="sm">
-                                                      {guide.description}
-                                                  </BodyText>
-                                              </GuidesMetadata>
-                                          }
-                                      />
-                                  </a>
-                              </Link>
-                          ))
+                                                  </BodyText>*/}
+                                                      <Header size={3}>
+                                                          {title}
+                                                      </Header>
+                                                      <BodyText size="sm">
+                                                          {description}
+                                                      </BodyText>
+                                                  </GuidesMetadata>
+                                              }
+                                          />
+                                      </a>
+                                  </Link>
+                              )
+                          })
                         : null}
                 </GridModule>
             </GridWrapper>

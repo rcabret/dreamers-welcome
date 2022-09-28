@@ -150,7 +150,7 @@ const Property = ({
             {showSubNav && (
                 <SubNavigation
                     activeState={activeSlug}
-                    queryArray={router.query.slug}
+                    queryArray={router.query.slug || []}
                     data={getSubNavigationData()}
                 />
             )}

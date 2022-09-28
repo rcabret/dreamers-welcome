@@ -111,7 +111,7 @@ export const getGuides = async (bucket: string, type?: string) => {
         'fields.type': type,
     })
     if (entries.items) {
-        return entries.items.map((x: { fields: {} }) => x.fields)
+        return entries.items
     }
 }
 
