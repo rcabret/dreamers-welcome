@@ -6,12 +6,12 @@ import { SubLink, SubNav } from '../../../styles/navigation/styles'
 const SubNavigation = ({
     data,
     queryArray,
-    activeState,
+    activeSlug,
     queryParam,
 }: {
     data: { name: string; slug: string }[]
     queryArray: string | string[]
-    activeState?: string
+    activeSlug?: string
     queryParam?: string
 }) => {
     const router = useRouter()
@@ -45,7 +45,7 @@ const SubNavigation = ({
         if (queryArray === undefined) {
             return ''
         }
-        return slug === activeState ? 'active' : ''
+        return slug === activeSlug ? 'active' : ''
     }
     return (
         <SubNav>

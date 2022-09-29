@@ -57,10 +57,10 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
         <>
             <Blurb text={guidesPage.blurb} eyebrow="GUIDES" fullHeight />
             <SubNavigation
+                activeSlug={activeSlug}
                 data={links}
                 queryParam="type"
                 queryArray={router.query.slug || []}
-                activeState={activeSlug}
             />
 
             <GridWrapper padding id="anchor_view">

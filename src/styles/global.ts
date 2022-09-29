@@ -33,7 +33,7 @@ export const GridModule = styled.div`
             }
 
             @media (max-width: ${BREAKPOINTS.TABLET}) {
-                ${({ sideScrollOnMobile }: GMProps) =>
+                ${({ sideScrollOnMobile = false }: GMProps) =>
                     sideScrollOnMobile
                         ? css`
                               overflow-x: scroll;

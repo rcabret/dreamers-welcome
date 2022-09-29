@@ -35,22 +35,22 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     const router = useRouter()
 
     const { blurb } = experiencesPage
-    // @ts-ignore
     const [activeSlug, setSlug] = useState<string>(
-        router.query.type || 'view_all'
+        (router.query.type as string) || 'view_all'
     )
     const [activeExperiences, setExperiences] = useState<any[]>([
         ...experiences,
     ])
 
     useEffect(() => {
-        const type = (router.query.type as string) || ('view_all' as string)
+        const queryTag = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
-        setSlug(type)
+        setSlug(queryTag)
         const expToView =
-            type !== 'view_all'
-                ? [...experiences].filter((exp: { type: string }) =>
-                      exp.type.includes(type)
+            queryTag !== 'view_all'
+                ? [...experiences].filter(
+                      (exp: { metadata: { tags: { id: string }[] } }) =>
+                          exp.metadata.tags.find((tag) => tag.id === queryTag)
                   )
                 : [...experiences]
 
@@ -61,10 +61,10 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
         <>
             <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
             <SubNavigation
+                activeSlug={activeSlug}
                 data={links}
                 queryParam="type"
-                queryArray={['puertorico', 'experiences']}
-                activeState={activeSlug}
+                queryArray={router.query.slug || []}
             />
             <GridWrapper padding id="anchor_view">
                 <GridModule columns={3}>
@@ -119,9 +119,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths() {
-    const paths = [
-        { params: { slug: 'puertorico' } },
-    ]
+    const paths = [{ params: { slug: 'puertorico' } }]
     return {
         // @ts-ignore
         paths: paths,
