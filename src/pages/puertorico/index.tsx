@@ -48,6 +48,7 @@ const Index = ({ data, setHeaderData }: any) => {
                 <BannerContent headerText={title} />
             </BannerGridImage>
             <Blurb text={blurb} />
+
             <Block
                 title="OUR STAYS"
                 fullWidth
@@ -68,6 +69,7 @@ const Index = ({ data, setHeaderData }: any) => {
             <Block
                 title="GUIDES"
                 fullWidth
+                noPaddingBottom
                 content={
                     <GridAdjustWrapper>
                         <GridModule columns={3} sideScrollOnMobile>
