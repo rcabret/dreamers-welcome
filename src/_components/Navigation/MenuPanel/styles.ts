@@ -15,7 +15,7 @@ export const Panel = styled.div`
     width: ${rem('380px')};
     padding: ${rem(48)};
     height: 100vh;
-    z-index: 201;
+    z-index: 99;
     top: 0;
     transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;

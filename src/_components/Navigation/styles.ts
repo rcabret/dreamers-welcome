@@ -13,11 +13,10 @@ interface NavigationStyleProps {
 
 export const NavInnerContainer = styled.div`
     position: relative;
-    width: ${({ opened }: NavigationStyleProps) =>
-        opened ? 'calc(100% - 380px)' : '100%'};
+    width: 100%;
     height: 100%;
+    z-index: 100;
     padding: 0 ${rem('30px')};
-    transition: 0.35s width cubic-bezier(0, 0.8, 0.86, 1.01);
 `
 
 export const Navigation = styled.nav`
@@ -38,7 +37,7 @@ export const Navigation = styled.nav`
         transition: 0.3s transform;
     }
 
-    aside {
+    .menu-bg {
         z-index: -1;
         top: 0;
         left: 0;
@@ -50,6 +49,14 @@ export const Navigation = styled.nav`
         border-bottom: 1px solid #c1c1c1;
         opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
     }
+`
+export const RightAnchor = styled.div`
+    position: absolute;
+    right: 0;
+    height: 100%;
+    width: ${({ opened }: { opened: boolean }) => (opened ? rem(350) : '25vw')};
+    top: 0;
+    transition: width 0.4s;
 `
 
 export const StyledDWLogoType = styled(DWLogoType)`
@@ -82,8 +89,7 @@ export const Backdrop = styled.div`
 `
 export const StyledDropdown = styled.div`
     position: absolute;
-    top: 0;
-    right: 20%;
+    left: 0;
     height: 100%;
     color: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     display: flex;

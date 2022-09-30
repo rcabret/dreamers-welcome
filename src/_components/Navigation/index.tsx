@@ -4,6 +4,7 @@ import {
     HamburgerWrap,
     Navigation,
     NavInnerContainer,
+    RightAnchor,
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
@@ -65,26 +66,28 @@ const TopNav = ({
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>
-                <NavInnerContainer opened={opened}>
+                <NavInnerContainer>
                     <StyledDWLogo dark={showDarkTheme} />
                     {!headerData?.property && (
                         <StyledDWLogoType dark={showDarkTheme} />
                     )}
-                    <StyledDropdown dark={showDarkTheme}>
-                        {headerData?.bucket}
-                    </StyledDropdown>
-                    <HamburgerWrap onClick={() => setPanel(!opened)}>
-                        <NavToggle
-                            activate={setPanel}
-                            opened={opened}
-                            dark={showDarkTheme}
-                        />
-                    </HamburgerWrap>
+                    <RightAnchor opened={opened}>
+                        <StyledDropdown dark={showDarkTheme || opened}>
+                            {headerData?.bucket}
+                        </StyledDropdown>
+                        <HamburgerWrap onClick={() => setPanel(!opened)}>
+                            <NavToggle
+                                activate={setPanel}
+                                opened={opened}
+                                dark={showDarkTheme || opened}
+                            />
+                        </HamburgerWrap>
+                    </RightAnchor>
                 </NavInnerContainer>
-                <aside />
-                <Backdrop opened={opened} />
+                <MenuPanel opened={opened} activeBucket={headerData?.bucket} />
+                <aside className="menu-bg" />
+                <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>
-            <MenuPanel opened={opened} activeBucket={headerData?.bucket} />
         </>
     )
 }
