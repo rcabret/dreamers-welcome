@@ -13,6 +13,7 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 import Guide from '../guide/[slug]'
 import GuideItem from '../../_components/GuideItem'
+import ExperienceItem from '../../_components/ExperienceItem'
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -77,6 +78,23 @@ const Index = ({ data, setHeaderData }: any) => {
                                 guides.length &&
                                 guides.map((guide: any) => (
                                     <GuideItem data={guide.fields} />
+                                ))}
+                        </GridModule>
+                    </GridAdjustWrapper>
+                }
+            />
+
+            <Block
+                title="EXPERIENCES"
+                fullWidth
+                noPaddingBottom
+                content={
+                    <GridAdjustWrapper>
+                        <GridModule columns={3} sideScrollOnMobile>
+                            {experiences &&
+                                experiences.length &&
+                                experiences.map((exp: any) => (
+                                    <ExperienceItem data={exp.fields} />
                                 ))}
                         </GridModule>
                     </GridAdjustWrapper>

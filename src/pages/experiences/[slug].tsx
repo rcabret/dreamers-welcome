@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import Blurb from '../../_components/UI/Blurb'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
-import GridImage from '../../_components/UI/GridImage'
 import { GridModule, GridWrapper } from '../../styles/global'
-import Link from 'next/link'
-import BodyText from '../../_components/Typography/BodyText'
-import Header from '../../_components/Typography/Header'
-import { GuidesMetadata } from '../../styles/guides/styles'
-import { PriceText } from '../../styles/experiences/styles'
 import { useRouter } from 'next/router'
 import { getExperiences, getExperiencesPage } from '../../_lib/api'
+import ExperienceItem from '../../_components/ExperienceItem'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -70,33 +65,7 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
                 <GridModule columns={3}>
                     {activeExperiences && activeExperiences.length
                         ? activeExperiences.map((exp: any) => (
-                              <Link
-                                  key={exp.title}
-                                  href={`/experience/${exp.slug}`}
-                                  passHref
-                              >
-                                  <a>
-                                      <GridImage
-                                          imageObj={exp.tileImage}
-                                          metadata={
-                                              <GuidesMetadata>
-                                                  <Header size={3}>
-                                                      {exp.title}
-                                                  </Header>
-                                                  <PriceText>
-                                                      <Header size={2}>
-                                                          {exp.price}
-                                                      </Header>
-                                                      <span> per person</span>
-                                                  </PriceText>
-                                                  <BodyText size="sm">
-                                                      {exp.tileText}
-                                                  </BodyText>
-                                              </GuidesMetadata>
-                                          }
-                                      />
-                                  </a>
-                              </Link>
+                              <ExperienceItem data={exp} />
                           ))
                         : null}
                 </GridModule>
