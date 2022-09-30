@@ -90,7 +90,7 @@ const TopNav = ({
                     activeBucket={headerData?.bucket}
                     onClose={setPanel}
                 />
-                <MenuBg active={showDarkTheme && !opened} />
+                <MenuBg active={showDarkTheme && !opened && top} />
                 <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>
         </>
