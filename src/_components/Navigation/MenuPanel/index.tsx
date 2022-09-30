@@ -30,13 +30,13 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
             <div className="anchorSection">
                 <ul>
                     <li>
-                        <Link href="/about">STAYS</Link>
+                        <Link href="/about">ABOUT</Link>
                     </li>
                     <li>
                         <Link href="/news">NEWS</Link>
                     </li>
                     <li>
-                        <Link href="/radio">RADIO</Link>
+                        <Link href="/radio">DW RADIO</Link>
                     </li>
                 </ul>
                 <Button inverse>CONTACT US</Button>
