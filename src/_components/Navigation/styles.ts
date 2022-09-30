@@ -54,7 +54,7 @@ export const RightAnchor = styled.div`
     position: absolute;
     right: 0;
     height: 100%;
-    width: ${({ opened }: { opened: boolean }) => (opened ? rem(380) : '25vw')};
+    width: ${({ opened }: { opened: boolean }) => (opened ? rem(380) : '30vw')};
     top: 0;
     transition: width 0.4s;
 `
