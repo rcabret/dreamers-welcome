@@ -84,7 +84,11 @@ const TopNav = ({
                         </HamburgerWrap>
                     </RightAnchor>
                 </NavInnerContainer>
-                <MenuPanel opened={opened} activeBucket={headerData?.bucket} />
+                <MenuPanel
+                    opened={opened}
+                    activeBucket={headerData?.bucket}
+                    onClose={setPanel}
+                />
                 <aside className="menu-bg" />
                 <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>

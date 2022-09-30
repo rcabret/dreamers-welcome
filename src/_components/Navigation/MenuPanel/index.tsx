@@ -3,7 +3,7 @@ import { Panel } from './styles'
 import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
 
-const MenuPanel = ({ opened, activeBucket }: any) => {
+const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
     console.log('activeBucket', activeBucket)
     const activeBucketSlug = activeBucket || ''
 
@@ -15,7 +15,7 @@ const MenuPanel = ({ opened, activeBucket }: any) => {
         }`
 
     return (
-        <Panel opened={opened}>
+        <Panel opened={opened} onClick={() => onClose(false)}>
             <ul>
                 <li>
                     <Link href={getLink('stays')}>STAYS</Link>

@@ -83,8 +83,7 @@ export const Backdrop = styled.div`
     visibility: ${({ opened }: NavigationStyleProps) =>
         opened ? 'visible' : 'hidden'};
     background: ${({ opened }: NavigationStyleProps) =>
-        opened ? 'rgba(0, 0, 0, 0.7)' : 'none'};
-    backdrop-filter: blur(6px);
+        opened ? 'rgba(0, 0, 0, 0.8)' : 'none'};
     transition: 0.5s all;
 `
 export const StyledDropdown = styled.div`
