@@ -36,19 +36,19 @@ export const Navigation = styled.nav`
             active ? 'scale(0.85)' : 'scale(1)'};
         transition: 0.3s transform;
     }
+`
 
-    .menu-bg {
-        z-index: -1;
-        top: 0;
-        left: 0;
-        transition: 0.3s all;
-        background: white;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        border-bottom: 1px solid #c1c1c1;
-        opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
-    }
+export const MenuBg = styled.aside`
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transition: 0.3s all;
+    background: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px solid #c1c1c1;
+    opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
 `
 export const RightAnchor = styled.div`
     position: absolute;

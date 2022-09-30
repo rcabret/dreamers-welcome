@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {
     Backdrop,
     HamburgerWrap,
+    MenuBg,
     Navigation,
     NavInnerContainer,
     RightAnchor,
@@ -89,7 +90,7 @@ const TopNav = ({
                     activeBucket={headerData?.bucket}
                     onClose={setPanel}
                 />
-                <aside className="menu-bg" />
+                <MenuBg active={showDarkTheme && !opened} />
                 <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>
         </>
