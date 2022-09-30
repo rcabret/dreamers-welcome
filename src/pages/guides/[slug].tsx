@@ -2,12 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { getGuides, getGuidesPage } from '../../_lib/api'
 import Blurb from '../../_components/UI/Blurb'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
-import GridImage from '../../_components/UI/GridImage'
 import { GridModule, GridWrapper } from '../../styles/global'
-import Link from 'next/link'
-import BodyText from '../../_components/Typography/BodyText'
-import Header from '../../_components/Typography/Header'
-import { GuidesMetadata } from '../../styles/guides/styles'
+
 import { useRouter } from 'next/router'
 import GuideItem from '../../_components/GuideItem'
 
@@ -30,14 +26,20 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
-    setNavTheme('dark')
+const Guides = ({ guides, guidesPage, setNavTheme, setHeaderData }: any) => {
     const router = useRouter()
 
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
     )
     const [activeGuides, setGuides] = useState<any[]>([...guides])
+
+    useEffect(() => {
+        setNavTheme('dark')
+        setHeaderData({
+            bucket: guidesPage.bucket[0],
+        })
+    }, [])
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
