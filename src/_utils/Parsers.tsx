@@ -32,3 +32,13 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
     }
     return x
 }
+
+export const pathToBucket = (bucket: string) => {
+    switch (bucket) {
+        default:
+        case 'puertorico':
+            return 'Puerto Rico'
+        case 'northcarolina':
+            return 'North Carolina'
+    }
+}

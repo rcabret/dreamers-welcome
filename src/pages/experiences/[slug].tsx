@@ -5,6 +5,7 @@ import { GridModule, GridWrapper } from '../../styles/global'
 import { useRouter } from 'next/router'
 import { getExperiences, getExperiencesPage } from '../../_lib/api'
 import ExperienceItem from '../../_components/ExperienceItem'
+import { pathToBucket } from '../../_utils/Parsers'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -25,10 +26,20 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
-    setNavTheme('dark')
+const Experiences = ({
+    experiences,
+    experiencesPage,
+    setNavTheme,
+    setHeaderData,
+}: any) => {
     const router = useRouter()
 
+    useEffect(() => {
+        setNavTheme('dark')
+        setHeaderData({
+            bucket: pathToBucket(router.query.slug as string),
+        })
+    }, [])
     const { blurb } = experiencesPage
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
