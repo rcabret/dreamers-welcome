@@ -6,6 +6,7 @@ import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import Blurb from '../../_components/UI/Blurb'
+import { parseMoneyOrTime } from '../../_utils/Parsers'
 
 const Experience = ({ experience }: any) => {
     const {
@@ -39,6 +40,7 @@ const Experience = ({ experience }: any) => {
             />
             <Block
                 title="DETAILS"
+                noPaddingBottom
                 content={
                     <GridModule columns={4} sideScrollOnMobile dontBreak>
                         {details &&
@@ -46,7 +48,9 @@ const Experience = ({ experience }: any) => {
                                 const { title, text } = stat.fields
                                 return (
                                     <div key={~~(Math.random() * i)}>
-                                        <Stat>{text}</Stat>
+                                        <Stat>
+                                            {parseMoneyOrTime(text, 30)}
+                                        </Stat>
                                         <BodyText size="md">{title}</BodyText>
                                     </div>
                                 )
