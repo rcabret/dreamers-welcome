@@ -54,7 +54,7 @@ export const RightAnchor = styled.div`
     position: absolute;
     right: 0;
     height: 100%;
-    width: ${({ opened }: { opened: boolean }) => (opened ? rem(350) : '25vw')};
+    width: ${({ opened }: { opened: boolean }) => (opened ? rem(380) : '25vw')};
     top: 0;
     transition: width 0.4s;
 `
@@ -89,7 +89,7 @@ export const Backdrop = styled.div`
 `
 export const StyledDropdown = styled.div`
     position: absolute;
-    left: 0;
+    left: ${rem(40)};
     height: 100%;
     color: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     display: flex;

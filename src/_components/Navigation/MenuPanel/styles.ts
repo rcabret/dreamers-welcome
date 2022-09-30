@@ -13,12 +13,13 @@ export const Panel = styled.div`
     position: fixed;
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
     width: ${rem('380px')};
-    padding: ${rem(48)};
+    padding: ${rem(40)};
     height: 100vh;
     z-index: 99;
     top: 0;
     transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
     background: white;
+    color: black;
 
     ul {
         margin-top: ${rem(100)};
