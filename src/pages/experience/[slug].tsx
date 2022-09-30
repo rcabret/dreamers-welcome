@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BannerGridImage, GridModule, Stat } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import { getExperience, getExperiences } from '../../_lib/api'
@@ -8,7 +8,7 @@ import { ConceptTextContainer } from '../../styles/about/styles'
 import Blurb from '../../_components/UI/Blurb'
 import { parseMoneyOrTime } from '../../_utils/Parsers'
 
-const Experience = ({ experience }: any) => {
+const Experience = ({ experience, setHeaderData }: any) => {
     const {
         bannerImage,
         title,
@@ -17,7 +17,14 @@ const Experience = ({ experience }: any) => {
         details,
         bookNowLink,
         thingsToKnow,
+        bucket,
     } = experience
+
+    useEffect(() => {
+        setHeaderData({
+            bucket: bucket[0],
+        })
+    }, [])
 
     return (
         <>
