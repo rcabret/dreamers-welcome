@@ -9,6 +9,7 @@ import BodyText from '../../_components/Typography/BodyText'
 import Header from '../../_components/Typography/Header'
 import { GuidesMetadata } from '../../styles/guides/styles'
 import { useRouter } from 'next/router'
+import GuideItem from '../../_components/GuideItem'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -67,35 +68,7 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
                 <GridModule columns={3}>
                     {activeGuides && activeGuides.length
                         ? activeGuides.map((guide: { fields: any }) => {
-                              const { title, description, slug, tileImage } =
-                                  guide.fields
-
-                              return (
-                                  <Link
-                                      key={title}
-                                      href={`/guide/${slug}`}
-                                      passHref
-                                  >
-                                      <a>
-                                          <GridImage
-                                              imageObj={tileImage}
-                                              metadata={
-                                                  <GuidesMetadata>
-                                                      {/*<BodyText size="sm">
-                                                      {guide.labels[0]}
-                                                  </BodyText>*/}
-                                                      <Header size={3}>
-                                                          {title}
-                                                      </Header>
-                                                      <BodyText size="sm">
-                                                          {description}
-                                                      </BodyText>
-                                                  </GuidesMetadata>
-                                              }
-                                          />
-                                      </a>
-                                  </Link>
-                              )
+                              return <GuideItem data={guide.fields} />
                           })
                         : null}
                 </GridModule>

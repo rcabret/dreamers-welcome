@@ -32,6 +32,18 @@ export const LeftLinks = styled.div`
     display: flex;
     align-items: center;
     margin-left: 8vw;
+
+    ul {
+        margin-top: 0;
+        width: 20%;
+        float: left;
+        font-size: ${rem(20)};
+        font-weight: 300;
+
+        li {
+            margin-bottom: ${rem(6)};
+        }
+    }
 `
 
 export const RightLinks = styled.div`

@@ -46,14 +46,7 @@ const News = ({
                 <GridModule columns={4} sideScrollOnMobile={false}>
                     {news &&
                         news.map((news: News, i: number) => (
-                            <Link key={i} href={`/news/${news.slug}`} passHref>
-                                <a>
-                                    <NewsItem
-                                        key={news.slug + i}
-                                        newsObj={news}
-                                    />
-                                </a>
-                            </Link>
+                            <NewsItem key={news.slug + i} newsObj={news} />
                         ))}
                 </GridModule>
             </GridWrapper>

@@ -26,8 +26,6 @@ const Footer = () => {
                         <Link href={'/guides'}>GUIDES</Link>
                     </li>
                 </ul>
-            </LeftLinks>
-            <RightLinks>
                 <ul>
                     <li>
                         <Link href={'/about'}>ABOUT</Link>
@@ -39,7 +37,18 @@ const Footer = () => {
                         <Link href={'/dw-radio'}>DW RADIO</Link>
                     </li>
                 </ul>
-            </RightLinks>
+                <ul>
+                    <li>
+                        <Link href={'/privacy'}>PRIVACY</Link>
+                    </li>
+                    <li>
+                        <Link href={'/bookings'}>BOOKINGS</Link>
+                    </li>
+                    <li>
+                        <Link href={'/faqs'}>FAQ's</Link>
+                    </li>
+                </ul>
+            </LeftLinks>
             <ContactUs href={'/contact'} inverse>
                 CONTACT US
             </ContactUs>

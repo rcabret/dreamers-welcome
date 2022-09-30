@@ -1,12 +1,18 @@
 import React, { useEffect } from 'react'
-import { BannerGridImage } from '../../styles/global'
+import {
+    BannerGridImage,
+    GridAdjustWrapper,
+    GridModule,
+} from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
-import { getHomepage, getPropertiesViaBucket } from '../../_lib/api'
+import { getHomepage } from '../../_lib/api'
 import ImageSlider from '../../_components/UI/Swiper'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import Guide from '../guide/[slug]'
+import GuideItem from '../../_components/GuideItem'
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -20,9 +26,10 @@ const StaysSwiperWrap = styled.div`
         position: relative;
     }
 `
-const Index = ({ data, stays, setHeaderData }: any) => {
-    const { blurb, title, guides, experiences, coverImage } = data
+const Index = ({ data, setHeaderData }: any) => {
+    const { blurb, title, guides, experiences, coverImage, stays } = data
 
+    console.log('stays', stays)
     useEffect(() => {
         setHeaderData({
             bucket: 'Puerto Rico',
@@ -50,12 +57,27 @@ const Index = ({ data, stays, setHeaderData }: any) => {
                         {/*@ts-ignore*/}
                         <ImageSlider
                             slug={'puertorico'}
-                            items={stays}
+                            items={stays.map((x: any) => x.fields)}
                             slidesPerView={2}
                             isProperties
                             spaceBetween={0}
                         />
                     </StaysSwiperWrap>
+                }
+            />
+            <Block
+                title="GUIDES"
+                fullWidth
+                content={
+                    <GridAdjustWrapper>
+                        <GridModule columns={3} sideScrollOnMobile>
+                            {guides &&
+                                guides.length &&
+                                guides.map((guide: any) => (
+                                    <GuideItem data={guide.fields} />
+                                ))}
+                        </GridModule>
+                    </GridAdjustWrapper>
                 }
             />
         </>
@@ -66,12 +88,10 @@ export default Index
 
 export async function getStaticProps() {
     const data = await getHomepage('puertorico')
-    const stays = await getPropertiesViaBucket('puertorico')
 
     return {
         props: {
             data,
-            stays,
         },
     }
 }

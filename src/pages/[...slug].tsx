@@ -254,18 +254,10 @@ const Property = ({
                             <GridModule columns={4} sideScrollOnMobile={false}>
                                 {news &&
                                     news.map((x: any, i: number) => (
-                                        <Link
-                                            key={i}
-                                            href={`/news/${x.slug}`}
-                                            passHref
-                                        >
-                                            <a>
-                                                <NewsItem
-                                                    key={x.slug + i}
-                                                    newsObj={x}
-                                                />
-                                            </a>
-                                        </Link>
+                                        <NewsItem
+                                            key={x.slug + i}
+                                            newsObj={x}
+                                        />
                                     ))}
                             </GridModule>
                         </GridAdjustWrapper>
