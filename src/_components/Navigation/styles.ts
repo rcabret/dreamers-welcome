@@ -52,9 +52,6 @@ export const Navigation = styled.nav`
     }
 `
 
-export const PanelNavigation = styled(Navigation)`
-    position: absolute;
-`
 export const StyledDWLogoType = styled(DWLogoType)`
     display: block;
     margin: 0 auto;
@@ -68,17 +65,6 @@ export const StyledDWLogo = styled(DWLogo)`
     path {
         fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     }
-`
-
-export const Panel = styled.div`
-    position: fixed;
-    right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
-    width: ${rem('380px')};
-    height: 100vh;
-    z-index: 201;
-    top: 0;
-    transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
-    background: white;
 `
 
 export const Backdrop = styled.div`
@@ -102,11 +88,6 @@ export const StyledDropdown = styled.div`
     color: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     display: flex;
     align-items: center;
-`
-
-export const PanelDropdown = styled(StyledDropdown)`
-    left: ${rem('40px')};
-    right: auto;
 `
 
 export const HamburgerWrap = styled.div`

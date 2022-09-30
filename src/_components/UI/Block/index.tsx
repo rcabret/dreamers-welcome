@@ -3,7 +3,7 @@ import { BlockContent, BlockWrapper, Title } from './styles'
 import Header from '../../Typography/Header'
 
 interface BlockProps {
-    title: string
+    title?: string
     content: ReactNode
     hideSeparator?: boolean
     fullWidth?: boolean
@@ -19,11 +19,13 @@ const Block = ({
     return (
         <BlockWrapper noPaddingBottom={noPaddingBottom}>
             {!hideSeparator && <div className="separator" />}
-            <Title fullWidth={fullWidth}>
-                <Header size={4} uppercase>
-                    {title}
-                </Header>
-            </Title>
+            {title && (
+                <Title fullWidth={fullWidth}>
+                    <Header size={4} uppercase>
+                        {title}
+                    </Header>
+                </Title>
+            )}
             <BlockContent fullWidth={fullWidth}>{content}</BlockContent>
         </BlockWrapper>
     )

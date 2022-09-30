@@ -4,12 +4,12 @@ import {
     HamburgerWrap,
     Navigation,
     NavInnerContainer,
-    Panel,
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
 } from './styles'
 import NavToggle from '../UI/Icons/NavToggle'
+import MenuPanel from './MenuPanel'
 
 const TopNav = ({
     headerData,
@@ -84,7 +84,7 @@ const TopNav = ({
                 <aside />
                 <Backdrop opened={opened} />
             </Navigation>
-            <Panel opened={opened} active={false} navTheme="dark" />
+            <MenuPanel opened={opened} activeBucket={headerData?.bucket} />
         </>
     )
 }

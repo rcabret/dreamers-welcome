@@ -24,6 +24,7 @@ import MarkdownModule from '../_components/Typography/MarkdownModule'
 import dynamic from 'next/dynamic'
 import NewsItem from '../_components/NewsItem'
 import Link from 'next/link'
+import Map from '../_components/Map'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -59,6 +60,7 @@ const Property = ({
         thingsToKnow,
         concept,
         faq,
+        mapUrl,
     } = propertyResponse
 
     const router = useRouter()
@@ -232,6 +234,8 @@ const Property = ({
             )}
 
             {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
+
+            {mapUrl && <Map link={mapUrl} />}
 
             {faq && (
                 <Block

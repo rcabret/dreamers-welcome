@@ -33,8 +33,6 @@ const Highlight = ({
                     slug={slug}
                     items={images}
                     slidesPerView={1}
-                    widthQuery={1000}
-
                 />
             </SliderWrap>
             <HighlightBlurb>
