@@ -8,7 +8,7 @@ import { ConceptTextContainer } from '../../styles/about/styles'
 import Blurb from '../../_components/UI/Blurb'
 import { parseMoneyOrTime } from '../../_utils/Parsers'
 
-const Experience = ({ experience, setHeaderData }: any) => {
+const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
         bannerImage,
         title,
@@ -21,6 +21,7 @@ const Experience = ({ experience, setHeaderData }: any) => {
     } = experience
 
     useEffect(() => {
+        setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],
         })
