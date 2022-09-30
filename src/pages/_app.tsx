@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     // @ts-ignore
     const Layout = Component.Layout || EmptyLayout
 
-    const [bucket, setBucket] = useState(undefined)
     const [navTheme, setNavTheme] = useState(undefined)
     const [headerData, setHeaderData] = useState(undefined)
 

@@ -14,10 +14,13 @@ const client = require('contentful').createClient({
     accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
 })
 
-export const getHomepage = async () => {
+export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
+        'fields.url': url,
+        include: 3,
     })
+
     if (entries.items) {
         return entries.items[0].fields
     }

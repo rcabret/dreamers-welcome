@@ -63,7 +63,7 @@ const TopNav = ({
     }, [opened])
 
     const showDarkTheme = (navTheme === 'dark' && !opened) || (top && !opened)
-
+    console.log('in here')
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>

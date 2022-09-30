@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
-    console.log('activeBucket', activeBucket)
+
     const activeBucketSlug = activeBucket || ''
 
     const getLink = (slug: string) =>
