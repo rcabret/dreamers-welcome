@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 
 const SmallSpan = styled.span`
-    font-size: ${({ size }: { size: number }) => rem(size)};
+    font-size: ${({ size }: { size: number }) => rem(size)} !important;
 `
 export const parseMoneyOrTime = (x: string, size = 20) => {
     const testString = x
