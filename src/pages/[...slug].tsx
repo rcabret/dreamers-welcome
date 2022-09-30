@@ -9,7 +9,6 @@ import BannerContent from '../_components/UI/BannerContent'
 import React, { useEffect, useState } from 'react'
 import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
-import Highlight from '../_components/Suite/Highlight'
 import {
     BannerGridImage,
     BlockListWrap,
@@ -29,6 +28,8 @@ import Map from '../_components/Map'
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
 )
+
+const Highlight = dynamic(() => import('../_components/Suite/Highlight'))
 
 interface PropertyProps {
     propertyResponse: any

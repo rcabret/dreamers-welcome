@@ -33,6 +33,7 @@ const Highlight = ({
                     slug={slug}
                     items={images}
                     slidesPerView={1}
+                    spaceBetween={20}
                 />
             </SliderWrap>
             <HighlightBlurb>

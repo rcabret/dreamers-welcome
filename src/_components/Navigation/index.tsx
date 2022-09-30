@@ -21,6 +21,10 @@ const TopNav = ({
     navTheme?: string
 }) => {
     const [top, setTop] = useState(false)
+    const [opened, setPanel] = useState(false)
+    const [showDarkTheme, setTheme] = useState(
+        (navTheme === 'dark' && !opened) || (top && !opened)
+    )
 
     useEffect(() => {
         const onScroll = () => {
@@ -50,8 +54,6 @@ const TopNav = ({
         }
     }, [])
 
-    const [opened, setPanel] = useState(false)
-
     useEffect(() => {
         if (opened) {
             // @ts-ignore
@@ -62,8 +64,10 @@ const TopNav = ({
         }
     }, [opened])
 
-    const showDarkTheme = (navTheme === 'dark' && !opened) || (top && !opened)
-    console.log('in here')
+    useEffect(() => {
+        setTheme((navTheme === 'dark' && !opened) || (top && !opened))
+    }, [navTheme, opened, top])
+
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>

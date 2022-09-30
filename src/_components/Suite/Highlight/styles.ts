@@ -41,9 +41,5 @@ export const SliderWrap = styled.div`
         margin-left: calc(25% + 20px);
         width: 45%;
         position: relative;
-
-        .last {
-            width: ${rem('80px')};
-        }
     }
 `

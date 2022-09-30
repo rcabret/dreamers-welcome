@@ -8,6 +8,7 @@ interface BlockProps {
     hideSeparator?: boolean
     fullWidth?: boolean
     noPaddingBottom?: boolean
+    showOverflow?: boolean
 }
 const Block = ({
     title,
@@ -15,6 +16,7 @@ const Block = ({
     hideSeparator = false,
     fullWidth = false,
     noPaddingBottom = false,
+    showOverflow = false,
 }: BlockProps) => {
     return (
         <BlockWrapper noPaddingBottom={noPaddingBottom}>
@@ -26,7 +28,9 @@ const Block = ({
                     </Header>
                 </Title>
             )}
-            <BlockContent fullWidth={fullWidth}>{content}</BlockContent>
+            <BlockContent showOverflow={showOverflow} fullWidth={fullWidth}>
+                {content}
+            </BlockContent>
         </BlockWrapper>
     )
 }
