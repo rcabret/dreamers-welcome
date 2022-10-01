@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components'
 import { rem } from 'polished'
 
 interface NavigationStyleProps {
@@ -17,7 +17,7 @@ export const Panel = styled.div`
     height: 100vh;
     z-index: 99;
     top: 0;
-    transition: 0.35s right cubic-bezier(0, 0.8, 0.86, 1.01);
+    transition: 0.5s right cubic-bezier(0.65, 0, 0.35, 1);
     background: white;
     color: black;
 
@@ -59,5 +59,26 @@ export const Panel = styled.div`
             bottom: ${rem(30)};
             margin: 0;
         }
+    }
+`
+
+const blurFadeIn = keyframes`
+    0% {
+        opacity: 0;
+        transform:  translate3d(60px, 0, 0);
+    }
+    100% {
+        opacity: 1;
+        transform: translate3d(0px, 0, 0);
+    }
+`
+
+export const MainList = styled.ul`
+    li {
+        opacity: 0;
+    }
+
+    .active {
+        animation: ${blurFadeIn} 0.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
 `

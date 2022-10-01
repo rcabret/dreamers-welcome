@@ -56,7 +56,7 @@ export const RightAnchor = styled.div`
     height: 100%;
     width: ${({ opened }: { opened: boolean }) => (opened ? rem(380) : '30vw')};
     top: 0;
-    transition: width 0.4s;
+    transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 `
 
 export const StyledDWLogoType = styled(DWLogoType)`
