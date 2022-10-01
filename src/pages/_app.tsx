@@ -8,7 +8,7 @@ import Footer from '../_components/Footer'
 
 const StyledMain = styled.main`
     width: 100%;
-    transition: 0.4s width cubic-bezier(0, 0.8, 0.86, 1.01);
+    min-height: 100vh;
 `
 function MyApp({ Component, pageProps }: AppProps) {
     // @ts-ignore
@@ -28,8 +28,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                         setNavTheme={setNavTheme}
                     />
                 </Layout>
-                <Footer />
             </StyledMain>
+            <Footer />
         </ViewportProvider>
     )
 }
