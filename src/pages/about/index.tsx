@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BannerGridImage, GridModule, Stat } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
@@ -10,10 +10,16 @@ import GridImage from '../../_components/UI/GridImage'
 import { NewsTextWrapper } from '../../_components/NewsItem/styles'
 import { ConceptTextContainer, StaffMetadata } from '../../styles/about/styles'
 
-const About = ({ about }: any) => {
+const About = ({ about, setHeaderData, setNavTheme }: any) => {
     const { bannerImage, bannerHeader, blurb, concept, founders, ourReach } =
         about
 
+    useEffect(() => {
+        setHeaderData({
+            bucket: undefined,
+        })
+        setNavTheme('light')
+    }, [])
     return (
         <>
             <BannerGridImage
@@ -64,16 +70,14 @@ const About = ({ about }: any) => {
             <Block
                 title="OUR REACH"
                 content={
-                    <GridModule columns={4} sideScrollOnMobile dontBreak>
+                    <GridModule columns={4} sideScrollOnMobile>
                         {ourReach &&
                             ourReach.map((stat: any, i: number) => {
-                                const {title, text} = stat.fields;
+                                const { title, text } = stat.fields
                                 return (
-                                    <div key={~~(Math.random() * i)}>
+                                    <div key={title}>
                                         <Stat>{text}</Stat>
-                                        <BodyText size="md">
-                                            {title}
-                                        </BodyText>
+                                        <BodyText size="md">{title}</BodyText>
                                     </div>
                                 )
                             })}

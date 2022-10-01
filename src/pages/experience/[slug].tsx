@@ -70,7 +70,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
             <Block
                 title="THINGS TO KNOW"
                 content={
-                    <GridModule columns={4} sideScrollOnMobile dontBreak>
+                    <GridModule columns={4} sideScrollOnMobile>
                         {thingsToKnow &&
                             thingsToKnow.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields
