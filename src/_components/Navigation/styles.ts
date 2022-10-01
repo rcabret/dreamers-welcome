@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import DWLogoType from '../UI/Icons/DWLogoType'
 import DWLogo from '../UI/Icons/DWLogo'
@@ -104,4 +104,23 @@ export const HamburgerWrap = styled.div`
     right: 30px;
     height: 100%;
     cursor: pointer;
+`
+
+export const StyledProperty = styled.div`
+    height: 100%;
+    display: flex;
+    left: 0;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    h3 {
+        transition: 0.3s;
+        ${({ active }: { active: boolean }) =>
+            active &&
+            css`
+                font-size: 20px;
+                color: black !important;
+            `};
+    }
 `

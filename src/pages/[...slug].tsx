@@ -24,6 +24,7 @@ import dynamic from 'next/dynamic'
 import NewsItem from '../_components/NewsItem'
 import Link from 'next/link'
 import Map from '../_components/Map'
+import {prop} from "dom7";
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -73,6 +74,7 @@ const Property = ({
     const [activeSlug, setSlug] = useState()
 
     useEffect(() => {
+        console.log('op', propertyName)
         setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],

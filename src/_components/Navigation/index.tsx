@@ -9,9 +9,11 @@ import {
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
+    StyledProperty,
 } from './styles'
 import NavToggle from '../UI/Icons/NavToggle'
 import MenuPanel from './MenuPanel'
+import Header from "../Typography/Header";
 
 const TopNav = ({
     headerData,
@@ -25,7 +27,6 @@ const TopNav = ({
     const [showDarkTheme, setTheme] = useState(
         (navTheme === 'dark' && !opened) || (top && !opened)
     )
-
     useEffect(() => {
         const onScroll = () => {
             const scrollTop = window.scrollY
@@ -73,8 +74,12 @@ const TopNav = ({
             <Navigation active={top} navTheme={navTheme} opened={opened}>
                 <NavInnerContainer>
                     <StyledDWLogo dark={showDarkTheme} />
-                    {!headerData?.property && (
+                    {!headerData?.property ? (
                         <StyledDWLogoType dark={showDarkTheme} />
+                    ) : (
+                        <StyledProperty active={top}>
+                            <Header uppercase size={3}>{headerData?.property}</Header>
+                        </StyledProperty>
                     )}
                     <RightAnchor opened={opened}>
                         <StyledDropdown dark={showDarkTheme || opened}>
