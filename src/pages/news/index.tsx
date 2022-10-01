@@ -10,7 +10,6 @@ import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews } from '../../_lib/api'
 import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
-import Link from 'next/link'
 import Header from '../../_components/Typography/Header'
 
 const News = ({
@@ -27,7 +26,7 @@ const News = ({
     useEffect(() => {
         setNavTheme('dark')
         setHeaderData({
-            bucket: 'Puerto Rico',
+            bucket: undefined,
         })
     }, [])
 
