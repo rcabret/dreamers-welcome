@@ -4,6 +4,8 @@ import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
 import { getAllProperties, getPropertiesViaBucket } from '../../_lib/api'
+import { pathToBucket } from '../../_utils/Parsers'
+import { useRouter } from 'next/router'
 
 interface Props {
     properties: any
@@ -13,11 +15,14 @@ interface Props {
 
 const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
     const breakpoint = useContext(viewportContext)
+    const router = useRouter()
 
     useEffect(() => {
         setNavTheme('dark')
         setHeaderData({
-            bucket: 'Puerto Rico',
+            bucket: router.query.slug
+                ? pathToBucket(router.query.slug[0] as string)
+                : undefined,
         })
     }, [])
 
