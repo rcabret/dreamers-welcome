@@ -12,7 +12,8 @@ import Header from '../_components/Typography/Header'
 const Circle = styled.div`
     width: 98vw;
     height: 98vw;
-    min-width: 1300px;
+    min-width: 1000px;
+    min-height: 1000px;
     border-radius: 50%;
     position: absolute;
     overflow: hidden;
