@@ -11,7 +11,6 @@ import { getHomepage } from '../../_lib/api'
 import ImageSlider from '../../_components/UI/Swiper'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import Guide from '../guide/[slug]'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 
@@ -27,11 +26,11 @@ const StaysSwiperWrap = styled.div`
         position: relative;
     }
 `
-const Index = ({ data, setHeaderData }: any) => {
+const Index = ({ data, setHeaderData, setNavTheme }: any) => {
     const { blurb, title, guides, experiences, coverImage, stays } = data
 
-    console.log('stays', stays)
     useEffect(() => {
+        setNavTheme('light')
         setHeaderData({
             bucket: 'Puerto Rico',
         })
