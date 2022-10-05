@@ -15,6 +15,7 @@ import NavToggle from '../UI/Icons/NavToggle'
 import MenuPanel from './MenuPanel'
 import Header from '../Typography/Header'
 import { throttle } from '../../_utils/Throttle'
+import Link from 'next/link'
 
 const TopNav = ({
     headerData,
@@ -68,7 +69,11 @@ const TopNav = ({
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>
                 <NavInnerContainer>
-                    <StyledDWLogo dark={showDarkTheme} />
+                    <Link href={'/'} passHref>
+                        <a>
+                            <StyledDWLogo dark={showDarkTheme} />
+                        </a>
+                    </Link>
                     {!headerData?.property ? (
                         <StyledDWLogoType dark={showDarkTheme} />
                     ) : (
