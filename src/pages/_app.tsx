@@ -5,6 +5,7 @@ import { ReactNode, useState } from 'react'
 import TopNav from '../_components/Navigation'
 import styled from 'styled-components'
 import Footer from '../_components/Footer'
+import EmailCapture from '../_components/EmailCapture'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -20,7 +21,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     return (
         <ViewportProvider>
             <StyledMain id="main">
-                <TopNav navTheme={navTheme} headerData={headerData}/>
+                <TopNav navTheme={navTheme} headerData={headerData} />
                 <Layout>
                     <Component
                         {...pageProps}
@@ -29,6 +30,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                     />
                 </Layout>
             </StyledMain>
+            <EmailCapture />
             <Footer />
         </ViewportProvider>
     )

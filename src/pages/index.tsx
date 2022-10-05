@@ -76,9 +76,9 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
             const scrollTop = window.scrollY
 
             const style = {
-                width: `calc(98vw + ${scrollTop * 1.5}px)`,
-                height: `calc(98vw + ${scrollTop * 1.5}px)`,
-                transform: `translate3d(0,-${scrollTop * 1.5}px, 0)`,
+                width: `calc(98vw + ${scrollTop * 1.8}px)`,
+                height: `calc(98vw + ${scrollTop * 1.8}px)`,
+                transform: `translate3d(0,-${scrollTop * 1.8}px, 0)`,
             }
 
             if (x && inner) {
