@@ -47,7 +47,7 @@ export const MenuBg = styled.aside`
     position: absolute;
     width: 100%;
     height: 100%;
-    //border-bottom: 1px solid #c1c1c1;
+    border-bottom: 1px solid #c1c1c1;
     backdrop-filter: blur(14px);
     background: rgba(255, 255, 255, 0.6);
     opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
