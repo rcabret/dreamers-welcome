@@ -57,6 +57,7 @@ const FlexContainer = styled.div`
 const StyledHeader = styled(Header)`
     text-align: center;
     font-size: 8vw !important;
+    letter-spacing: 4px;
 `
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
