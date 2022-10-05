@@ -49,7 +49,7 @@ const FlexContainer = styled.div`
     align-items: flex-start;
     justify-content: center;
     padding-top: 100px;
-    overflow: visible;
+    overflow-y: visible;
 
     * {
         color: black;
