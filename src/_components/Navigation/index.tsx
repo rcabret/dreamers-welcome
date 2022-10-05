@@ -13,13 +13,14 @@ import {
 } from './styles'
 import NavToggle from '../UI/Icons/NavToggle'
 import MenuPanel from './MenuPanel'
-import Header from "../Typography/Header";
+import Header from '../Typography/Header'
+import { throttle } from '../../_utils/Throttle'
 
 const TopNav = ({
     headerData,
     navTheme,
 }: {
-    headerData?: { bucket: string; property: string }
+    headerData?: { bucket: string; property: string; simpleNav?: boolean }
     navTheme?: string
 }) => {
     const [top, setTop] = useState(false)
@@ -33,24 +34,12 @@ const TopNav = ({
             setTop(scrollTop > 100)
         }
 
-        let throttlePause: boolean
-        const throttle = (callback: () => void) => {
-            //don't run the function if throttlePause is true
-            if (throttlePause) return
-            throttlePause = true
-            //setTimeout runs the callback within the specified time
-            setTimeout(() => {
-                callback()
-                throttlePause = false
-            }, 100)
-        }
-
         window.addEventListener('scroll', () => {
-            throttle(onScroll)
+            throttle(onScroll)()
         })
         return () => {
             window.removeEventListener('scroll', () => {
-                throttle(onScroll)
+                throttle(onScroll)()
             })
         }
     }, [])
@@ -69,6 +58,12 @@ const TopNav = ({
         setTheme((navTheme === 'dark' && !opened) || (top && !opened))
     }, [navTheme, opened, top])
 
+    useEffect(() => {
+        if (headerData && headerData?.simpleNav === undefined) {
+            headerData.simpleNav = false
+        }
+    }, [headerData])
+
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>
@@ -78,7 +73,9 @@ const TopNav = ({
                         <StyledDWLogoType dark={showDarkTheme} />
                     ) : (
                         <StyledProperty active={top}>
-                            <Header uppercase size={3}>{headerData?.property}</Header>
+                            <Header uppercase size={3}>
+                                {headerData?.property}
+                            </Header>
                         </StyledProperty>
                     )}
                     <RightAnchor opened={opened}>
@@ -99,7 +96,7 @@ const TopNav = ({
                     activeBucket={headerData?.bucket}
                     onClose={setPanel}
                 />
-                <MenuBg active={top} />
+                <MenuBg active={top && !headerData?.simpleNav} />
                 <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>
         </>

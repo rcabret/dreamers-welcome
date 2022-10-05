@@ -3,6 +3,8 @@ import { BannerGridImage } from '../styles/global'
 import BannerContent from '../_components/UI/BannerContent'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
+import { throttle } from '../_utils/Throttle'
+import Blurb from '../_components/UI/Blurb'
 
 interface HomepageProps {
     homepageResponse: any
@@ -11,22 +13,82 @@ interface HomepageProps {
 const Circle = styled.div`
     width: 98vw;
     height: 98vw;
+    min-width: 1300px;
     border-radius: 50%;
-    background: white;
     position: absolute;
+    overflow: hidden;
+
+    div {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+    }
+
+    div:first-child {
+        background: rgb(255, 255, 255);
+        background: linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 1) 0%,
+            rgba(240, 208, 170, 1) 67%,
+            rgba(204, 164, 117, 1) 100%
+        );
+    }
+
+    #inner {
+        background: white;
+    }
 `
 
 const FlexContainer = styled.div`
+    position: absolute;
+    top: 0;
     display: flex;
     width: 100%;
     height: 100%;
     align-items: flex-start;
     justify-content: center;
-    padding-top: 120px;
+    padding-top: 100px;
+    overflow: visible;
+
+    * {
+        color: black;
+    }
 `
-const Home = ({ landing, setNavTheme }: any) => {
+const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
         setNavTheme('dark')
+        setHeaderData({
+            simpleNav: true,
+        })
+    }, [])
+
+    useEffect(() => {
+        const x: HTMLElement | null = document.querySelector('#circle')
+        const inner: HTMLElement | null = document.querySelector('#inner')
+
+        const onScroll = () => {
+            const scrollTop = window.scrollY
+
+            const style = {
+                width: `calc(98vw + ${scrollTop}px)`,
+                height: `calc(98vw + ${scrollTop}px)`,
+                transform: `translate3d(0,-${scrollTop}px, 0)`,
+            }
+
+            if (x && inner) {
+                Object.assign(x.style, style)
+                Object.assign(inner.style, { opacity: 1 - scrollTop * 0.003 })
+            }
+        }
+        window.addEventListener('scroll', () => {
+            throttle(onScroll)()
+        })
+        return () => {
+            window.removeEventListener('scroll', () => {
+                throttle(onScroll)()
+            })
+        }
     }, [])
     return (
         <>
@@ -35,12 +97,15 @@ const Home = ({ landing, setNavTheme }: any) => {
                 border={false}
                 borderRadius={false}
                 fullHeight
-            >
-                <FlexContainer>
-                    <BannerContent headerText={landing.title} />
-                    <Circle />
-                </FlexContainer>
-            </BannerGridImage>
+            />
+            <FlexContainer>
+                <BannerContent headerText={landing.title} />
+                <Circle id="circle">
+                    <div />
+                    <div id="inner" />
+                </Circle>
+            </FlexContainer>
+            <Blurb text={landing.blurb} eyebrow="DW GROUP" borderTop />
         </>
     )
 }

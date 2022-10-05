@@ -8,6 +8,7 @@ export const FooterStyled = styled.footer`
     border-top: ${rem(1)} solid #c1c1c1;
     padding: ${rem(30)};
     position: relative;
+    background: white;
 
     ul {
         list-style: none;
@@ -44,11 +45,6 @@ export const LeftLinks = styled.div`
             margin-bottom: ${rem(6)};
         }
     }
-`
-
-export const RightLinks = styled.div`
-    float: right;
-    margin-right: ${rem(160)};
 `
 
 export const ContactUs = styled(Button)`

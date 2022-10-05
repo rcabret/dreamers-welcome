@@ -6,7 +6,6 @@ import {
     FooterStyled,
     StyledFooterLogo,
     LeftLinks,
-    RightLinks,
     ContactUs,
 } from './styles'
 
