@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const SubNav = styled.div`
     position: sticky;
@@ -8,7 +8,8 @@ export const SubNav = styled.div`
     justify-content: center;
     top: 50px;
     z-index: 10;
-    background: white;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(14px);
 
     .separator {
         margin: 0 30px;

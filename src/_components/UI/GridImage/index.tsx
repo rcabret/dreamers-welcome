@@ -13,7 +13,7 @@ interface GridImageProps {
     ratio?: number | string
     metadata?: JSX.Element
     showMetadata?: boolean
-    imageObj: ContentfulImage
+    imageObj?: ContentfulImage
     fullHeight?: boolean
     disabled?: boolean
     sizes?: string
