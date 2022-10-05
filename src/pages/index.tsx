@@ -1,14 +1,13 @@
-import { getHomepage, getLandingpage, getProperty } from '../_lib/api'
+import { getLandingpage } from '../_lib/api'
 import { BannerGridImage } from '../styles/global'
 import BannerContent from '../_components/UI/BannerContent'
 import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { throttle } from '../_utils/Throttle'
 import Blurb from '../_components/UI/Blurb'
-
-interface HomepageProps {
-    homepageResponse: any
-}
+import Block from '../_components/UI/Block'
+import Link from 'next/link'
+import Header from '../_components/Typography/Header'
 
 const Circle = styled.div`
     width: 98vw;
@@ -54,6 +53,10 @@ const FlexContainer = styled.div`
     * {
         color: black;
     }
+`
+const StyledHeader = styled(Header)`
+    text-align: center;
+    font-size: 8vw !important;
 `
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
@@ -105,6 +108,32 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                     <div id="inner" />
                 </Circle>
             </FlexContainer>
+            <Link href={'/puertorico'} passHref>
+                <a>
+                    <Block
+                        noPaddingBottom
+                        fullWidth
+                        content={
+                            <StyledHeader responsive size={1} uppercase>
+                                Puerto Rico
+                            </StyledHeader>
+                        }
+                    />
+                </a>
+            </Link>
+            <Link href={'/northcarolina'} passHref>
+                <a>
+                    <Block
+                        noPaddingBottom
+                        fullWidth
+                        content={
+                            <StyledHeader size={1} uppercase>
+                                North Carolina
+                            </StyledHeader>
+                        }
+                    />
+                </a>
+            </Link>
             <Blurb text={landing.blurb} eyebrow="DW GROUP" borderTop />
         </>
     )
