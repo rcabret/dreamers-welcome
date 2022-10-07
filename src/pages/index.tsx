@@ -1,13 +1,14 @@
 import { getLandingpage } from '../_lib/api'
 import { BannerGridImage } from '../styles/global'
 import BannerContent from '../_components/UI/BannerContent'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { throttle } from '../_utils/Throttle'
 import Blurb from '../_components/UI/Blurb'
 import Block from '../_components/UI/Block'
 import Link from 'next/link'
 import Header from '../_components/Typography/Header'
+import moment from 'moment'
 
 const Circle = styled.div`
     width: 98vw;
@@ -61,6 +62,15 @@ const StyledHeader = styled(Header)`
     letter-spacing: 4px;
 `
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
+    const [prData, setPRData] = useState<{
+        temperature: string
+        time: string
+    }>()
+    const [ncData, setNCData] = useState<{
+        temperature: string
+        time: string
+    }>()
+
     useEffect(() => {
         setNavTheme('dark')
         setHeaderData({
@@ -95,6 +105,29 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
             })
         }
     }, [])
+
+    const getWeatherApiUrl = (lat: number, long: number) =>
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&temperature_unit=fahrenheit`
+
+    useEffect(() => {
+        const fetchPrData = async () => {
+            await fetch(getWeatherApiUrl(18.2078212, -67.7099374))
+                .then((x) => x.json())
+                .then((res) => {
+                    setPRData(res.current_weather)
+                })
+        }
+
+        const fetchNCData = async () => {
+            await fetch(getWeatherApiUrl(35.3857677, -81.3990799))
+                .then((x) => x.json())
+                .then((res) => {
+                    setNCData(res.current_weather)
+                })
+        }
+        fetchNCData()
+        fetchPrData()
+    }, [])
     return (
         <>
             <BannerGridImage
@@ -115,6 +148,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                     <Block
                         noPaddingBottom
                         fullWidth
+                        title={`${prData?.temperature}\u00b0`}
                         content={
                             <StyledHeader responsive size={1} uppercase>
                                 Puerto Rico
@@ -128,6 +162,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                     <Block
                         noPaddingBottom
                         fullWidth
+                        title={`${ncData?.temperature}\u00b0`}
                         content={
                             <StyledHeader size={1} uppercase>
                                 North Carolina
