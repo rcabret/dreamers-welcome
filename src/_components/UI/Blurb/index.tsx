@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import Header from '../../Typography/Header'
@@ -47,14 +47,18 @@ const Blurb = ({
     borderTop,
     eyebrow,
     fullHeight,
+    children,
+    className,
 }: {
     text: string
     borderTop?: boolean
     eyebrow?: string
     fullHeight?: boolean
+    children?: ReactNode
+    className?: string
 }) => {
     return (
-        <BlurbWrap fullHeight={fullHeight}>
+        <BlurbWrap fullHeight={fullHeight} className={className}>
             {borderTop && <figure className="separator" />}
             <div>
                 {eyebrow && (
@@ -63,6 +67,7 @@ const Blurb = ({
                     </StyledHeader>
                 )}
                 <Header size={1}>{text}</Header>
+                {children && children}
             </div>
         </BlurbWrap>
     )

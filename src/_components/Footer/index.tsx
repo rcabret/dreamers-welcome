@@ -7,7 +7,9 @@ import {
     StyledFooterLogo,
     LeftLinks,
     ContactUs,
+    Copyright,
 } from './styles'
+import moment from 'moment'
 
 const Footer = () => {
     return (
@@ -51,6 +53,7 @@ const Footer = () => {
             <ContactUs href={'/contact'} inverse>
                 CONTACT US
             </ContactUs>
+            <Copyright>&copy; DW {moment().year()}</Copyright>
         </FooterStyled>
     )
 }

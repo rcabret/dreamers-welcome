@@ -2,65 +2,17 @@ import { getLandingpage } from '../_lib/api'
 import { BannerGridImage } from '../styles/global'
 import BannerContent from '../_components/UI/BannerContent'
 import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
 import { throttle } from '../_utils/Throttle'
-import Blurb from '../_components/UI/Blurb'
 import Block from '../_components/UI/Block'
 import Link from 'next/link'
-import Header from '../_components/Typography/Header'
-import moment from 'moment'
+import {
+    Circle,
+    FlexContainer,
+    StyledBlurb,
+    StyledButton,
+    StyledHeader,
+} from '../styles/landing/styles'
 
-const Circle = styled.div`
-    width: 98vw;
-    padding-top: 98vw;
-    min-width: 1000px;
-    min-height: 1000px;
-    border-radius: 50%;
-    position: absolute;
-    overflow: hidden;
-
-    div {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        top: 0;
-    }
-
-    div:first-child {
-        background: rgb(255, 255, 255);
-        background: linear-gradient(
-            0deg,
-            rgba(255, 255, 255, 1) 0%,
-            rgba(240, 208, 170, 1) 67%,
-            rgba(204, 164, 117, 1) 100%
-        );
-    }
-
-    #inner {
-        background: white;
-    }
-`
-
-const FlexContainer = styled.div`
-    position: absolute;
-    top: 0;
-    display: flex;
-    width: 100%;
-    height: 100%;
-    align-items: flex-start;
-    justify-content: center;
-    padding-top: 100px;
-    overflow-y: visible;
-
-    * {
-        color: black;
-    }
-`
-const StyledHeader = styled(Header)`
-    text-align: center;
-    font-size: 8vw !important;
-    letter-spacing: 4px;
-`
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     const [prData, setPRData] = useState<{
         temperature: string
@@ -110,23 +62,19 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&temperature_unit=fahrenheit`
 
     useEffect(() => {
-        const fetchPrData = async () => {
+        const fetchData = async () => {
             await fetch(getWeatherApiUrl(18.2078212, -67.7099374))
                 .then((x) => x.json())
                 .then((res) => {
                     setPRData(res.current_weather)
                 })
-        }
-
-        const fetchNCData = async () => {
             await fetch(getWeatherApiUrl(35.3857677, -81.3990799))
                 .then((x) => x.json())
                 .then((res) => {
                     setNCData(res.current_weather)
                 })
         }
-        fetchNCData()
-        fetchPrData()
+        fetchData()
     }, [])
     return (
         <>
@@ -171,7 +119,9 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                     />
                 </a>
             </Link>
-            <Blurb text={landing.blurb} eyebrow="DW GROUP" borderTop />
+            <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
+                <StyledButton href="/about">READ MORE</StyledButton>
+            </StyledBlurb>
         </>
     )
 }

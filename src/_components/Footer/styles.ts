@@ -53,4 +53,9 @@ export const ContactUs = styled(Button)`
     top: ${rem(30)};
 `
 
-export const BottomLine = styled.div``
+export const Copyright = styled.span`
+    position: absolute;
+    bottom: ${rem(30)};
+    left: ${rem(30)};
+    color: #575757;
+`
