@@ -7,6 +7,7 @@ import Block from '../_components/UI/Block'
 import Link from 'next/link'
 import {
     Circle,
+    ContentWrap,
     FlexContainer,
     StyledBlurb,
     StyledButton,
@@ -33,6 +34,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
         const x: HTMLElement | null = document.querySelector('#circle')
         const inner: HTMLElement | null = document.querySelector('#inner')
+        const innerMain: HTMLElement | null =
+            document.querySelector('#innerMain')
 
         const onScroll = () => {
             const scrollTop = window.scrollY
@@ -40,12 +43,15 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
             const style = {
                 width: `calc(98vw + ${scrollTop * 1.8}px)`,
                 height: `calc(98vw + ${scrollTop * 1.8}px)`,
-                transform: `translate3d(0,-${scrollTop * 1.8}px, 0)`,
+                transform: `translate3d(0,-${scrollTop * 1.2}px, 0)`,
             }
 
             if (x && inner) {
                 Object.assign(x.style, style)
                 Object.assign(inner.style, { opacity: 1 - scrollTop * 0.003 })
+                Object.assign(innerMain.style, {
+                    opacity: 1 - scrollTop * 0.003,
+                })
             }
         }
         window.addEventListener('scroll', () => {
@@ -91,37 +97,40 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                     <div id="inner" />
                 </Circle>
             </FlexContainer>
-            <Link href={'/puertorico'} passHref>
-                <a>
-                    <Block
-                        noPaddingBottom
-                        fullWidth
-                        title={`${prData?.temperature}\u00b0`}
-                        content={
-                            <StyledHeader responsive size={1} uppercase>
-                                Puerto Rico
-                            </StyledHeader>
-                        }
-                    />
-                </a>
-            </Link>
-            <Link href={'/northcarolina'} passHref>
-                <a>
-                    <Block
-                        noPaddingBottom
-                        fullWidth
-                        title={`${ncData?.temperature}\u00b0`}
-                        content={
-                            <StyledHeader size={1} uppercase>
-                                North Carolina
-                            </StyledHeader>
-                        }
-                    />
-                </a>
-            </Link>
-            <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
-                <StyledButton href="/about">READ MORE</StyledButton>
-            </StyledBlurb>
+            <ContentWrap>
+                <div id="innerMain" />
+                <Link href={'/puertorico'} passHref>
+                    <a>
+                        <Block
+                            noPaddingBottom
+                            fullWidth
+                            title={`${prData?.temperature}\u00b0`}
+                            content={
+                                <StyledHeader responsive size={1} uppercase>
+                                    Puerto Rico
+                                </StyledHeader>
+                            }
+                        />
+                    </a>
+                </Link>
+                <Link href={'/northcarolina'} passHref>
+                    <a>
+                        <Block
+                            noPaddingBottom
+                            fullWidth
+                            title={`${ncData?.temperature}\u00b0`}
+                            content={
+                                <StyledHeader size={1} uppercase>
+                                    North Carolina
+                                </StyledHeader>
+                            }
+                        />
+                    </a>
+                </Link>
+                <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
+                    <StyledButton href="/about">READ MORE</StyledButton>
+                </StyledBlurb>
+            </ContentWrap>
         </>
     )
 }

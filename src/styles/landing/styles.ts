@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import Header from "../../_components/Typography/Header";
-import Button from "../../_components/UI/Buttons/Button";
-import {rem} from "polished";
-import Blurb from "../../_components/UI/Blurb";
+import styled from 'styled-components'
+import Header from '../../_components/Typography/Header'
+import Button from '../../_components/UI/Buttons/Button'
+import { rem } from 'polished'
+import Blurb from '../../_components/UI/Blurb'
 
 export const Circle = styled.div`
     width: 98vw;
     padding-top: 98vw;
-    min-width: 1000px;
+    min-width: 1200px;
     min-height: 1000px;
     border-radius: 50%;
     position: absolute;
@@ -44,7 +44,9 @@ export const FlexContainer = styled.div`
     align-items: flex-start;
     justify-content: center;
     padding-top: 100px;
-    overflow-y: visible;
+    overflow: hidden;
+    min-height: 700px;
+    max-height: 960px;
 
     * {
         color: black;
@@ -63,4 +65,24 @@ export const StyledButton = styled(Button)`
 
 export const StyledBlurb = styled(Blurb)`
     min-height: ${rem(750)} !important;
+`
+
+export const ContentWrap = styled.div`
+    position: relative;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 1) 0%,
+        rgba(240, 208, 170, 0.6) 100%
+    );
+
+    #innerMain {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        opacity: 1;
+    }
 `
