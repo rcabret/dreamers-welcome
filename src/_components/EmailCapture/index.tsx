@@ -46,7 +46,7 @@ const EmailCapture = () => {
                     <div>
                         <StyledHeader size={2}>Are you a dreamer?</StyledHeader>
                         <Form>
-                            <StyledInput />
+                            <StyledInput placeholder="SUBSCRIBE" />
                         </Form>
                     </div>
                 </Wrapper>

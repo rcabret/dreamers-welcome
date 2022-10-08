@@ -34,8 +34,6 @@ class ImageSlider extends Component {
         this.state = {
             swiper: undefined,
         }
-
-        console.log('images', this.images)
     }
 
     nextSlide = (index: number) => {

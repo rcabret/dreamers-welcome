@@ -12,7 +12,9 @@ import {
     StyledBlurb,
     StyledButton,
     StyledHeader,
+    BottomAnchor,
 } from '../styles/landing/styles'
+import Header from '../_components/Typography/Header'
 
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     const [prData, setPRData] = useState<{
@@ -82,6 +84,18 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         }
         fetchData()
     }, [])
+
+    const scrollToBottom = () => {
+        const anchor = document.getElementById('view')
+        if (anchor) {
+            setTimeout(function () {
+                window.scrollTo({
+                    behavior: 'smooth',
+                    top: anchor.offsetTop - 120,
+                })
+            }, 100)
+        }
+    }
     return (
         <>
             <BannerGridImage
@@ -91,13 +105,23 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                 fullHeight
             />
             <FlexContainer>
+                <BottomAnchor>
+                    <Header size={3}>
+                        CHOOSE <br /> YOUR DESTINATION
+                    </Header>
+                    <button onClick={() => scrollToBottom()}>
+                        <svg viewBox="0 0 60 40">
+                            <polyline points="0 10, 30 38, 60 10" />
+                        </svg>
+                    </button>
+                </BottomAnchor>
                 <BannerContent headerText={landing.title} />
                 <Circle id="circle">
                     <div />
                     <div id="inner" />
                 </Circle>
             </FlexContainer>
-            <ContentWrap>
+            <ContentWrap id="view">
                 <div id="innerMain" />
                 <Link href={'/puertorico'} passHref>
                     <a>

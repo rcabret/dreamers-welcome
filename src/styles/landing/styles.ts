@@ -46,7 +46,7 @@ export const FlexContainer = styled.div`
     padding-top: 100px;
     overflow: hidden;
     min-height: 700px;
-    max-height: 960px;
+    //max-height: 960px;
 
     * {
         color: black;
@@ -84,5 +84,31 @@ export const ContentWrap = styled.div`
         height: 100%;
         background: white;
         opacity: 1;
+    }
+`
+
+export const BottomAnchor = styled.div`
+    position: absolute;
+    bottom: ${rem(20)};
+    z-index: 100;
+
+    h3 {
+        text-align: center;
+        line-height: 1.3;
+        margin-bottom: ${rem(80)};
+    }
+
+    button {
+        background: none;
+        border: none;
+        width: 100%;
+        cursor: pointer;
+
+        svg {
+            stroke: black;
+            width: 100%;
+            height: ${rem(40)};
+            fill: none;
+        }
     }
 `
