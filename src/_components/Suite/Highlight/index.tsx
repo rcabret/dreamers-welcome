@@ -1,7 +1,7 @@
 import React from 'react'
 import { HighlightBlurb, HighlightWrapper, Name, SliderWrap } from './styles'
 import BodyText from '../../Typography/BodyText'
-import ImageSlider from '../../UI/Swiper'
+import ImageGridSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import Header from '../../Typography/Header'
 
@@ -29,7 +29,7 @@ const Highlight = ({
             </Name>
             <SliderWrap>
                 {/*@ts-ignore*/}
-                <ImageSlider
+                <ImageGridSlider
                     slug={slug}
                     items={images}
                     slidesPerView={1}

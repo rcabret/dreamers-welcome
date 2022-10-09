@@ -22,9 +22,9 @@ import Header from '../_components/Typography/Header'
 import MarkdownModule from '../_components/Typography/MarkdownModule'
 import dynamic from 'next/dynamic'
 import NewsItem from '../_components/NewsItem'
-import Link from 'next/link'
 import Map from '../_components/Map'
-import {prop} from "dom7";
+import ImageSlider from '../_components/UI/Swiper/Carousel'
+import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -46,23 +46,24 @@ const Property = ({
     setNavTheme,
 }: PropertyProps) => {
     const {
-        propertyName,
         bannerImage,
         bannerHeader,
-        bookNowLink,
-        blurb,
-        suites,
-        rooms,
-        bottomBlurb,
-        location,
-        propertyType,
         bannerDescriptionList,
         bucket,
-        features,
-        thingsToKnow,
+        bookNowLink,
+        bottomBlurb,
+        blurb,
+        carouselImages,
         concept,
         faq,
+        features,
+        location,
         mapUrl,
+        propertyType,
+        propertyName,
+        rooms,
+        suites,
+        thingsToKnow,
     } = propertyResponse
 
     const router = useRouter()
@@ -74,7 +75,6 @@ const Property = ({
     const [activeSlug, setSlug] = useState()
 
     useEffect(() => {
-        console.log('op', propertyName)
         setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],
@@ -187,6 +187,18 @@ const Property = ({
                     })
                 )}
             </div>
+
+            {carouselImages && (
+                <Block
+                    noPaddingBottom
+                    fullWidth
+                    content={
+                        <ImageSliderWrapper>
+                            <ImageSlider items={carouselImages} />
+                        </ImageSliderWrapper>
+                    }
+                />
+            )}
 
             {features && (
                 <Block

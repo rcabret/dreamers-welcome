@@ -1,10 +1,10 @@
 // Import Swiper React components
 import { SwiperSlide } from 'swiper/react'
 import 'swiper/css'
-import React, { Component, ReactComponentElement, ReactNode } from 'react'
+import React, { Component } from 'react'
 import GridImage from '../GridImage'
 import { StyledSwiper } from './styles'
-import Swiper, { Navigation } from 'swiper'
+import Swiper from 'swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import dynamic from 'next/dynamic'
 
@@ -18,34 +18,32 @@ interface SwiperProps {
     spaceBetween?: number
 }
 
-class ImageSlider extends Component {
+class ImageGridSlider extends Component {
     private readonly images: any
     private readonly slidesPer: number
     private readonly slug: string
     private readonly isProperties: boolean
+    private readonly spaceBetween: number
 
     constructor(props: SwiperProps) {
         super(props)
-        const { items, slidesPerView, slug, isProperties = false, spaceBetween = 0 } = props as SwiperProps;
+        const {
+            items,
+            slidesPerView,
+            slug,
+            isProperties = false,
+            spaceBetween = 0,
+        } = props as SwiperProps
+
         this.isProperties = isProperties
         this.images = items
         this.slug = slug
         this.slidesPer = slidesPerView || 1
+        this.spaceBetween = spaceBetween
+
         this.state = {
             swiper: undefined,
         }
-    }
-
-    nextSlide = (index: number) => {
-        let nextIndex: number
-        if (index == 0) {
-            nextIndex = this.images.length - 1
-        } else {
-            nextIndex = index - 1 >= this.images.length ? 0 : index - 1
-        }
-        this.setState({
-            activeIndex: nextIndex,
-        })
     }
 
     componentDidUpdate(
@@ -63,19 +61,14 @@ class ImageSlider extends Component {
             <>
                 <StyledSwiper
                     loop={false}
-                    spaceBetween={this.props.spaceBetween}
+                    spaceBetween={this.spaceBetween}
                     freeMode
                     grabCursor={true}
                     slidesPerView={this.slidesPer}
-                    /*onSlideChange={(swiper) => {
-                        this.nextSlide(swiper.activeIndex)
-                    }}*/
                     onSwiper={(swiper) => this.setState({ swiper: swiper })}
                     onUpdate={(swiper) => {
                         swiper.slideTo(0)
                     }}
-                    /* navigation={true}
-                    modules={[Navigation]}*/
                 >
                     {this.images &&
                         this.images.length &&
@@ -106,4 +99,4 @@ class ImageSlider extends Component {
     }
 }
 
-export default ImageSlider
+export default ImageGridSlider

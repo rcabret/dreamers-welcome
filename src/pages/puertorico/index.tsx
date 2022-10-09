@@ -8,7 +8,7 @@ import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
 import { getHomepage } from '../../_lib/api'
-import ImageSlider from '../../_components/UI/Swiper'
+import ImageGridSlider from '../../_components/UI/Swiper'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
@@ -17,7 +17,7 @@ import ExperienceItem from '../../_components/ExperienceItem'
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
     width: 100%;
-    margin-top: ${rem('20px')};
+    margin-top: ${rem(20)};
 
     .swiper {
         overflow: visible;
@@ -56,7 +56,7 @@ const Index = ({ data, setHeaderData, setNavTheme }: any) => {
                 content={
                     <StaysSwiperWrap>
                         {/*@ts-ignore*/}
-                        <ImageSlider
+                        <ImageGridSlider
                             slug={'puertorico'}
                             items={stays.map((x: any) => x.fields)}
                             slidesPerView={2}
