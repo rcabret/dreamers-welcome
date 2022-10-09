@@ -1,23 +1,37 @@
 @font-face {
     font-display: swap;
+    font-weight: 100;
+    font-family: 'Yellix';
+    src: url('/fonts/Yellix/otf/Yellix-Thing.otf'); /* IE9 Compat Modes */
+    src: url('/fonts/Yellix/web/Yellix-Thin.woff2') format('woff2'),
+        url('/fonts/Yellix/web/Yellix-Thin.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
+    font-weight: 200;
+    font-family: 'Yellix';
+    src: url('/fonts/Yellix/otf/Yellix-Light.otf'); /* IE9 Compat Modes */
+    src: url('/fonts/Yellix/web/Yellix-Light.woff2') format('woff2'),
+        url('/fonts/Yellix/web/Yellix-Light.woff') format('woff');
+}
+
+@font-face {
+    font-display: swap;
     font-family: 'Yellix';
     font-weight: 400;
-    src: url('/fonts/Yellix/Yellix-Regular.otf'); /* IE9 Compat Modes */
+    src: url('/fonts/Yellix/otf/Yellix-Regular.otf'); /* IE9 Compat Modes */
+    src: url('/fonts/Yellix/web/Yellix-Regular.woff2') format('woff2'),
+        url('/fonts/Yellix/web/Yellix-Regular.woff') format('woff');
 }
 
 @font-face {
     font-display: swap;
-    font-weight: 200;
     font-family: 'Yellix';
-    src: url('/fonts/Yellix/Yellix-Light.otf'); /* IE9 Compat Modes */
-}
-
-@font-face {
-    font-display: swap;
-    font-weight: 200;
-    font-style: italic;
-    font-family: 'Yellix';
-    src: url('/fonts/Yellix/Yellix-LightItalic.otf'); /* IE9 Compat Modes */
+    font-weight: 700;
+    src: url('/fonts/Yellix/otf/Yellix-SemiBold.otf'); /* IE9 Compat Modes */
+    src: url('/fonts/Yellix/web/Yellix-SemiBold.woff2') format('woff2'),
+        url('/fonts/Yellix/web/Yellix-Bold.Semi.woff') format('woff');
 }
 
 @font-face {
@@ -25,14 +39,8 @@
     font-family: 'Yellix';
     font-weight: 900;
     src: url('/fonts/Yellix/Yellix-Bold.otf'); /* IE9 Compat Modes */
-}
-
-@font-face {
-    font-display: swap;
-    font-family: 'Yellix';
-    font-weight: 900;
-    font-style: italic;
-    src: url('/fonts/Yellix/Yellix-BoldItalic.otf'); /* IE9 Compat Modes */
+    src: url('/fonts/Yellix/web/Yellix-Bold.woff2') format('woff2'),
+        url('/fonts/Yellix/web/Yellix-Bold.woff') format('woff');
 }
 
 html,

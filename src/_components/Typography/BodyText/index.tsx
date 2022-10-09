@@ -51,7 +51,7 @@ interface BodyProps {
 
 const BodyStyled = styled.p`
     font-size: ${(props: BodyProps) => getBodySize(props.size)}; // 72px
-    font-weight: ${(props: BodyProps) => (props.bold ? 900 : 300)};
+    font-weight: ${(props: BodyProps) => (props.bold ? 900 : 400)};
     line-height: 1.3;
     text-transform: ${(props: BodyProps) =>
         props.uppercase ? 'uppercase' : 'none'};

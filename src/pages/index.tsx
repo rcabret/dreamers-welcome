@@ -48,7 +48,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                 transform: `translate3d(0,-${scrollTop * 1.2}px, 0)`,
             }
 
-            if (x && inner) {
+            if (x && inner && innerMain) {
                 Object.assign(x.style, style)
                 Object.assign(inner.style, { opacity: 1 - scrollTop * 0.003 })
                 Object.assign(innerMain.style, {
@@ -130,7 +130,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                             fullWidth
                             title={`${prData?.temperature}\u00b0`}
                             content={
-                                <StyledHeader responsive size={1} uppercase>
+                                <StyledHeader size={1} uppercase>
                                     Puerto Rico
                                 </StyledHeader>
                             }

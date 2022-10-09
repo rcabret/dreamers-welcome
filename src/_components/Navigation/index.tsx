@@ -21,7 +21,11 @@ const TopNav = ({
     headerData,
     navTheme,
 }: {
-    headerData?: { bucket: string; property: string; simpleNav?: boolean }
+    headerData?: {
+        bucket: string
+        property: string
+        simpleNav?: boolean
+    }
     navTheme?: string
 }) => {
     const [top, setTop] = useState(false)
@@ -62,6 +66,14 @@ const TopNav = ({
     useEffect(() => {
         if (headerData && headerData?.simpleNav === undefined) {
             headerData.simpleNav = false
+        }
+
+        if (
+            headerData &&
+            headerData?.bucket === undefined &&
+            !headerData.simpleNav
+        ) {
+            headerData.bucket = 'Choose destination'
         }
     }, [headerData])
 
