@@ -7,7 +7,6 @@ import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
 import React, { useEffect, useState } from 'react'
-import SubNavigation from '../_components/Navigation/SubNavigation'
 import { useRouter } from 'next/router'
 import {
     BannerGridImage,
@@ -32,6 +31,10 @@ const CollapsableList = dynamic(
 const Highlight = dynamic(() => import('../_components/Suite/Highlight'))
 // @ts-ignore
 const ImageSlider = dynamic(() => import('../_components/UI/Swiper/Carousel'))
+
+const SubNavigation = dynamic(
+    () => import('../_components/Navigation/SubNavigation')
+)
 
 interface PropertyProps {
     propertyResponse: any
