@@ -23,7 +23,6 @@ import MarkdownModule from '../_components/Typography/MarkdownModule'
 import dynamic from 'next/dynamic'
 import NewsItem from '../_components/NewsItem'
 import Map from '../_components/Map'
-import ImageSlider from '../_components/UI/Swiper/Carousel'
 import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
 
 const CollapsableList = dynamic(
@@ -31,6 +30,8 @@ const CollapsableList = dynamic(
 )
 
 const Highlight = dynamic(() => import('../_components/Suite/Highlight'))
+// @ts-ignore
+const ImageSlider = dynamic(() => import('../_components/UI/Swiper/Carousel'))
 
 interface PropertyProps {
     propertyResponse: any
