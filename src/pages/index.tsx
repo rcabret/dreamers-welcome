@@ -105,11 +105,11 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                 fullHeight
             />
             <FlexContainer>
-                <BottomAnchor>
+                <BottomAnchor onClick={() => scrollToBottom()}>
                     <Header size={3}>
                         CHOOSE <br /> YOUR DESTINATION
                     </Header>
-                    <button onClick={() => scrollToBottom()}>
+                    <button>
                         <svg viewBox="0 0 60 40">
                             <polyline points="0 10, 30 38, 60 10" />
                         </svg>
