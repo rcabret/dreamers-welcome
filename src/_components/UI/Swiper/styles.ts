@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { Swiper } from 'swiper/react'
 import { rem } from 'polished'
+import Button from '../Buttons/Button'
 
 export const StyledSwiper = styled(Swiper)`
     .swiper-button-next {
@@ -42,5 +43,19 @@ export const ImageSliderWrapper = styled.div`
 
     .swiper-pagination-bullet-active {
         background: white;
+    }
+`
+
+export const SeeAllButton = styled(Button)`
+    position: absolute;
+    bottom: ${rem(20)};
+    left: ${rem(20)};
+    z-index: 1;
+    margin-left: 0;
+    border: none;
+
+    :hover {
+        background: rgba(255, 255, 255, 0.7);
+        color: black;
     }
 `

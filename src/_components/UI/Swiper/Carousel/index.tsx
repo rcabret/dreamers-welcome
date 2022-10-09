@@ -3,7 +3,7 @@ import { SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import React, { Component } from 'react'
 import GridImage from '../../GridImage'
-import { StyledSwiper } from '../styles'
+import { SeeAllButton, StyledSwiper } from '../styles'
 import { Navigation, Pagination } from 'swiper'
 import { ContentfulImage } from '../../../../_constants/DataTypes'
 
@@ -75,6 +75,7 @@ class ImageSlider extends Component {
                             )
                         })}
                 </StyledSwiper>
+                <SeeAllButton onClick={() => console.log('open sesame')}>All photos</SeeAllButton>
             </>
         )
     }
