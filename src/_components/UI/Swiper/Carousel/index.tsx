@@ -66,7 +66,7 @@ class ImageSlider extends Component {
                                     key={Math.random() * i}
                                 >
                                     <GridImage
-                                        sizes="75vw"
+                                        sizes="100vw"
                                         imageObj={x}
                                         border={false}
                                         borderRadius={false}
@@ -75,7 +75,9 @@ class ImageSlider extends Component {
                             )
                         })}
                 </StyledSwiper>
-                <SeeAllButton onClick={() => console.log('open sesame')}>All photos</SeeAllButton>
+                <SeeAllButton onClick={() => console.log('open sesame')}>
+                    All photos
+                </SeeAllButton>
             </>
         )
     }
