@@ -76,7 +76,7 @@ export const MarkupWrapper = styled.div`
     ul {
         list-style: none;
         margin-bottom: ${rem('20px')};
-        margin-left: ${rem('30px')};
+        // margin-left: ${rem('30px')};
         max-width: ${rem('800px')};
 
         li:last-child {
