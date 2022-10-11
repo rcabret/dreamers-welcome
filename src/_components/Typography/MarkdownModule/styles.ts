@@ -89,6 +89,10 @@ export const MarkupWrapper = styled.div`
         }
     }
 
+    a:hover {
+        text-decoration: underline;
+    }
+
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         column-count: ${({ columns = ColumnsMap.one }: MarkdownStyleProps) =>
             ColumnsMap[columns] - 1};
