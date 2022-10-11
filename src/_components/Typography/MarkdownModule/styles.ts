@@ -65,7 +65,6 @@ export const MarkupWrapper = styled.div`
         margin-bottom: ${rem('20px')};
         max-width: ${rem('800px')};
         padding-right: ${rem('40px')};
-        line-height: 1;
     }
 
     p {
