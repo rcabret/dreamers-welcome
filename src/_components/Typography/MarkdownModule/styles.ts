@@ -65,6 +65,7 @@ export const MarkupWrapper = styled.div`
         margin-bottom: ${rem('20px')};
         max-width: ${rem('800px')};
         padding-right: ${rem('40px')};
+        line-height: 1;
     }
 
     p {
@@ -75,8 +76,9 @@ export const MarkupWrapper = styled.div`
 
     ul {
         list-style: none;
-        margin-bottom: ${rem('20px')};
+        margin-bottom: ${rem('40px')};
         // margin-left: ${rem('30px')};
+        margin-right: ${rem('30px')};
         max-width: ${rem('800px')};
 
         li:last-child {
@@ -84,7 +86,7 @@ export const MarkupWrapper = styled.div`
         }
         li {
             font-size: ${rem('18px')};
-            margin-bottom: ${rem('20px')};
+            margin-bottom: ${rem('16px')};
         }
     }
 
