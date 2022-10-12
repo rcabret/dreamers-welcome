@@ -116,7 +116,9 @@ const Property = ({
         const finalView =
             pType === 'Hotel'
                 ? getHotelView(viewToShow)
-                : suites.find(
+                : suites &&
+                  suites.length &&
+                  suites.find(
                       (x: { fields: { slug: string } }) =>
                           x.fields.slug === viewToShow
                   )
@@ -253,6 +255,7 @@ const Property = ({
             {mapUrl && <Map link={mapUrl} />}
 
             {faq && (
+
                 <Block
                     title="FAQs"
                     noPaddingBottom
@@ -268,7 +271,10 @@ const Property = ({
                         <GridModule columns={4} sideScrollOnMobile={false}>
                             {news &&
                                 news.map((x: any, i: number) => (
-                                    <NewsItem key={x.slug + i} newsObj={x.fields} />
+                                    <NewsItem
+                                        key={x.slug + i}
+                                        newsObj={x.fields}
+                                    />
                                 ))}
                         </GridModule>
                     }
