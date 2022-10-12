@@ -263,6 +263,7 @@ const Property = ({
                 <StyledBlockForGrid
                     title="IN THE NEWS"
                     fullWidth
+                    noPaddingBottom
                     content={
                         <GridModule columns={4} sideScrollOnMobile={false}>
                             {news &&
