@@ -64,7 +64,7 @@ const Property = ({
         thingsToKnow,
     } = propertyResponse
 
-    console.log('news', propertyResponse)
+    console.log('prop', propertyResponse)
     const router = useRouter()
 
     const pType = propertyType[0]

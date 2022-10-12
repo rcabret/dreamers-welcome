@@ -5,6 +5,9 @@ const SmallSpan = styled.span`
     font-size: ${({ size }: { size: number }) => rem(size)} !important;
 `
 export const parseMoneyOrTime = (x: string, size = 20) => {
+    if (x === undefined) {
+        return '';
+    }
     const testString = x
     if (testString.indexOf('$') > -1) {
         return (

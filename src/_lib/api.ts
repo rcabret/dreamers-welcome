@@ -125,7 +125,7 @@ export const getGuides = async (bucket: string, type?: string) => {
 export const getGuidesPage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'guidesPage',
-        'fields.url': url,
+        'fields.slug': url,
     })
     if (entries.items) {
         return entries.items[0].fields
@@ -168,7 +168,7 @@ export const getExperiencesPage = async (bucket: string) => {
 export const getExperience = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'activity',
-        'fields.url': slug,
+        'fields.slug': slug,
     })
     if (entries.items) {
         return entries.items[0].fields
