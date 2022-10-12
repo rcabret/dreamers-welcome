@@ -21,7 +21,7 @@ export const getLandingpage = async () => {
 export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
-        'fields.url': url,
+        'fields.slug': url,
         include: 3,
     })
 
@@ -122,10 +122,10 @@ export const getGuides = async (bucket: string, type?: string) => {
     }
 }
 
-export const getGuidesPage = async (url: string) => {
+export const getGuidesPage = async (bucket: string) => {
     const entries = await client.getEntries({
         content_type: 'guidesPage',
-        'fields.slug': url,
+        'fields.bucket[in]': pathToBucket(bucket),
     })
     if (entries.items) {
         return entries.items[0].fields
