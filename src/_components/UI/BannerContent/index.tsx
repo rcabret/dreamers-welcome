@@ -41,9 +41,11 @@ const Description = styled.div`
 `
 
 const StyledButton = styled(Button)`
-    position: absolute !important;
+    position: fixed !important;
     right: ${rem(30)};
     bottom: ${rem(26)};
+    margin-left: 0;
+    z-index: 1000;
 `
 
 interface BannerContentProps {
@@ -59,33 +61,34 @@ const BannerContent = ({
     bookNowLink,
 }: BannerContentProps) => {
     return (
-        <BannerContentWrap>
-            <Text>
-                <Header size={1} uppercase>
-                    {headerText}
-                </Header>
-                {headerSubheader && (
-                    <BodyText size="lg">{headerSubheader}</BodyText>
+        <>
+            <BannerContentWrap>
+                <Text>
+                    <Header size={1} uppercase>
+                        {headerText}
+                    </Header>
+                    {headerSubheader && (
+                        <BodyText size="lg">{headerSubheader}</BodyText>
+                    )}
+                </Text>
+                {description && (
+                    <Description>
+                        <BodyText size="lg">
+                            {Array.isArray(description)
+                                ? description.map((x, i) => {
+                                      return `${x} ${
+                                          i < description.length - 1 ? '· ' : ''
+                                      }`
+                                  })
+                                : description}
+                        </BodyText>
+                    </Description>
                 )}
-            </Text>
-            {description && (
-                <Description>
-                    <BodyText size="lg">
-                        {Array.isArray(description)
-                            ? description.map((x, i) => {
-                                  return `${x} ${
-                                      i < description.length - 1 ? '· ' : ''
-                                  }`
-                              })
-                            : description}
-                    </BodyText>
-                </Description>
-            )}
-
+            </BannerContentWrap>
             {bookNowLink && (
                 <StyledButton href={bookNowLink}>BOOK NOW</StyledButton>
             )}
-        </BannerContentWrap>
+        </>
     )
 }
 
