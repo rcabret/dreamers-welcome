@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import { show } from 'dom7'
+import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
 export const BlockWrapper = styled.div`
     display: inline-block;
@@ -8,14 +9,8 @@ export const BlockWrapper = styled.div`
     position: relative;
     padding-top: ${rem(40)};
 
-    ${({ noPaddingBottom }: { noPaddingBottom?: boolean }) =>
-        !noPaddingBottom
-            ? css`
-                  padding-bottom: ${rem(80)};
-              `
-            : css`
-                  padding-bottom: ${rem(40)};
-              `}
+    padding-bottom: ${({ noPaddingBottom }: { noPaddingBottom?: boolean }) =>
+        noPaddingBottom ? rem(40) : rem(80)};
 
     .separator {
         height: 1px;
@@ -24,6 +19,13 @@ export const BlockWrapper = styled.div`
         left: ${rem(30)};
         position: absolute;
         top: 0;
+    }
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        .separator {
+            width: calc(100% - ${rem(40)});
+            left: ${rem(20)};
+        }
     }
 `
 
@@ -38,16 +40,24 @@ export const Title = styled.div`
             : css`
                   width: 25%;
                   float: left;
-              `}
+              `};
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        padding: 0 ${rem(20)};
+    }
 `
 
+interface BI {
+    showOverflow?: boolean
+    fullWidth?: boolean
+}
+
 export const BlockContent = styled.div`
-        overflow: visible;
-        position: relative;
-        padding: ${({ showOverflow }: { showOverflow: boolean }) =>
-            showOverflow ? '0' : `0 ${rem(30)}`};
+    overflow: visible;
+    position: relative;
+    padding: ${({ showOverflow }: BI) => (showOverflow ? '0' : `0 ${rem(30)}`)};
     
-    ${({ fullWidth }: { fullWidth?: boolean }) =>
+    ${({ fullWidth }: BI) =>
         fullWidth
             ? css`
                   width: 100%;
@@ -57,4 +67,12 @@ export const BlockContent = styled.div`
                   width: 75%;
               `}
     }
+    
+    @media(max-width: ${BREAKPOINTS.TABLET}) {
+        padding: ${({ showOverflow }: BI) =>
+            showOverflow ? '0' : `0 ${rem(20)}`};
+
+    }
+
+    
 `

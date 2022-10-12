@@ -4,7 +4,8 @@ import Header from '../../Typography/Header'
 
 interface BlockProps {
     title?: string
-    content: ReactNode
+    content: any
+    className?: string
     hideSeparator?: boolean
     fullWidth?: boolean
     noPaddingBottom?: boolean
@@ -13,13 +14,14 @@ interface BlockProps {
 const Block = ({
     title,
     content,
+    className,
     hideSeparator = false,
     fullWidth = false,
     noPaddingBottom = false,
     showOverflow = false,
 }: BlockProps) => {
     return (
-        <BlockWrapper noPaddingBottom={noPaddingBottom}>
+        <BlockWrapper noPaddingBottom={noPaddingBottom} className={className}>
             {!hideSeparator && <div className="separator" />}
             {title && (
                 <Title fullWidth={fullWidth}>

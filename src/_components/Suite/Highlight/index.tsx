@@ -1,9 +1,9 @@
 import React from 'react'
-import { HighlightBlurb, HighlightWrapper, Name, SliderWrap } from './styles'
+import { HighlightBlurb, SliderWrap } from './styles'
 import BodyText from '../../Typography/BodyText'
 import ImageGridSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
-import Header from '../../Typography/Header'
+import Block from '../../UI/Block'
 
 interface HighlightProps {
     title: string
@@ -20,26 +20,27 @@ const Highlight = ({
     slug,
 }: HighlightProps) => {
     return (
-        <HighlightWrapper>
-            {!hideSeparator && <div className="separator" />}
-            <Name>
-                <Header size={4} uppercase>
-                    {title}
-                </Header>
-            </Name>
-            <SliderWrap>
-                {/*@ts-ignore*/}
-                <ImageGridSlider
-                    slug={slug}
-                    items={images}
-                    slidesPerView={1}
-                    spaceBetween={20}
-                />
-            </SliderWrap>
-            <HighlightBlurb>
-                {blurb && <BodyText size="lg">{blurb}</BodyText>}
-            </HighlightBlurb>
-        </HighlightWrapper>
+        <Block
+            title={title}
+            fullWidth
+            hideSeparator={hideSeparator}
+            showOverflow
+            content={
+                <>
+                    <SliderWrap>
+                        <ImageGridSlider
+                            slug={slug}
+                            items={images}
+                            slidesPerView={1}
+                            spaceBetween={20}
+                        />
+                    </SliderWrap>
+                    <HighlightBlurb>
+                        {blurb && <BodyText size="lg">{blurb}</BodyText>}
+                    </HighlightBlurb>
+                </>
+            }
+        />
     )
 }
 

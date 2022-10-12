@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import { BREAKPOINTS } from '../_constants/brekpoints'
 import GridImage from '../_components/UI/GridImage'
+import Block from '../_components/UI/Block'
 
 interface GMProps {
     columns: number
@@ -125,9 +126,24 @@ export const BlockListWrap = styled.div`
     }
 `
 
-export const GridAdjustWrapper = styled.div`
-    position: relative;
-    left: -${rem(10)};
-    width: calc(100% + ${rem(20)});
-    margin-top: ${rem(20)};
+export const StyledBlockForGrid = styled(Block)`
+    > div:last-child {
+        margin-top: ${rem(20)};
+
+        > div {
+            left: -${rem(10)};
+            width: calc(100% + ${rem(20)});
+        }
+    }
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        > div:last-child {
+            padding: 0;
+
+            > div {
+                left: auto;
+                width: 100%;
+            }
+        }
+    }
 `

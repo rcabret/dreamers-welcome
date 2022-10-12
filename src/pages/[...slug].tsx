@@ -11,8 +11,7 @@ import { useRouter } from 'next/router'
 import {
     BannerGridImage,
     BlockListWrap,
-    GridAdjustWrapper,
-    GridModule,
+    GridModule, StyledBlockForGrid,
 } from '../styles/global'
 import { ConceptTextContainer } from '../styles/about/styles'
 import BodyText from '../_components/Typography/BodyText'
@@ -264,11 +263,10 @@ const Property = ({
                 />
             )}
             {news && (
-                <Block
+                <StyledBlockForGrid
                     title="IN THE NEWS"
                     fullWidth
                     content={
-                        <GridAdjustWrapper>
                             <GridModule columns={4} sideScrollOnMobile={false}>
                                 {news &&
                                     news.map((x: any, i: number) => (
@@ -278,7 +276,6 @@ const Property = ({
                                         />
                                     ))}
                             </GridModule>
-                        </GridAdjustWrapper>
                     }
                 />
             )}

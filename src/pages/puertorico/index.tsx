@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import {
     BannerGridImage,
-    GridAdjustWrapper,
     GridModule,
+    StyledBlockForGrid,
 } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
@@ -66,37 +66,33 @@ const Index = ({ data, setHeaderData, setNavTheme }: any) => {
                     </StaysSwiperWrap>
                 }
             />
-            <Block
+            <StyledBlockForGrid
                 title="GUIDES"
                 fullWidth
                 noPaddingBottom
                 content={
-                    <GridAdjustWrapper>
-                        <GridModule columns={3} sideScrollOnMobile>
-                            {guides &&
-                                guides.length &&
-                                guides.map((guide: any) => (
-                                    <GuideItem data={guide.fields} />
-                                ))}
-                        </GridModule>
-                    </GridAdjustWrapper>
+                    <GridModule columns={3} sideScrollOnMobile>
+                        {guides &&
+                            guides.length &&
+                            guides.map((guide: any) => (
+                                <GuideItem data={guide.fields} />
+                            ))}
+                    </GridModule>
                 }
             />
 
-            <Block
+            <StyledBlockForGrid
                 title="EXPERIENCES"
                 fullWidth
                 noPaddingBottom
                 content={
-                    <GridAdjustWrapper>
-                        <GridModule columns={3} sideScrollOnMobile>
-                            {experiences &&
-                                experiences.length &&
-                                experiences.map((exp: any) => (
-                                    <ExperienceItem data={exp.fields} />
-                                ))}
-                        </GridModule>
-                    </GridAdjustWrapper>
+                    <GridModule columns={3} sideScrollOnMobile>
+                        {experiences &&
+                            experiences.length &&
+                            experiences.map((exp: any) => (
+                                <ExperienceItem data={exp.fields} />
+                            ))}
+                    </GridModule>
                 }
             />
         </>
