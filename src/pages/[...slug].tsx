@@ -1,8 +1,4 @@
-import {
-    getAllPropertiesForPaths,
-    getNewsViaProperty,
-    getProperty,
-} from '../_lib/api'
+import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
@@ -11,7 +7,8 @@ import { useRouter } from 'next/router'
 import {
     BannerGridImage,
     BlockListWrap,
-    GridModule, StyledBlockForGrid,
+    GridModule,
+    StyledBlockForGrid,
 } from '../styles/global'
 import { ConceptTextContainer } from '../styles/about/styles'
 import BodyText from '../_components/Typography/BodyText'
@@ -37,14 +34,12 @@ const SubNavigation = dynamic(
 
 interface PropertyProps {
     propertyResponse: any
-    news: any
     setHeaderData: any
     setNavTheme: any
 }
 
 const Property = ({
     propertyResponse,
-    news,
     setHeaderData,
     setNavTheme,
 }: PropertyProps) => {
@@ -69,6 +64,7 @@ const Property = ({
         thingsToKnow,
     } = propertyResponse
 
+    console.log('news', propertyResponse)
     const router = useRouter()
 
     const pType = propertyType[0]
@@ -262,23 +258,20 @@ const Property = ({
                     content={<CollapsableList data={faq.fields.list} />}
                 />
             )}
-            {news && (
+            {/*{news && (
                 <StyledBlockForGrid
                     title="IN THE NEWS"
                     fullWidth
                     content={
-                            <GridModule columns={4} sideScrollOnMobile={false}>
-                                {news &&
-                                    news.map((x: any, i: number) => (
-                                        <NewsItem
-                                            key={x.slug + i}
-                                            newsObj={x}
-                                        />
-                                    ))}
-                            </GridModule>
+                        <GridModule columns={4} sideScrollOnMobile={false}>
+                            {news &&
+                                news.map((x: any, i: number) => (
+                                    <NewsItem key={x.slug + i} newsObj={x} />
+                                ))}
+                        </GridModule>
                     }
                 />
-            )}
+            )}*/}
         </>
     )
 }
@@ -287,12 +280,11 @@ export default Property
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
-    const news = await getNewsViaProperty(context.params.slug[0])
+    // const news = await getNewsViaProperty(context.params.slug[0])
 
     return {
         props: {
-            propertyResponse,
-            news,
+            propertyResponse
         },
     }
 }

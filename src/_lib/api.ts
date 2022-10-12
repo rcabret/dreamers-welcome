@@ -34,7 +34,7 @@ export const getProperty = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
         'fields.slug': slug,
-        include: 5,
+        include: 8,
     })
     if (entries.items) {
         return entries.items[0].fields
