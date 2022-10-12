@@ -58,6 +58,7 @@ const Property = ({
         location,
         mapUrl,
         propertyType,
+        news,
         propertyName,
         rooms,
         suites,
@@ -258,7 +259,7 @@ const Property = ({
                     content={<CollapsableList data={faq.fields.list} />}
                 />
             )}
-            {/*{news && (
+            {news && (
                 <StyledBlockForGrid
                     title="IN THE NEWS"
                     fullWidth
@@ -266,12 +267,12 @@ const Property = ({
                         <GridModule columns={4} sideScrollOnMobile={false}>
                             {news &&
                                 news.map((x: any, i: number) => (
-                                    <NewsItem key={x.slug + i} newsObj={x} />
+                                    <NewsItem key={x.slug + i} newsObj={x.fields} />
                                 ))}
                         </GridModule>
                     }
                 />
-            )}*/}
+            )}
         </>
     )
 }
@@ -284,7 +285,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 
     return {
         props: {
-            propertyResponse
+            propertyResponse,
         },
     }
 }
