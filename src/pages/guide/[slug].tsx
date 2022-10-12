@@ -90,8 +90,8 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 export async function getStaticPaths() {
     const guides = await getExperiences()
     const paths: any = []
-    guides.forEach((x: { url: string }) => {
-        paths.push({ params: { slug: x.url } })
+    guides.forEach((x: { slug: string }) => {
+        paths.push({ params: { slug: x.slug } })
     })
     return {
         // @ts-ignore
