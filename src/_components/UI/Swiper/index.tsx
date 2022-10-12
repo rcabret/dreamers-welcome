@@ -52,6 +52,7 @@ class ImageGridSlider extends Component {
         snapshot?: any
     ) {
         if (prevProps.slug !== this.slug) {
+            console.log('hello', prevProps.slug, this.slug)
             prevState.swiper.slideTo(0)
         }
     }

@@ -7,22 +7,22 @@ interface SuiteProps {
             highlights: []
         }
     }
-    slug: string
+    propertySlug: string
     hideFirstSeparator?: boolean
 }
-const Suite = ({ data, hideFirstSeparator, slug = '' }: SuiteProps) => {
+const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
     const { fields } = data
     const { highlights } = fields
     return (
         <>
             {highlights && highlights.length
                 ? highlights.map((x: { fields: any }, i: number) => {
-                      const { highlightName, blurb, images } = x.fields
+                      const { highlightName, blurb, images, slug } = x.fields
                       return (
                           // @ts-ignore
                           <Highlight
-                              slug={slug}
-                              key={~~(i * Math.random()) + highlightName}
+                              slug={propertySlug}
+                              key={slug}
                               title={highlightName}
                               blurb={blurb}
                               images={images}

@@ -163,7 +163,7 @@ const Property = ({
                 {pType !== 'Hotel' ? (
                     // Suites and Houses
                     <Suite
-                        slug={activeSlug || ''}
+                        propertySlug={activeSlug || ''}
                         data={activeView}
                         hideFirstSeparator={showSubNav && suites.length > 1}
                     />
