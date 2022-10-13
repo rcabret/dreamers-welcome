@@ -31,7 +31,6 @@ const Highlight = ({
                         <ImageGridSlider
                             slug={slug}
                             items={images}
-                            slidesPerView={1}
                             spaceBetween={20}
                         />
                     </SliderWrap>

@@ -20,7 +20,7 @@ interface SwiperProps {
 
 class ImageGridSlider extends Component {
     private readonly images: any
-    private readonly slidesPer: number
+    private readonly slidesPer: number | string
     private readonly slug: string
     private readonly isProperties: boolean
     private readonly spaceBetween: number
@@ -38,7 +38,8 @@ class ImageGridSlider extends Component {
         this.isProperties = isProperties
         this.images = items
         this.slug = slug
-        this.slidesPer = slidesPerView || 1
+        this.slidesPer = slidesPerView || 'auto'
+        console.log('this', this.slidesPer)
         this.spaceBetween = spaceBetween
 
         this.state = {
@@ -52,7 +53,6 @@ class ImageGridSlider extends Component {
         snapshot?: any
     ) {
         if (prevProps.slug !== this.slug) {
-            console.log('hello', prevProps.slug, this.slug)
             prevState.swiper.slideTo(0)
         }
     }

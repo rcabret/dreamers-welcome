@@ -20,6 +20,7 @@ export const SliderWrap = styled.div`
         overflow: visible;
         margin-left: calc(25% + 20px);
         width: 45%;
+        min-width: ${rem(650)};
         position: relative;
     }
 `

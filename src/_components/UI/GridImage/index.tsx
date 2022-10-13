@@ -51,15 +51,11 @@ const GridImage = ({
         const [h, w] = dimensions
         if (ratio === 'natural') {
             return h / w
-        } else if (ratio === 'lightbox') {
-            if (h > w) {
-                return h / w - 1
-            } else {
-                return h / w
-            }
-        } else {
-            return ratio
         }
+        if (ratio === 'lightbox') {
+            return h > w ? h / w - 1 : h / w
+        }
+        return ratio
     }
 
     return (
