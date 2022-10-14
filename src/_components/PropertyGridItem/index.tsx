@@ -44,7 +44,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
     return (
         <ItemWrapper>
             <div className="border">
-                <Link href={`/${slug}`} passHref>
+                <Link href={`/${slug}`} passHref shallow={false}>
                     <a>
                         <GridImage
                             borderRadius={false}

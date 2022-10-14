@@ -273,7 +273,7 @@ const Property = ({
                     fullWidth
                     noPaddingBottom
                     content={
-                        <GridModule columns={4} sideScrollOnMobile={false}>
+                        <GridModule columns={4} sideScrollOnMobile>
                             {news.length &&
                                 news.map((x: any, i: number) => (
                                     <NewsItem
@@ -291,7 +291,7 @@ const Property = ({
                     fullWidth
                     noPaddingBottom
                     content={
-                        <GridModule columns={4} sideScrollOnMobile={false}>
+                        <GridModule columns={4} sideScrollOnMobile>
                             {otherStays.length &&
                                 otherStays.map((x: any, i: number) => (
                                     <PropertyGridItem
