@@ -1,12 +1,17 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 
-import { BottomContainer, Location, Metadata, TopContainer } from './styles'
+import {
+    BottomContainer,
+    Location,
+    Metadata,
+    StyledButton,
+    TopContainer,
+} from './styles'
 import GridImage from '../UI/GridImage'
 import Header from '../Typography/Header'
 import BodyText from '../Typography/BodyText'
 import LocationPin from '../UI/Icons/LocationPin'
-import Button from '../UI/Buttons/Button'
 import Share from '../UI/Icons/Share'
 import { ItemWrapper } from '../../styles/global'
 
@@ -92,7 +97,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
                                 {propertyType[0]}, {location}
                             </BodyText>
                         </Location>
-                        <Button href={bookNowLink}>BOOK NOW</Button>
+                        <StyledButton href={bookNowLink}>BOOK NOW</StyledButton>
                     </BottomContainer>
                 </Metadata>
             </div>

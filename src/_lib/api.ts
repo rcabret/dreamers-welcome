@@ -41,9 +41,24 @@ export const getProperty = async (slug: string) => {
     }
 }
 
+export const getOtherStays = async (bucket: string, propertySlug: string) => {
+    const entries = await client.getEntries({
+        content_type: 'property',
+        order: 'fields.propertyName',
+        'fields.bucket[in]': pathToBucket(bucket),
+        'fields.slug[ne]': propertySlug,
+        include: 1,
+        limit: 4,
+    })
+    if (entries.items) {
+        return entries.items.map((x: { fields: {} }) => x.fields)
+    }
+}
+
 export const getAllProperties = async () => {
     const entries = await client.getEntries({
         content_type: 'property',
+        order: 'fields.propertyName',
         include: 5,
     })
     if (entries.items) {
@@ -54,6 +69,7 @@ export const getAllProperties = async () => {
 export const getPropertiesViaBucket = async (bucket?: string) => {
     let query: any = {
         content_type: 'property',
+        order: 'fields.propertyName',
         select: 'fields.propertyName,fields.propertyType,fields.bannerDescriptionList,fields.location,fields.tileImage,fields.bookNowLink,fields.slug',
     }
 

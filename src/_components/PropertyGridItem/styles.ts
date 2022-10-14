@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { rem } from 'polished'
-
+import Button from '../UI/Buttons/Button'
 
 export const Metadata = styled.aside`
     padding: ${rem('10px')} ${rem('14px')} ${rem('10px')} ${rem('14px')};
@@ -47,14 +47,20 @@ export const TopContainer = styled.div`
         display: inline-block;
     }
 
+    > p:first-child {
+        width: 50%;
+    }
+
     .share {
         float: right;
         cursor: pointer;
+        width: 50%;
 
         p,
         svg {
             opacity: 1;
             float: right;
+            position: relative;
         }
 
         svg {
@@ -63,4 +69,8 @@ export const TopContainer = styled.div`
             margin-left: ${rem('10px')};
         }
     }
+`
+
+export const StyledButton = styled(Button)`
+    min-width: auto;
 `

@@ -1,4 +1,8 @@
-import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
+import {
+    getAllPropertiesForPaths,
+    getOtherStays,
+    getProperty,
+} from '../_lib/api'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
@@ -19,6 +23,7 @@ import dynamic from 'next/dynamic'
 import NewsItem from '../_components/NewsItem'
 import Map from '../_components/Map'
 import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
+import PropertyGridItem from '../_components/PropertyGridItem'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -40,6 +45,7 @@ interface PropertyProps {
 
 const Property = ({
     propertyResponse,
+    otherStays,
     setHeaderData,
     setNavTheme,
 }: PropertyProps) => {
@@ -65,7 +71,7 @@ const Property = ({
         thingsToKnow,
     } = propertyResponse
 
-    console.log('prop', propertyResponse)
+    console.log('otherStays', otherStays)
     const router = useRouter()
 
     const pType = propertyType[0]
@@ -255,7 +261,6 @@ const Property = ({
             {mapUrl && <Map link={mapUrl} />}
 
             {faq && (
-
                 <Block
                     title="FAQs"
                     noPaddingBottom
@@ -269,11 +274,29 @@ const Property = ({
                     noPaddingBottom
                     content={
                         <GridModule columns={4} sideScrollOnMobile={false}>
-                            {news &&
+                            {news.length &&
                                 news.map((x: any, i: number) => (
                                     <NewsItem
                                         key={x.slug + i}
                                         newsObj={x.fields}
+                                    />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
+            {otherStays && (
+                <StyledBlockForGrid
+                    title="OTHER STAYS"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={4} sideScrollOnMobile={false}>
+                            {otherStays.length &&
+                                otherStays.map((x: any, i: number) => (
+                                    <PropertyGridItem
+                                        key={x.propertySlug}
+                                        propertyObj={x}
                                     />
                                 ))}
                         </GridModule>
@@ -288,11 +311,15 @@ export default Property
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
-    // const news = await getNewsViaProperty(context.params.slug[0])
+    const otherStays = await getOtherStays(
+        context.params.slug[0],
+        propertyResponse.slug
+    )
 
     return {
         props: {
             propertyResponse,
+            otherStays,
         },
     }
 }
