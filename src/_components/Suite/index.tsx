@@ -11,6 +11,9 @@ interface SuiteProps {
     hideFirstSeparator?: boolean
 }
 const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
+    if (data && !data.fields) {
+        return null
+    }
     const { fields } = data
     const { highlights } = fields
     return (

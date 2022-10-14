@@ -12,7 +12,7 @@ interface GMProps {
 
 export const GridModule = styled.div`
     position: relative;
-    padding-bottom: ${rem('20px')};
+    //padding-bottom: ${rem('20px')};
 
     > div,
     > a {
