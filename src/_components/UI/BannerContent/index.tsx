@@ -45,7 +45,7 @@ const StyledButton = styled(Button)`
     right: ${rem(30)};
     bottom: ${rem(26)};
     margin-left: 0;
-    z-index: 1000;
+    z-index: 90;
 `
 
 interface BannerContentProps {
