@@ -127,10 +127,11 @@ export const StyledProperty = styled.div`
 
     h3 {
         transition: 0.3s font-size;
+        font-size: ${rem(28)};
         ${({ active }: NavigationStyleProps) =>
             active &&
             css`
-                font-size: 20px;
+                font-size: ${rem(23)};
                 color: black !important;
             `};
 
