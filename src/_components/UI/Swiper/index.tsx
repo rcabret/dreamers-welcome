@@ -61,6 +61,7 @@ class ImageGridSlider extends Component {
         return (
             <>
                 <StyledSwiper
+                    
                     loop={false}
                     spaceBetween={this.spaceBetween}
                     freeMode
