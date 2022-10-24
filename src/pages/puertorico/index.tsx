@@ -103,7 +103,6 @@ export default Index
 
 export async function getStaticProps() {
     const data = await getHomepage('puertorico')
-    console.log('data', data)
 
     return {
         props: {

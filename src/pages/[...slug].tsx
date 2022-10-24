@@ -71,7 +71,6 @@ const Property = ({
         thingsToKnow,
     } = propertyResponse
 
-    console.log('otherStays', otherStays)
     const router = useRouter()
 
     const pType = propertyType[0]

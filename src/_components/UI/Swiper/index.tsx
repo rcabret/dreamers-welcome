@@ -39,7 +39,6 @@ class ImageGridSlider extends Component {
         this.images = items
         this.slug = slug
         this.slidesPer = slidesPerView || 'auto'
-        console.log('this', this.slidesPer)
         this.spaceBetween = spaceBetween
 
         this.state = {
