@@ -1,8 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { rem } from 'polished'
 
-import GridImage from '../UI/GridImage'
-
 const fadeIn = keyframes`
   from {
     opacity: 0;
