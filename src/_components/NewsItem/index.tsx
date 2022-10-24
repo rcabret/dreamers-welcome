@@ -12,7 +12,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     const stringDate = moment(date).format('MMMM Do YYYY')
 
     return (
-        <Link href={`/news/${slug}`} passHref>
+        <Link href={slug} passHref>
             <a>
                 <ItemWrapperStyled>
                     <div className="border">

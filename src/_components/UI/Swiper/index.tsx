@@ -84,6 +84,7 @@ class ImageGridSlider extends Component {
                                             <PropertyGridItem propertyObj={x} />
                                         ) : (
                                             <GridImage
+                                                ratio="natural"
                                                 sizes="25vw"
                                                 imageObj={x}
                                                 border={false}
