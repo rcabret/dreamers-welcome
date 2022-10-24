@@ -24,6 +24,7 @@ import NewsItem from '../_components/NewsItem'
 import Map from '../_components/Map'
 import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
 import PropertyGridItem from '../_components/PropertyGridItem'
+import LightBox from '../_components/LightBox'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -79,8 +80,10 @@ const Property = ({
 
     const [activeView, setView] = useState(suites[0])
     const [activeSlug, setSlug] = useState()
+    const [lightbox, toggleLightbox] = useState<boolean>(false)
 
     useEffect(() => {
+        console.log("lightbox", lightbox)
         setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],
@@ -202,7 +205,10 @@ const Property = ({
                     fullWidth
                     content={
                         <ImageSliderWrapper>
-                            <ImageSlider items={carouselImages} />
+                            <ImageSlider
+                                toggle={toggleLightbox}
+                                items={carouselImages}
+                            />
                         </ImageSliderWrapper>
                     }
                 />
@@ -302,6 +308,11 @@ const Property = ({
                         </GridModule>
                     }
                 />
+            )}
+
+            {/* @ts-ignore*/}
+            {carouselImages && lightbox && (
+                <LightBox items={carouselImages} toggle={toggleLightbox} />
             )}
         </>
     )

@@ -9,15 +9,18 @@ import { ContentfulImage } from '../../../../_constants/DataTypes'
 
 interface ImageSliderProps {
     items: ContentfulImage[] | any[]
+    toggle: any
 }
 
 class ImageSlider extends Component {
     private readonly items: any
+    private readonly toggle: any
 
     constructor(props: ImageSliderProps) {
         super(props)
-        const { items } = props
+        const { items, toggle } = props
         this.items = items
+        this.toggle = toggle
 
         this.state = {
             activeIndex: 0,
@@ -34,6 +37,13 @@ class ImageSlider extends Component {
         this.setState({
             activeIndex: nextIndex,
         })
+    }
+
+    toggleLightBox = () => {
+        console.log('in here')
+        if (typeof this.toggle === 'function') {
+            this.toggle(true)
+        }
     }
 
     pagination = {
@@ -75,7 +85,7 @@ class ImageSlider extends Component {
                             )
                         })}
                 </StyledSwiper>
-                <SeeAllButton onClick={() => console.log('open sesame')}>
+                <SeeAllButton onClick={() => this.toggleLightBox.bind(this)}>
                     All photos
                 </SeeAllButton>
             </>
