@@ -19,13 +19,12 @@ export const SliderWrap = styled.div`
     .swiper {
         overflow: visible;
         margin-left: calc(25% + 20px);
-        /*  width: 45%;
-        min-width: ${rem(650)};*/
+        margin-right: ${rem(20)};
         position: relative;
-        height: 500px;
     }
 
     .swiper-slide {
         width: auto;
     }
+  
 `

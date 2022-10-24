@@ -25,7 +25,6 @@ class ImageGridSlider extends Component {
     private readonly slug: string
     private readonly isProperties: boolean
     private readonly spaceBetween: number
-    private readonly fixedHeight?: number
 
     constructor(props: SwiperProps) {
         super(props)
@@ -43,19 +42,24 @@ class ImageGridSlider extends Component {
         this.slug = slug
         this.slidesPer = slidesPerView || 'auto'
         this.spaceBetween = spaceBetween
-        this.fixedHeight = fixedHeight
 
-        console.log('this', this.fixedHeight)
         this.state = {
             swiper: undefined,
+            height: fixedHeight,
         }
     }
 
     componentDidUpdate(
-        prevProps: Readonly<{ slug: string }>,
+        prevProps: Readonly<{ slug: string; fixedHeight: number }>,
         prevState: Readonly<{ swiper: Swiper }>,
         snapshot?: any
     ) {
+        if (prevProps.fixedHeight !== this.props.fixedHeight) {
+            this.setState({
+                height: this.props.fixedHeight,
+            })
+        }
+
         if (prevProps.slug !== this.slug) {
             prevState.swiper.slideTo(0)
         }
@@ -88,9 +92,7 @@ class ImageGridSlider extends Component {
                                             <PropertyGridItem propertyObj={x} />
                                         ) : (
                                             <GridImage
-                                                fixedHeight={
-                                                    this.fixedHeight
-                                                }
+                                                fixedHeight={this.state.height}
                                                 sizes="25vw"
                                                 ratio="natural"
                                                 imageObj={x}

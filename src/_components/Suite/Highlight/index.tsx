@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { HighlightBlurb, SliderWrap } from './styles'
 import BodyText from '../../Typography/BodyText'
 import ImageGridSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import Block from '../../UI/Block'
+import { viewportContext } from '../../../_utils/ViewportProvider'
+import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
 interface HighlightProps {
     title: string
@@ -19,6 +21,26 @@ const Highlight = ({
     hideSeparator = false,
     slug,
 }: HighlightProps) => {
+    const breakpoint = useContext(viewportContext)
+
+    const getCarouselHeight = () => {
+        switch (breakpoint) {
+            case 'tablet':
+                return 400
+            case 'mobile':
+                return 300
+            case 'desktop':
+            default:
+                return 500
+        }
+    }
+
+    const [height, setHeight] = useState(getCarouselHeight())
+
+    useEffect(() => {
+        setHeight(getCarouselHeight())
+    }, [breakpoint])
+
     return (
         <Block
             title={title}
@@ -29,7 +51,7 @@ const Highlight = ({
                 <>
                     <SliderWrap>
                         <ImageGridSlider
-                            fixedHeight={500}
+                            fixedHeight={height}
                             slug={slug}
                             items={images}
                             spaceBetween={20}
