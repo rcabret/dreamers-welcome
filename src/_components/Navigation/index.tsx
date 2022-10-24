@@ -6,6 +6,7 @@ import {
     Navigation,
     NavInnerContainer,
     RightAnchor,
+    StyledByDWLogo,
     StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
@@ -89,10 +90,11 @@ const TopNav = ({
                     {!headerData?.property ? (
                         <StyledDWLogoType dark={showDarkTheme} />
                     ) : (
-                        <StyledProperty active={top}>
+                        <StyledProperty active={top} dark={showDarkTheme}>
                             <Header uppercase size={3}>
                                 {headerData?.property}
                             </Header>
+                            <StyledByDWLogo active={top} dark={showDarkTheme} />
                         </StyledProperty>
                     )}
                     <RightAnchor opened={opened}>

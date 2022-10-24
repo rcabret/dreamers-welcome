@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import DWLogoType from '../UI/Icons/DWLogoType'
 import DWLogo from '../UI/Icons/DWLogo'
+import ByDw from '../UI/Icons/ByDw'
 
 interface NavigationStyleProps {
     dark?: boolean
@@ -71,6 +72,14 @@ export const StyledDWLogoType = styled(DWLogoType)`
 export const StyledDWLogo = styled(DWLogo)`
     position: absolute;
 
+    * {
+        fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
+    }
+`
+export const StyledByDWLogo = styled(ByDw)`
+    margin-left: ${({ active }: NavigationStyleProps) =>
+        active ? rem(12) : rem(20)};
+
     path {
         fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
     }
@@ -117,12 +126,18 @@ export const StyledProperty = styled.div`
     justify-content: center;
 
     h3 {
-        transition: 0.3s;
-        ${({ active }: { active: boolean }) =>
+        transition: 0.3s font-size;
+        ${({ active }: NavigationStyleProps) =>
             active &&
             css`
                 font-size: 20px;
                 color: black !important;
+            `};
+
+        ${({ dark }: NavigationStyleProps) =>
+            !dark &&
+            css`
+                color: white !important;
             `};
     }
 `
