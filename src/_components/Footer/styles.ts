@@ -62,4 +62,8 @@ export const Copyright = styled.span`
 
 export const Policies = styled.span`
     margin-left: ${rem(20)};
+
+    a:hover {
+        text-decoration: underline;
+    }
 `
