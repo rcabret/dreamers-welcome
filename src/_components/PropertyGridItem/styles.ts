@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { rem } from 'polished'
 import Button from '../UI/Buttons/Button'
+import { BREAKPOINTS } from '../../_constants/brekpoints'
 
 export const Metadata = styled.aside`
     padding: ${rem('10px')} ${rem('14px')} ${rem('10px')} ${rem('14px')};
@@ -24,6 +25,12 @@ export const Location = styled.div`
         font-weight: 400;
         display: inline-block;
         margin-left: ${rem('4px')};
+    }
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        position: relative;
+        margin-bottom: ${rem(20)};
+        width: 100%;
     }
 `
 
@@ -55,7 +62,7 @@ export const TopContainer = styled.div`
         float: right;
         cursor: pointer;
         width: ${rem(150)};
-      
+
         p,
         svg {
             opacity: 1;
@@ -73,4 +80,8 @@ export const TopContainer = styled.div`
 
 export const StyledButton = styled(Button)`
     min-width: auto;
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        width: 100%;
+    }
 `
