@@ -48,14 +48,14 @@ export const TopContainer = styled.div`
     }
 
     > p:first-child {
-        width: 50%;
+        width: calc(100% - ${rem(150)});
     }
 
     .share {
         float: right;
         cursor: pointer;
-        width: 50%;
-
+        width: ${rem(150)};
+      
         p,
         svg {
             opacity: 1;

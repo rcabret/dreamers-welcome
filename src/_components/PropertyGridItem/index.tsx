@@ -38,7 +38,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
 
         setTimeout(() => {
             setClipboard(false)
-        }, 3000)
+        }, 1000)
     }
 
     return (
