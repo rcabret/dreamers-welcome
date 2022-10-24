@@ -17,7 +17,6 @@ const Footer = () => {
         <FooterStyled>
             <StyledFooterLogo />
             <LeftLinks>
-
                 <ul>
                     <li>
                         <Link href={'/stays'}>STAYS</Link>
@@ -40,18 +39,16 @@ const Footer = () => {
                         <Link href={'/dw-radio'}>DW RADIO</Link>
                     </li>
                 </ul>
-
             </LeftLinks>
             <ContactUs href={'/contact'} inverse>
                 CONTACT US
             </ContactUs>
-            <Copyright>&copy; DW {moment().year()}
-                <Policies>
-                    <Link href={'/privacy'}>Privacy</Link>,&nbsp;
-                    <Link href={'/privacy'}>Booking Policy</Link>,&nbsp;and
-                    <Link href={'/faqs'}> FAQ's</Link>
-                </Policies>
-            </Copyright>
+            <Copyright>&copy; DW {moment().year()}</Copyright>
+            <Policies>
+                <Link href={'/privacy'}>Privacy</Link>,&nbsp;
+                <Link href={'/booking-policy'}>Booking Policy</Link>,&nbsp;and
+                <Link href={'/faqs'}> FAQ's</Link>
+            </Policies>
         </FooterStyled>
     )
 }

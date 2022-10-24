@@ -13,10 +13,10 @@ export const FooterStyled = styled.footer`
     ul {
         list-style: none;
         margin-top: ${rem(10)};
+        margin-right: 7vw;
 
         li {
-            float: left;
-            margin-right: 5vw;
+            display: block;
         }
     }
 `
@@ -32,17 +32,18 @@ export const LeftLinks = styled.div`
     float: left;
     display: flex;
     align-items: center;
-    margin-left: 8vw;
+    margin-left: ${rem(140)};
 
     ul {
         margin-top: 0;
-        width: 20%;
+        width: 40%;
         float: left;
         font-size: ${rem(20)};
         font-weight: 300;
 
         li {
             margin-bottom: ${rem(6)};
+            display: block;
         }
     }
 `
@@ -61,7 +62,11 @@ export const Copyright = styled.span`
 `
 
 export const Policies = styled.span`
-    margin-left: ${rem(20)};
+    position: absolute;
+    left: ${rem(30)};
+    margin-left: ${rem(140)};
+    bottom: ${rem(30)};
+    color: #575757;
 
     a:hover {
         text-decoration: underline;
