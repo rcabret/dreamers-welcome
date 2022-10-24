@@ -17,6 +17,7 @@ const Footer = () => {
         <FooterStyled>
             <StyledFooterLogo />
             <LeftLinks>
+
                 <ul>
                     <li>
                         <Link href={'/stays'}>STAYS</Link>
