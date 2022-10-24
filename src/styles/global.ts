@@ -57,6 +57,11 @@ export const GridModule = styled.div`
 
             @media (max-width: ${BREAKPOINTS.MOBILE}) {
                 padding-bottom: ${rem('25px')};
+
+                > div,
+                > a {
+                    width: 100%;
+                }
             }
         `}
 `
