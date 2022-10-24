@@ -18,6 +18,7 @@ interface GridImageProps {
     disabled?: boolean
     sizes?: string
     widthQuery?: number
+    fixedHeight?: number
 }
 
 const GridImage = ({
@@ -28,6 +29,7 @@ const GridImage = ({
     hasHover = false,
     fullHeight = false,
     metadata,
+    fixedHeight,
     ratio = 0.67,
     imageObj,
     sizes,
@@ -58,6 +60,9 @@ const GridImage = ({
         return ratio
     }
 
+    const final_ratio = getCorrectRatio([height, width], ratio);
+
+    console.log(ratio);
     return (
         <Container
             border={border}
@@ -66,9 +71,11 @@ const GridImage = ({
         >
             <ImageMask
                 borderRadius={borderRadius}
-                hasHover={hasHover}
+                fixedHeight={fixedHeight}
                 fullHeight={fullHeight}
-                ratio={getCorrectRatio([height, width], ratio)}
+                hasHover={hasHover}
+                intent={ratio}
+                ratio={final_ratio}
             >
                 {imageObj ? (
                     <>

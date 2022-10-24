@@ -16,6 +16,7 @@ interface SwiperProps {
     slug: string
     isProperties?: boolean
     spaceBetween?: number
+    fixedHeight?: number
 }
 
 class ImageGridSlider extends Component {
@@ -24,6 +25,7 @@ class ImageGridSlider extends Component {
     private readonly slug: string
     private readonly isProperties: boolean
     private readonly spaceBetween: number
+    private readonly fixedHeight?: number
 
     constructor(props: SwiperProps) {
         super(props)
@@ -33,6 +35,7 @@ class ImageGridSlider extends Component {
             slug,
             isProperties = false,
             spaceBetween = 0,
+            fixedHeight,
         } = props as SwiperProps
 
         this.isProperties = isProperties
@@ -40,7 +43,9 @@ class ImageGridSlider extends Component {
         this.slug = slug
         this.slidesPer = slidesPerView || 'auto'
         this.spaceBetween = spaceBetween
+        this.fixedHeight = fixedHeight
 
+        console.log('this', this.fixedHeight)
         this.state = {
             swiper: undefined,
         }
@@ -60,7 +65,6 @@ class ImageGridSlider extends Component {
         return (
             <>
                 <StyledSwiper
-                    
                     loop={false}
                     spaceBetween={this.spaceBetween}
                     freeMode
@@ -84,8 +88,11 @@ class ImageGridSlider extends Component {
                                             <PropertyGridItem propertyObj={x} />
                                         ) : (
                                             <GridImage
-                                                ratio="natural"
+                                                fixedHeight={
+                                                    this.fixedHeight
+                                                }
                                                 sizes="25vw"
+                                                ratio="natural"
                                                 imageObj={x}
                                                 border={false}
                                                 borderRadius={true}

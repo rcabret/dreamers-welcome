@@ -1,6 +1,6 @@
 import { rem } from 'polished'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 export interface GridImageStyleProps {
     fullHeight?: boolean
@@ -8,6 +8,8 @@ export interface GridImageStyleProps {
     ratio?: number | string
     borderRadius?: boolean
     hasHover?: boolean
+    intent?: string | number
+    fixedHeight?: number
 }
 
 const getWrapperHeight = ({ fullHeight, border }: GridImageStyleProps) => {
@@ -17,6 +19,19 @@ const getWrapperHeight = ({ fullHeight, border }: GridImageStyleProps) => {
         return '100%'
     } else {
         return 'auto'
+    }
+}
+
+const getPaddingTop = ({ intent, ratio, fullHeight }: GridImageStyleProps) => {
+    if (
+        ratio &&
+        !fullHeight &&
+        typeof intent === 'number' &&
+        typeof ratio === 'number'
+    ) {
+        return `${ratio * 100}%`
+    } else {
+        return 0
     }
 }
 
@@ -32,19 +47,29 @@ export const Container = styled.div`
 `
 
 export const ImageMask = styled.div`
-    padding-top: ${({ ratio, fullHeight }: GridImageStyleProps) =>
-        ratio && !fullHeight && typeof ratio === 'number'
-            ? `${ratio * 100}%`
-            : 0};
-
+    padding-top: ${(props: GridImageStyleProps) => getPaddingTop(props)};
     border-radius: ${(props) => props.borderRadius && rem('10px')};
     overflow: hidden;
-    position: relative;
 
-    ${({ fullHeight }) => fullHeight && `height: 100%;`}
-    ${({ fullHeight }) => fullHeight && `min-height: ${rem('350px')};`}
+    ${({ fixedHeight, ratio }) =>
+        fixedHeight &&
+        css`
+            height: ${rem(fixedHeight)};
+            width: ${rem(fixedHeight / ratio)};
+        `};
+
+    ${(props) =>
+        !props.fullHeight
+            ? css`
+                  position: relative;
+              `
+            : css`
+                  height: 100%;
+                  min-height: ${rem(350)};
+              `};
+
     ${({ hasHover }) => hasHover && `transition: all ease-out 0.5s;`}
-    
+
     :hover {
         transform: ${({ hasHover }) => (hasHover ? 'scale(0.98)' : 'none')};
 
@@ -60,6 +85,7 @@ export const ImageMask = styled.div`
         width: 100%;
     }
 
+    // Solid color image placeholder
     > aside {
         background: #dcdbdb;
         position: absolute;

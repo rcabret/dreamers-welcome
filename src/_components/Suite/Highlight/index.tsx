@@ -29,6 +29,7 @@ const Highlight = ({
                 <>
                     <SliderWrap>
                         <ImageGridSlider
+                            fixedHeight={500}
                             slug={slug}
                             items={images}
                             spaceBetween={20}
