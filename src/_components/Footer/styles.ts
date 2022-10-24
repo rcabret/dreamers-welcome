@@ -59,3 +59,7 @@ export const Copyright = styled.span`
     left: ${rem(30)};
     color: #575757;
 `
+
+export const Policies = styled.span`
+    margin-left: ${rem(20)};
+`

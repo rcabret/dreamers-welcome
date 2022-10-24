@@ -8,6 +8,7 @@ import {
     LeftLinks,
     ContactUs,
     Copyright,
+    Policies,
 } from './styles'
 import moment from 'moment'
 
@@ -38,22 +39,18 @@ const Footer = () => {
                         <Link href={'/dw-radio'}>DW RADIO</Link>
                     </li>
                 </ul>
-                <ul>
-                    <li>
-                        <Link href={'/privacy'}>PRIVACY</Link>
-                    </li>
-                    <li>
-                        <Link href={'/bookings'}>BOOKINGS</Link>
-                    </li>
-                    <li>
-                        <Link href={'/faqs'}>FAQ's</Link>
-                    </li>
-                </ul>
+
             </LeftLinks>
             <ContactUs href={'/contact'} inverse>
                 CONTACT US
             </ContactUs>
-            <Copyright>&copy; DW {moment().year()}</Copyright>
+            <Copyright>&copy; DW {moment().year()}
+                <Policies>
+                    <Link href={'/privacy'}>Privacy</Link>,
+                    <Link href={'/privacy'}>Booking Policy</Link> and
+                    <Link href={'/faqs'}>FAQ's</Link>,
+                </Policies>
+            </Copyright>
         </FooterStyled>
     )
 }

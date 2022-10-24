@@ -41,6 +41,7 @@ interface PropertyProps {
     propertyResponse: any
     setHeaderData: any
     setNavTheme: any
+    otherStays: any
 }
 
 const Property = ({
