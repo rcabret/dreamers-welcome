@@ -44,62 +44,67 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
     return (
         <ItemWrapper>
             <div className="border">
-                <Link href={`/${slug}`} passHref shallow={false}>
-                    <a>
-                        <GridImage
-                            borderRadius={false}
-                            border={false}
-                            ratio={0.68}
-                            imageObj={tileImage}
-                        />
-                    </a>
-                </Link>
-                <Metadata>
-                    <TopContainer>
-                        <BodyText size="sm">
-                            {Array.isArray(bannerDescriptionList)
-                                ? bannerDescriptionList.map((x, i) => {
-                                      return `${x} ${
-                                          i < bannerDescriptionList.length - 1
-                                              ? '· '
-                                              : ''
-                                      }`
-                                  })
-                                : bannerDescriptionList}
-                        </BodyText>
-                        <div
-                            className="share"
-                            onClick={() => copyToClipboard()}
-                        >
-                            {!copiedToClipboard ? (
-                                <>
-                                    <Share />
-                                    <BodyText size="sm">Share</BodyText>
-                                </>
-                            ) : (
-                                <BodyText size="sm">
-                                    Copied to clipboard
-                                </BodyText>
-                            )}
-                        </div>
-                    </TopContainer>
-                    <Link href={`/${slug}`} passHref>
+                <div>
+                    <Link href={`/${slug}`} passHref shallow={false}>
                         <a>
-                            <Header bold={false} size={2}>
-                                {propertyName}
-                            </Header>
+                            <GridImage
+                                borderRadius={false}
+                                border={false}
+                                ratio={0.68}
+                                imageObj={tileImage}
+                            />
                         </a>
                     </Link>
-                    <BottomContainer>
-                        <Location>
-                            <LocationPin />
-                            <BodyText size={'sm'}>
-                                {propertyType[0]}, {location}
+                    <Metadata>
+                        <TopContainer>
+                            <BodyText size="sm">
+                                {Array.isArray(bannerDescriptionList)
+                                    ? bannerDescriptionList.map((x, i) => {
+                                          return `${x} ${
+                                              i <
+                                              bannerDescriptionList.length - 1
+                                                  ? '· '
+                                                  : ''
+                                          }`
+                                      })
+                                    : bannerDescriptionList}
                             </BodyText>
-                        </Location>
-                        <StyledButton href={bookNowLink}>BOOK NOW</StyledButton>
-                    </BottomContainer>
-                </Metadata>
+                            <div
+                                className="share"
+                                onClick={() => copyToClipboard()}
+                            >
+                                {!copiedToClipboard ? (
+                                    <>
+                                        <Share />
+                                        <BodyText size="sm">Share</BodyText>
+                                    </>
+                                ) : (
+                                    <BodyText size="sm">
+                                        Copied to clipboard
+                                    </BodyText>
+                                )}
+                            </div>
+                        </TopContainer>
+                        <Link href={`/${slug}`} passHref>
+                            <a>
+                                <Header bold={false} size={2}>
+                                    {propertyName}
+                                </Header>
+                            </a>
+                        </Link>
+                        <BottomContainer>
+                            <Location>
+                                <LocationPin />
+                                <BodyText size={'sm'}>
+                                    {propertyType[0]}, {location}
+                                </BodyText>
+                            </Location>
+                            <StyledButton href={bookNowLink}>
+                                BOOK NOW
+                            </StyledButton>
+                        </BottomContainer>
+                    </Metadata>
+                </div>
             </div>
         </ItemWrapper>
     )

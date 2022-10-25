@@ -96,6 +96,10 @@ export const ItemWrapper = styled.div`
         overflow: hidden;
         z-index: 1;
         border-radius: ${rem('10px')};
+
+        > div {
+            z-index: 0;
+        }
     }
 `
 
