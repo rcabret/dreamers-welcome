@@ -38,6 +38,9 @@ const Footer = () => {
                     <li>
                         <Link href={'/dw-radio'}>DW RADIO</Link>
                     </li>
+                    <li>
+                        <Link href={'/faqs'}>FAQs</Link>
+                    </li>
                 </ul>
             </LeftLinks>
             <ContactUs href={'/contact'} inverse>
@@ -45,9 +48,8 @@ const Footer = () => {
             </ContactUs>
             <Copyright>&copy; DW {moment().year()}</Copyright>
             <Policies>
-                <Link href={'/privacy'}>Privacy</Link>,&nbsp;
-                <Link href={'/booking-policy'}>Booking Policy</Link>,&nbsp;and
-                <Link href={'/faqs'}> FAQ's</Link>
+                <Link href={'/privacy'}>Privacy</Link>,&nbsp;and
+                <Link href={'/booking-policy'}>Booking Policy</Link>
             </Policies>
         </FooterStyled>
     )
