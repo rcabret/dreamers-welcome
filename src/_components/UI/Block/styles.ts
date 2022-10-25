@@ -43,7 +43,11 @@ export const Title = styled.div`
               `};
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
+        width: 100%;
+        display: block;
+        float: none;
         padding: 0 ${rem(20)};
+        margin-bottom: ${rem(40)};
     }
 `
 
@@ -69,6 +73,8 @@ export const BlockContent = styled.div`
     }
     
     @media(max-width: ${BREAKPOINTS.TABLET}) {
+        width: 100%;
+        margin-left: 0;
         padding: ${({ showOverflow }: BI) =>
             showOverflow ? '0' : `0 ${rem(20)}`};
 
