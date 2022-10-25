@@ -5,7 +5,7 @@ import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
 export const BlockWrapper = styled.div`
     display: inline-block;
-    width: calc(100%);
+    width: 100%;
     position: relative;
     padding-top: ${rem(40)};
 

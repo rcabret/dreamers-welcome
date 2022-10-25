@@ -13,28 +13,22 @@ const StyledMain = styled.main`
 `
 function MyApp({ Component, pageProps }: AppProps) {
     // @ts-ignore
-    const Layout = Component.Layout || EmptyLayout
-
     const [navTheme, setNavTheme] = useState(undefined)
     const [headerData, setHeaderData] = useState(undefined)
 
     return (
         <ViewportProvider>
+            <TopNav navTheme={navTheme} headerData={headerData} />
             <StyledMain id="main">
-                <TopNav navTheme={navTheme} headerData={headerData} />
-                <Layout>
-                    <Component
-                        {...pageProps}
-                        setHeaderData={setHeaderData}
-                        setNavTheme={setNavTheme}
-                    />
-                </Layout>
+                <Component
+                    {...pageProps}
+                    setHeaderData={setHeaderData}
+                    setNavTheme={setNavTheme}
+                />
             </StyledMain>
             <EmailCapture />
             <Footer />
         </ViewportProvider>
     )
 }
-const EmptyLayout = ({ children }: { children: ReactNode }) => <>{children}</>
-
 export default MyApp

@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { rem } from 'polished'
 import DWLogo from '../UI/Icons/DWLogo'
 import Button from '../UI/Buttons/Button'
+import { BREAKPOINTS } from '../../_constants/brekpoints'
 
 export const FooterStyled = styled.footer`
     height: ${rem(350)};
@@ -36,7 +37,7 @@ export const LeftLinks = styled.div`
 
     ul {
         margin-top: 0;
-        width: 40%;
+        width: 50%;
         float: left;
         font-size: ${rem(20)};
         font-weight: 300;
@@ -44,6 +45,15 @@ export const LeftLinks = styled.div`
         li {
             margin-bottom: ${rem(6)};
             display: block;
+        }
+    }
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        margin-left: 0;
+        margin-top: ${rem(80)};
+
+        ul {
+            width: 100%;
         }
     }
 `
