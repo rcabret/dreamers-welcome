@@ -32,8 +32,8 @@ export const SliderWrap = styled.div`
 
     .swiper {
         overflow: visible;
-        margin-left: calc(25% + 20px);
-        margin-right: ${rem(20)};
+        margin-left: 25%;
+        margin-right: ${rem(30)};
         position: relative;
     }
 
