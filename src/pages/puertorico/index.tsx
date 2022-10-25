@@ -7,7 +7,7 @@ import {
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
-import {getHomepage, getPropertiesViaBucket} from '../../_lib/api'
+import { getHomepage, getPropertiesViaBucket } from '../../_lib/api'
 import ImageGridSlider from '../../_components/UI/Swiper'
 import styled from 'styled-components'
 import { rem } from 'polished'
@@ -22,8 +22,13 @@ const StaysSwiperWrap = styled.div`
     .swiper {
         overflow: visible;
         margin-left: ${rem(20)};
-        width: 80%;
         position: relative;
+        margin-right: ${rem(20)};
+    }
+
+    .swiper-slide {
+        max-width: 30%;
+        min-width: ${rem(370)};
     }
 `
 const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
@@ -59,7 +64,6 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                         <ImageGridSlider
                             slug={'puertorico'}
                             items={properties}
-                            slidesPerView={2}
                             isProperties
                             spaceBetween={0}
                         />
