@@ -16,7 +16,7 @@ const getWrapperHeight = ({ fullHeight, border }: GridImageStyleProps) => {
     if (fullHeight && border) {
         return `calc(100% - ${rem('20px')})`
     } else if (fullHeight && !border) {
-        return '100%'
+        return '100vh'
     } else {
         return 'auto'
     }
