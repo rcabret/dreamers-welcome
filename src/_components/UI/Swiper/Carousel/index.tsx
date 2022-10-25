@@ -40,7 +40,6 @@ class ImageSlider extends Component {
     }
 
     toggleLightBox = () => {
-        console.log('in here')
         if (typeof this.toggle === 'function') {
             this.toggle(true)
         }

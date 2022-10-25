@@ -83,7 +83,6 @@ const Property = ({
     const [lightbox, toggleLightbox] = useState<boolean>(false)
 
     useEffect(() => {
-        console.log("lightbox", lightbox)
         setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],

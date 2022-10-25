@@ -62,7 +62,6 @@ const GridImage = ({
 
     const final_ratio = getCorrectRatio([height, width], ratio);
 
-    console.log(ratio);
     return (
         <Container
             border={border}
