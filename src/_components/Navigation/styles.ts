@@ -3,6 +3,7 @@ import { rem } from 'polished'
 import DWLogoType from '../UI/Icons/DWLogoType'
 import DWLogo from '../UI/Icons/DWLogo'
 import ByDw from '../UI/Icons/ByDw'
+import { BREAKPOINTS } from '../../_constants/brekpoints'
 
 interface NavigationStyleProps {
     dark?: boolean
@@ -17,7 +18,14 @@ export const NavInnerContainer = styled.div`
     width: 100%;
     height: 100%;
     z-index: 100;
-    padding: 0 ${rem('30px')};
+    padding: 0 ${rem(30)};
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        padding: 0 ${rem(20)};
+    }
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        padding: 0 ${rem(15)};
+    }
 `
 
 export const Navigation = styled.nav`

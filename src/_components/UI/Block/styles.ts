@@ -27,6 +27,13 @@ export const BlockWrapper = styled.div`
             left: ${rem(20)};
         }
     }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        .separator {
+            width: calc(100% - ${rem(30)});
+            left: ${rem(15)};
+        }
+    }
 `
 
 export const Title = styled.div`
@@ -48,6 +55,10 @@ export const Title = styled.div`
         float: none;
         padding: 0 ${rem(20)};
         margin-bottom: ${rem(40)};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        padding: 0 ${rem(15)};
     }
 `
 
@@ -80,5 +91,9 @@ export const BlockContent = styled.div`
 
     }
 
-    
+    @media(max-width: ${BREAKPOINTS.TABLET}) {
+        padding: ${({ showOverflow }: BI) =>
+            showOverflow ? '0' : `0 ${rem(15)}`};
+
+    }
 `
