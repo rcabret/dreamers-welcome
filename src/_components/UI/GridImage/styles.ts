@@ -50,6 +50,7 @@ export const ImageMask = styled.div`
     padding-top: ${(props: GridImageStyleProps) => getPaddingTop(props)};
     border-radius: ${(props) => props.borderRadius && rem('10px')};
     overflow: hidden;
+    z-index: 1;
 
     ${({ fixedHeight, ratio }) =>
         fixedHeight &&
@@ -79,6 +80,7 @@ export const ImageMask = styled.div`
     }
 
     img {
+        z-index: 0;
         ${({ hasHover }) => hasHover && `transition: all ease-out 0.5s;`}
         position: absolute;
         height: 100%;
