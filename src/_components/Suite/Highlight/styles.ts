@@ -17,6 +17,12 @@ export const HighlightBlurb = styled.div`
             padding: 0 ${rem(20)};
         }
     }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        > p {
+            padding: 0 ${rem(15)};
+        }
+    }
 `
 
 export const SliderWrap = styled.div`
@@ -38,6 +44,12 @@ export const SliderWrap = styled.div`
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         .swiper {
             margin-left: ${rem(20)};
+        }
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        .swiper {
+            margin-left: ${rem(15)};
         }
     }
 `
