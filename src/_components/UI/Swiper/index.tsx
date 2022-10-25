@@ -93,7 +93,7 @@ class ImageGridSlider extends Component {
                                         ) : (
                                             <GridImage
                                                 fixedHeight={this.state.height}
-                                                sizes="75vw"
+                                                sizes="65vw"
                                                 ratio="natural"
                                                 imageObj={x}
                                                 border={false}
