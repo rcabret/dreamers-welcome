@@ -42,6 +42,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
             {features && (
                 <Block
                     title="FEATURES"
+                    noPaddingBottom
                     content={
                         <GridModule
                             columns={3}
