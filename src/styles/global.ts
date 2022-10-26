@@ -23,47 +23,40 @@ export const GridModule = styled.div`
         text-decoration: none;
     }
 
-    ${({ dontBreak = false }) =>
-        !dontBreak &&
-        css`
-            @media (max-width: 1200px) {
-                > div,
-                > a {
-                    width: 50%;
-                }
-            }
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            sideScrollOnMobile
+                ? css`
+                      overflow-x: scroll !important;
+                      white-space: nowrap !important;
 
-            @media (max-width: ${BREAKPOINTS.TABLET}) {
-                ${({ sideScrollOnMobile = false }: GMProps) =>
-                    sideScrollOnMobile
-                        ? css`
-                              overflow-x: scroll;
-                              white-space: nowrap;
+                      > div,
+                      > a {
+                          width: 40% !important;
+                          min-width: ${rem('280px')} !important;
+                          white-space: normal !important;
+                      }
+                  `
+                : css`
+                      > div,
+                      > a {
+                          width: 50%;
+                      }
+                  `}
+    }
 
-                              > div,
-                              > a {
-                                  width: 40%;
-                                  min-width: ${rem('170px')};
-                                  white-space: normal;
-                              }
-                          `
-                        : css`
-                              > div,
-                              > a {
-                                  width: 50%;
-                              }
-                          `}
-            }
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        padding-bottom: ${rem('25px')};
 
-            @media (max-width: ${BREAKPOINTS.MOBILE}) {
-                padding-bottom: ${rem('25px')};
-
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            !sideScrollOnMobile &&
+            css`
                 > div,
                 > a {
                     width: 100%;
                 }
-            }
-        `}
+            `}
+    }
 `
 
 export const Content = styled.div`

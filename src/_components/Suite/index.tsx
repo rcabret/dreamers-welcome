@@ -1,10 +1,15 @@
 import React from 'react'
 import Highlight from './Highlight'
+import Block from '../UI/Block'
+import { BlockListWrap, GridModule } from '../../styles/global'
+import Header from '../Typography/Header'
+import MarkdownModule from '../Typography/MarkdownModule'
 
 interface SuiteProps {
     data: {
         fields: {
             highlights: []
+            features: []
         }
     }
     propertySlug: string
@@ -15,7 +20,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
         return null
     }
     const { fields } = data
-    const { highlights } = fields
+    const { highlights, features } = fields
     return (
         <>
             {highlights && highlights.length
@@ -34,6 +39,29 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                       )
                   })
                 : null}
+            {features && (
+                <Block
+                    title="FEATURES"
+                    content={
+                        <GridModule
+                            columns={3}
+                            sideScrollOnMobile={false}
+                        >
+                            {features &&
+                                features.map((feature: any) => (
+                                    <BlockListWrap key={feature.fields.title}>
+                                        <Header size={4}>
+                                            {feature.fields.title}
+                                        </Header>
+                                        <MarkdownModule
+                                            data={feature.fields.text}
+                                        />
+                                    </BlockListWrap>
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
         </>
     )
 }
