@@ -48,7 +48,7 @@ const Footer = () => {
             </ContactUs>
             <Copyright>&copy; DW {moment().year()}</Copyright>
             <Policies>
-                <Link href={'/privacy'}>Privacy</Link>,&nbsp;and
+                <Link href={'/privacy'}>Privacy</Link>&nbsp;and&nbsp;
                 <Link href={'/booking-policy'}>Booking Policy</Link>
             </Policies>
         </FooterStyled>
