@@ -39,8 +39,8 @@ export const Navigation = styled.nav`
     width: 100%;
     transition: 0.4s height;
 
-    svg:first-child,
-    svg:nth-child(2) {
+    >svg:first-child,
+    >svg:nth-child(2) {
         transform: ${({ active }: NavigationStyleProps) =>
             active ? 'scale(0.85)' : 'scale(1)'};
         transition: 0.3s transform;
@@ -52,7 +52,7 @@ export const MenuBg = styled.aside`
     top: 0;
     left: 0;
     transition: 0.3s all;
-    //background: white;
+    // background: white;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -65,7 +65,7 @@ export const RightAnchor = styled.div`
     position: absolute;
     right: 0;
     height: 100%;
-    width: ${({ opened }: { opened: boolean }) => (opened ? rem(380) : '30vw')};
+    width: ${({ opened }: { opened: boolean }) => (opened ? rem(440) : '35vw')};
     top: 0;
     transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
 `

@@ -32,7 +32,8 @@ const StaysSwiperWrap = styled.div`
     }
 `
 const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
-    const { blurb, title, guides, experiences, coverImage, stays } = data
+    console.log('data', data);
+    const { blurb, title, guides, experiences, coverImage } = data
 
     useEffect(() => {
         setNavTheme('light')

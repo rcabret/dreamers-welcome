@@ -26,19 +26,11 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const Experiences = ({
-    experiences,
-    experiencesPage,
-    setNavTheme,
-    setHeaderData,
-}: any) => {
+const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     const router = useRouter()
 
     useEffect(() => {
         setNavTheme('dark')
-        setHeaderData({
-            bucket: pathToBucket(router.query.slug as string),
-        })
     }, [])
     const { blurb } = experiencesPage
     const [activeSlug, setSlug] = useState<string>(

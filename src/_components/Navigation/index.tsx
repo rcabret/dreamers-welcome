@@ -7,7 +7,6 @@ import {
     NavInnerContainer,
     RightAnchor,
     StyledByDWLogo,
-    StyledDropdown,
     StyledDWLogo,
     StyledDWLogoType,
     StyledProperty,
@@ -17,18 +16,19 @@ import MenuPanel from './MenuPanel'
 import Header from '../Typography/Header'
 import { throttle } from '../../_utils/Throttle'
 import Link from 'next/link'
+import Dropdown from '../UI/Dropdown'
+const bucketLinks = [
+    {
+        label: 'Puerto Rico',
+        slug: 'puertorico',
+    },
+    {
+        label: 'North Carolina',
+        slug: 'northcarolina',
+    },
+]
 
-const TopNav = ({
-    headerData,
-    navTheme,
-}: {
-    headerData?: {
-        bucket: string
-        property: string
-        simpleNav?: boolean
-    }
-    navTheme?: string
-}) => {
+const TopNav = ({ headerData, navTheme }: any) => {
     const [top, setTop] = useState(false)
     const [opened, setPanel] = useState(false)
     const [showDarkTheme, setTheme] = useState(
@@ -98,9 +98,12 @@ const TopNav = ({
                         </StyledProperty>
                     )}
                     <RightAnchor opened={opened}>
-                        <StyledDropdown dark={showDarkTheme || opened}>
-                            {headerData?.bucket}
-                        </StyledDropdown>
+                        <Dropdown
+                            bucket={headerData?.bucket}
+                            dark={showDarkTheme || opened}
+                            id="topnav-drop"
+                            links={bucketLinks}
+                        />
                         <HamburgerWrap onClick={() => setPanel(!opened)}>
                             <NavToggle
                                 activate={setPanel}

@@ -11,8 +11,8 @@ interface NavigationStyleProps {
 
 export const Panel = styled.div`
     position: fixed;
-    right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-500px')};
-    width: ${rem('380px')};
+    right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : rem(-440))};
+    width: ${rem(440)};
     padding: ${rem(40)};
     height: 100vh;
     z-index: 99;

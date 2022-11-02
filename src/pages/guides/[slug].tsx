@@ -26,7 +26,7 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const Guides = ({ guides, guidesPage, setNavTheme, setHeaderData }: any) => {
+const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
     const router = useRouter()
 
     const [activeSlug, setSlug] = useState<string>(
@@ -36,9 +36,6 @@ const Guides = ({ guides, guidesPage, setNavTheme, setHeaderData }: any) => {
 
     useEffect(() => {
         setNavTheme('dark')
-        setHeaderData({
-            bucket: guidesPage.bucket[0],
-        })
     }, [])
 
     useEffect(() => {
