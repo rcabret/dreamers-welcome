@@ -55,16 +55,12 @@ const SubNavigation = ({
                     data.map((x, i: number) => {
                         return (
                             <SubLink
+                                title={x.name}
                                 key={i * Math.random()}
                                 onClick={() => shallowRoute(x.slug)}
+                                className={getSubClass(x.slug)}
                             >
-                                <BodyText
-                                    size="lg"
-                                    uppercase
-                                    className={getSubClass(x.slug)}
-                                >
-                                    {x.name}
-                                </BodyText>
+                                {x.name}
                             </SubLink>
                         )
                     })}
