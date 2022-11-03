@@ -68,7 +68,7 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
                 }
             />
             <Block
-                title="OUR REACH"
+                title="BY THE NUMBERS"
                 content={
                     <GridModule columns={4} sideScrollOnMobile>
                         {ourReach &&
