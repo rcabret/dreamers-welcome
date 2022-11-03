@@ -1,14 +1,24 @@
 import React, { useEffect, useState } from 'react'
-import { Chevron, Inner, Panel, StyledDropdown } from './styles'
+import { Inner, Panel, StyledDropdown } from './styles'
 import { useRouter } from 'next/router'
+import Chevron from '../Icons/Chevron'
 
 interface DropdownProps {
+    className?: string
     id: string
     dark?: boolean
     links: { label: string; slug: string }[]
     bucket?: string
+    defaultLabel?: string
 }
-const Dropdown = ({ dark = false, links, id, bucket }: DropdownProps) => {
+const Dropdown = ({
+    className,
+    dark = false,
+    defaultLabel,
+    links,
+    id,
+    bucket,
+}: DropdownProps) => {
     const router = useRouter()
 
     const [isOpened, setIsOpened] = useState(false)
@@ -35,29 +45,31 @@ const Dropdown = ({ dark = false, links, id, bucket }: DropdownProps) => {
     return (
         <StyledDropdown
             dark={dark}
-            id={id}
             onClick={() => setIsOpened(!isOpened)}
+            className={className}
         >
-            <Inner>
-                <Chevron dark={dark} viewBox="0 0 30 20">
-                    <polyline points="0 0, 15 15, 30 0" />
-                </Chevron>
-                <div id={`panel-${id}`}>
-                    {isOpened ? 'CHOOSE DESTINATION' : bucket}
-                </div>
-                <Panel opened={isOpened}>
-                    {links &&
-                        links.length &&
-                        links.map((link) => (
-                            <li
-                                onClick={() => onClick(link.slug)}
-                                className={bucket === link.label && 'active'}
-                            >
-                                {link.label}
-                            </li>
-                        ))}
-                </Panel>
-            </Inner>
+            <div id={id}>
+                <Inner>
+                    <div id={`panel-${id}`}>
+                        {isOpened ? defaultLabel : bucket}
+                    </div>
+                    <Panel opened={isOpened}>
+                        {links &&
+                            links.length &&
+                            links.map((link) => (
+                                <li
+                                    onClick={() => onClick(link.slug)}
+                                    className={
+                                        bucket === link.label ? 'active' : ''
+                                    }
+                                >
+                                    {link.label}
+                                </li>
+                            ))}
+                    </Panel>
+                </Inner>
+                <Chevron dark={dark} />
+            </div>
         </StyledDropdown>
     )
 }

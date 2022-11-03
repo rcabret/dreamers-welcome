@@ -190,3 +190,23 @@ export const getExperience = async (slug: string) => {
         return entries.items[0].fields
     }
 }
+
+export const getFaq = async (slug: string) => {
+    const entries = await client.getEntries({
+        content_type: 'faq',
+        'fields.slug': slug,
+    })
+    if (entries.items) {
+        return entries.items[0].fields
+    }
+}
+
+export const getFaqs = async () => {
+    const entries = await client.getEntries({
+        content_type: 'faq',
+        order: 'fields.title',
+    })
+    if (entries.items) {
+        return entries.items.map((x: { fields: {} }) => x.fields)
+    }
+}

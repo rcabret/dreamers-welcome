@@ -4,6 +4,7 @@ import Header from '../../Typography/Header'
 
 interface BlockProps {
     title?: string
+    titleOverride?: any
     content: any
     className?: string
     hideSeparator?: boolean
@@ -13,6 +14,7 @@ interface BlockProps {
 }
 const Block = ({
     title,
+    titleOverride,
     content,
     className,
     hideSeparator = false,
@@ -23,11 +25,15 @@ const Block = ({
     return (
         <BlockWrapper noPaddingBottom={noPaddingBottom} className={className}>
             {!hideSeparator && <div className="separator" />}
-            {title && (
+            {(title || titleOverride) && (
                 <Title fullWidth={fullWidth}>
-                    <Header size={4} uppercase>
-                        {title}
-                    </Header>
+                    {titleOverride ? (
+                        <div>{titleOverride}</div>
+                    ) : (
+                        <Header size={4} uppercase>
+                            {title}
+                        </Header>
+                    )}
                 </Title>
             )}
             <BlockContent showOverflow={showOverflow} fullWidth={fullWidth}>

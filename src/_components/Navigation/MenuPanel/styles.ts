@@ -19,7 +19,7 @@ export const Panel = styled.div`
     top: 0;
     transition: 0.5s right cubic-bezier(0.65, 0, 0.35, 1);
     background: white;
-    color: black;
+    color: #1a1a1a;
 
     ul {
         margin-top: ${rem(100)};

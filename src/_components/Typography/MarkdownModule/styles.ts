@@ -112,7 +112,7 @@ export const MarkupWrapper = styled.div`
 export const Separator = styled.div`
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #1a1a1a;
     margin-bottom: ${rem('20px')};
     margin-top: ${rem('16px')};
 `

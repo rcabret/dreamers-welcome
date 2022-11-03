@@ -31,16 +31,15 @@ function MyApp({ Component, pageProps }: AppProps) {
             return
         }
 
-        let bucket
+        let data
         if (router.asPath.indexOf('puertorico') > -1) {
-            bucket = 'Puerto Rico'
+            data = { bucket: 'Puerto Rico' }
         } else if (router.asPath.indexOf('northcarolina') > -1) {
-            bucket = 'North Carolina'
+            data = { bucket: 'North Carolina' }
         } else {
-            bucket = undefined
+            data = { bucket: undefined, property: undefined }
         }
-        setHeaderData({ ...headerData, ...{ bucket: bucket } })
-
+        setHeaderData({ ...headerData, ...data })
     }, [router])
 
     return (

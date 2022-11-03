@@ -65,6 +65,9 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                         <Link href="/news">NEWS</Link>
                     </li>
                     <li>
+                        <Link href="/faqs">FAQs</Link>
+                    </li>
+                    <li>
                         <Link href="/radio">DW RADIO</Link>
                     </li>
                 </ul>

@@ -39,7 +39,7 @@ export const CloseX = styled.div`
     cursor: pointer;
 
     svg {
-        stroke: black;
+        stroke: #1a1a1a;
         stroke-width: 3;
         width: ${rem('22px')};
     }

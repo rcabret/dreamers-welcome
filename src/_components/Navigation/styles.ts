@@ -32,15 +32,14 @@ export const Navigation = styled.nav`
     position: fixed;
     top: 0;
     color: ${({ dark, navTheme }: NavigationStyleProps) =>
-        dark || navTheme === 'dark' ? 'black' : 'white'};
-    height: ${({ active }: NavigationStyleProps) =>
-        active ? rem('50px') : rem('100px')};
+        dark || navTheme === 'dark' ? '#1a1a1a' : 'white'};
+    height: ${rem(65)};
     z-index: 101;
     width: 100%;
     transition: 0.4s height;
 
-    >svg:first-child,
-    >svg:nth-child(2) {
+    > svg:first-child,
+    > svg:nth-child(2) {
         transform: ${({ active }: NavigationStyleProps) =>
             active ? 'scale(0.85)' : 'scale(1)'};
         transition: 0.3s transform;
@@ -56,7 +55,6 @@ export const MenuBg = styled.aside`
     position: absolute;
     width: 100%;
     height: 100%;
-    border-bottom: 1px solid #c1c1c1;
     backdrop-filter: blur(14px);
     background: rgba(255, 255, 255, 0.6);
     opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
@@ -72,16 +70,20 @@ export const RightAnchor = styled.div`
 
 export const StyledDWLogoType = styled(DWLogoType)`
     display: block;
+    position: relative;
+    top: ${rem(-3)};
     margin: 0 auto;
     * {
-        fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
+        fill: ${({ dark }: NavigationStyleProps) =>
+            dark ? '#1a1a1a' : 'white'};
     }
 `
 export const StyledDWLogo = styled(DWLogo)`
     position: absolute;
 
     * {
-        fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
+        fill: ${({ dark }: NavigationStyleProps) =>
+            dark ? '#1a1a1a' : 'white'};
     }
 `
 export const StyledByDWLogo = styled(ByDw)`
@@ -89,7 +91,8 @@ export const StyledByDWLogo = styled(ByDw)`
         active ? rem(12) : rem(20)};
 
     path {
-        fill: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
+        fill: ${({ dark }: NavigationStyleProps) =>
+            dark ? '#1a1a1a' : 'white'};
     }
 `
 
@@ -104,14 +107,6 @@ export const Backdrop = styled.div`
     background: ${({ opened }: NavigationStyleProps) =>
         opened ? 'rgba(0, 0, 0, 0.8)' : 'none'};
     transition: 0.5s all;
-`
-export const StyledDropdown = styled.div`
-    position: absolute;
-    left: ${rem(40)};
-    height: 100%;
-    color: ${({ dark }: NavigationStyleProps) => (dark ? 'black' : 'white')};
-    display: flex;
-    align-items: center;
 `
 
 export const HamburgerWrap = styled.div`
@@ -135,12 +130,11 @@ export const StyledProperty = styled.div`
 
     h3 {
         transition: 0.3s font-size;
-        font-size: ${rem(28)};
+        font-size: ${rem(20)};
         ${({ active }: NavigationStyleProps) =>
             active &&
             css`
-                font-size: ${rem(23)};
-                color: black !important;
+                color: #1a1a1a !important;
             `};
 
         ${({ dark }: NavigationStyleProps) =>

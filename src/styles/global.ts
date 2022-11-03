@@ -3,6 +3,7 @@ import { rem } from 'polished'
 import { BREAKPOINTS } from '../_constants/brekpoints'
 import GridImage from '../_components/UI/GridImage'
 import Block from '../_components/UI/Block'
+import Link from 'next/link'
 
 interface GMProps {
     columns: number
@@ -69,7 +70,7 @@ export const Content = styled.div`
 
 export const GridWrapper = styled.div`
     border-top: ${({ border }: { border?: boolean; padding: boolean }) =>
-        border ? '1px solid black' : 'none'};
+        border ? '1px solid #1a1a1a' : 'none'};
     padding: ${({ padding }) => (padding ? rem('20px') : 0)};
     padding-top: ${rem('30px')};
 
@@ -149,5 +150,19 @@ export const StyledBlockForGrid = styled(Block)`
                 width: 100%;
             }
         }
+    }
+`
+export const SeeMore = styled.div`
+    display: block;
+    padding-top: ${rem(40)};
+    margin-top: ${rem(16)};
+    border-top: 1px solid #c1c1c1;
+
+    a {
+        font-size: ${rem(16)};
+    }
+
+    a:hover {
+        text-decoration: underline;
     }
 `

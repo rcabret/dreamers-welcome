@@ -6,7 +6,7 @@ interface IconProps {
     expanded?: boolean
 }
 const IconSVG = styled.svg`
-    stroke: black;
+    stroke: #1a1a1a;
     stroke-width: 1;
     width: ${rem('26px')};
     height: ${rem('26px')};

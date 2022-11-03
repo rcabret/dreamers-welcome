@@ -103,6 +103,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
                             dark={showDarkTheme || opened}
                             id="topnav-drop"
                             links={bucketLinks}
+                            defaultLabel="CHOOSE DESTINATION"
                         />
                         <HamburgerWrap onClick={() => setPanel(!opened)}>
                             <NavToggle

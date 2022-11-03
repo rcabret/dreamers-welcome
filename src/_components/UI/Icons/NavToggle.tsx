@@ -12,9 +12,9 @@ const StyledSVG = styled.svg`
 
     polyline {
         transition: 0.4s transform;
-        stroke-width: 1.5;
+        stroke-width: 1;
         stroke: ${({ dark, opened }: NavTProps) =>
-            dark ? 'black' : 'white'};
+            dark ? '#1a1a1a' : 'white'};
     }
 
     polyline:first-child {

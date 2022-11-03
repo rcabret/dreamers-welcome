@@ -12,6 +12,7 @@ import {
     BannerGridImage,
     BlockListWrap,
     GridModule,
+    SeeMore,
     StyledBlockForGrid,
 } from '../styles/global'
 import { ConceptTextContainer } from '../styles/about/styles'
@@ -25,6 +26,7 @@ import Map from '../_components/Map'
 import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
 import PropertyGridItem from '../_components/PropertyGridItem'
 import LightBox from '../_components/LightBox'
+import Link from 'next/link'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -269,8 +271,21 @@ const Property = ({
                 <Block
                     title="FAQs"
                     noPaddingBottom
-                    content={<CollapsableList data={faq.fields.list} />}
-                />
+                    content={
+                        <>
+                            <CollapsableList
+                                data={faq.fields.list.slice(0, 5)}
+                            />
+                            {faq.fields.list.length > 5 && (
+                                <SeeMore>
+                                    <Link href={`/faq/${faq.fields.slug}`}>
+                                        SEE MORE
+                                    </Link>
+                                </SeeMore>
+                            )}
+                        </>
+                    }
+                ></Block>
             )}
             {news && (
                 <StyledBlockForGrid

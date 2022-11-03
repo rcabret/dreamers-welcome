@@ -31,13 +31,10 @@ export const StyledFooterLogo = styled(DWLogo)`
 
 export const LeftLinks = styled.div`
     float: left;
-    display: flex;
-    align-items: center;
     margin-left: ${rem(140)};
 
     ul {
         margin-top: 0;
-        width: 50%;
         float: left;
         font-size: ${rem(20)};
         font-weight: 300;
@@ -59,7 +56,7 @@ export const LeftLinks = styled.div`
 `
 
 export const ContactUs = styled(Button)`
-    position: absolute;
+    position: absolute !important;
     right: ${rem(30)};
     top: ${rem(30)};
 `

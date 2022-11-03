@@ -49,7 +49,7 @@ export const FlexContainer = styled.div`
     //max-height: 960px;
 
     * {
-        color: black;
+        color: #1a1a1a;
     }
 `
 export const StyledHeader = styled(Header)`
@@ -106,7 +106,7 @@ export const BottomAnchor = styled.div`
         cursor: pointer;
 
         svg {
-            stroke: black;
+            stroke: #1a1a1a;
             width: 100%;
             height: ${rem(40)};
             fill: none;

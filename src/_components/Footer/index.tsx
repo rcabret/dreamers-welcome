@@ -27,6 +27,9 @@ const Footer = () => {
                     <li>
                         <Link href={'/guides'}>GUIDES</Link>
                     </li>
+                    <li>
+                        <Link href={'/faqs'}>FAQs</Link>
+                    </li>
                 </ul>
                 <ul>
                     <li>
@@ -37,9 +40,6 @@ const Footer = () => {
                     </li>
                     <li>
                         <Link href={'/dw-radio'}>DW RADIO</Link>
-                    </li>
-                    <li>
-                        <Link href={'/faqs'}>FAQs</Link>
                     </li>
                 </ul>
             </LeftLinks>

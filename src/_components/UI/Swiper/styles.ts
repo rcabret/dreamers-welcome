@@ -56,6 +56,6 @@ export const SeeAllButton = styled(Button)`
 
     :hover {
         background: rgba(255, 255, 255, 0.7);
-        color: black;
+        color: #1a1a1a;
     }
 `

@@ -3,7 +3,7 @@ import React from 'react'
 const ByDw = ({ className }: { className?: string }) => (
     <svg
         className={className}
-        width="85"
+        width="70"
         height="20"
         viewBox="0 0 85 20"
         fill="none"
