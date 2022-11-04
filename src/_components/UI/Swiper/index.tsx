@@ -3,7 +3,7 @@ import { SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import React, { Component } from 'react'
 import GridImage from '../GridImage'
-import { StyledSwiper } from './styles'
+import { NavigationWrap, StyledSwiper } from './styles'
 import Swiper from 'swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import dynamic from 'next/dynamic'
@@ -65,9 +65,34 @@ class ImageGridSlider extends Component {
         }
     }
 
+    nextSlide() {
+        if (this.state.swiper) {
+            const { activeIndex, isBeginning, isEnd } = this.state.swiper
+            // @ts-ignore
+            const { items } = this.props
+            const nextIndex =
+                activeIndex + 1 <= items.length ? activeIndex + 1 : activeIndex
+            this.state.swiper.slideTo(nextIndex)
+        }
+    }
+
+    prevSlide() {
+        if (this.state.swiper) {
+            const { activeIndex, isBeginning, isEnd } = this.state.swiper
+            // @ts-ignore
+            const { items } = this.props
+            const nextIndex = activeIndex - 1 < 0 ? 0 : activeIndex - 1
+            this.state.swiper.slideTo(nextIndex)
+        }
+    }
+
     render() {
         return (
             <>
+                <NavigationWrap>
+                    <div onClick={() => this.prevSlide()}></div>
+                    <div onClick={() => this.nextSlide()}></div>
+                </NavigationWrap>
                 <StyledSwiper
                     loop={false}
                     spaceBetween={this.spaceBetween}

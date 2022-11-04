@@ -19,6 +19,28 @@ export const StyledSwiper = styled(Swiper)`
     }
 `
 
+export const NavigationWrap = styled.div`
+    top: ${rem(-65)};
+    right: ${rem(30)};
+    position: absolute;
+
+    > div {
+        height: ${rem(30)};
+        border-radius: ${rem(15)};
+        width: ${rem(30)};
+        background: white;
+        float: left;
+        border: 1px solid #1a1a1a;
+        margin-left: ${rem(10)};
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    > div:hover {
+        background: #1a1a1a;
+    }
+`
+
 export const ImageSliderWrapper = styled.div`
     position: relative;
     border-radius: ${rem(10)};
