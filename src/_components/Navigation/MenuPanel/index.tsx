@@ -65,10 +65,15 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                         <Link href="/news">NEWS</Link>
                     </li>
                     <li>
-                        <Link href="/faqs">FAQs</Link>
+                        <Link href="/faq/general">FAQs</Link>
                     </li>
                     <li>
-                        <Link href="/radio">DW RADIO</Link>
+                        <Link
+                            href="https://open.spotify.com/user/krlki7u9768cfjkk49xb4iz6n"
+                            target="_blank"
+                        >
+                            DW RADIO
+                        </Link>
                     </li>
                 </ul>
                 <Button inverse>CONTACT US</Button>

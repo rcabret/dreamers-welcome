@@ -34,10 +34,24 @@ export const NavigationWrap = styled.div`
         margin-left: ${rem(10)};
         cursor: pointer;
         transition: 0.3s;
+        position: relative;
+
+        svg {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            stroke-width: 1;
+            stroke: #1a1a1a;
+            fill: none;
+            padding: 6px;
+        }
     }
 
     > div:hover {
         background: #1a1a1a;
+        svg {
+            stroke: white;
+        }
     }
 `
 

@@ -90,8 +90,16 @@ class ImageGridSlider extends Component {
         return (
             <>
                 <NavigationWrap>
-                    <div onClick={() => this.prevSlide()}></div>
-                    <div onClick={() => this.nextSlide()}></div>
+                    <div onClick={() => this.prevSlide()}>
+                        <svg viewBox="0 0 10 16">
+                            <polyline points="0 0, 10 8, 0 16" />
+                        </svg>
+                    </div>
+                    <div onClick={() => this.nextSlide()}>
+                        <svg viewBox="0 0 10 16">
+                            <polyline points="0 0, 10 8, 0 16" />
+                        </svg>
+                    </div>
                 </NavigationWrap>
                 <StyledSwiper
                     loop={false}

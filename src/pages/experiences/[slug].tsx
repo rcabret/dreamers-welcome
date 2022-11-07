@@ -5,7 +5,6 @@ import { GridModule, GridWrapper } from '../../styles/global'
 import { useRouter } from 'next/router'
 import { getExperiences, getExperiencesPage } from '../../_lib/api'
 import ExperienceItem from '../../_components/ExperienceItem'
-import { pathToBucket } from '../../_utils/Parsers'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -28,7 +27,7 @@ const links: { name: string; slug: string }[] = [
 
 const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     const router = useRouter()
-
+    console.log('experiences', experiences)
     useEffect(() => {
         setNavTheme('dark')
     }, [])
@@ -68,7 +67,7 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
                 <GridModule columns={3}>
                     {activeExperiences && activeExperiences.length
                         ? activeExperiences.map((exp: any) => (
-                              <ExperienceItem data={exp} />
+                              <ExperienceItem data={exp.fields} />
                           ))
                         : null}
                 </GridModule>

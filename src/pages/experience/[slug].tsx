@@ -1,5 +1,10 @@
 import React, { useEffect } from 'react'
-import { BannerGridImage, GridModule, Stat } from '../../styles/global'
+import {
+    BannerGridImage,
+    BlockListWrap,
+    GridModule,
+    Stat,
+} from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import { getExperience, getExperiences } from '../../_lib/api'
 import Block from '../../_components/UI/Block'
@@ -7,6 +12,8 @@ import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import Blurb from '../../_components/UI/Blurb'
 import { parseMoneyOrTime } from '../../_utils/Parsers'
+import Header from '../../_components/Typography/Header'
+import MarkdownModule from '../../_components/Typography/MarkdownModule'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
@@ -75,10 +82,10 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                             thingsToKnow.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields
                                 return (
-                                    <div key={~~(Math.random() * i)}>
-                                        <Stat>{text}</Stat>
-                                        <BodyText size="md">{title}</BodyText>
-                                    </div>
+                                    <BlockListWrap key={title}>
+                                        <Header size={4}>{title}</Header>
+                                        <MarkdownModule data={text} />
+                                    </BlockListWrap>
                                 )
                             })}
                     </GridModule>

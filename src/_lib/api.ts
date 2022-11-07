@@ -167,7 +167,7 @@ export const getExperiences = async (bucket?: string) => {
     }
     const entries = await client.getEntries(query)
     if (entries.items) {
-        return entries.items.map((x: { fields: {} }) => x.fields)
+        return entries.items
     }
 }
 
@@ -208,5 +208,16 @@ export const getFaqs = async () => {
     })
     if (entries.items) {
         return entries.items.map((x: { fields: {} }) => x.fields)
+    }
+}
+
+export const getPage = async (slug: string) => {
+    const entries = await client.getEntries({
+        content_type: 'title',
+        'fields.slug': slug,
+    })
+
+    if (entries.items) {
+        return entries.items[0].fields
     }
 }

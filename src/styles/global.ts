@@ -166,3 +166,10 @@ export const SeeMore = styled.div`
         text-decoration: underline;
     }
 `
+
+export const PageContent = styled.div`
+    padding-right: ${rem(40)};
+    p {
+        font-size: ${rem(24)};
+    }
+`

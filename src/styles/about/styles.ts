@@ -12,3 +12,5 @@ export const StaffMetadata = styled.div`
 export const ConceptTextContainer = styled.div`
     padding-right: 40px;
 `
+
+

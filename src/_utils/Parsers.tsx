@@ -6,7 +6,7 @@ const SmallSpan = styled.span`
 `
 export const parseMoneyOrTime = (x: string, size = 20) => {
     if (x === undefined) {
-        return '';
+        return ''
     }
     const testString = x
     if (testString.indexOf('$') > -1) {
@@ -17,7 +17,7 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
             </>
         )
     }
-    if (testString.indexOf('AM') > -1) {
+    if (testString.indexOf('AM') > -1 || testString.indexOf('am') > -1) {
         return (
             <>
                 {x.replace('AM', '')}
@@ -25,7 +25,7 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
             </>
         )
     }
-    if (testString.indexOf('PM') > -1) {
+    if (testString.indexOf('PM') > -1 || testString.indexOf('pm') > -1) {
         return (
             <>
                 {x.replace('PM', '')}
