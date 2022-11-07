@@ -42,11 +42,18 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
         setSlug(queryTag)
+
+        const checkForTags = (tags: any[], slug: string) => {
+            if (!tags.length) {
+                return
+            }
+            return tags.find((tag: any) => tag.sys.id === slug)
+        }
+
         const guidesToView =
             queryTag !== 'view_all'
-                ? [...guides].filter(
-                      (guide: { metadata: { tags: { id: string }[] } }) =>
-                          guide.metadata.tags.find((tag) => tag.id === queryTag)
+                ? [...guides].filter((guide: any) =>
+                      checkForTags(guide.metadata.tags, queryTag)
                   )
                 : [...guides]
 

@@ -44,20 +44,18 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
         // @ts-ignore
         setSlug(queryTag)
 
-        const checkForTags = (tags: any[], activeSlug: string) => {
+        const checkForTags = (tags: any[], slug: string) => {
             if (!tags.length) {
                 return
             }
-            return tags.find((tag: any) => {
-                return tag.sys.id === activeSlug
-            })
+            return tags.find((tag: any) => tag.sys.id === slug)
         }
 
         const expToView =
             queryTag !== 'view_all'
-                ? [...experiences].filter((exp: any) => {
-                      return checkForTags(exp.metadata.tags, queryTag)
-                  })
+                ? [...experiences].filter((exp: any) =>
+                      checkForTags(exp.metadata.tags, queryTag)
+                  )
                 : [...experiences]
 
         setExperiences(expToView)
