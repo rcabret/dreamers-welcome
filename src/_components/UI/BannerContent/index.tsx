@@ -48,12 +48,22 @@ const StyledButton = styled(Button)`
     z-index: 90;
 `
 
+const OpacityLayer = styled.aside`
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.35);
+`
+
 interface BannerContentProps {
     headerText: string
     headerSubheader?: string
     bookNowLink?: string
     description?: string[] | string
 }
+
 const BannerContent = ({
     description,
     headerText,
@@ -61,7 +71,8 @@ const BannerContent = ({
     bookNowLink,
 }: BannerContentProps) => {
     return (
-        <>
+        <div>
+            <OpacityLayer />
             <BannerContentWrap>
                 <Text>
                     <Header size={1} uppercase>
@@ -88,7 +99,7 @@ const BannerContent = ({
             {bookNowLink && (
                 <StyledButton href={bookNowLink}>BOOK NOW</StyledButton>
             )}
-        </>
+        </div>
     )
 }
 

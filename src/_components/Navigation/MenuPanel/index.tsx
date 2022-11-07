@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
-    const activeBucketSlug = activeBucket || ''
+    console.log('activeBucket', activeBucket)
 
     const getLink = (slug: string) =>
         `/${slug}${
@@ -14,7 +14,7 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
         }`
 
     const runMainList = (remove = false) => {
-        const list: HTMLCollection =
+        const list: HTMLCollection | null =
             document.querySelector('#main_list').children
         if (list) {
             for (let i = 0; i < list.length; i++) {
@@ -51,9 +51,11 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                 </li>
                 <li>
                     <Link href={getLink('guides')}>GUIDES</Link>
+                    {!activeBucket && <aside />}
                 </li>
                 <li>
                     <Link href={getLink('experiences')}>EXPERIENCES</Link>
+                    {!activeBucket && <aside />}
                 </li>
             </MainList>
             <div className="anchorSection">

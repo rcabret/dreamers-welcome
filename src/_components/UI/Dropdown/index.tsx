@@ -51,7 +51,7 @@ const Dropdown = ({
             <div id={id}>
                 <Inner>
                     <div id={`panel-${id}`}>
-                        {isOpened ? defaultLabel : bucket}
+                        {isOpened || !bucket ? defaultLabel : bucket}
                     </div>
                     <Panel opened={isOpened}>
                         {links &&

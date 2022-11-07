@@ -53,7 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
             </StyledMain>
             <EmailCapture />
-            <Footer />
+            <Footer activeBucket={headerData?.bucket} />
         </ViewportProvider>
     )
 }

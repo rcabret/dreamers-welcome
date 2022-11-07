@@ -76,6 +76,16 @@ const blurFadeIn = keyframes`
 export const MainList = styled.ul`
     li {
         opacity: 0;
+        position: relative;
+
+        aside {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: 1;
+            top: 0;
+        }
     }
 
     .active {

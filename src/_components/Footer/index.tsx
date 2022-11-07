@@ -12,7 +12,7 @@ import {
 } from './styles'
 import moment from 'moment'
 
-const Footer = () => {
+const Footer = ({ activeBucket }: any) => {
     return (
         <FooterStyled>
             <StyledFooterLogo />
@@ -21,12 +21,17 @@ const Footer = () => {
                     <li>
                         <Link href={'/stays'}>STAYS</Link>
                     </li>
-                    <li>
-                        <Link href={'/experiences'}>EXPERIENCES</Link>
-                    </li>
-                    <li>
-                        <Link href={'/guides'}>GUIDES</Link>
-                    </li>
+                    {
+                        activeBucket &&
+                        <>
+                            <li>
+                                <Link href={'/experiences'}>EXPERIENCES</Link>
+                            </li>
+                            <li>
+                                <Link href={'/guides'}>GUIDES</Link>
+                            </li>
+                        </>
+                    }
                     <li>
                         <Link href={'/faq/general'}>FAQs</Link>
                     </li>
