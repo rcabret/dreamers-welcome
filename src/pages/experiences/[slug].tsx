@@ -43,17 +43,27 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
         setSlug(queryTag)
+
+        const checkForTags = (tags: any[], activeSlug: string) => {
+            if (!tags.length) {
+                return
+            }
+            return tags.find((tag: any) => {
+                return tag.sys.id === activeSlug
+            })
+        }
+
         const expToView =
             queryTag !== 'view_all'
-                ? [...experiences].filter(
-                      (exp: { metadata: { tags: { id: string }[] } }) =>
-                          exp.metadata.tags.find((tag) => tag.id === queryTag)
-                  )
+                ? [...experiences].filter((exp: any) => {
+                      return checkForTags(exp.metadata.tags, queryTag)
+                  })
                 : [...experiences]
 
         setExperiences(expToView)
     }, [router, router.query])
 
+    useEffect(() => {}, [activeExperiences])
     return (
         <>
             <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
