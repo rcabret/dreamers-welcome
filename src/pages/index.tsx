@@ -115,7 +115,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                         </svg>
                     </button>
                 </BottomAnchor>
-                <BannerContent headerText={landing.title} />
+                <BannerContent headerText={landing.title} showOpacity={false} />
                 <Circle id="circle">
                     <div />
                     <div id="inner" />

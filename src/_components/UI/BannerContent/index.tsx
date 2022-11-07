@@ -62,6 +62,7 @@ interface BannerContentProps {
     headerSubheader?: string
     bookNowLink?: string
     description?: string[] | string
+    showOpacity?: boolean
 }
 
 const BannerContent = ({
@@ -69,10 +70,11 @@ const BannerContent = ({
     headerText,
     headerSubheader,
     bookNowLink,
+    showOpacity = true,
 }: BannerContentProps) => {
     return (
         <div>
-            <OpacityLayer />
+            {showOpacity && <OpacityLayer />}
             <BannerContentWrap>
                 <Text>
                     <Header size={1} uppercase>
