@@ -42,15 +42,15 @@ const Guide = ({ guide }: any) => {
                 content={
                     <GridModule columns={4} sideScrollOnMobile>
                         {details &&
-                        details.map((stat: any, i: number) => {
-                            const { title, text } = stat.fields
-                            return (
-                                <div key={~~(Math.random() * i)}>
-                                    <Stat>{text}</Stat>
-                                    <BodyText size="md">{title}</BodyText>
-                                </div>
-                            )
-                        })}
+                            details.map((stat: any, i: number) => {
+                                const { title, text } = stat.fields
+                                return (
+                                    <div key={~~(Math.random() * i)}>
+                                        <Stat>{text}</Stat>
+                                        <BodyText size="md">{title}</BodyText>
+                                    </div>
+                                )
+                            })}
                     </GridModule>
                 }
             />
@@ -60,15 +60,15 @@ const Guide = ({ guide }: any) => {
                 content={
                     <GridModule columns={4} sideScrollOnMobile>
                         {thingsToKnow &&
-                        thingsToKnow.map((stat: any, i: number) => {
-                            const { title, text } = stat.fields
-                            return (
-                                <div key={~~(Math.random() * i)}>
-                                    <Stat>{text}</Stat>
-                                    <BodyText size="md">{title}</BodyText>
-                                </div>
-                            )
-                        })}
+                            thingsToKnow.map((stat: any, i: number) => {
+                                const { title, text } = stat.fields
+                                return (
+                                    <div key={~~(Math.random() * i)}>
+                                        <Stat>{text}</Stat>
+                                        <BodyText size="md">{title}</BodyText>
+                                    </div>
+                                )
+                            })}
                     </GridModule>
                 }
             />
@@ -90,8 +90,9 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 export async function getStaticPaths() {
     const guides = await getExperiences()
     const paths: any = []
-    guides.forEach((x: { slug: string }) => {
-        paths.push({ params: { slug: x.slug } })
+    guides.forEach((x: { fields: { slug: string } }) => {
+        const { slug } = x.fields
+        paths.push({ params: { slug: slug } })
     })
     return {
         // @ts-ignore

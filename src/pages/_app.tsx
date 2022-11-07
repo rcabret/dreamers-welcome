@@ -25,9 +25,10 @@ function MyApp({ Component, pageProps }: AppProps) {
         undefined
     )
     const router = useRouter()
+    const blockList = ['/[...slug]', '/experience/[slug]', '/guide/[slug]'];
 
     useEffect(() => {
-        if (router.pathname === '/[...slug]') {
+        if (blockList.includes(router.pathname)) {
             return
         }
 

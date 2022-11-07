@@ -13,25 +13,33 @@ import {
 import moment from 'moment'
 
 const Footer = ({ activeBucket }: any) => {
+    const getLink = (slug: string) =>
+        `/${slug}${
+            activeBucket
+                ? `/${activeBucket.toLowerCase().replace(' ', '')}`
+                : ''
+        }`
+
     return (
         <FooterStyled>
             <StyledFooterLogo />
             <LeftLinks>
                 <ul>
                     <li>
-                        <Link href={'/stays'}>STAYS</Link>
+                        <Link href={getLink('stays')}>STAYS</Link>
                     </li>
-                    {
-                        activeBucket &&
+                    {activeBucket && (
                         <>
                             <li>
-                                <Link href={'/experiences'}>EXPERIENCES</Link>
+                                <Link href={getLink('experiences')}>
+                                    EXPERIENCES
+                                </Link>
                             </li>
                             <li>
-                                <Link href={'/guides'}>GUIDES</Link>
+                                <Link href={getLink('guides')}>GUIDES</Link>
                             </li>
                         </>
-                    }
+                    )}
                     <li>
                         <Link href={'/faq/general'}>FAQs</Link>
                     </li>

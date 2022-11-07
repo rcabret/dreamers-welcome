@@ -28,6 +28,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     } = experience
 
     useEffect(() => {
+        console.log('in', bucket)
         setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],
