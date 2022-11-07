@@ -9,6 +9,9 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
         return ''
     }
     const testString = x
+    const amReg = /AM|am/
+    const pmReg = /PM|pm/
+
     if (testString.indexOf('$') > -1) {
         return (
             <>
@@ -17,18 +20,18 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
             </>
         )
     }
-    if (testString.indexOf('AM') > -1 || testString.indexOf('am') > -1) {
+    if (amReg.test(x)) {
         return (
             <>
-                {x.replace('AM', '')}
+                {x.replace(amReg, '')}
                 <SmallSpan size={size}>AM</SmallSpan>
             </>
         )
     }
-    if (testString.indexOf('PM') > -1 || testString.indexOf('pm') > -1) {
+    if (pmReg.test(x)) {
         return (
             <>
-                {x.replace('PM', '')}
+                {x.replace(pmReg, '')}
                 <SmallSpan size={size}>PM</SmallSpan>
             </>
         )

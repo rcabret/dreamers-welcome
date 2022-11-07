@@ -57,12 +57,12 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                 title="DETAILS"
                 noPaddingBottom
                 content={
-                    <GridModule columns={4} sideScrollOnMobile>
+                    <GridModule columns={details.length} sideScrollOnMobile>
                         {details &&
                             details.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields
                                 return (
-                                    <div key={~~(Math.random() * i)}>
+                                    <div key={title}>
                                         <Stat>
                                             {parseMoneyOrTime(text, 30)}
                                         </Stat>
@@ -77,7 +77,10 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
             <Block
                 title="THINGS TO KNOW"
                 content={
-                    <GridModule columns={4} sideScrollOnMobile>
+                    <GridModule
+                        columns={thingsToKnow.length}
+                        sideScrollOnMobile
+                    >
                         {thingsToKnow &&
                             thingsToKnow.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields
@@ -109,8 +112,9 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 export async function getStaticPaths() {
     const experience = await getExperiences()
     const paths: any = []
-    experience.forEach((x: { slug: string }) => {
-        paths.push({ params: { slug: x.slug } })
+    experience.forEach((x: { fields: { slug: string } }) => {
+        const { slug } = x.fields
+        paths.push({ params: { slug: slug } })
     })
     return {
         // @ts-ignore
