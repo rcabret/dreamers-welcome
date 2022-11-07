@@ -20,18 +20,17 @@ export const StyledSwiper = styled(Swiper)`
 `
 
 export const NavigationWrap = styled.div`
-    top: ${rem(-65)};
+    top: ${rem(-56)};
     right: ${rem(30)};
     position: absolute;
 
     > div {
-        height: ${rem(30)};
-        border-radius: ${rem(15)};
-        width: ${rem(30)};
+        height: ${rem(34)};
+        border-radius: 50%;
+        width: ${rem(34)};
         background: white;
         float: left;
-        border: 1px solid #1a1a1a;
-        margin-left: ${rem(10)};
+        margin-left: ${rem(20)};
         cursor: pointer;
         transition: 0.3s;
         position: relative;
@@ -43,14 +42,22 @@ export const NavigationWrap = styled.div`
             stroke-width: 1;
             stroke: #1a1a1a;
             fill: none;
-            padding: 6px;
+            padding: 8px;
         }
     }
 
     > div:hover {
         background: #1a1a1a;
         svg {
+            left: ${rem(1)};
             stroke: white;
+        }
+    }
+
+    > div:first-child {
+        svg {
+            left: ${rem(-1)};
+            transform: rotate(180deg);
         }
     }
 `

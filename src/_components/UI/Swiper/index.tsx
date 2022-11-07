@@ -89,15 +89,15 @@ class ImageGridSlider extends Component {
     render() {
         return (
             <>
-                <NavigationWrap>
-                    <div onClick={() => this.prevSlide()}>
-                        <svg viewBox="0 0 10 16">
-                            <polyline points="0 0, 10 8, 0 16" />
+                <NavigationWrap className="navigation-wrap">
+                    <div onClick={() => this.nextSlide()}>
+                        <svg viewBox="0 0 8 16">
+                            <polyline points="0 0, 8 8, 0 16" />
                         </svg>
                     </div>
-                    <div onClick={() => this.nextSlide()}>
-                        <svg viewBox="0 0 10 16">
-                            <polyline points="0 0, 10 8, 0 16" />
+                    <div onClick={() => this.prevSlide()}>
+                        <svg viewBox="0 0 8 16">
+                            <polyline points="0 0, 8 8, 0 16" />
                         </svg>
                     </div>
                 </NavigationWrap>

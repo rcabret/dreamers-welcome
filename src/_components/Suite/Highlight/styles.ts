@@ -28,7 +28,7 @@ export const HighlightBlurb = styled.div`
 export const SliderWrap = styled.div`
     overflow: hidden;
     width: 100%;
-    margin-top: ${rem('40px')};
+    margin-top: ${rem(30)};
 
     .swiper {
         overflow: visible;

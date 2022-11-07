@@ -30,6 +30,10 @@ const StaysSwiperWrap = styled.div`
         max-width: 30%;
         min-width: ${rem(370)};
     }
+
+    .navigation-wrap {
+        top: ${rem(-46)};
+    }
 `
 const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
     const { blurb, title, guides, experiences, coverImage } = data
