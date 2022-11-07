@@ -32,7 +32,6 @@ const StaysSwiperWrap = styled.div`
     }
 `
 const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
-    console.log('data', data);
     const { blurb, title, guides, experiences, coverImage } = data
 
     useEffect(() => {

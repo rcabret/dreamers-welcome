@@ -27,7 +27,6 @@ const links: { name: string; slug: string }[] = [
 
 const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
     const router = useRouter()
-    console.log('experiences', experiences)
     useEffect(() => {
         setNavTheme('dark')
     }, [])
