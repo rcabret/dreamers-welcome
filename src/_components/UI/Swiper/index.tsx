@@ -59,7 +59,7 @@ class ImageGridSlider extends Component {
                 height: this.props.fixedHeight,
             })
         }
-
+        console.log(prevProps.slug, this.slug)
         if (prevProps.slug !== this.slug) {
             prevState.swiper.slideTo(0)
         }
@@ -119,7 +119,9 @@ class ImageGridSlider extends Component {
                                 <>
                                     <SwiperSlide
                                         className="next"
-                                        key={Math.random() * i}
+                                        key={`${this.slug}-${
+                                            Math.random() * i
+                                        }`}
                                     >
                                         {this.isProperties ? (
                                             <PropertyGridItem propertyObj={x} />

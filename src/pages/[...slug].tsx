@@ -123,16 +123,18 @@ const Property = ({
         // @ts-ignore
         setSlug(viewToShow)
 
-        const finalView =
-            pType === 'Hotel'
-                ? getHotelView(viewToShow)
-                : suites &&
-                  suites.length &&
-                  suites.find(
-                      (x: { fields: { slug: string } }) =>
-                          x.fields.slug === viewToShow
-                  )
+        let finalView
 
+        if (pType === 'Hotel') {
+            finalView = getHotelView(viewToShow)
+        } else {
+            finalView =
+                suites &&
+                suites.length &&
+                suites.find((x: any) => x.fields.slug === viewToShow)
+        }
+
+        console.log('finalView', finalView)
         setView(finalView)
     }, [router.query])
 
