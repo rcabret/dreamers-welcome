@@ -6,13 +6,13 @@ export default function (req: any, res: any) {
         host: 'smtp.gmail.com',
         auth: {
             user: 'dw.contact.form@gmail.com',
-            pass: 'fytgvlugoftplwkq',
+            pass: process.env.NEXT_PUBLIC_BURNER_EMAIL_PW,
         },
         secure: true,
     })
 
     const mailData = {
-        from: 'demo email',
+        from: 'New DW Contact Form Submission',
         to: 'dreamerswelcome.web@gmail.com',
         subject: `Message From ${req.body.name}`,
         text: req.body.message + ' | Sent from: ' + req.body.email,
@@ -21,10 +21,10 @@ export default function (req: any, res: any) {
     }
 
     transporter.sendMail(mailData, function (err: any, info: any) {
-        if (err) console.log('in here', err)
-        else console.log('info', info)
+        if (err) console.error(err)
+        else console.log(info)
     })
 
     res.status(200)
-    res.end();
+    res.end()
 }

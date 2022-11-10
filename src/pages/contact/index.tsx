@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Content } from '../../styles/global'
-import { getBurnerEmailPassword } from '../../_lib/apiConstants'
 
-const MailchimpFormContainer = ({ url }: any) => {
+const Contact = ({ setNavTheme }) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [subject, setSubject] = useState('')
@@ -10,9 +9,12 @@ const MailchimpFormContainer = ({ url }: any) => {
     const [message, setMessage] = useState('')
     const [submitted, setSubmitted] = useState(false)
 
+    useEffect(() => {
+        setNavTheme('dark')
+    }, [])
+
     const handleSubmit = (e: any) => {
         e.preventDefault()
-        console.log('Sending')
         let data = {
             name,
             subject,
@@ -44,5 +46,4 @@ const MailchimpFormContainer = ({ url }: any) => {
     )
 }
 
-export default MailchimpFormContainer
-
+export default Contact
