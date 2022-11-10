@@ -34,9 +34,7 @@ const Contact = ({ setNavTheme }) => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(h),
-        }).then((res) => {
-            console.log('Response received', res)
-        })
+        }).then((res) => {})
     }
 
     return (

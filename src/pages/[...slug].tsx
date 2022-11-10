@@ -134,7 +134,6 @@ const Property = ({
                 suites.find((x: any) => x.fields.slug === viewToShow)
         }
 
-        console.log('finalView', finalView)
         setView(finalView)
     }, [router.query])
 
