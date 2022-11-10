@@ -20,42 +20,29 @@ const MailchimpFormContainer = ({ url }: any) => {
             email,
             message,
         }
+        const h = {
+            name: 'Ricardo',
+            email: 'hello@test',
+            message: 'Test test test',
+        }
         fetch('/api/contact', {
             method: 'POST',
             headers: {
                 Accept: 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(h),
         }).then((res) => {
-            console.log('Response received')
-            if (res.status === 200) {
-                console.log('Response succeeded!')
-                setSubmitted(true)
-                setName('')
-                setEmail('')
-                setSubject('')
-                setProperty('')
-                setMessage('')
-            }
+            console.log('Response received', res)
         })
     }
 
     return (
         <Content padding>
-            <div>Hello here goes a form</div>
+            <div onClick={(e) => handleSubmit(e)}>Hello here goes a form</div>
         </Content>
     )
 }
 
 export default MailchimpFormContainer
 
-export async function getStaticProps(context: { params: { slug: string } }) {
-    const url = getBurnerEmailPassword()
-
-    return {
-        props: {
-            url,
-        },
-    }
-}

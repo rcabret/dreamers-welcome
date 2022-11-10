@@ -44,40 +44,42 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
 
     return (
         <Panel opened={opened} onClick={() => onClose(false)}>
-            <MainList id="main_list">
-                <li>
-                    <Link href={getLink('stays')}>STAYS</Link>
-                </li>
-                <li>
-                    <Link href={getLink('guides')}>GUIDES</Link>
-                    {!activeBucket && <aside />}
-                </li>
-                <li>
-                    <Link href={getLink('experiences')}>EXPERIENCES</Link>
-                    {!activeBucket && <aside />}
-                </li>
-            </MainList>
-            <div className="anchorSection">
-                <ul>
+            <div>
+                <MainList id="main_list">
                     <li>
-                        <Link href="/about">ABOUT</Link>
+                        <Link href={getLink('stays')}>STAYS</Link>
                     </li>
                     <li>
-                        <Link href="/news">NEWS</Link>
+                        <Link href={getLink('guides')}>GUIDES</Link>
+                        {!activeBucket && <aside />}
                     </li>
                     <li>
-                        <Link href="/faq/general">FAQs</Link>
+                        <Link href={getLink('experiences')}>EXPERIENCES</Link>
+                        {!activeBucket && <aside />}
                     </li>
-                    <li>
-                        <Link
-                            href="https://open.spotify.com/user/krlki7u9768cfjkk49xb4iz6n"
-                            target="_blank"
-                        >
-                            DW RADIO
-                        </Link>
-                    </li>
-                </ul>
-                <Button inverse>CONTACT US</Button>
+                </MainList>
+                <div className="anchorSection">
+                    <ul>
+                        <li>
+                            <Link href="/about">ABOUT</Link>
+                        </li>
+                        <li>
+                            <Link href="/news">NEWS</Link>
+                        </li>
+                        <li>
+                            <Link href="/faq/general">FAQs</Link>
+                        </li>
+                        <li>
+                            <Link
+                                href="https://open.spotify.com/user/krlki7u9768cfjkk49xb4iz6n"
+                                target="_blank"
+                            >
+                                DW RADIO
+                            </Link>
+                        </li>
+                    </ul>
+                    <Button inverse>CONTACT US</Button>
+                </div>
             </div>
         </Panel>
     )

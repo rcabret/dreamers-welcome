@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@formspree/react": "^2.4.1",
     "contentful": "^9.1.32",
     "moment": "^2.29.4",
     "next": "12.2.0",

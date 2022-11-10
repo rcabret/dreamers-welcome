@@ -1,5 +1,6 @@
 import styled, { keyframes } from 'styled-components'
 import { rem } from 'polished'
+import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
 interface NavigationStyleProps {
     dark?: boolean
@@ -13,13 +14,20 @@ export const Panel = styled.div`
     position: fixed;
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : rem(-440))};
     width: ${rem(440)};
-    padding: ${rem(40)};
     height: 100vh;
     z-index: 99;
     top: 0;
     transition: 0.5s right cubic-bezier(0.65, 0, 0.35, 1);
     background: white;
     color: #1a1a1a;
+    overflow-y: scroll;
+
+    > div {
+        padding: ${rem(40)};
+        height: 100%;
+        min-height: 700px;
+        position: relative;
+    }
 
     ul {
         margin-top: ${rem(100)};
@@ -59,6 +67,11 @@ export const Panel = styled.div`
             bottom: ${rem(30)};
             margin: 0;
         }
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        width: 100%;
+        right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : '-100%')};
     }
 `
 

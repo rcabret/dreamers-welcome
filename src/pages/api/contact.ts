@@ -5,15 +5,15 @@ export default function (req: any, res: any) {
         port: 465,
         host: 'smtp.gmail.com',
         auth: {
-            user: 'demo email',
-            pass: process.env.password,
+            user: 'dw.contact.form@gmail.com',
+            pass: 'fytgvlugoftplwkq',
         },
         secure: true,
     })
 
     const mailData = {
         from: 'demo email',
-        to: 'your email',
+        to: 'dreamerswelcome.web@gmail.com',
         subject: `Message From ${req.body.name}`,
         text: req.body.message + ' | Sent from: ' + req.body.email,
         html: `<div>${req.body.message}</div>
@@ -21,9 +21,10 @@ export default function (req: any, res: any) {
     }
 
     transporter.sendMail(mailData, function (err: any, info: any) {
-        if (err) console.log(err)
-        else console.log(info)
+        if (err) console.log('in here', err)
+        else console.log('info', info)
     })
 
     res.status(200)
+    res.end();
 }
