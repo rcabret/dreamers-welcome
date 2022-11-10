@@ -14,10 +14,13 @@ export default function (req: any, res: any) {
     const mailData = {
         from: 'New DW Contact Form Submission',
         to: 'dreamerswelcome.web@gmail.com',
-        subject: `Message From ${req.body.name}`,
+        subject: `New DW Contact Form Submission from ${req.body.name}`,
         text: req.body.message + ' | Sent from: ' + req.body.email,
-        html: `<div>${req.body.message}</div>
-               <p>Sent from: ${req.body.email}</p>`,
+        html: `<p>Sent from: ${req.body.email}</p>
+                <div>Name: ${req.body.name}</div>
+                <div>Subject: ${req.body.subject}</div>
+                <div>Property: ${req.body.property}</div>
+                <div>${req.body.message}</div>`,
     }
 
     transporter.sendMail(mailData, function (err: any, info: any) {

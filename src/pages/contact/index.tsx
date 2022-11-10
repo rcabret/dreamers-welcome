@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Content } from '../../styles/global'
 
-const Contact = ({ setNavTheme }) => {
+const Contact = ({ setNavTheme }: any) => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [subject, setSubject] = useState('')
@@ -22,18 +22,14 @@ const Contact = ({ setNavTheme }) => {
             email,
             message,
         }
-        const h = {
-            name: 'Ricardo',
-            email: 'hello@test',
-            message: 'Test test test',
-        }
+
         fetch('/api/contact', {
             method: 'POST',
             headers: {
                 Accept: 'application/json, text/plain, */*',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(h),
+            body: JSON.stringify(data),
         }).then((res) => {})
     }
 
