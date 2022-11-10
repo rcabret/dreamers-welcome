@@ -19,6 +19,7 @@ const StyledButtonInput = styled(InputField)`
     height: 100%;
     right: ${rem(10)};
     width: 40px;
+    cursor: pointer;
 
     svg {
         width: 24px;

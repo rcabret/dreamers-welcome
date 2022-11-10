@@ -48,6 +48,7 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
                                 return (
                                     <div key={~~(Math.random() * i)}>
                                         <GridImage
+                                            sizes={'33vw'}
                                             imageObj={founder.fields.coverImage}
                                             ratio={1}
                                         />
