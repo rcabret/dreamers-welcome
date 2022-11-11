@@ -1,87 +1,14 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { Content } from '../../styles/global'
-import styled from 'styled-components'
 import { getAllProperties } from '../../_lib/api'
-import { rem } from 'polished'
 import Header from '../../_components/Typography/Header'
-
-const FormContainer = styled.div`
-    max-width: ${rem(700)};
-    margin: ${rem(40)} auto;
-    padding: ${rem(40)};
-    border-radius: ${rem(10)};
-    border: 1px solid #c1c1c1;
-    margin-bottom: ${rem(100)};
-
-    input,
-    select,
-    textarea {
-        width: 100%;
-        outline: none;
-        box-shadow: none;
-        border: 1px solid #c1c1c1;
-        font-size: ${rem(18)} !important;
-        display: block;
-        margin-bottom: ${rem(20)};
-        font-family: 'Yellix', sans-serif !important;
-        padding: ${rem(10)} ${rem(20)};
-        background: rgba(217, 217, 217, 0.45);
-    }
-
-    textarea {
-        padding: ${rem(20)};
-        resize: none;
-    }
-
-    input[type='submit'] {
-        background: black;
-        border-radius: ${rem(40)};
-        color: white;
-    }
-
-    h4,
-    h2 {
-        text-align: center;
-        margin-bottom: ${rem(40)};
-        display: inline-block;
-        width: 100%;
-    }
-
-    h2 {
-        margin-top: ${rem(40)};
-        padding-bottom: ${rem(30)};
-        border-bottom: 1px solid #c1c1c1;
-        margin-bottom: ${rem(60)};
-    }
-`
-
-const StyledInput = styled.input`
-    border-radius: ${rem(40)};
-    height: ${rem(50)};
-    padding: ${rem(20)};
-`
-
-const StyledSelect = styled.select`
-    border-radius: ${rem(40)};
-    height: ${rem(50)};
-
-    option:disabled {
-        color: #c1c1c1 !important;
-    }
-
-    label {
-        position: relative;
-    }
-    label:after {
-        right: 80px;
-    }
-`
-
-const StyledTextarea = styled.textarea`
-    border-radius: ${rem(10)};
-    height: ${rem(150)};
-`
+import {
+    FormContainer,
+    StyledInput,
+    StyledSelect,
+    StyledTextarea,
+} from '../../styles/contact/styles'
 
 const Contact = ({ properties, setNavTheme }: any) => {
     useEffect(() => {
