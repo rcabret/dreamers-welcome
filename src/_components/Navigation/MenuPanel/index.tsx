@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
-
     const getLink = (slug: string) =>
         `/${slug}${
             activeBucket
@@ -78,7 +77,9 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                             </Link>
                         </li>
                     </ul>
-                    <Button inverse>CONTACT US</Button>
+                    <Button inverse href="/contact">
+                        CONTACT US
+                    </Button>
                 </div>
             </div>
         </Panel>

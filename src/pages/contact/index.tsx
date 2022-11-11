@@ -42,36 +42,38 @@ const Contact = ({ properties, setNavTheme }: any) => {
                 <form onSubmit={handleSubmit((data) => console.log(data))}>
                     <StyledInput
                         {...register('name', { required: true })}
-                        placeholder="Full Name"
+                        placeholder="NAME"
                     />
                     {errors.name && <p>Please enter your name.</p>}
                     <StyledInput
-                        placeholder="Email"
+                        placeholder="EMAIL"
                         type="email"
                         {...register('email', { required: true })}
                     />
                     {errors.email && <p>Please enter an email format.</p>}
                     <StyledInput
                         {...register('subject', { required: true })}
-                        placeholder="Subject"
+                        placeholder="SUBJECT"
                     />
                     {errors.subject && <p>Please select subject.</p>}
                     <StyledSelect {...register('property', { required: true })}>
                         <>
                             <option value="" disabled selected>
-                                Select property
+                                SELECT PROPERTY
                             </option>
                             {properties &&
                                 properties.length &&
                                 properties.map((p: any) => (
-                                    <option>{p.propertyName}</option>
+                                    <option>
+                                        {p.propertyName.toUpperCase()}
+                                    </option>
                                 ))}
                         </>
                     </StyledSelect>
                     {errors.property && <p>Please select subject.</p>}
                     <StyledTextarea
                         {...register('message', { required: true })}
-                        placeholder="Message"
+                        placeholder="MESSAGE"
                     />
                     {errors.message && <p>Please enter message.</p>}
                     <StyledInput type="submit" value="MESSAGE US" />
