@@ -29,10 +29,21 @@ export const FormContainer = styled.div`
         resize: none;
     }
 
-    input[type='submit'] {
-        background: black;
+    input[type='submit'],
+    input[type='submit']:active {
+        background: #1a1a1a;
+        border: 1px solid #1a1a1a;
         border-radius: ${rem(40)};
         color: white;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: ${rem(40)};
+    }
+
+    input[type='submit']:hover {
+        background: white;
+        border-radius: ${rem(40)};
+        color: #1a1a1a;
     }
 
     h4,
@@ -48,6 +59,11 @@ export const FormContainer = styled.div`
         padding-bottom: ${rem(30)};
         border-bottom: 1px solid #c1c1c1;
         margin-bottom: ${rem(40)};
+    }
+
+    p {
+        padding-left: ${rem(20)};
+        margin-top: ${rem(10)};
     }
 `
 

@@ -41,9 +41,10 @@ const Contact = ({ properties, setNavTheme }: any) => {
                 <Header size={2}>Get in touch with us!</Header>
                 <form onSubmit={handleSubmit((data) => console.log(data))}>
                     <StyledInput
-                        {...register('Name')}
+                        {...register('name', { required: true })}
                         placeholder="Full Name"
                     />
+                    {errors.name && <p>Please enter your name.</p>}
                     <StyledInput
                         placeholder="Email"
                         type="email"
@@ -51,11 +52,11 @@ const Contact = ({ properties, setNavTheme }: any) => {
                     />
                     {errors.email && <p>Please enter an email format.</p>}
                     <StyledInput
-                        {...register('subject')}
+                        {...register('subject', { required: true })}
                         placeholder="Subject"
                     />
-                    {errors.age && <p>Please enter number for age.</p>}
-                    <StyledSelect {...register('property')}>
+                    {errors.subject && <p>Please select subject.</p>}
+                    <StyledSelect {...register('property', { required: true })}>
                         <>
                             <option value="" disabled selected>
                                 Select property
@@ -67,11 +68,13 @@ const Contact = ({ properties, setNavTheme }: any) => {
                                 ))}
                         </>
                     </StyledSelect>
+                    {errors.property && <p>Please select subject.</p>}
                     <StyledTextarea
-                        {...register('message')}
+                        {...register('message', { required: true })}
                         placeholder="Message"
                     />
-                    <StyledInput type="submit" value="Message Us" />
+                    {errors.message && <p>Please enter message.</p>}
+                    <StyledInput type="submit" value="MESSAGE US" />
                 </form>
             </FormContainer>
         </Content>
