@@ -1,8 +1,10 @@
 import styled from 'styled-components'
 import { rem } from 'polished'
+import BodyText from '../../_components/Typography/BodyText'
 
 export const FormContainer = styled.div`
     max-width: ${rem(700)};
+    min-height: ${rem(700)};
     margin: ${rem(40)} auto;
     padding: ${rem(40)};
     border-radius: ${rem(10)};
@@ -44,6 +46,13 @@ export const FormContainer = styled.div`
         background: white;
         border-radius: ${rem(40)};
         color: #1a1a1a;
+    }
+
+    input[type='submit']:disabled {
+        background: #d9d9d9 !important;
+        border: 1px solid #d9d9d9 !important;
+        cursor: default !important;
+        color: white !important;
     }
 
     h4,
@@ -108,4 +117,11 @@ export const StyledSelectWrapper = styled.div`
         height: 100%;
         width: ${rem(20)};
     }
+`
+
+export const StyledSuccessBodyText = styled(BodyText)`
+    max-width: ${rem(700)};
+    margin: 0 auto;
+    text-align: center;
+    padding-top: ${rem(200)};
 `
