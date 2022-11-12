@@ -338,7 +338,7 @@ export default Property
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
     const otherStays = await getOtherStays(
-        context.params.slug[0],
+        propertyResponse.bucket[0],
         propertyResponse.slug
     )
 
