@@ -8,7 +8,9 @@ import {
     StyledInput,
     StyledSelect,
     StyledTextarea,
+    StyledSelectWrapper,
 } from '../../styles/contact/styles'
+import Chevron from '../../_components/UI/Icons/Chevron'
 
 const Contact = ({ properties, setNavTheme }: any) => {
     useEffect(() => {
@@ -56,20 +58,25 @@ const Contact = ({ properties, setNavTheme }: any) => {
                         placeholder="SUBJECT"
                     />
                     {errors.subject && <p>Please select subject.</p>}
-                    <StyledSelect {...register('property', { required: true })}>
-                        <>
-                            <option value="" disabled selected>
-                                SELECT PROPERTY
-                            </option>
-                            {properties &&
-                                properties.length &&
-                                properties.map((p: any) => (
-                                    <option>
-                                        {p.propertyName.toUpperCase()}
-                                    </option>
-                                ))}
-                        </>
-                    </StyledSelect>
+                    <StyledSelectWrapper>
+                        <StyledSelect
+                            {...register('property', { required: true })}
+                        >
+                            <>
+                                <option value="" disabled selected>
+                                    SELECT PROPERTY
+                                </option>
+                                {properties &&
+                                    properties.length &&
+                                    properties.map((p: any) => (
+                                        <option>
+                                            {p.propertyName.toUpperCase()}
+                                        </option>
+                                    ))}
+                            </>
+                        </StyledSelect>
+                        <Chevron dark />
+                    </StyledSelectWrapper>
                     {errors.property && <p>Please select subject.</p>}
                     <StyledTextarea
                         {...register('message', { required: true })}

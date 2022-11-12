@@ -76,6 +76,9 @@ export const StyledInput = styled.input`
 export const StyledSelect = styled.select`
     border-radius: ${rem(40)};
     height: ${rem(50)};
+    -moz-appearance: none; /* Firefox */
+    -webkit-appearance: none; /* Safari and Chrome */
+    appearance: none;
 
     option:disabled {
         color: #c1c1c1 !important;
@@ -91,5 +94,17 @@ export const StyledSelect = styled.select`
 
 export const StyledTextarea = styled.textarea`
     border-radius: ${rem(10)};
-    height: ${rem(150)};
+    height: ${rem(200)};
+`
+
+export const StyledSelectWrapper = styled.div`
+    position: relative;
+
+    svg {
+        position: absolute;
+        right: ${rem(18)};
+        top: ${rem(3)};
+        height: 100%;
+        width: ${rem(20)};
+    }
 `
