@@ -79,6 +79,7 @@ export const StyledSelect = styled.select`
     -moz-appearance: none; /* Firefox */
     -webkit-appearance: none; /* Safari and Chrome */
     appearance: none;
+    cursor: pointer;
 
     option:disabled {
         color: #c1c1c1 !important;
