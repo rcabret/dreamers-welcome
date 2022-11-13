@@ -68,14 +68,6 @@ const TopNav = ({ headerData, navTheme }: any) => {
         if (headerData && headerData?.simpleNav === undefined) {
             headerData.simpleNav = false
         }
-
-        /*if (
-            headerData &&
-            headerData?.bucket === undefined &&
-            !headerData.simpleNav
-        ) {
-            headerData.bucket = 'Choose destination'
-        }*/
     }, [headerData])
 
     return (
