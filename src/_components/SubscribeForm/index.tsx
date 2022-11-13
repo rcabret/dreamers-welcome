@@ -5,12 +5,12 @@ import { rem } from 'polished'
 
 const Form = styled.form`
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-width: ${rem(600)};
+    margin: 0 auto;
 
     > div {
         position: relative;
+        width: 100%;
     }
 `
 

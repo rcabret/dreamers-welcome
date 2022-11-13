@@ -15,19 +15,7 @@ export const SubNav = styled.div`
     white-space: nowrap !important;
     padding: 0 ${rem(20)};
     padding-bottom: ${rem(5)};
-
-    .separator {
-        height: 1px;
-        left: 0;
-        background-color: #c1c1c1;
-        width: calc(100%);
-        position: absolute;
-        bottom: 0;
-    }
-
-    .separator.top {
-        top: 0;
-    }
+    border-bottom: 1px solid #c1c1c1;
 `
 
 export const SubLink = styled(Button)`

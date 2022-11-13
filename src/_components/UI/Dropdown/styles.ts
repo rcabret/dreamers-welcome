@@ -9,6 +9,12 @@ interface P {
     collapse?: boolean
 }
 
+export const StyledSelect = styled.select`
+    option:hover {
+        background: white;
+    }
+`
+
 export const StyledDropdown = styled.div`
     position: absolute;
     left: ${rem(30)};
@@ -16,10 +22,12 @@ export const StyledDropdown = styled.div`
     color: ${({ dark }: P) => (dark ? '#1a1a1a' : 'white')};
     display: flex;
     align-items: center;
+    min-width: 240px;
     cursor: pointer;
     font-size: ${rem(16)};
     text-transform: uppercase;
     letter-spacing: ${rem(0.5)};
+    z-index: 1;
 `
 
 export const Panel = styled.ul`

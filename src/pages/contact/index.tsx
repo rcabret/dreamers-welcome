@@ -40,6 +40,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
         })
     }
 
+    // @ts-ignore
     return (
         <Content padding>
             <div style={{ margin: '0 15px' }}>

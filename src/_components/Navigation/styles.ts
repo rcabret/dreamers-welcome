@@ -66,6 +66,16 @@ export const RightAnchor = styled.div`
     width: ${({ opened }: { opened: boolean }) => (opened ? rem(440) : '35vw')};
     top: 0;
     transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        width: ${({ opened }: { opened: boolean }) =>
+            opened ? rem(440) : rem(0)};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        width: ${({ opened }: { opened: boolean }) =>
+            opened ? '100%' : rem(0)};
+    }
 `
 
 export const StyledDWLogoType = styled(DWLogoType)`

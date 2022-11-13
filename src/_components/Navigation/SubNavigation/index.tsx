@@ -1,6 +1,5 @@
 import React from 'react'
 import { useRouter } from 'next/router'
-import BodyText from '../../Typography/BodyText'
 import { SubLink, SubNav } from '../../../styles/navigation/styles'
 
 const SubNavigation = ({
@@ -65,7 +64,6 @@ const SubNavigation = ({
                         )
                     })}
             </div>
-            <div className="separator" />
         </SubNav>
     )
 }

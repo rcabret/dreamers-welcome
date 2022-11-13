@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Inner, Panel, StyledDropdown } from './styles'
+import { Inner, Panel, StyledDropdown, StyledSelect } from './styles'
 import { useRouter } from 'next/router'
 import Chevron from '../Icons/Chevron'
 
@@ -41,6 +41,19 @@ const Dropdown = ({
             document.removeEventListener('click', click)
         }
     }, [])
+
+   /* return (
+        <StyledSelect>
+            <option disabled selected>
+                {defaultLabel}
+            </option>
+            {links &&
+                links.length &&
+                links.map((link) => {
+                    return <option>{link.label}</option>
+                })}
+        </StyledSelect>
+    )*/
 
     return (
         <StyledDropdown

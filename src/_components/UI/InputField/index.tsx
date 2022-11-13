@@ -5,7 +5,7 @@ import { rem } from 'polished'
 const StyledInput = styled.input`
     border-radius: ${rem(40)};
     height: ${rem(50)};
-    width: ${rem(600)};
+    width: 100%;
     outline: none;
     box-shadow: none;
     border: 1px solid #c1c1c1;
