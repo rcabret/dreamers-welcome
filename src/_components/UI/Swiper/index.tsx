@@ -124,7 +124,7 @@ class ImageGridSlider extends Component {
                                         }`}
                                     >
                                         {this.isProperties ? (
-                                            <PropertyGridItem propertyObj={x} />
+                                            <PropertyGridItem collapsed propertyObj={x} />
                                         ) : (
                                             <GridImage
                                                 fixedHeight={this.state.height}

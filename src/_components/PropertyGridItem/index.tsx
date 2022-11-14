@@ -17,8 +17,12 @@ import { ItemWrapper } from '../../styles/global'
 
 interface GridItemProps {
     propertyObj: any
+    collapsed?: boolean
 }
-const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
+const PropertyGridItem = ({
+    propertyObj,
+    collapsed = false,
+}: GridItemProps) => {
     const {
         bannerDescriptionList,
         tileImage,
@@ -32,7 +36,7 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
     const [copiedToClipboard, setClipboard] = useState(false)
 
     const copyToClipboard = () => {
-        const copyText = `https://www.dreamerswelcome.com/${slug}`
+        const copyText = `${window.location.host}/${slug}`
         navigator.clipboard.writeText(copyText)
         setClipboard(true)
 
@@ -93,13 +97,16 @@ const PropertyGridItem = ({ propertyObj }: GridItemProps) => {
                             </a>
                         </Link>
                         <BottomContainer>
-                            <Location>
+                            <Location collapsed={collapsed}>
                                 <LocationPin />
                                 <BodyText size={'sm'}>
                                     {propertyType[0]}, {location}
                                 </BodyText>
                             </Location>
-                            <StyledButton href={bookNowLink}>
+                            <StyledButton
+                                collapsed={collapsed}
+                                href={bookNowLink}
+                            >
                                 BOOK NOW
                             </StyledButton>
                         </BottomContainer>

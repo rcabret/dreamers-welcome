@@ -316,6 +316,7 @@ const Property = ({
                             {otherStays.length &&
                                 otherStays.map((x: any, i: number) => (
                                     <PropertyGridItem
+                                        collapsed
                                         key={x.propertySlug}
                                         propertyObj={x}
                                     />

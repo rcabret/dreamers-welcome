@@ -38,6 +38,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
                         properties.map(
                             (property: { slug: string }, i: number) => (
                                 <PropertyGridItem
+                                    collapsed
                                     key={property.slug + i}
                                     propertyObj={property}
                                 />

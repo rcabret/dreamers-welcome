@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import Button from '../UI/Buttons/Button'
 import { BREAKPOINTS } from '../../_constants/brekpoints'
@@ -26,6 +26,14 @@ export const Location = styled.div`
         display: inline-block;
         margin-left: ${rem('4px')};
     }
+
+    ${({ collapsed }: { collapsed?: boolean }) =>
+        collapsed &&
+        css`
+            position: relative;
+            margin-bottom: ${rem(20)};
+            width: 100%;
+        `};
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         position: relative;
@@ -80,6 +88,12 @@ export const TopContainer = styled.div`
 
 export const StyledButton = styled(Button)`
     min-width: auto;
+
+    ${({ collapsed }: { collapsed?: boolean }) =>
+        collapsed &&
+        css`
+            width: 100%;
+        `};
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         width: 100%;
