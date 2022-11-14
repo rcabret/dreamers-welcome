@@ -34,9 +34,12 @@ const TopNav = ({ headerData, navTheme }: any) => {
     const [showDarkTheme, setTheme] = useState(
         (navTheme === 'dark' && !opened) || (top && !opened)
     )
-    useEffect(() => {
 
-        console.log("headerData", headerData);
+    useEffect(() => {
+        console.log('headerData', headerData)
+    }, [headerData])
+
+    useEffect(() => {
         const onScroll = () => {
             const scrollTop = window.scrollY
             setTop(scrollTop > 100)

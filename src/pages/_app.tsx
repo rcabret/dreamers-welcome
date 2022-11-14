@@ -26,7 +26,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         undefined
     )
     const router = useRouter()
-    const blockList = ['/[...slug]', '/experience/[slug]', '/guide/[slug]']
+    const blockList = ['/[...slug]', '/experience/[slug]', '/guide/[slug]', '/']
 
     useEffect(() => {
         if (blockList.includes(router.pathname)) {
@@ -35,11 +35,12 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         let data
         if (router.asPath.indexOf('puertorico') > -1) {
-            data = { bucket: 'Puerto Rico' }
+            console.log('here 1')
+            data = { bucket: 'Puerto Rico', simpleNav: false }
         } else if (router.asPath.indexOf('northcarolina') > -1) {
-            data = { bucket: 'North Carolina' }
+            data = { bucket: 'North Carolina', simpleNav: false }
         } else {
-            data = { bucket: undefined, property: undefined }
+            data = { bucket: undefined, property: undefined, simpleNav: false }
         }
         setHeaderData({ ...headerData, ...data })
     }, [router])
