@@ -45,7 +45,7 @@ export const getOtherStays = async (bucket: string, propertySlug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
         order: 'fields.propertyName',
-        'fields.bucket[in]': pathToBucket(bucket),
+        'fields.bucket[in]': bucket,
         'fields.slug[ne]': propertySlug,
         include: 1,
         limit: 4,
