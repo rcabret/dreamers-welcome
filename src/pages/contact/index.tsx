@@ -35,6 +35,10 @@ const Contact = ({ properties, setNavTheme }: any) => {
             body: JSON.stringify(data),
         }).then((res) => {
             if (res.status === 200) {
+                window.scrollTo({
+                    behavior: 'smooth',
+                    top: 0,
+                })
                 setSubmitted(true)
             }
         })
