@@ -36,10 +36,6 @@ const TopNav = ({ headerData, navTheme }: any) => {
     )
 
     useEffect(() => {
-        console.log('headerData', headerData)
-    }, [headerData])
-
-    useEffect(() => {
         const onScroll = () => {
             const scrollTop = window.scrollY
             setTop(scrollTop > 100)

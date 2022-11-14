@@ -73,7 +73,6 @@ const GridImage = ({
                 fixedHeight={fixedHeight}
                 fullHeight={fullHeight}
                 hasHover={hasHover}
-                intent={ratio}
                 ratio={final_ratio}
             >
                 {imageObj ? (

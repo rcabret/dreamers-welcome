@@ -34,7 +34,7 @@ const CollapsableList = dynamic(
 
 const Highlight = dynamic(() => import('../_components/Suite/Highlight'))
 // @ts-ignore
-const ImageSlider = dynamic(() => import('../_components/UI/Swiper/Carousel'))
+const Carousel = dynamic(() => import('../_components/UI/Swiper/Carousel'))
 
 const SubNavigation = dynamic(
     () => import('../_components/Navigation/SubNavigation')
@@ -207,7 +207,7 @@ const Property = ({
                     fullWidth
                     content={
                         <ImageSliderWrapper>
-                            <ImageSlider
+                            <Carousel
                                 toggle={toggleLightbox}
                                 items={carouselImages}
                             />

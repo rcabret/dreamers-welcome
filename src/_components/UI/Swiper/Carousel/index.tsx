@@ -21,7 +21,6 @@ class ImageSlider extends Component {
         const { items, toggle } = props
         this.items = items
         this.toggle = toggle
-
         this.state = {
             activeIndex: 0,
         }
@@ -84,7 +83,7 @@ class ImageSlider extends Component {
                             )
                         })}
                 </StyledSwiper>
-                <SeeAllButton onClick={() => this.toggleLightBox.bind(this)}>
+                <SeeAllButton onClick={() => this.toggleLightBox()}>
                     All photos
                 </SeeAllButton>
             </>

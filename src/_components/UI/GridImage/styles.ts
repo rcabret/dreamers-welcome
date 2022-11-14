@@ -22,13 +22,8 @@ const getWrapperHeight = ({ fullHeight, border }: GridImageStyleProps) => {
     }
 }
 
-const getPaddingTop = ({ intent, ratio, fullHeight }: GridImageStyleProps) => {
-    if (
-        ratio &&
-        !fullHeight &&
-        typeof intent === 'number' &&
-        typeof ratio === 'number'
-    ) {
+const getPaddingTop = ({ ratio, fullHeight }: GridImageStyleProps) => {
+    if (ratio && !fullHeight && typeof ratio === 'number') {
         return `${ratio * 100}%`
     } else {
         return 0
