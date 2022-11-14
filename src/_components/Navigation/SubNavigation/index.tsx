@@ -24,7 +24,6 @@ const SubNavigation = ({
         if (queryArray === undefined) {
             return
         }
-
         const anchor = document.getElementById('anchor_view')
         if (anchor) {
             setTimeout(function () {
@@ -37,7 +36,9 @@ const SubNavigation = ({
 
         const tail = queryParam ? `?${queryParam}=${slug}` : `/${slug}`
 
-        router.push(`${baseUrl}${tail}`, undefined, { shallow: true })
+        if (slug !== activeSlug) {
+            router.push(`${baseUrl}${tail}`, undefined, { shallow: true })
+        }
     }
 
     const getSubClass = (slug: string): string => {
