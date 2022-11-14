@@ -35,7 +35,6 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         let data
         if (router.asPath.indexOf('puertorico') > -1) {
-            console.log('here 1')
             data = { bucket: 'Puerto Rico', simpleNav: false }
         } else if (router.asPath.indexOf('northcarolina') > -1) {
             data = { bucket: 'North Carolina', simpleNav: false }
