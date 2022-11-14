@@ -96,7 +96,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
                                 </StyledSelect>
                                 <Chevron dark />
                             </StyledSelectWrapper>
-                            {errors.property && <p>Please select subject.</p>}
+                            {errors.property && <p>Please select property.</p>}
                             <StyledTextarea
                                 {...register('message', { required: true })}
                                 placeholder="MESSAGE"
