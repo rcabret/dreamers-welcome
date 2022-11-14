@@ -127,12 +127,26 @@ export const getAbout = async () => {
     }
 }
 
-export const getGuides = async (bucket: string, type?: string) => {
+export const getGuide = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'guide',
-        'fields.bucket[in]': pathToBucket(bucket),
-        'fields.type': type,
+        'fields.slug': slug,
     })
+    if (entries.items) {
+        return entries.items[0].fields
+    }
+}
+
+export const getGuides = async (bucket?: string) => {
+    let query: any = {
+        content_type: 'guide',
+    }
+    if (bucket) {
+        query['fields.bucket[in]'] = pathToBucket(bucket)
+    }
+
+    const entries = await client.getEntries(query)
+
     if (entries.items) {
         return entries.items
     }
@@ -145,15 +159,6 @@ export const getGuidesPage = async (bucket: string) => {
     })
     if (entries.items) {
         return entries.items[0].fields
-    }
-}
-
-export const getGuidesPages = async () => {
-    const entries = await client.getEntries({
-        content_type: 'guidesPage',
-    })
-    if (entries.items) {
-        return entries.items.map((x: { fields: {} }) => x.fields)
     }
 }
 

@@ -1,22 +1,20 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BannerGridImage, GridModule, Stat } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
-import { getExperience, getExperiences } from '../../_lib/api'
+import { getGuide, getGuides } from '../../_lib/api'
 import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
-import Blurb from '../../_components/UI/Blurb'
 
-const Guide = ({ guide }: any) => {
-    const {
-        bannerImage,
-        title,
-        blurb,
-        info,
-        details,
-        bookNowLink,
-        thingsToKnow,
-    } = guide
+const Guide = ({ guide, setNavTheme, setHeaderData }: any) => {
+    const { bannerImage, title, bucket, description } = guide
+
+    useEffect(() => {
+        setNavTheme('light')
+        setHeaderData({
+            bucket: bucket[0],
+        })
+    }, [])
 
     return (
         <>
@@ -26,50 +24,14 @@ const Guide = ({ guide }: any) => {
                 borderRadius={false}
                 fullHeight
             >
-                <BannerContent headerText={title} bookNowLink={bookNowLink} />
+                <BannerContent headerText={title} />
             </BannerGridImage>
-            <Blurb text={blurb} />
             <Block
                 title="INFO"
                 content={
                     <ConceptTextContainer>
-                        <BodyText size="xlg">{info}</BodyText>
+                        <BodyText size="xlg">{description}</BodyText>
                     </ConceptTextContainer>
-                }
-            />
-            <Block
-                title="DETAILS"
-                content={
-                    <GridModule columns={4} sideScrollOnMobile>
-                        {details &&
-                            details.map((stat: any, i: number) => {
-                                const { title, text } = stat.fields
-                                return (
-                                    <div key={~~(Math.random() * i)}>
-                                        <Stat>{text}</Stat>
-                                        <BodyText size="md">{title}</BodyText>
-                                    </div>
-                                )
-                            })}
-                    </GridModule>
-                }
-            />
-
-            <Block
-                title="THINGS TO KNOW"
-                content={
-                    <GridModule columns={4} sideScrollOnMobile>
-                        {thingsToKnow &&
-                            thingsToKnow.map((stat: any, i: number) => {
-                                const { title, text } = stat.fields
-                                return (
-                                    <div key={~~(Math.random() * i)}>
-                                        <Stat>{text}</Stat>
-                                        <BodyText size="md">{title}</BodyText>
-                                    </div>
-                                )
-                            })}
-                    </GridModule>
                 }
             />
         </>
@@ -79,7 +41,7 @@ const Guide = ({ guide }: any) => {
 export default Guide
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const guide = await getExperience(context.params.slug)
+    const guide = await getGuide(context.params.slug)
     return {
         props: {
             guide,
@@ -88,7 +50,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 }
 
 export async function getStaticPaths() {
-    const guides = await getExperiences()
+    const guides = await getGuides()
     const paths: any = []
     guides.forEach((x: { fields: { slug: string } }) => {
         const { slug } = x.fields

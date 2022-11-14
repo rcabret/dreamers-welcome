@@ -12,6 +12,7 @@ const GuideItem = ({ data }: any) => {
         <Link key={title} href={`/guide/${slug}`} passHref>
             <a>
                 <GridImage
+                    sizes={'33vw'}
                     imageObj={tileImage}
                     metadata={
                         <GuidesMetadata>
