@@ -189,7 +189,7 @@ const Property = ({
                         const { name, blurb, images } = x.fields
                         return (
                             <Highlight
-                                key={~~(Math.random() * i)}
+                                key={`${name}-${Math.random() * i}`}
                                 title={name}
                                 blurb={blurb}
                                 images={images}

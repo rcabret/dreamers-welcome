@@ -59,7 +59,7 @@ class ImageGridSlider extends Component {
                 height: this.props.fixedHeight,
             })
         }
-        console.log(prevProps.slug, this.slug)
+
         if (prevProps.slug !== this.slug) {
             prevState.swiper.slideTo(0)
         }
@@ -90,12 +90,12 @@ class ImageGridSlider extends Component {
         return (
             <>
                 <NavigationWrap className="navigation-wrap">
-                    <div onClick={() => this.nextSlide()}>
+                    <div onClick={() => this.prevSlide()}>
                         <svg viewBox="0 0 8 16">
                             <polyline points="0 0, 8 8, 0 16" />
                         </svg>
                     </div>
-                    <div onClick={() => this.prevSlide()}>
+                    <div onClick={() => this.nextSlide()}>
                         <svg viewBox="0 0 8 16">
                             <polyline points="0 0, 8 8, 0 16" />
                         </svg>

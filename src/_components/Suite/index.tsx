@@ -29,8 +29,8 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                       return (
                           // @ts-ignore
                           <Highlight
+                              key={`${slug}-${Math.random() * i}`}
                               slug={propertySlug}
-                              key={slug}
                               title={highlightName}
                               blurb={blurb}
                               images={images}
@@ -44,10 +44,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                     title="FEATURES"
                     noPaddingBottom
                     content={
-                        <GridModule
-                            columns={3}
-                            sideScrollOnMobile={false}
-                        >
+                        <GridModule columns={3} sideScrollOnMobile={false}>
                             {features &&
                                 features.map((feature: any) => (
                                     <BlockListWrap key={feature.fields.title}>

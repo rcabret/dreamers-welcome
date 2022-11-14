@@ -51,7 +51,6 @@ export const MenuBg = styled.aside`
     top: 0;
     left: 0;
     transition: 0.3s all;
-    // background: white;
     position: absolute;
     width: 100%;
     height: 100%;
