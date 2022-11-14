@@ -4,7 +4,7 @@ import Button from '../UI/Buttons/Button'
 import { BREAKPOINTS } from '../../_constants/brekpoints'
 
 export const Metadata = styled.aside`
-    padding: ${rem('10px')} ${rem('14px')} ${rem('10px')} ${rem('14px')};
+    padding: ${rem('10px')} ${rem('14px')} ${rem('14px')} ${rem('14px')};
 
     h2 {
         margin-top: ${rem('10px')};
