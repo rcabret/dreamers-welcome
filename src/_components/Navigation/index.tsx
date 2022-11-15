@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     Backdrop,
     HamburgerWrap,
@@ -17,16 +17,8 @@ import Header from '../Typography/Header'
 import { throttle } from '../../_utils/Throttle'
 import Link from 'next/link'
 import Dropdown from '../UI/Dropdown'
-const bucketLinks = [
-    {
-        label: 'Puerto Rico',
-        slug: 'puertorico',
-    },
-    {
-        label: 'North Carolina',
-        slug: 'northcarolina',
-    },
-]
+import { bucketLinks } from '../../_constants/links'
+import { viewportContext } from '../../_utils/ViewportProvider'
 
 const TopNav = ({ headerData, navTheme }: any) => {
     const [top, setTop] = useState(false)
@@ -34,6 +26,8 @@ const TopNav = ({ headerData, navTheme }: any) => {
     const [showDarkTheme, setTheme] = useState(
         (navTheme === 'dark' && !opened) || (top && !opened)
     )
+
+    const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         const onScroll = () => {
@@ -90,31 +84,34 @@ const TopNav = ({ headerData, navTheme }: any) => {
                             <StyledByDWLogo active={top} dark={showDarkTheme} />
                         </StyledProperty>
                     )}
-                    <RightAnchor opened={opened}>
-                        <Dropdown
-                            bucket={headerData?.bucket}
-                            dark={showDarkTheme || opened}
-                            id="topnav-drop"
-                            links={bucketLinks}
-                            defaultLabel="CHOOSE DESTINATION"
-                        />
-                        <HamburgerWrap onClick={() => setPanel(!opened)}>
-                            <NavToggle
-                                activate={setPanel}
-                                opened={opened}
-                                dark={showDarkTheme || opened}
-                            />
-                        </HamburgerWrap>
-                    </RightAnchor>
                 </NavInnerContainer>
-                <MenuPanel
-                    opened={opened}
-                    activeBucket={headerData?.bucket}
-                    onClose={setPanel}
-                />
                 <MenuBg active={top && !headerData?.simpleNav} />
                 <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>
+            <RightAnchor opened={opened}>
+                {breakpoint === 'desktop' && (
+                    <Dropdown
+                        bucket={headerData?.bucket}
+                        dark={showDarkTheme || opened}
+                        id="topnav-drop"
+                        links={bucketLinks}
+                        defaultLabel="CHOOSE DESTINATION"
+                    />
+                )}
+
+                <HamburgerWrap onClick={() => setPanel(!opened)}>
+                    <NavToggle
+                        activate={setPanel}
+                        opened={opened}
+                        dark={showDarkTheme || opened}
+                    />
+                </HamburgerWrap>
+            </RightAnchor>
+            <MenuPanel
+                opened={opened}
+                activeBucket={headerData?.bucket}
+                onClose={setPanel}
+            />
         </>
     )
 }

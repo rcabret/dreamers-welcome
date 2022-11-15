@@ -74,7 +74,6 @@ export const MarkupWrapper = styled.div`
     }
 
     ul {
-        list-style: none;
         margin-bottom: ${rem('40px')};
         // margin-left: ${rem('30px')};
         margin-right: ${rem('30px')};

@@ -34,7 +34,7 @@ export const Navigation = styled.nav`
     color: ${({ dark, navTheme }: NavigationStyleProps) =>
         dark || navTheme === 'dark' ? '#1a1a1a' : 'white'};
     height: ${rem(65)};
-    z-index: 101;
+    z-index: 100;
     width: 100%;
     transition: 0.4s height;
 
@@ -59,12 +59,13 @@ export const MenuBg = styled.aside`
     opacity: ${({ active }: NavigationStyleProps) => (active ? 1 : 0)};
 `
 export const RightAnchor = styled.div`
-    position: absolute;
+    position: fixed;
     right: 0;
-    height: 100%;
+    height: ${rem(65)};
     width: ${({ opened }: { opened: boolean }) => (opened ? rem(440) : '35vw')};
     top: 0;
     transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+    z-index: 300;
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         width: ${({ opened }: { opened: boolean }) =>
@@ -72,8 +73,7 @@ export const RightAnchor = styled.div`
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
-        width: ${({ opened }: { opened: boolean }) =>
-            opened ? '100%' : rem(0)};
+        width: 0;
     }
 `
 

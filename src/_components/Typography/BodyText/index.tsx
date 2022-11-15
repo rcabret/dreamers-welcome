@@ -39,7 +39,7 @@ const getMobileBodySize = (size: HeaderProps['size']) => {
         case 'lg':
             return rem('18px')
         case 'xlg':
-            return rem('28px')
+            return rem('22px')
     }
 }
 

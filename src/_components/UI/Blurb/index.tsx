@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react'
 import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import Header from '../../Typography/Header'
+import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
 const BlurbWrap = styled.div`
     min-height: ${rem('550px')};
@@ -34,6 +35,18 @@ const BlurbWrap = styled.div`
         width: calc(100% - 60px);
         position: absolute;
         top: 0;
+    }
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        h1 {
+            font-size: ${rem(42)};
+        }
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        h1 {
+            font-size: ${rem(38)};
+        }
     }
 `
 

@@ -20,6 +20,14 @@ export const FooterStyled = styled.footer`
             display: block;
         }
     }
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        height: ${rem(450)};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        margin-bottom: ${rem(80)};
+    }
 `
 
 export const StyledFooterLogo = styled(DWLogo)`

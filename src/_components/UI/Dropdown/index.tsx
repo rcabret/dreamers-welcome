@@ -10,6 +10,7 @@ interface DropdownProps {
     links: { label: string; slug: string }[]
     bucket?: string
     defaultLabel?: string
+    routeAware?: boolean
 }
 const Dropdown = ({
     className,
@@ -18,13 +19,16 @@ const Dropdown = ({
     links,
     id,
     bucket,
+    routeAware = false,
 }: DropdownProps) => {
     const router = useRouter()
 
     const [isOpened, setIsOpened] = useState(false)
 
     const onClick = (slug: string) => {
-        router.push(`/${slug}`)
+        console.log(router);
+        const url = `/${slug}`
+        router.push(url)
     }
 
     useEffect(() => {
@@ -42,7 +46,7 @@ const Dropdown = ({
         }
     }, [])
 
-   /* return (
+    /* return (
         <StyledSelect>
             <option disabled selected>
                 {defaultLabel}

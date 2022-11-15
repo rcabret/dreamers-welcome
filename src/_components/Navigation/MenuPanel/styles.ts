@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components'
 import { rem } from 'polished'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
+import Dropdown from '../../UI/Dropdown'
 
 interface NavigationStyleProps {
     dark?: boolean
@@ -15,7 +16,7 @@ export const Panel = styled.div`
     right: ${({ opened }: NavigationStyleProps) => (opened ? 0 : rem(-440))};
     width: ${rem(440)};
     height: 100vh;
-    z-index: 99;
+    z-index: 200;
     top: 0;
     transition: 0.5s right cubic-bezier(0.65, 0, 0.35, 1);
     background: white;
@@ -104,4 +105,9 @@ export const MainList = styled.ul`
     .active {
         animation: ${blurFadeIn} 0.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
     }
+`
+
+export const StyledDropdown = styled(Dropdown)`
+    height: auto;
+    top: ${rem(24)};
 `

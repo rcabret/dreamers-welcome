@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
-import { Panel, MainList } from './styles'
+import React, { useContext, useEffect } from 'react'
+import { Panel, MainList, StyledDropdown } from './styles'
 import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
+import { bucketLinks } from '../../../_constants/links'
+import { viewportContext } from '../../../_utils/ViewportProvider'
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
     const getLink = (slug: string) =>
@@ -31,6 +33,8 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
         }
     }
 
+    const breakpoint = useContext(viewportContext)
+
     useEffect(() => {
         if (opened) {
             runMainList()
@@ -42,9 +46,18 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
     }, [opened])
 
     return (
-        <Panel opened={opened} onClick={() => onClose(false)}>
+        <Panel opened={opened}>
             <div>
-                <MainList id="main_list">
+                {breakpoint !== 'desktop' && (
+                    <StyledDropdown
+                        bucket={activeBucket}
+                        dark
+                        id="topnav-drop"
+                        links={bucketLinks}
+                        defaultLabel="CHOOSE DESTINATION"
+                    />
+                )}
+                <MainList id="main_list" onClick={() => onClose(false)}>
                     <li>
                         <Link href={getLink('stays')}>STAYS</Link>
                     </li>
@@ -57,7 +70,7 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                         {!activeBucket && <aside />}
                     </li>
                 </MainList>
-                <div className="anchorSection">
+                <div className="anchorSection" onClick={() => onClose(false)}>
                     <ul>
                         <li>
                             <Link href="/about">ABOUT</Link>
