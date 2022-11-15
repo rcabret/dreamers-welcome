@@ -15,9 +15,6 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
         about
 
     useEffect(() => {
-        setHeaderData({
-            bucket: undefined,
-        })
         setNavTheme('light')
     }, [])
     return (

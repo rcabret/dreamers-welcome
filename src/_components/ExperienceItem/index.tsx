@@ -13,6 +13,7 @@ const ExperienceItem = ({ data }: any) => {
         <Link key={title} href={`/experience/${slug}`} passHref>
             <a>
                 <GridImage
+                    sizes={'33vw'}
                     imageObj={tileImage}
                     metadata={
                         <GuidesMetadata>
