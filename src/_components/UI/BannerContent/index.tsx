@@ -100,7 +100,7 @@ const BannerContent = ({
                 )}
             </BannerContentWrap>
             {bookNowLink && (
-                <StyledButton href={bookNowLink}>BOOK NOW</StyledButton>
+                <StyledButton outsideLink href={bookNowLink}>BOOK NOW</StyledButton>
             )}
         </div>
     )

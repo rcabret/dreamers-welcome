@@ -109,6 +109,7 @@ const PropertyGridItem = ({
                             <StyledButton
                                 collapsed={collapsed}
                                 href={bookNowLink}
+                                outsideLink
                             >
                                 BOOK NOW
                             </StyledButton>

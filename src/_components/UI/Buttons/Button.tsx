@@ -11,6 +11,7 @@ interface ButtonProps {
     onClick?: Function
     title?: string
     className?: string
+    outsideLink?: boolean
 }
 
 const StyledButton = styled.button`
@@ -44,12 +45,27 @@ const StyledButton = styled.button`
     }
 `
 
+const getElement = (href: string, outsideLink: boolean, children: any) => {
+    if (href && !outsideLink) {
+        return <Link href={href}>{children}</Link>
+    } else if (href && outsideLink) {
+        return (
+            <a href={href} target="_blank">
+                {children}
+            </a>
+        )
+    } else {
+        return <span>{children}</span>
+    }
+}
+
 const Button = ({
     inverse = false,
     title,
     children,
     href,
     className,
+    outsideLink = false,
     onClick = () => {},
 }: ButtonProps) => (
     <StyledButton
@@ -59,7 +75,7 @@ const Button = ({
         title={title}
     >
         {/* @ts-ignore */}
-        {href ? <Link href={href}>{children}</Link> : <span>{children}</span>}
+        {getElement(href, outsideLink, children)}
     </StyledButton>
 )
 
