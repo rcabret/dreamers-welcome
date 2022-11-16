@@ -12,8 +12,8 @@ const links: { name: string; slug: string }[] = [
         slug: 'view_all',
     },
     {
-        name: 'OUTDOOR',
-        slug: 'outdoor',
+        name: 'ADVENTURE',
+        slug: 'adventure',
     },
     {
         name: 'FOOD',

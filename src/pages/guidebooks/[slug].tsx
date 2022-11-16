@@ -21,8 +21,8 @@ const links: { name: string; slug: string }[] = [
         slug: 'food',
     },
     {
-        name: 'OUTDOOR',
-        slug: 'outdoor',
+        name: 'ADVENTURE',
+        slug: 'adventure',
     },
 ]
 
