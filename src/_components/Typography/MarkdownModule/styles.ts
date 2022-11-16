@@ -78,7 +78,6 @@ export const MarkupWrapper = styled.div`
         // margin-left: ${rem(30)};
         margin-right: ${rem(30)};
         max-width: ${rem(800)};
-        padding-left: ${rem(20)};
 
         li:last-child {
             margin-bottom: 0;
@@ -105,6 +104,10 @@ export const MarkupWrapper = styled.div`
 
         p {
             padding-right: 0;
+        }
+
+        ul {
+            padding-left: ${rem(20)};
         }
     }
 `
