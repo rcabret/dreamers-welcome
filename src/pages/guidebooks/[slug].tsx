@@ -62,7 +62,7 @@ const GuideBooks = ({ guides, guidesPage, setNavTheme }: any) => {
 
     return (
         <>
-            <Blurb text={guidesPage.blurb} eyebrow="GUIDES" fullHeight />
+            <Blurb text={guidesPage.blurb} eyebrow="GUIDEBOOKS" fullHeight />
             <SubNavigation
                 activeSlug={activeSlug}
                 data={links}

@@ -9,7 +9,7 @@ const GuideItem = ({ data }: any) => {
     const { title, slug, tileImage, description } = data
 
     return (
-        <Link key={title} href={`/guide/${slug}`} passHref>
+        <Link key={title} href={`/guidebook/${slug}`} passHref>
             <a>
                 <GridImage
                     sizes={'33vw'}
