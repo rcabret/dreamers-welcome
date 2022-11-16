@@ -15,10 +15,10 @@ export const TopSection = styled.div`
         margin-left: ${rem(10)};
         display: inline-block;
         vertical-align: top;
-        margin-top: ${rem(24)};
+        margin-top: ${rem(20)};
 
         p:first-child {
-            margin-bottom: ${rem(4)};
+            margin-bottom: ${rem(8)};
             color: #1a1a1a;
         }
 
