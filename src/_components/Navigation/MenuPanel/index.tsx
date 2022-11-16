@@ -62,11 +62,11 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                         <Link href={getLink('stays')}>STAYS</Link>
                     </li>
                     <li>
-                        <Link href={getLink('guidebooks')}>GUIDEBOOKS</Link>
+                        <Link href={getLink('experiences')}>EXPERIENCES</Link>
                         {!activeBucket && <aside />}
                     </li>
                     <li>
-                        <Link href={getLink('experiences')}>EXPERIENCES</Link>
+                        <Link href={getLink('guidebooks')}>GUIDEBOOKS</Link>
                         {!activeBucket && <aside />}
                     </li>
                 </MainList>
