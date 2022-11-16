@@ -62,6 +62,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                 title="OUR STAYS"
                 fullWidth
                 showOverflow
+                noPaddingBottom
                 content={
                     <StaysSwiperWrap>
                         {/*@ts-ignore*/}

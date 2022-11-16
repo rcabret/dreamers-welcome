@@ -139,7 +139,6 @@ const Property = ({
         setView(finalView)
     }, [router.query])
 
-    console.log('prp', propertyType)
     // @ts-ignore
     return (
         <>
@@ -148,7 +147,6 @@ const Property = ({
                 border={false}
                 borderRadius={false}
                 fullHeight
-                //ratio={0.5}
             >
                 <BannerContent
                     headerText={bannerHeader}

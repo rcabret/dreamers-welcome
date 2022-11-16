@@ -8,28 +8,17 @@ import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
 import { getHomepage, getPropertiesViaBucket } from '../../_lib/api'
-import ImageGridSlider from '../../_components/UI/Swiper'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
+import PropertyGridItem from '../../_components/PropertyGridItem'
 
 const StaysSwiperWrap = styled.div`
-    overflow: hidden;
-    width: 100%;
     margin-top: ${rem(20)};
-
-    .swiper {
-        overflow: visible;
-        margin-left: ${rem(20)};
-        position: relative;
-        margin-right: ${rem(20)};
-    }
-
-    .swiper-slide {
-        max-width: 30%;
-        min-width: ${rem(370)};
-    }
+    position: relative;
+    left: ${rem(-10)};
+    width: calc(100% + ${rem(20)});
 `
 const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
     const { blurb, title, guides, experiences, coverImage } = data
@@ -57,16 +46,18 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
             <Block
                 title="OUR STAYS"
                 fullWidth
-                showOverflow
+                noPaddingBottom
                 content={
                     <StaysSwiperWrap>
-                        {/*@ts-ignore*/}
-                        <ImageGridSlider
-                            slug={'northcarolina'}
-                            items={properties}
-                            isProperties
-                            spaceBetween={0}
-                        />
+                        <GridModule columns={2}>
+                            {properties &&
+                                properties.length &&
+                                properties.map((p: any) => (
+                                    <PropertyGridItem
+                                        propertyObj={p}
+                                    />
+                                ))}
+                        </GridModule>
                     </StaysSwiperWrap>
                 }
             />

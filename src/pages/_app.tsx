@@ -39,6 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         } else if (router.asPath.indexOf('northcarolina') > -1) {
             data = { bucket: 'North Carolina', simpleNav: false }
         } else {
+            console.log("in here")
             data = { property: undefined, simpleNav: false }
         }
         setHeaderData({ ...headerData, ...data })
