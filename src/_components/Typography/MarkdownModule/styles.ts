@@ -62,9 +62,9 @@ export const MarkupWrapper = styled.div`
     }
 
     p {
-        margin-bottom: ${rem('20px')};
-        max-width: ${rem('800px')};
-        padding-right: ${rem('40px')};
+        margin-bottom: ${rem(20)};
+        max-width: ${rem(800)};
+        padding-right: ${rem(40)};
     }
 
     p {
@@ -74,17 +74,18 @@ export const MarkupWrapper = styled.div`
     }
 
     ul {
-        margin-bottom: ${rem('40px')};
-        // margin-left: ${rem('30px')};
-        margin-right: ${rem('30px')};
-        max-width: ${rem('800px')};
+        margin-bottom: ${rem(40)};
+        // margin-left: ${rem(30)};
+        margin-right: ${rem(30)};
+        max-width: ${rem(800)};
+        padding-left: ${rem(20)};
 
         li:last-child {
             margin-bottom: 0;
         }
         li {
-            font-size: ${rem('18px')};
-            margin-bottom: ${rem('16px')};
+            font-size: ${rem(18)};
+            margin-bottom: ${rem(16)};
         }
     }
 
@@ -98,7 +99,7 @@ export const MarkupWrapper = styled.div`
 
         h1:last-of-type,
         h2:last-of-type {
-            margin-bottom: ${rem('26px')};
+            margin-bottom: ${rem(26)};
             column-span: all;
         }
 
@@ -112,6 +113,6 @@ export const Separator = styled.div`
     display: inline-block;
     width: 100%;
     border-bottom: 1px solid #1a1a1a;
-    margin-bottom: ${rem('20px')};
-    margin-top: ${rem('16px')};
+    margin-bottom: ${rem(20)};
+    margin-top: ${rem(16)};
 `
