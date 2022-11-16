@@ -100,7 +100,10 @@ const PropertyGridItem = ({
                             <Location collapsed={collapsed}>
                                 <LocationPin />
                                 <BodyText size={'sm'}>
-                                    {propertyType[0]}, {location}
+                                    {propertyType[0] === 'Suites'
+                                        ? 'Apartments+'
+                                        : propertyType[0]}
+                                    , {location}
                                 </BodyText>
                             </Location>
                             <StyledButton

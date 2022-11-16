@@ -139,6 +139,7 @@ const Property = ({
         setView(finalView)
     }, [router.query])
 
+    console.log('prp', propertyType)
     // @ts-ignore
     return (
         <>
@@ -152,7 +153,9 @@ const Property = ({
                 <BannerContent
                     headerText={bannerHeader}
                     headerSubheader={`${
-                        propertyType === 'Suites' ? 'Apartments+' : propertyType
+                        propertyType[0] === 'Suites'
+                            ? 'Apartments+'
+                            : propertyType[0]
                     } in ${location}`}
                     description={bannerDescriptionList}
                     bookNowLink={bookNowLink}

@@ -72,6 +72,7 @@ const BannerContent = ({
     bookNowLink,
     showOpacity = true,
 }: BannerContentProps) => {
+    console.log('header', headerSubheader)
     return (
         <div>
             {showOpacity && <OpacityLayer />}
