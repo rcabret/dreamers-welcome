@@ -84,7 +84,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     fullWidth
                     noPaddingBottom
                     content={
-                        <GridModule columns={3} sideScrollOnMobile>
+                        <GridModule columns={guides.length} sideScrollOnMobile>
                             {guides &&
                                 guides.length &&
                                 guides.map((guide: any) => (
@@ -101,7 +101,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     fullWidth
                     noPaddingBottom
                     content={
-                        <GridModule columns={3} sideScrollOnMobile>
+                        <GridModule columns={experiences.length} sideScrollOnMobile>
                             {experiences &&
                                 experiences.length &&
                                 experiences.map((exp: any) => (
