@@ -151,7 +151,9 @@ const Property = ({
             >
                 <BannerContent
                     headerText={bannerHeader}
-                    headerSubheader={`${propertyType} in ${location}`}
+                    headerSubheader={`${
+                        propertyType === 'Suites' ? 'Apartments+' : propertyType
+                    } in ${location}`}
                     description={bannerDescriptionList}
                     bookNowLink={bookNowLink}
                 />

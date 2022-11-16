@@ -26,7 +26,7 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
+const GuideBooks = ({ guides, guidesPage, setNavTheme }: any) => {
     const router = useRouter()
 
     const [activeSlug, setSlug] = useState<string>(
@@ -83,7 +83,7 @@ const Guides = ({ guides, guidesPage, setNavTheme }: any) => {
     )
 }
 
-export default Guides
+export default GuideBooks
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const guides = await getGuides(context.params.slug)

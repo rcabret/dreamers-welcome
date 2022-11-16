@@ -6,7 +6,7 @@ import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 
-const Guide = ({ guide, setNavTheme, setHeaderData }: any) => {
+const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
     const { bannerImage, title, bucket, description } = guide
 
     useEffect(() => {
@@ -38,7 +38,7 @@ const Guide = ({ guide, setNavTheme, setHeaderData }: any) => {
     )
 }
 
-export default Guide
+export default GuideBook
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const guide = await getGuide(context.params.slug)
