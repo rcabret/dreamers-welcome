@@ -13,6 +13,7 @@ import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import PropertyGridItem from '../../_components/PropertyGridItem'
+import NewsItem from '../../_components/NewsItem'
 
 const StaysSwiperWrap = styled.div`
     margin-top: ${rem(20)};
@@ -21,7 +22,7 @@ const StaysSwiperWrap = styled.div`
     width: calc(100% + ${rem(20)});
 `
 const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
-    const { blurb, title, guides, experiences, coverImage } = data
+    const { blurb, title, guides, experiences, coverImage, news } = data
 
     useEffect(() => {
         setNavTheme('light')
@@ -53,28 +54,29 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                             {properties &&
                                 properties.length &&
                                 properties.map((p: any) => (
-                                    <PropertyGridItem
-                                        propertyObj={p}
-                                    />
+                                    <PropertyGridItem propertyObj={p} />
                                 ))}
                         </GridModule>
                     </StaysSwiperWrap>
                 }
             />
-            <StyledBlockForGrid
-                title="GUIDES"
-                fullWidth
-                noPaddingBottom
-                content={
-                    <GridModule columns={3} sideScrollOnMobile>
-                        {guides &&
-                            guides.length &&
-                            guides.map((guide: any) => (
-                                <GuideItem data={guide.fields} />
-                            ))}
-                    </GridModule>
-                }
-            />
+
+            {guides && guides.length && (
+                <StyledBlockForGrid
+                    title="GUIDES"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={3} sideScrollOnMobile>
+                            {guides &&
+                                guides.length &&
+                                guides.map((guide: any) => (
+                                    <GuideItem data={guide.fields} />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
 
             <StyledBlockForGrid
                 title="EXPERIENCES"
@@ -90,6 +92,25 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     </GridModule>
                 }
             />
+
+            {news && news.length && (
+                <StyledBlockForGrid
+                    title="IN THE NEWS"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={4} sideScrollOnMobile>
+                            {news.length &&
+                                news.map((x: any, i: number) => (
+                                    <NewsItem
+                                        key={x.slug + i}
+                                        newsObj={x.fields}
+                                    />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
         </>
     )
 }
