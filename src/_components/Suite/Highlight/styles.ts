@@ -8,6 +8,15 @@ export const HighlightBlurb = styled.div`
     margin-left: calc(25% + 20px);
     max-width: ${rem('570px')};
 
+    p {
+        font-size: ${rem(18)};
+    }
+
+    ul {
+        padding-left: ${rem(20)};
+        margin-top: ${rem(30)};
+    }
+
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         margin-left: 0;
         padding: 0 ${rem(20)};

@@ -5,7 +5,6 @@ import ImageGridSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import Block from '../../UI/Block'
 import { viewportContext } from '../../../_utils/ViewportProvider'
-import { BREAKPOINTS } from '../../../_constants/brekpoints'
 import MarkdownModule from '../../Typography/MarkdownModule'
 
 interface HighlightProps {
