@@ -27,6 +27,7 @@ import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
 import PropertyGridItem from '../_components/PropertyGridItem'
 import LightBox from '../_components/LightBox'
 import Link from 'next/link'
+import ReviewItem from '../_components/ReviewItem'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -73,6 +74,7 @@ const Property = ({
         rooms,
         suites,
         thingsToKnow,
+        reviews,
     } = propertyResponse
 
     const router = useRouter()
@@ -268,6 +270,24 @@ const Property = ({
 
             {mapUrl && <Map link={mapUrl} />}
 
+            {reviews && reviews.length && (
+                <StyledBlockForGrid
+                    title="REVIEWS"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={4} sideScrollOnMobile>
+                            {reviews.length &&
+                                reviews.map((x: any, i: number) => (
+                                    <ReviewItem
+                                        key={x.fields.name + i}
+                                        data={x.fields}
+                                    />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
             {faq && (
                 <Block
                     title="FAQs"
