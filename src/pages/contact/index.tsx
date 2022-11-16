@@ -71,14 +71,14 @@ const Contact = ({ properties, setNavTheme }: any) => {
                                 <p>Please enter an email format.</p>
                             )}
                             <StyledInput
-                                {...register('subject', { required: true })}
+                                {...register('subject', { required: false })}
                                 placeholder="SUBJECT"
                             />
                             {errors.subject && <p>Please select subject.</p>}
                             <StyledSelectWrapper>
                                 <StyledSelect
                                     {...register('property', {
-                                        required: true,
+                                        required: false,
                                     })}
                                 >
                                     <>
