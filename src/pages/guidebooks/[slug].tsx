@@ -13,16 +13,16 @@ const links: { name: string; slug: string }[] = [
         slug: 'view_all',
     },
     {
+        name: 'ADVENTURE',
+        slug: 'adventure',
+    },
+    {
         name: 'CULTURE',
         slug: 'culture',
     },
     {
         name: 'FOOD',
         slug: 'food',
-    },
-    {
-        name: 'ADVENTURE',
-        slug: 'adventure',
     },
 ]
 
