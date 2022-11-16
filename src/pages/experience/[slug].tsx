@@ -100,11 +100,14 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
 
             {otherExperiences && otherExperiences.length && (
                 <StyledBlockForGrid
-                    title="EXPERIENCES"
+                    title="MORE EXPERIENCES"
                     fullWidth
                     noPaddingBottom
                     content={
-                        <GridModule columns={3} sideScrollOnMobile>
+                        <GridModule
+                            columns={otherExperiences.length}
+                            sideScrollOnMobile
+                        >
                             {otherExperiences &&
                                 otherExperiences.length &&
                                 otherExperiences.map((exp: any) => (

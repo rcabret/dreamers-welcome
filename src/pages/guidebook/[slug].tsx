@@ -1,13 +1,19 @@
 import React, { useEffect } from 'react'
-import { BannerGridImage, GridModule, Stat } from '../../styles/global'
+import {
+    BannerGridImage,
+    GridModule,
+    Stat,
+    StyledBlockForGrid,
+} from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import { getGuide, getGuides } from '../../_lib/api'
 import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
+import GuideItem from '../../_components/GuideItem'
 
 const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
-    const { bannerImage, title, bucket, description } = guide
+    const { bannerImage, title, bucket, description, otherGuides } = guide
 
     useEffect(() => {
         setNavTheme('light')
@@ -34,6 +40,22 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
                     </ConceptTextContainer>
                 }
             />
+            {otherGuides && otherGuides.length && (
+                <StyledBlockForGrid
+                    title="MORE GUIDEBOOKS"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={otherGuides.length} sideScrollOnMobile>
+                            {otherGuides &&
+                                otherGuides.length &&
+                                otherGuides.map((guide: any) => (
+                                    <GuideItem data={guide.fields} />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
         </>
     )
 }

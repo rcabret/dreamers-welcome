@@ -14,6 +14,7 @@ import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import NewsItem from '../../_components/NewsItem'
+import exp from 'constants'
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -79,7 +80,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
 
             {guides && guides.length && (
                 <StyledBlockForGrid
-                    title="GUIDES"
+                    title="GUIDEBOOKS"
                     fullWidth
                     noPaddingBottom
                     content={
@@ -94,20 +95,22 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                 />
             )}
 
-            <StyledBlockForGrid
-                title="EXPERIENCES"
-                fullWidth
-                noPaddingBottom
-                content={
-                    <GridModule columns={3} sideScrollOnMobile>
-                        {experiences &&
-                            experiences.length &&
-                            experiences.map((exp: any) => (
-                                <ExperienceItem data={exp.fields} />
-                            ))}
-                    </GridModule>
-                }
-            />
+            {experiences && experiences.length && (
+                <StyledBlockForGrid
+                    title="EXPERIENCES"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={3} sideScrollOnMobile>
+                            {experiences &&
+                                experiences.length &&
+                                experiences.map((exp: any) => (
+                                    <ExperienceItem data={exp.fields} />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
 
             {news && news.length && (
                 <StyledBlockForGrid

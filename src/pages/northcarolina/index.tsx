@@ -63,7 +63,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
 
             {guides && guides.length && (
                 <StyledBlockForGrid
-                    title="GUIDES"
+                    title="GUIDEBOOKS"
                     fullWidth
                     noPaddingBottom
                     content={
@@ -78,20 +78,22 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                 />
             )}
 
-            <StyledBlockForGrid
-                title="EXPERIENCES"
-                fullWidth
-                noPaddingBottom
-                content={
-                    <GridModule columns={3} sideScrollOnMobile>
-                        {experiences &&
-                            experiences.length &&
-                            experiences.map((exp: any) => (
-                                <ExperienceItem data={exp.fields} />
-                            ))}
-                    </GridModule>
-                }
-            />
+            {experiences && experiences.length && (
+                <StyledBlockForGrid
+                    title="EXPERIENCES"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={3} sideScrollOnMobile>
+                            {experiences &&
+                                experiences.length &&
+                                experiences.map((exp: any) => (
+                                    <ExperienceItem data={exp.fields} />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
 
             {news && news.length && (
                 <StyledBlockForGrid
