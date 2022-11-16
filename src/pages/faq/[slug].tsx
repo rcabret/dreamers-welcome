@@ -42,6 +42,10 @@ export default Faq
 export async function getStaticProps(context: { params: { slug: string } }) {
     const faq = await getFaq(context.params.slug)
     const faqsResponse = await getFaqs()
+    const faqGeneral = faqsResponse.filter((x) => x.slug == 'general')
+    let faqs = faqsResponse.filter((x) => x.slug !== 'general')
+
+    faqs = [...faqGeneral, ...faqs]
 
     let dropdownData: { label: string; slug: string }[] = faqs.map(
         (x: { title: string; slug: string }) => {
