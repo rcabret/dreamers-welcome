@@ -4,6 +4,7 @@ import {
     BlockListWrap,
     GridModule,
     Stat,
+    StyledBlockForGrid,
 } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import { getExperience, getExperiences } from '../../_lib/api'
@@ -14,6 +15,7 @@ import Blurb from '../../_components/UI/Blurb'
 import { parseMoneyOrTime } from '../../_utils/Parsers'
 import Header from '../../_components/Typography/Header'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
+import ExperienceItem from '../../_components/ExperienceItem'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
@@ -25,6 +27,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         bookNowLink,
         thingsToKnow,
         bucket,
+        otherExperiences,
     } = experience
 
     useEffect(() => {
@@ -94,6 +97,23 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                     </GridModule>
                 }
             />
+
+            {otherExperiences && otherExperiences.length && (
+                <StyledBlockForGrid
+                    title="EXPERIENCES"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={3} sideScrollOnMobile>
+                            {otherExperiences &&
+                                otherExperiences.length &&
+                                otherExperiences.map((exp: any) => (
+                                    <ExperienceItem data={exp.fields} />
+                                ))}
+                        </GridModule>
+                    }
+                />
+            )}
         </>
     )
 }
