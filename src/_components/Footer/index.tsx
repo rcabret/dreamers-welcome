@@ -36,7 +36,7 @@ const Footer = ({ activeBucket }: any) => {
                                 </Link>
                             </li>
                             <li>
-                                <Link href={getLink('guides')}>GUIDES</Link>
+                                <Link href={getLink('guidebooks')}>GUIDEBOOKS</Link>
                             </li>
                         </>
                     )}
