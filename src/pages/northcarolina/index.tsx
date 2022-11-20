@@ -66,6 +66,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="GUIDEBOOKS"
                     fullWidth
                     noPaddingBottom
+                    link="/guidebooks/northcarolina"
                     content={
                         <GridModule columns={guides.length} sideScrollOnMobile>
                             {guides &&
@@ -83,6 +84,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="EXPERIENCES"
                     fullWidth
                     noPaddingBottom
+                    link="/experiences/northcarolina"
                     content={
                         <GridModule
                             columns={experiences.length}
@@ -103,6 +105,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="IN THE NEWS"
                     fullWidth
                     noPaddingBottom
+                    link="/news"
                     content={
                         <GridModule columns={4} sideScrollOnMobile>
                             {news.length &&

@@ -14,7 +14,7 @@ import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import NewsItem from '../../_components/NewsItem'
-import exp from 'constants'
+
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -83,6 +83,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="GUIDEBOOKS"
                     fullWidth
                     noPaddingBottom
+                    link="/guidebooks/puertorico"
                     content={
                         <GridModule columns={guides.length} sideScrollOnMobile>
                             {guides &&
@@ -100,6 +101,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="EXPERIENCES"
                     fullWidth
                     noPaddingBottom
+                    link='/experiences/puertorico'
                     content={
                         <GridModule columns={experiences.length} sideScrollOnMobile>
                             {experiences &&
@@ -117,6 +119,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="IN THE NEWS"
                     fullWidth
                     noPaddingBottom
+                    link='/news'
                     content={
                         <GridModule columns={4} sideScrollOnMobile>
                             {news.length &&

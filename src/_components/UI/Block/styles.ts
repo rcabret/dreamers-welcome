@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import { show } from 'dom7'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
+import Link from 'next/link'
 
 export const BlockWrapper = styled.div`
     display: inline-block;
@@ -38,6 +39,20 @@ export const BlockWrapper = styled.div`
 
 export const Title = styled.div`
     padding: 0 ${rem(30)};
+    display: inline-block;
+    width: 100%;
+
+    h4 {
+        float: left;
+    }
+
+    a {
+        color: #c1c1c1;
+    }
+
+    a:hover {
+        text-decoration: underline;
+    }
 
     ${({ fullWidth }: { fullWidth?: boolean }) =>
         fullWidth
@@ -96,4 +111,8 @@ export const BlockContent = styled.div`
             showOverflow ? '0' : `0 ${rem(15)}`};
 
     }
+`
+
+export const SeeMoreLink = styled(Link)`
+    float: right;
 `
