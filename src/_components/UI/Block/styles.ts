@@ -48,6 +48,7 @@ export const Title = styled.div`
 
     a {
         color: #c1c1c1;
+        float: right;
     }
 
     a:hover {
@@ -111,8 +112,4 @@ export const BlockContent = styled.div`
             showOverflow ? '0' : `0 ${rem(15)}`};
 
     }
-`
-
-export const SeeMoreLink = styled(Link)`
-    float: right;
 `

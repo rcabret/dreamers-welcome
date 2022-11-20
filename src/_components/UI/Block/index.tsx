@@ -1,5 +1,5 @@
 import React from 'react'
-import {BlockContent, BlockWrapper, SeeMoreLink, Title} from './styles'
+import { BlockContent, BlockWrapper, Title } from './styles'
 import Header from '../../Typography/Header'
 import Link from 'next/link'
 
@@ -38,7 +38,7 @@ const Block = ({
                                 {title}
                             </Header>
                         )}
-                        {link && <SeeMoreLink href={link}>VIEW ALL</SeeMoreLink>}
+                        {link && <Link href={link}>VIEW ALL</Link>}
                     </>
                 </Title>
             )}
