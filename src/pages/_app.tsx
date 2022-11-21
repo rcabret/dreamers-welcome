@@ -35,11 +35,18 @@ function MyApp({ Component, pageProps }: AppProps) {
 
         let data
         if (router.asPath.indexOf('puertorico') > -1) {
-            data = { bucket: 'Puerto Rico', simpleNav: false }
+            data = {
+                bucket: 'Puerto Rico',
+                simpleNav: false,
+                property: undefined,
+            }
         } else if (router.asPath.indexOf('northcarolina') > -1) {
-            data = { bucket: 'North Carolina', simpleNav: false }
+            data = {
+                bucket: 'North Carolina',
+                simpleNav: false,
+                property: undefined,
+            }
         } else {
-            console.log("in here")
             data = { property: undefined, simpleNav: false }
         }
         setHeaderData({ ...headerData, ...data })

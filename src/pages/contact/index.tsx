@@ -78,9 +78,9 @@ const Contact = ({ properties, setNavTheme }: any) => {
                         >
                             <StyledInput
                                 {...register('name', { required: true })}
-                                placeholder="NAME"
+                                placeholder="FULL NAME"
                             />
-                            {errors.name && <p>Please enter your name.</p>}
+                            {errors.name && <p>Please enter your full name.</p>}
                             <StyledInput
                                 placeholder="EMAIL"
                                 type="email"

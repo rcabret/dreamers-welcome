@@ -20,8 +20,8 @@ export const SubNav = styled.div`
 
 export const SubLink = styled(Button)`
     display: inline-block;
-    min-width: auto;
-    max-width: auto;
+    min-width: auto !important;
+    max-width: auto !important;
     padding-left: ${rem(20)};
     padding-right: ${rem(20)};
     margin: 0 10px;
@@ -30,5 +30,9 @@ export const SubLink = styled(Button)`
     &.active {
         background: #1a1a1a;
         color: white;
+    }
+
+    span {
+        position: static;
     }
 `

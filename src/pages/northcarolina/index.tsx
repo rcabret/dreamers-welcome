@@ -21,14 +21,11 @@ const StaysSwiperWrap = styled.div`
     left: ${rem(-10)};
     width: calc(100% + ${rem(20)});
 `
-const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
+const Index = ({ data, properties, setNavTheme }: any) => {
     const { blurb, title, guides, experiences, coverImage, news } = data
 
     useEffect(() => {
         setNavTheme('light')
-        setHeaderData({
-            bucket: 'North Carolina',
-        })
     }, [])
 
     return (

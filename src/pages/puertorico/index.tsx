@@ -15,7 +15,6 @@ import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import NewsItem from '../../_components/NewsItem'
 
-
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
     width: 100%;
@@ -37,14 +36,11 @@ const StaysSwiperWrap = styled.div`
         top: ${rem(-46)};
     }
 `
-const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
+const Index = ({ data, properties, setNavTheme }: any) => {
     const { blurb, title, guides, experiences, coverImage, news } = data
 
     useEffect(() => {
         setNavTheme('light')
-        setHeaderData({
-            bucket: 'Puerto Rico',
-        })
     }, [])
 
     return (
@@ -101,9 +97,12 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="EXPERIENCES"
                     fullWidth
                     noPaddingBottom
-                    link='/experiences/puertorico'
+                    link="/experiences/puertorico"
                     content={
-                        <GridModule columns={experiences.length} sideScrollOnMobile>
+                        <GridModule
+                            columns={experiences.length}
+                            sideScrollOnMobile
+                        >
                             {experiences &&
                                 experiences.length &&
                                 experiences.map((exp: any) => (
@@ -119,7 +118,7 @@ const Index = ({ data, properties, setHeaderData, setNavTheme }: any) => {
                     title="IN THE NEWS"
                     fullWidth
                     noPaddingBottom
-                    link='/news'
+                    link="/news"
                     content={
                         <GridModule columns={4} sideScrollOnMobile>
                             {news.length &&
