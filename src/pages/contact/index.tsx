@@ -43,7 +43,6 @@ const Contact = ({ properties, setNavTheme }: any) => {
                     data.property
                 )
             })[0]
-            console.log('proper', propertyObj)
             data.bucket = propertyObj.bucket[0].toUpperCase()
         } else {
             data.bucket = 'DESTINATION N/A'
