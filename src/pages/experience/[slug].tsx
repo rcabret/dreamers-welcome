@@ -60,7 +60,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                 title="DETAILS"
                 noPaddingBottom
                 content={
-                    <GridModule columns={details.length} sideScrollOnMobile>
+                    <GridModule columns={details.length}>
                         {details &&
                             details.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields
