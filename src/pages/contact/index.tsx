@@ -18,6 +18,8 @@ const Contact = ({ properties, setNavTheme }: any) => {
         setNavTheme('dark')
     }, [])
 
+    const [bucket, setBucket] = useState(null)
+
     const [submitted, setSubmitted] = useState(false)
     const {
         register,
@@ -26,6 +28,23 @@ const Contact = ({ properties, setNavTheme }: any) => {
     } = useForm()
 
     const _handleSubmit = (data: any) => {
+        if (!data.subject.length) {
+            data.subject = 'OTHER'
+        }
+
+        if (!data.property.length) {
+            data.property = 'GENERAL PROPERTY'
+        }
+
+        if (data.property !== 'GENERAL PROPERTY') {
+            const propertyObj = properties.filter(
+                (x: any) => x.propertyName.toUpperCase() === data.property
+            )[0]
+            data.bucket = propertyObj.bucket[0].toUpperCase()
+        } else {
+            data.bucket = 'NO SPECIFIED LOCATION'
+        }
+
         fetch('/api/contact', {
             method: 'POST',
             headers: {
@@ -70,11 +89,22 @@ const Contact = ({ properties, setNavTheme }: any) => {
                             {errors.email && (
                                 <p>Please enter an email format.</p>
                             )}
-                            <StyledInput
-                                {...register('subject', { required: false })}
-                                placeholder="SUBJECT"
-                            />
-                            {errors.subject && <p>Please select subject.</p>}
+                            <StyledSelectWrapper>
+                                <StyledSelect
+                                    {...register('subject', {
+                                        required: false,
+                                    })}
+                                >
+                                    <option value="" disabled selected>
+                                        SUBJECT
+                                    </option>
+                                    <option>GENERAL INQUIRIES</option>
+                                    <option>PRESS & MEDIA</option>
+                                    <option>BOOKINGS</option>
+                                    <option>OTHER</option>
+                                </StyledSelect>
+                                <Chevron dark />
+                            </StyledSelectWrapper>
                             <StyledSelectWrapper>
                                 <StyledSelect
                                     {...register('property', {
@@ -85,6 +115,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
                                         <option value="" disabled selected>
                                             SELECT PROPERTY
                                         </option>
+                                        <option>GENERAL PROPERTY</option>
                                         {properties &&
                                             properties.length &&
                                             properties.map((p: any) => (
@@ -96,7 +127,6 @@ const Contact = ({ properties, setNavTheme }: any) => {
                                 </StyledSelect>
                                 <Chevron dark />
                             </StyledSelectWrapper>
-                            {errors.property && <p>Please select property.</p>}
                             <StyledTextarea
                                 {...register('message', { required: true })}
                                 placeholder="MESSAGE"

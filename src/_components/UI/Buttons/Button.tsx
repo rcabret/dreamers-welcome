@@ -17,6 +17,7 @@ interface ButtonProps {
 const StyledButton = styled.button`
     box-shadow: none;
     outline: none;
+    height: ${rem(40)};
     padding: ${rem('8px')} ${rem('18px')};
     border-radius: 30px;
     background: ${({ inverse }: ButtonProps) =>
@@ -35,7 +36,15 @@ const StyledButton = styled.button`
 
     a,
     span {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
         text-decoration: none !important;
+        justify-content: center;
         color: inherit;
     }
 
@@ -47,11 +56,17 @@ const StyledButton = styled.button`
 
 const getElement = (href: string, outsideLink: boolean, children: any) => {
     if (href && !outsideLink) {
-        return <Link href={href}>{children}</Link>
+        return (
+            <Link href={href} passHref>
+                <a>
+                    <span>{children}</span>
+                </a>
+            </Link>
+        )
     } else if (href && outsideLink) {
         return (
             <a href={href} target="_blank">
-                {children}
+                <span>{children}</span>
             </a>
         )
     } else {
@@ -61,7 +76,6 @@ const getElement = (href: string, outsideLink: boolean, children: any) => {
 
 const Button = ({
     inverse = false,
-    title,
     children,
     href,
     className,
@@ -72,7 +86,6 @@ const Button = ({
         inverse={inverse}
         onClick={() => onClick()}
         className={className}
-        title={title}
     >
         {/* @ts-ignore */}
         {getElement(href, outsideLink, children)}
