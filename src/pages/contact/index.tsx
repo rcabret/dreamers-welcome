@@ -42,7 +42,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
             )[0]
             data.bucket = propertyObj.bucket[0].toUpperCase()
         } else {
-            data.bucket = 'NO SPECIFIED LOCATION'
+            data.bucket = 'DESTINATION N/A'
         }
 
         fetch('/api/contact', {

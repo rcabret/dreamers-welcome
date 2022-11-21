@@ -26,8 +26,10 @@ export default function (req: any, res: any) {
     }
 
     transporter.sendMail(mailData, function (err: any, info: any) {
-        if (err) console.error(err)
-        else console.log(info)
+        if (err) {
+            res.error(err)
+            res.end()
+        } else console.log(info)
     })
 
     res.status(200)
