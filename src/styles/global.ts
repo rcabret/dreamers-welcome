@@ -3,7 +3,6 @@ import { rem } from 'polished'
 import { BREAKPOINTS } from '../_constants/brekpoints'
 import GridImage from '../_components/UI/GridImage'
 import Block from '../_components/UI/Block'
-import Link from 'next/link'
 
 interface GMProps {
     columns: number
@@ -24,26 +23,31 @@ export const GridModule = styled.div`
         text-decoration: none;
     }
 
+    @media (max-width: ${rem(1200)}) {
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            sideScrollOnMobile &&
+            css`
+                overflow-x: scroll !important;
+                white-space: nowrap !important;
+
+                > div,
+                > a {
+                    width: 40% !important;
+                    min-width: ${rem('340px')} !important;
+                    white-space: normal !important;
+                }
+            `}
+    }
+
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         ${({ sideScrollOnMobile = false }: GMProps) =>
-            sideScrollOnMobile
-                ? css`
-                      overflow-x: scroll !important;
-                      white-space: nowrap !important;
-
-                      > div,
-                      > a {
-                          width: 40% !important;
-                          min-width: ${rem('280px')} !important;
-                          white-space: normal !important;
-                      }
-                  `
-                : css`
-                      > div,
-                      > a {
-                          width: 50%;
-                      }
-                  `}
+            !sideScrollOnMobile &&
+            css`
+                > div,
+                > a {
+                    width: 50%;
+                }
+            `}
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
@@ -138,6 +142,16 @@ export const StyledBlockForGrid = styled(Block)`
         > div {
             left: -${rem(10)};
             width: calc(100% + ${rem(20)});
+        }
+    }
+    @media (max-width: ${rem(1200)}) {
+        > div:last-child {
+            padding: 0;
+
+            > div {
+                left: 0;
+                width: calc(100%);
+            }
         }
     }
 
