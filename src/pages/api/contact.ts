@@ -23,7 +23,7 @@ export default function (req: any, res: any) {
 
     const mailData = {
         from: 'New DW Contact Form Submission',
-        to: getCorrectEmail(req.body.bucket),
+        to: 'stay@dreamerspuertorico.com',
         subject: `[${req.body.bucket}] | [${req.body.subject}] New Form Submission from ${req.body.name}`,
         text: req.body.message + ' | Sent from: ' + req.body.email,
         html: `<p>Sent from: ${req.body.email}</p>
