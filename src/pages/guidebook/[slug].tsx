@@ -12,9 +12,11 @@ import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import GuideItem from '../../_components/GuideItem'
 import { bucketToPath } from '../../_utils/Parsers'
+import Blurb from '../../_components/UI/Blurb'
 
 const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
-    const { bannerImage, title, bucket, description, otherGuides } = guide
+    const { bannerImage, blurb, title, bucket, description, otherGuides } =
+        guide
 
     useEffect(() => {
         setNavTheme('light')
@@ -33,6 +35,7 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
             >
                 <BannerContent headerText={title} />
             </BannerGridImage>
+            {blurb && <Blurb text={blurb} />}
             <Block
                 title="INFO"
                 content={
