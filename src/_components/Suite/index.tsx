@@ -4,12 +4,15 @@ import Block from '../UI/Block'
 import { BlockListWrap, GridModule } from '../../styles/global'
 import Header from '../Typography/Header'
 import MarkdownModule from '../Typography/MarkdownModule'
+import { ConceptTextContainer } from '../../styles/about/styles'
+import BodyText from '../Typography/BodyText'
 
 interface SuiteProps {
     data: {
         fields: {
             highlights: []
             features: []
+            description?: string
         }
     }
     propertySlug: string
@@ -20,9 +23,20 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
         return null
     }
     const { fields } = data
-    const { highlights, features } = fields
+    const { highlights, features, description } = fields
     return (
         <>
+            {description && (
+                <Block
+                    hideSeparator
+                    title="OVERVIEW"
+                    content={
+                        <ConceptTextContainer>
+                            <BodyText size="xlg">{description}</BodyText>
+                        </ConceptTextContainer>
+                    }
+                />
+            )}
             {highlights && highlights.length
                 ? highlights.map((x: { fields: any }, i: number) => {
                       const { highlightName, blurb, images, slug } = x.fields
@@ -34,7 +48,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                               title={highlightName}
                               blurb={blurb}
                               images={images}
-                              hideSeparator={hideFirstSeparator && i === 0}
+                              hideSeparator={hideFirstSeparator && i === 0 && !description}
                           />
                       )
                   })
