@@ -12,7 +12,6 @@ import {
     StyledSuccessBodyText,
 } from '../../styles/contact/styles'
 import Chevron from '../../_components/UI/Icons/Chevron'
-import { setIn } from 'immutable'
 
 const Contact = ({ properties, setNavTheme }: any) => {
     useEffect(() => {
