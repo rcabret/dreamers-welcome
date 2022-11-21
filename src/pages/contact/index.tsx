@@ -12,13 +12,14 @@ import {
     StyledSuccessBodyText,
 } from '../../styles/contact/styles'
 import Chevron from '../../_components/UI/Icons/Chevron'
+import { setIn } from 'immutable'
 
 const Contact = ({ properties, setNavTheme }: any) => {
     useEffect(() => {
         setNavTheme('dark')
     }, [])
 
-    const [bucket, setBucket] = useState(null)
+    const [inProgress, setInProgress] = useState(false)
 
     const [submitted, setSubmitted] = useState(false)
     const {
@@ -28,6 +29,10 @@ const Contact = ({ properties, setNavTheme }: any) => {
     } = useForm()
 
     const _handleSubmit = (data: any) => {
+        if (inProgress) {
+            return
+        }
+        setInProgress(true)
         if (!data.subject.length) {
             data.subject = 'OTHER'
         }
@@ -61,7 +66,10 @@ const Contact = ({ properties, setNavTheme }: any) => {
                     behavior: 'smooth',
                     top: 0,
                 })
+                setInProgress(false)
                 setSubmitted(true)
+            } else {
+                setInProgress(false)
             }
         })
     }
@@ -139,7 +147,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
                             <StyledInput
                                 type="submit"
                                 value="MESSAGE US"
-                                disabled={Object.keys(errors).length}
+                                disabled={Object.keys(errors).length || inProgress}
                             />
                         </form>
                     </FormContainer>
