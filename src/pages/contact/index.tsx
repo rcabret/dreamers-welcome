@@ -37,12 +37,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
         }
 
         if (data.property !== 'GENERAL PROPERTY') {
-            console.log('data', data.property)
             const propertyObj = properties.filter((x: any) => {
-                console.log(
-                    x.propertyName.toUpperCase(),
-                    data.property.split(' ')[0]
-                )
                 return (
                     `${x.propertyName.toUpperCase()} (${x.bucket[0]})` ===
                     data.property
