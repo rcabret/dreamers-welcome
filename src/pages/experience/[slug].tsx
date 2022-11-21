@@ -12,7 +12,7 @@ import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import Blurb from '../../_components/UI/Blurb'
-import { parseMoneyOrTime } from '../../_utils/Parsers'
+import { bucketToPath, parseMoneyOrTime } from '../../_utils/Parsers'
 import Header from '../../_components/Typography/Header'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import ExperienceItem from '../../_components/ExperienceItem'
@@ -103,6 +103,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                     title="MORE EXPERIENCES"
                     fullWidth
                     noPaddingBottom
+                    link={`/experiences/${bucketToPath(bucket[0])}`}
                     content={
                         <GridModule
                             columns={otherExperiences.length}

@@ -11,6 +11,7 @@ import Block from '../../_components/UI/Block'
 import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import GuideItem from '../../_components/GuideItem'
+import { bucketToPath } from '../../_utils/Parsers'
 
 const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
     const { bannerImage, title, bucket, description, otherGuides } = guide
@@ -45,8 +46,12 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
                     title="MORE GUIDEBOOKS"
                     fullWidth
                     noPaddingBottom
+                    link={`/guidebooks/${bucketToPath(bucket[0])}`}
                     content={
-                        <GridModule columns={otherGuides.length} sideScrollOnMobile>
+                        <GridModule
+                            columns={otherGuides.length}
+                            sideScrollOnMobile
+                        >
                             {otherGuides &&
                                 otherGuides.length &&
                                 otherGuides.map((guide: any) => (

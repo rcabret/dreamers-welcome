@@ -48,3 +48,7 @@ export const pathToBucket = (bucket: string) => {
             return 'North Carolina'
     }
 }
+
+export const bucketToPath = (bucket: string) => {
+    return bucket.toLowerCase().trim().replace(' ', '')
+}
