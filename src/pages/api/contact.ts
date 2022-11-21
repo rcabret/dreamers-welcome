@@ -11,9 +11,20 @@ export default function (req: any, res: any) {
         secure: true,
     })
 
+    const getCorrectEmail = (bucket: string) => {
+        switch (bucket) {
+            case 'PUERTO RICO':
+                return 'stay@dreamerspuertorico.com'
+            case 'NORTH CAROLINA':
+                return 'info@dreamerswelcome.com'
+            default:
+                return 'hello@dreamerswelcome.com'
+        }
+    }
+
     const mailData = {
         from: 'New DW Contact Form Submission',
-        to: 'dreamerswelcome.web@gmail.com',
+        to: getCorrectEmail(req.body.bucket),
         subject: `[${req.body.bucket}] | [${req.body.subject}] New Form Submission from ${req.body.name}`,
         text: req.body.message + ' | Sent from: ' + req.body.email,
         html: `<p>Sent from: ${req.body.email}</p>

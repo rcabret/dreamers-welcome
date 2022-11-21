@@ -120,7 +120,8 @@ const Contact = ({ properties, setNavTheme }: any) => {
                                             properties.length &&
                                             properties.map((p: any) => (
                                                 <option>
-                                                    {p.propertyName.toUpperCase()}
+                                                    {p.propertyName.toUpperCase()}{' '}
+                                                    {`(${p.bucket[0]})`}
                                                 </option>
                                             ))}
                                     </>
