@@ -13,12 +13,11 @@ export default function (req: any, res: any) {
 
     const getCorrectEmail = (bucket: string) => {
         switch (bucket) {
-            case 'PUERTO RICO':
-                return 'stay@dreamerspuertorico.com'
             case 'NORTH CAROLINA':
                 return 'info@dreamerswelcome.com'
             default:
-                return 'hello@dreamerswelcome.com'
+            case 'PUERTO RICO':
+                return 'stay@dreamerspuertorico.com'
         }
     }
 
