@@ -50,7 +50,6 @@ interface PropertyProps {
 
 const Property = ({
     propertyResponse,
-    otherStays,
     setHeaderData,
     setNavTheme,
 }: PropertyProps) => {
@@ -75,6 +74,7 @@ const Property = ({
         suites,
         thingsToKnow,
         reviews,
+        otherStays,
     } = propertyResponse
 
     const router = useRouter()
@@ -273,24 +273,6 @@ const Property = ({
 
             {mapUrl && <Map link={mapUrl} />}
 
-            {reviews && reviews.length && (
-                <StyledBlockForGrid
-                    title="REVIEWS"
-                    fullWidth
-                    noPaddingBottom
-                    content={
-                        <GridModule columns={4} sideScrollOnMobile>
-                            {reviews.length &&
-                                reviews.map((x: any, i: number) => (
-                                    <ReviewItem
-                                        key={x.fields.name + i}
-                                        data={x.fields}
-                                    />
-                                ))}
-                        </GridModule>
-                    }
-                />
-            )}
             {faq && (
                 <Block
                     title="FAQs"
@@ -329,7 +311,7 @@ const Property = ({
                     }
                 />
             )}
-            {otherStays && (
+            {otherStays && otherStays.length && (
                 <StyledBlockForGrid
                     title="OTHER STAYS"
                     fullWidth
@@ -340,8 +322,8 @@ const Property = ({
                                 otherStays.map((x: any, i: number) => (
                                     <PropertyGridItem
                                         collapsed
-                                        key={x.propertySlug}
-                                        propertyObj={x}
+                                        key={x.fields.propertySlug}
+                                        propertyObj={x.fields}
                                     />
                                 ))}
                         </GridModule>
@@ -361,15 +343,10 @@ export default Property
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const propertyResponse = await getProperty(context.params.slug[0])
-    const otherStays = await getOtherStays(
-        propertyResponse.bucket[0],
-        propertyResponse.slug
-    )
 
     return {
         props: {
             propertyResponse,
-            otherStays,
         },
     }
 }
