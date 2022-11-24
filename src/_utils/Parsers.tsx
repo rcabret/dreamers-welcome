@@ -47,7 +47,6 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
     }
 
     if (r) {
-        console.log('here', x.replace(r.reg, ''))
         return (
             <>
                 {x.replace(r.reg, '').trim()}
