@@ -26,7 +26,6 @@ const Dropdown = ({
     const [isOpened, setIsOpened] = useState(false)
 
     const onClick = (slug: string) => {
-        console.log(router);
         const url = `/${slug}`
         router.push(url)
     }

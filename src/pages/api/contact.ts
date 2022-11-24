@@ -21,7 +21,6 @@ export default async function (req: any, res: any) {
         if (error) {
         } else {
             if (result.Message === 'OK') {
-                console.log('in here')
                 res.status(200)
                 res.end()
             }
