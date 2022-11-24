@@ -87,8 +87,7 @@ export const TopContainer = styled.div`
 `
 
 export const StyledButton = styled(Button)`
-    min-width: auto;
-
+  
     ${({ collapsed }: { collapsed?: boolean }) =>
         collapsed &&
         css`
