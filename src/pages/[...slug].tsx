@@ -1,8 +1,4 @@
-import {
-    getAllPropertiesForPaths,
-    getOtherStays,
-    getProperty,
-} from '../_lib/api'
+import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
@@ -27,7 +23,8 @@ import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
 import PropertyGridItem from '../_components/PropertyGridItem'
 import LightBox from '../_components/LightBox'
 import Link from 'next/link'
-import ReviewItem from '../_components/ReviewItem'
+import { StyledButton } from '../styles/landing/styles'
+import { bucketToPath } from '../_utils/Parsers'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -73,7 +70,6 @@ const Property = ({
         rooms,
         suites,
         thingsToKnow,
-        reviews,
         otherStays,
     } = propertyResponse
 
@@ -269,7 +265,15 @@ const Property = ({
                 />
             )}
 
-            {bottomBlurb && <Blurb text={bottomBlurb} borderTop />}
+            {bottomBlurb && (
+                <Blurb text={bottomBlurb} borderTop>
+                    <StyledButton
+                        href={`/experiences/${bucketToPath(bucket[0])}`}
+                    >
+                        EXPERIENCES
+                    </StyledButton>
+                </Blurb>
+            )}
 
             {mapUrl && <Map link={mapUrl} />}
 

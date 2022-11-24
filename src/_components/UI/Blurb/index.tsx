@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
+import MarkdownModule from '../../Typography/MarkdownModule'
 
 const BlurbWrap = styled.div`
     min-height: ${rem('550px')};
@@ -10,7 +11,7 @@ const BlurbWrap = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: ${rem('30px')};
+    padding: ${rem(80)} ${rem('30px')};
     text-align: center;
     position: relative;
 
@@ -21,13 +22,9 @@ const BlurbWrap = styled.div`
         `}
 
     > div {
-        max-width: ${rem('1100px')};
+        max-width: 1100px;
     }
-
-    h1 {
-        line-height: 1.2;
-    }
-
+  
     .separator {
         margin: 0 30px;
         height: 1px;
@@ -54,7 +51,27 @@ const StyledHeader = styled(Header)`
     margin-bottom: ${rem('60px')};
     text-align: center;
 `
+const StyledMarkdown = styled(MarkdownModule)`
+    line-height: 1;
+    p {
+        width: 100%;
+        max-width: 100%;
+        font-size: ${rem(60)};
+        padding-right: 0;
+    }
 
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        p {
+            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(48))};
+        }
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        p {
+            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(40))};
+        }
+    }
+`
 const Blurb = ({
     text,
     borderTop,
@@ -79,7 +96,7 @@ const Blurb = ({
                         {eyebrow}
                     </StyledHeader>
                 )}
-                <Header size={1}>{text}</Header>
+                <StyledMarkdown data={text} />
                 {children && children}
             </div>
         </BlurbWrap>
