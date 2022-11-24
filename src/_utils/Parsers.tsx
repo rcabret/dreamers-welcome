@@ -11,6 +11,8 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
     const testString = x
     const amReg = /AM|am/
     const pmReg = /PM|pm/
+    const hrsReg = /HRS|hrs/
+    const mnsReg = /MNS|mns/
 
     if (testString.indexOf('$') > -1) {
         return (
@@ -20,23 +22,41 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
             </>
         )
     }
+
+    let r: { reg: RegExp; string: string } | null = null
     if (amReg.test(x)) {
+        r = {
+            reg: amReg,
+            string: 'AM',
+        }
+    } else if (pmReg.test(x)) {
+        r = {
+            reg: pmReg,
+            string: 'PM',
+        }
+    } else if (hrsReg.test(x)) {
+        r = {
+            reg: hrsReg,
+            string: 'HRS',
+        }
+    } else if (mnsReg.test(x)) {
+        r = {
+            reg: mnsReg,
+            string: 'MNS',
+        }
+    }
+
+    if (r) {
+        console.log('here', x.replace(r.reg, ''))
         return (
             <>
-                {x.replace(amReg, '')}
-                <SmallSpan size={size}>AM</SmallSpan>
+                {x.replace(r.reg, '').trim()}
+                <SmallSpan size={size}>{r.string}</SmallSpan>
             </>
         )
+    } else {
+        return x
     }
-    if (pmReg.test(x)) {
-        return (
-            <>
-                {x.replace(pmReg, '')}
-                <SmallSpan size={size}>PM</SmallSpan>
-            </>
-        )
-    }
-    return x
 }
 
 export const pathToBucket = (bucket: string) => {
