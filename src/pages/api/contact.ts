@@ -1,5 +1,34 @@
 export default async function (req: any, res: any) {
-    let nodemailer = require('nodemailer')
+    let postmark = require('postmark')
+    const serverToken = '74c559ed-0f3c-41d4-875d-491df406d88d'
+    const client = new postmark.ServerClient(serverToken)
+
+    const mailData = {
+        From: 'stay@dreamerspuertorico.com',
+        To: 'ricardo.cabret@gmail.com',
+        Subject: `[${req.body.bucket}] | [${req.body.subject}] New Form Submission from ${req.body.name}`,
+        TextBody: req.body.message + ' | Sent from: ' + req.body.email,
+        HtmlBody: `<p>Sent from: ${req.body.email}</p>
+                <div><strong>Name:</strong> ${req.body.name}</div>
+                <div><strong>Subject:</strong> ${req.body.subject}</div>
+                <div><strong>Property:</strong> ${req.body.property}</div>
+                <div><strong>Destination:</strong> ${req.body.bucket}</div>
+                <div><strong>Message:</strong></div>
+                <div><p>${req.body.message}</p></div>`,
+    }
+
+    await client.sendEmail(mailData, (error: any, result: any) => {
+        if (error) {
+        } else {
+            if (result.Message === 'OK') {
+                console.log('in here')
+                res.status(200)
+                res.end()
+            }
+        }
+    })
+
+    /*let nodemailer = require('nodemailer')
 
     const transporter = nodemailer.createTransport({
         port: 465,
@@ -47,5 +76,5 @@ export default async function (req: any, res: any) {
             .status(500)
             .json({ error: error.message || error.toString() })
     }
-    return res.status(200).json({ error: '' })
+    return res.status(200).json({ error: '' })*/
 }
