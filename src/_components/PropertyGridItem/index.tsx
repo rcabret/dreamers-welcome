@@ -52,6 +52,7 @@ const PropertyGridItem = ({
                     <Link href={`/${slug}`} passHref shallow={false}>
                         <a>
                             <GridImage
+                                sizes={'33vw'}
                                 borderRadius={false}
                                 border={false}
                                 ratio={0.68}
