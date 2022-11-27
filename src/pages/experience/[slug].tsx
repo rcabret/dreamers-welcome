@@ -16,6 +16,7 @@ import { bucketToPath, parseMoneyOrTime } from '../../_utils/Parsers'
 import Header from '../../_components/Typography/Header'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import ExperienceItem from '../../_components/ExperienceItem'
+import safeJsonStringify from 'safe-json-stringify'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
@@ -56,47 +57,53 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                     </ConceptTextContainer>
                 }
             />
-            <Block
-                title="DETAILS"
-                noPaddingBottom
-                content={
-                    <GridModule columns={details.length}>
-                        {details &&
-                            details.map((stat: any, i: number) => {
-                                const { title, text } = stat.fields
-                                return (
-                                    <div key={title}>
-                                        <Stat>
-                                            {parseMoneyOrTime(text, 30)}
-                                        </Stat>
-                                        <BodyText size="md">{title}</BodyText>
-                                    </div>
-                                )
-                            })}
-                    </GridModule>
-                }
-            />
+            {details && details.length && (
+                <Block
+                    title="DETAILS"
+                    noPaddingBottom
+                    content={
+                        <GridModule columns={details.length}>
+                            {details &&
+                                details.map((stat: any, i: number) => {
+                                    const { title, text } = stat.fields
+                                    return (
+                                        <div key={title}>
+                                            <Stat>
+                                                {parseMoneyOrTime(text, 30)}
+                                            </Stat>
+                                            <BodyText size="md">
+                                                {title}
+                                            </BodyText>
+                                        </div>
+                                    )
+                                })}
+                        </GridModule>
+                    }
+                />
+            )}
 
-            <Block
-                title="THINGS TO KNOW"
-                content={
-                    <GridModule
-                        columns={thingsToKnow.length}
-                        sideScrollOnMobile
-                    >
-                        {thingsToKnow &&
-                            thingsToKnow.map((stat: any, i: number) => {
-                                const { title, text } = stat.fields
-                                return (
-                                    <BlockListWrap key={title}>
-                                        <Header size={4}>{title}</Header>
-                                        <MarkdownModule data={text} />
-                                    </BlockListWrap>
-                                )
-                            })}
-                    </GridModule>
-                }
-            />
+            {thingsToKnow && thingsToKnow.length && (
+                <Block
+                    title="THINGS TO KNOW"
+                    content={
+                        <GridModule
+                            columns={thingsToKnow.length}
+                            sideScrollOnMobile
+                        >
+                            {thingsToKnow &&
+                                thingsToKnow.map((stat: any, i: number) => {
+                                    const { title, text } = stat.fields
+                                    return (
+                                        <BlockListWrap key={title}>
+                                            <Header size={4}>{title}</Header>
+                                            <MarkdownModule data={text} />
+                                        </BlockListWrap>
+                                    )
+                                })}
+                        </GridModule>
+                    }
+                />
+            )}
 
             {otherExperiences && otherExperiences.length && (
                 <StyledBlockForGrid
@@ -125,7 +132,10 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
 export default Experience
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const experience = await getExperience(context.params.slug)
+    const rawData = await getExperience(context.params.slug)
+    const stringData = safeJsonStringify(rawData)
+    const experience = JSON.parse(stringData)
+
     return {
         props: {
             experience,

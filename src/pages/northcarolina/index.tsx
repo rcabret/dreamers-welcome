@@ -14,6 +14,7 @@ import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import PropertyGridItem from '../../_components/PropertyGridItem'
 import NewsItem from '../../_components/NewsItem'
+import safeJsonStringify from 'safe-json-stringify'
 
 const StaysSwiperWrap = styled.div`
     margin-top: ${rem(20)};
@@ -123,7 +124,9 @@ const Index = ({ data, properties, setNavTheme }: any) => {
 export default Index
 
 export async function getStaticProps() {
-    const data = await getHomepage('northcarolina')
+    const rawData = await getHomepage('northcarolina')
+    const stringData = safeJsonStringify(rawData)
+    const data = JSON.parse(stringData)
     const properties = await getPropertiesViaBucket('northcarolina')
     return {
         props: {

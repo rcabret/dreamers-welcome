@@ -14,6 +14,7 @@ import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import NewsItem from '../../_components/NewsItem'
+import safeJsonStringify from 'safe-json-stringify'
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -139,8 +140,11 @@ const Index = ({ data, properties, setNavTheme }: any) => {
 export default Index
 
 export async function getStaticProps() {
-    const data = await getHomepage('puertorico')
+    const rawData = await getHomepage('puertorico')
+    const stringData = safeJsonStringify(rawData)
+    const data = JSON.parse(stringData)
     const properties = await getPropertiesViaBucket('puertorico')
+
     return {
         props: {
             data,

@@ -5,6 +5,7 @@ import { GridModule, GridWrapper } from '../../styles/global'
 import { useRouter } from 'next/router'
 import { getExperiences, getExperiencesPage } from '../../_lib/api'
 import ExperienceItem from '../../_components/ExperienceItem'
+import safeJsonStringify from 'safe-json-stringify'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -86,7 +87,9 @@ const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
 export default Experiences
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const experiences = await getExperiences(context.params.slug)
+    const rawData = await getExperiences(context.params.slug)
+    const stringData = safeJsonStringify(rawData)
+    const experiences = JSON.parse(stringData);
     const experiencesPage = await getExperiencesPage(context.params.slug)
     return {
         props: {
