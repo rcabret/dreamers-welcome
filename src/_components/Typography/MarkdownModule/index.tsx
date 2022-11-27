@@ -4,6 +4,7 @@ import Header from '../../Typography/Header'
 import remarkGfm from 'remark-gfm'
 import BodyText from '../../Typography/BodyText'
 import { MarkupWrapper, Separator } from './styles'
+import rehypeRaw from 'rehype-raw'
 
 interface MarkupProps {
     padding?: boolean
@@ -32,6 +33,7 @@ const MarkdownModule = ({
             padding={padding}
         >
             <ReactMarkdown
+                rehypePlugins={[rehypeRaw]}
                 components={{
                     h1: ({ children }) => (
                         <Header size={1} responsive={responsive}>
