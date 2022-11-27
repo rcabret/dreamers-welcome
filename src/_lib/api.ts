@@ -235,3 +235,25 @@ export const getPage = async (slug: string) => {
         return entries.items[0].fields
     }
 }
+
+export const getPolicies = async () => {
+    const entries = await client.getEntries({
+        content_type: 'policy',
+    })
+
+    if (entries.items) {
+        return entries.items.map((x) => x.fields)
+    }
+}
+
+export const getPolicy = async (slug: string) => {
+    const entries = await client.getEntries({
+        content_type: 'policy',
+        'fields.slug': slug,
+    })
+
+    if (entries.items) {
+        return entries.items[0].fields
+    }
+}
+

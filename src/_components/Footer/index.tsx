@@ -67,7 +67,7 @@ const Footer = ({ activeBucket }: any) => {
             <Copyright>&copy; DW {moment().year()}</Copyright>
             <Policies>
                 <Link href={'/privacy'}>Privacy</Link>&nbsp;and&nbsp;
-                <Link href={'/booking-policy'}>Booking Policy</Link>
+                <Link href={'/booking-policy/general'}>Booking Policy</Link>
             </Policies>
         </FooterStyled>
     )
