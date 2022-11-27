@@ -62,7 +62,6 @@ export async function getStaticProps(context: { params: { slug: string } }) {
         }
     )
 
-    console.log('rrr', dropdownData);
     return {
         props: {
             policy,
