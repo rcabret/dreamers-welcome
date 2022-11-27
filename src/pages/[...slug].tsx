@@ -283,7 +283,7 @@ const Property = ({
                     title="ADDRESS"
                     noPaddingBottom
                     content={<MarkdownModule data={address} />}
-                ></Block>
+                />
             )}
 
             {faq && (
@@ -304,7 +304,7 @@ const Property = ({
                             )}
                         </>
                     }
-                ></Block>
+                />
             )}
             {news && (
                 <StyledBlockForGrid
