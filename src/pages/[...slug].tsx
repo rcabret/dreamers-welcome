@@ -51,6 +51,7 @@ const Property = ({
     setNavTheme,
 }: PropertyProps) => {
     const {
+        address,
         bannerImage,
         bannerHeader,
         bannerDescriptionList,
@@ -276,6 +277,14 @@ const Property = ({
             )}
 
             {mapUrl && <Map link={mapUrl} />}
+
+            {address && (
+                <Block
+                    title="ADDRESS"
+                    noPaddingBottom
+                    content={<MarkdownModule data={address} />}
+                ></Block>
+            )}
 
             {faq && (
                 <Block
