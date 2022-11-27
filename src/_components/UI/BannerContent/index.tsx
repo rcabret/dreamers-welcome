@@ -54,7 +54,7 @@ const OpacityLayer = styled.aside`
     height: 100%;
     z-index: 0;
     top: 0;
-    background: rgba(0, 0, 0, 0.28);
+    background: rgba(0, 0, 0, 0.2);
 `
 
 interface BannerContentProps {
