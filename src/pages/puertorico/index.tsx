@@ -7,7 +7,7 @@ import {
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
-import { getHomepage, getPropertiesViaBucket } from '../../_lib/api'
+import { getHomepage } from '../../_lib/api'
 import ImageGridSlider from '../../_components/UI/Swiper'
 import styled from 'styled-components'
 import { rem } from 'polished'
@@ -38,7 +38,7 @@ const StaysSwiperWrap = styled.div`
     }
 `
 const Index = ({ data, properties, setNavTheme }: any) => {
-    const { blurb, title, guides, experiences, coverImage, news } = data
+    const { blurb, title, guides, experiences, coverImage, news, stays } = data
 
     useEffect(() => {
         setNavTheme('light')
@@ -67,7 +67,7 @@ const Index = ({ data, properties, setNavTheme }: any) => {
                         {/*@ts-ignore*/}
                         <ImageGridSlider
                             slug={'puertorico'}
-                            items={properties}
+                            items={stays.map((x) => x.fields)}
                             isProperties
                             spaceBetween={0}
                         />
@@ -143,12 +143,11 @@ export async function getStaticProps() {
     const rawData = await getHomepage('puertorico')
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
-    const properties = await getPropertiesViaBucket('puertorico')
+    //const properties = await getPropertiesViaBucket('puertorico')
 
     return {
         props: {
             data,
-            properties,
         },
     }
 }

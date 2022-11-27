@@ -7,7 +7,7 @@ import {
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
-import { getHomepage, getPropertiesViaBucket } from '../../_lib/api'
+import { getHomepage } from '../../_lib/api'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
@@ -22,8 +22,8 @@ const StaysSwiperWrap = styled.div`
     left: ${rem(-10)};
     width: calc(100% + ${rem(20)});
 `
-const Index = ({ data, properties, setNavTheme }: any) => {
-    const { blurb, title, guides, experiences, coverImage, news } = data
+const Index = ({ data, setNavTheme }: any) => {
+    const { blurb, title, guides, experiences, coverImage, news, stays } = data
 
     useEffect(() => {
         setNavTheme('light')
@@ -49,10 +49,10 @@ const Index = ({ data, properties, setNavTheme }: any) => {
                 content={
                     <StaysSwiperWrap>
                         <GridModule columns={2}>
-                            {properties &&
-                                properties.length &&
-                                properties.map((p: any) => (
-                                    <PropertyGridItem propertyObj={p} />
+                            {stays &&
+                                stays.length &&
+                                stays.map((p: any) => (
+                                    <PropertyGridItem propertyObj={p.fields} />
                                 ))}
                         </GridModule>
                     </StaysSwiperWrap>
@@ -127,11 +127,10 @@ export async function getStaticProps() {
     const rawData = await getHomepage('northcarolina')
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
-    const properties = await getPropertiesViaBucket('northcarolina')
+
     return {
         props: {
             data,
-            properties,
         },
     }
 }
