@@ -63,6 +63,7 @@ interface BannerContentProps {
     bookNowLink?: string
     description?: string[] | string
     showOpacity?: boolean
+    ctaText?: string
 }
 
 const BannerContent = ({
@@ -71,6 +72,7 @@ const BannerContent = ({
     headerSubheader,
     bookNowLink,
     showOpacity = true,
+    ctaText = 'BOOK NOW',
 }: BannerContentProps) => {
     return (
         <div>
@@ -99,7 +101,9 @@ const BannerContent = ({
                 )}
             </BannerContentWrap>
             {bookNowLink && (
-                <StyledButton outsideLink href={bookNowLink}>BOOK NOW</StyledButton>
+                <StyledButton outsideLink href={bookNowLink}>
+                    {ctaText}
+                </StyledButton>
             )}
         </div>
     )

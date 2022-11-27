@@ -46,7 +46,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                 borderRadius={false}
                 fullHeight
             >
-                <BannerContent headerText={title} bookNowLink={bookNowLink} />
+                <BannerContent headerText={title} bookNowLink={bookNowLink} ctaText='RESERVE NOW' />
             </BannerGridImage>
             <Blurb text={blurb} />
             <Block

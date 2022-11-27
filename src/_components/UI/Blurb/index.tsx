@@ -53,6 +53,7 @@ const StyledHeader = styled(Header)`
 `
 const StyledMarkdown = styled(MarkdownModule)`
     line-height: 1;
+  
     p {
         width: 100%;
         max-width: 100%;
