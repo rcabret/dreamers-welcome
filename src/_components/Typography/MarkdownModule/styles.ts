@@ -47,7 +47,7 @@ export const MarkupWrapper = styled.div`
         column-span: all;
     }
 
-    h3 {
+    h3, h4 {
         margin-bottom: ${rem('20px')};
         max-width: ${rem('500px')};
     }
@@ -115,7 +115,7 @@ export const MarkupWrapper = styled.div`
 export const Separator = styled.div`
     display: inline-block;
     width: 100%;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 1px solid #c1c1c1;
     margin-bottom: ${rem(20)};
     margin-top: ${rem(16)};
 `

@@ -280,8 +280,7 @@ const Property = ({
 
             {address && (
                 <Block
-                    title="ADDRESS"
-                    noPaddingBottom
+                    title="INFO"
                     content={<MarkdownModule data={address} />}
                 />
             )}
