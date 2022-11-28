@@ -82,12 +82,12 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                             <Link href="/faq/general">FAQs</Link>
                         </li>
                         <li>
-                            <Link
+                            <a
                                 href="https://open.spotify.com/user/krlki7u9768cfjkk49xb4iz6n"
                                 target="_blank"
                             >
                                 DW RADIO
-                            </Link>
+                            </a>
                         </li>
                     </ul>
                     <Button inverse href="/contact">
