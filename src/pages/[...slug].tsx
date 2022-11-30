@@ -25,6 +25,7 @@ import LightBox from '../_components/LightBox'
 import Link from 'next/link'
 import { StyledButton } from '../styles/landing/styles'
 import { bucketToPath } from '../_utils/Parsers'
+import safeJsonStringify from 'safe-json-stringify'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -354,7 +355,9 @@ const Property = ({
 export default Property
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const propertyResponse = await getProperty(context.params.slug[0])
+    const rawData = await getProperty(context.params.slug[0])
+    const stringData = safeJsonStringify(rawData)
+    const propertyResponse = JSON.parse(stringData)
 
     return {
         props: {

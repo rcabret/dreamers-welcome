@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Content } from '../../styles/global'
-import { getAllProperties } from '../../_lib/api'
+import { getAllProperties, getProperty } from '../../_lib/api'
 import Header from '../../_components/Typography/Header'
 import {
     FormContainer,
@@ -12,6 +12,7 @@ import {
     StyledSuccessBodyText,
 } from '../../styles/contact/styles'
 import Chevron from '../../_components/UI/Icons/Chevron'
+import safeJsonStringify from 'safe-json-stringify'
 
 const Contact = ({ properties, setNavTheme }: any) => {
     useEffect(() => {
@@ -146,7 +147,9 @@ const Contact = ({ properties, setNavTheme }: any) => {
                             <StyledInput
                                 type="submit"
                                 value="MESSAGE US"
-                                disabled={Object.keys(errors).length || inProgress}
+                                disabled={
+                                    Object.keys(errors).length || inProgress
+                                }
                             />
                         </form>
                     </FormContainer>
@@ -164,7 +167,9 @@ const Contact = ({ properties, setNavTheme }: any) => {
 export default Contact
 
 export async function getStaticProps() {
-    const properties = await getAllProperties()
+    const rawData = await getAllProperties()
+    const stringData = safeJsonStringify(rawData)
+    const properties = JSON.parse(stringData)
 
     return {
         props: {
