@@ -10,7 +10,7 @@ const client = require('contentful').createClient({
 export const getLandingpage = async () => {
     const entries = await client.getEntries({
         content_type: 'landing',
-        include: 3,
+        include: 1,
     })
 
     if (entries.items) {
@@ -59,7 +59,7 @@ export const getAllProperties = async () => {
     const entries = await client.getEntries({
         content_type: 'property',
         order: 'fields.propertyName',
-        include: 5,
+        include: 1,
     })
     if (entries.items) {
         return entries.items.map((x: { fields: {} }) => x.fields)
