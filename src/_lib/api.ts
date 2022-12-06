@@ -22,7 +22,7 @@ export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
         'fields.slug': url,
-        include: 3,
+        include: 1,
     })
 
     if (entries.items) {

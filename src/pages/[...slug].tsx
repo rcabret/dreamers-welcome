@@ -157,7 +157,7 @@ const Property = ({
                     bookNowLink={bookNowLink}
                 />
             </BannerGridImage>
-            <Blurb text={blurb} />
+            {blurb && blurb.length && <Blurb text={blurb} />}
             {concept && (
                 <Block
                     title="CONCEPT"
@@ -267,7 +267,7 @@ const Property = ({
                 />
             )}
 
-            {bottomBlurb && (
+            {bottomBlurb && bottomBlurb.length && (
                 <Blurb text={bottomBlurb} borderTop>
                     <StyledButton
                         href={`/experiences/${bucketToPath(bucket[0])}`}
