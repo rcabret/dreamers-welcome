@@ -190,6 +190,7 @@ export const getExperience = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'activity',
         'fields.slug': slug,
+        include: 1,
     })
     if (entries.items) {
         return entries.items[0].fields

@@ -30,18 +30,6 @@ export const Panel = styled.div`
         position: relative;
     }
 
-    ul {
-        margin-top: ${rem(100)};
-        list-style: none;
-        font-size: ${rem(40)};
-        position: relative;
-        top: 10vh;
-
-        li {
-            margin-bottom: ${rem(4)};
-        }
-    }
-
     .anchorSection {
         position: absolute;
         border-top: 1px solid #c1c1c1;
@@ -88,9 +76,16 @@ const blurFadeIn = keyframes`
 `
 
 export const MainList = styled.ul`
+    margin-top: ${rem(100)};
+    list-style: none;
+    font-size: ${rem(40)};
+    position: relative;
+    top: 10vh;
+
     li {
         opacity: 0;
         position: relative;
+        margin-bottom: ${rem(4)};
 
         aside {
             position: absolute;
@@ -107,7 +102,8 @@ export const MainList = styled.ul`
     }
 `
 
-export const StyledDropdown = styled(Dropdown)`
-    height: auto;
-    top: ${rem(24)};
+export const DropdownWrapper = styled.div`
+    height: ${rem(65)};
+    position: absolute;
+    top: 0;
 `

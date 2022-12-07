@@ -62,14 +62,15 @@ export const RightAnchor = styled.div`
     position: fixed;
     right: 0;
     height: ${rem(65)};
-    width: ${({ opened }: { opened: boolean }) => (opened ? rem(440) : '35vw')};
+    width: ${({ opened }: { opened: boolean }) => (opened ? rem(440 - 40) : '32vw')};
     top: 0;
     transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
     z-index: 300;
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
-        width: ${({ opened }: { opened: boolean }) =>
-            opened ? rem(440) : rem(0)};
+       /* width: ${({ opened }: { opened: boolean }) =>
+            opened ? rem(440) : rem(0)};*/
+        width: 0;
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {

@@ -9,20 +9,13 @@ interface P {
     collapse?: boolean
 }
 
-export const StyledSelect = styled.select`
-    option:hover {
-        background: white;
-    }
-`
-
 export const StyledDropdown = styled.div`
-    position: absolute;
-    left: ${rem(30)};
+    position: relative;
     height: 100%;
     color: ${({ dark }: P) => (dark ? '#1a1a1a' : 'white')};
     display: flex;
     align-items: center;
-    min-width: 240px;
+    width: 240px;
     cursor: pointer;
     font-size: ${rem(16)};
     text-transform: uppercase;
@@ -37,7 +30,8 @@ export const Panel = styled.ul`
     transform-origin: 100% 0;
     transition: 0.3s;
     position: absolute;
-    top: calc(100% + 10px);
+    top: ${rem(55)};
+    left: ${rem(30)};
     overflow: hidden;
     list-style: none;
     width: ${rem(200)};
@@ -56,6 +50,7 @@ export const Panel = styled.ul`
     li {
         padding: ${rem(9)} ${rem(16)};
         color: #1a1a1a;
+        font-size: ${rem(16)};
         transition: 0.3s;
     }
 
@@ -71,6 +66,8 @@ export const Panel = styled.ul`
 `
 
 export const Inner = styled.div`
-    position: relative;
-    float: right;
+    svg,
+    div {
+        float: left;
+    }
 `

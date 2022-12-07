@@ -1,9 +1,10 @@
 import React, { useContext, useEffect } from 'react'
-import { Panel, MainList, StyledDropdown } from './styles'
+import { Panel, MainList, DropdownWrapper } from './styles'
 import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
 import { bucketLinks } from '../../../_constants/links'
 import { viewportContext } from '../../../_utils/ViewportProvider'
+import Dropdown from '../../UI/Dropdown'
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
     const getLink = (slug: string) =>
@@ -49,13 +50,15 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
         <Panel opened={opened}>
             <div>
                 {breakpoint !== 'desktop' && (
-                    <StyledDropdown
-                        bucket={activeBucket}
-                        dark
-                        id="topnav-drop"
-                        links={bucketLinks}
-                        defaultLabel="CHOOSE DESTINATION"
-                    />
+                    <DropdownWrapper>
+                        <Dropdown
+                            bucket={activeBucket}
+                            dark
+                            id="topnav-mobile-drop"
+                            links={bucketLinks}
+                            defaultLabel="CHOOSE DESTINATION"
+                        />
+                    </DropdownWrapper>
                 )}
                 <MainList id="main_list" onClick={() => onClose(false)}>
                     <li>

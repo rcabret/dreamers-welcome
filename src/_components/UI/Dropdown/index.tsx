@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Inner, Panel, StyledDropdown, StyledSelect } from './styles'
+import { Inner, Panel, StyledDropdown } from './styles'
 import { useRouter } from 'next/router'
 import Chevron from '../Icons/Chevron'
 
@@ -45,19 +45,6 @@ const Dropdown = ({
         }
     }, [])
 
-    /* return (
-        <StyledSelect>
-            <option disabled selected>
-                {defaultLabel}
-            </option>
-            {links &&
-                links.length &&
-                links.map((link) => {
-                    return <option>{link.label}</option>
-                })}
-        </StyledSelect>
-    )*/
-
     return (
         <StyledDropdown
             dark={dark}
@@ -66,25 +53,25 @@ const Dropdown = ({
         >
             <div id={id}>
                 <Inner>
+                    <Chevron dark={dark} />
                     <div id={`panel-${id}`}>
                         {isOpened || !bucket ? defaultLabel : bucket}
                     </div>
-                    <Panel opened={isOpened}>
-                        {links &&
-                            links.length &&
-                            links.map((link) => (
-                                <li
-                                    onClick={() => onClick(link.slug)}
-                                    className={
-                                        bucket === link.label ? 'active' : ''
-                                    }
-                                >
-                                    {link.label}
-                                </li>
-                            ))}
-                    </Panel>
                 </Inner>
-                <Chevron dark={dark} />
+                <Panel opened={isOpened}>
+                    {links &&
+                        links.length &&
+                        links.map((link) => (
+                            <li
+                                onClick={() => onClick(link.slug)}
+                                className={
+                                    bucket === link.label ? 'active' : ''
+                                }
+                            >
+                                {link.label}
+                            </li>
+                        ))}
+                </Panel>
             </div>
         </StyledDropdown>
     )
