@@ -15,6 +15,7 @@ export const FooterStyled = styled.footer`
         list-style: none;
         margin-top: ${rem(10)};
         margin-right: 7vw;
+        margin-bottom: ${rem(20)};
 
         li {
             display: block;
@@ -23,10 +24,6 @@ export const FooterStyled = styled.footer`
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         height: ${rem(450)};
-    }
-
-    @media (max-width: ${BREAKPOINTS.MOBILE}) {
-        margin-bottom: ${rem(80)};
     }
 `
 

@@ -24,7 +24,7 @@ const BlurbWrap = styled.div`
     > div {
         max-width: 1100px;
     }
-  
+
     .separator {
         margin: 0 30px;
         height: 1px;
@@ -41,6 +41,8 @@ const BlurbWrap = styled.div`
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        min-height: auto;
+
         h1 {
             font-size: ${rem(38)};
         }
@@ -53,7 +55,7 @@ const StyledHeader = styled(Header)`
 `
 const StyledMarkdown = styled(MarkdownModule)`
     line-height: 1;
-  
+
     p {
         width: 100%;
         max-width: 100%;
@@ -63,13 +65,15 @@ const StyledMarkdown = styled(MarkdownModule)`
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         p {
-            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(46))};
+            font-size: ${({ responsive }: any) =>
+                responsive ? '9.5vw' : rem(42)};
         }
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         p {
-            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(36))};
+            font-size: ${({ responsive }: any) =>
+                responsive ? '9.5vw' : rem(28)};
         }
     }
 `

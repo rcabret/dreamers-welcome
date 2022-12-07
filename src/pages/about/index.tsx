@@ -38,6 +38,7 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
             />
             <Block
                 title="FOUNDERS"
+                noPaddingBottom
                 content={
                     <GridModule columns={2} sideScrollOnMobile={false}>
                         {founders &&
@@ -68,7 +69,7 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
             <Block
                 title="BY THE NUMBERS"
                 content={
-                    <GridModule columns={4} sideScrollOnMobile>
+                    <GridModule columns={4}>
                         {ourReach &&
                             ourReach.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields

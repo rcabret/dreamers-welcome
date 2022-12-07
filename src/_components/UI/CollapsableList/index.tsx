@@ -46,6 +46,11 @@ const Title = styled.div`
     border-top: 1px solid #c1c1c1;
     display: flex;
     cursor: pointer;
+
+    h3 {
+        margin-right: ${rem(60)};
+    }
+  
     ${({ noPaddingBottom }: ListStyleProps) =>
         noPaddingBottom &&
         `
