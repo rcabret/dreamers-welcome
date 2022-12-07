@@ -13,10 +13,10 @@ export const ItemWrapperStyled = styled(ItemWrapper)`
 
     h3 {
         margin-top: ${rem('12px')};
+        margin-bottom: ${rem('14px')};
     }
 `
 
 export const NewsTextWrapper = styled.div`
-    margin-top: ${'14px'};
     margin-bottom: ${rem('14px')};
 `
