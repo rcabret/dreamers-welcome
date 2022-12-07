@@ -1,7 +1,7 @@
 import { getLandingpage } from '../_lib/api'
 import { BannerGridImage } from '../styles/global'
 import BannerContent from '../_components/UI/BannerContent'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { throttle } from '../_utils/Throttle'
 import Block from '../_components/UI/Block'
 import Link from 'next/link'
@@ -15,6 +15,7 @@ import {
     BottomAnchor,
 } from '../styles/landing/styles'
 import Header from '../_components/Typography/Header'
+import { viewportContext } from '../_utils/ViewportProvider'
 
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     const [prData, setPRData] = useState<{
@@ -25,6 +26,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         temperature: string
         time: string
     }>()
+
+    const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('dark')
@@ -44,8 +47,10 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
 
             const style = {
                 width: `calc(98vw + ${scrollTop * 1.8}px)`,
+                /*
                 height: `calc(98vw + ${scrollTop * 1.8}px)`,
-                transform: `translate3d(0,-${scrollTop * 1.2}px, 0)`,
+*/
+                /*  transform: `translate3d(0,-${scrollTop * 1.2}px, 0)`,*/
             }
 
             if (x && inner && innerMain) {

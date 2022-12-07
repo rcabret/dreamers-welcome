@@ -60,6 +60,7 @@ export const TopContainer = styled.div`
         font-weight: 400;
         opacity: 0.4;
         display: inline-block;
+        white-space: nowrap;
     }
 
     > p:first-child {
@@ -87,7 +88,6 @@ export const TopContainer = styled.div`
 `
 
 export const StyledButton = styled(Button)`
-  
     ${({ collapsed }: { collapsed?: boolean }) =>
         collapsed &&
         css`

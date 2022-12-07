@@ -1,14 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Link from 'next/link'
 import GridImage from '../UI/GridImage'
 import Header from '../Typography/Header'
 import { PriceText } from '../../styles/experiences/styles'
 import BodyText from '../Typography/BodyText'
 import { GuidesMetadata } from '../GuideItem/styles'
-import {parseMoneyOrTime} from "../../_utils/Parsers";
+import { parseMoneyOrTime } from '../../_utils/Parsers'
+import { viewportContext } from '../../_utils/ViewportProvider'
 
 const ExperienceItem = ({ data }: any) => {
     const { title, slug, tileImage, price, tileText } = data
+    const breakpoint = useContext(viewportContext)
     return (
         <Link key={title} href={`/experience/${slug}`} passHref>
             <a>
@@ -19,10 +21,14 @@ const ExperienceItem = ({ data }: any) => {
                         <GuidesMetadata>
                             <Header size={3}>{title}</Header>
                             <PriceText>
-                                <Header size={2}>{parseMoneyOrTime(price)}</Header>
+                                <Header size={2}>
+                                    {parseMoneyOrTime(price)}
+                                </Header>
                                 <span> per person</span>
                             </PriceText>
-                            <BodyText size="sm">{tileText}</BodyText>
+                            {breakpoint !== 'mobile' && (
+                                <BodyText size="sm">{tileText}</BodyText>
+                            )}
                         </GuidesMetadata>
                     }
                 />
