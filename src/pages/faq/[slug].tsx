@@ -4,14 +4,8 @@ import Block from '../../_components/UI/Block'
 import CollapsableList from '../../_components/UI/CollapsableList'
 import Dropdown from '../../_components/UI/Dropdown'
 import { getFaq, getFaqPage, getFaqs } from '../../_lib/api'
-import styled from 'styled-components'
 import Blurb from '../../_components/UI/Blurb'
 
-const StyledDropdown = styled(Dropdown)`
-    position: relative;
-    height: auto;
-    left: 0;
-`
 const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
     const { list } = faq
 
@@ -24,7 +18,7 @@ const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
             <Blurb text={faqPage.blurb} eyebrow="FAQs" />
             <Block
                 titleOverride={
-                    <StyledDropdown
+                    <Dropdown
                         dark
                         id="faq-dropdown"
                         links={dropdownData}

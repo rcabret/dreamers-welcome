@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Button from '../../UI/Buttons/Button'
 import { bucketLinks } from '../../../_constants/links'
 import { viewportContext } from '../../../_utils/ViewportProvider'
-import Dropdown from '../../UI/Dropdown'
+import {NavbarDropdown} from "../styles";
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
     const getLink = (slug: string) =>
@@ -51,7 +51,7 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
             <div>
                 {breakpoint !== 'desktop' && (
                     <DropdownWrapper>
-                        <Dropdown
+                        <NavbarDropdown
                             bucket={activeBucket}
                             dark
                             id="topnav-mobile-drop"

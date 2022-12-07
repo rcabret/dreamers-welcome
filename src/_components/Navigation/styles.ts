@@ -4,6 +4,7 @@ import DWLogoType from '../UI/Icons/DWLogoType'
 import DWLogo from '../UI/Icons/DWLogo'
 import ByDw from '../UI/Icons/ByDw'
 import { BREAKPOINTS } from '../../_constants/brekpoints'
+import Dropdown from '../UI/Dropdown'
 
 interface NavigationStyleProps {
     dark?: boolean
@@ -62,13 +63,14 @@ export const RightAnchor = styled.div`
     position: fixed;
     right: 0;
     height: ${rem(65)};
-    width: ${({ opened }: { opened: boolean }) => (opened ? rem(440 - 40) : '32vw')};
+    width: ${({ opened }: { opened: boolean }) =>
+        opened ? rem(440 - 40) : '32vw'};
     top: 0;
     transition: width 0.5s cubic-bezier(0.65, 0, 0.35, 1);
     z-index: 300;
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
-       /* width: ${({ opened }: { opened: boolean }) =>
+        /* width: ${({ opened }: { opened: boolean }) =>
             opened ? rem(440) : rem(0)};*/
         width: 0;
     }
@@ -153,4 +155,8 @@ export const StyledProperty = styled.div`
                 color: white !important;
             `};
     }
+`
+
+export const NavbarDropdown = styled(Dropdown)`
+    top: ${rem(24)};
 `

@@ -10,6 +10,7 @@ import {
     StyledDWLogo,
     StyledDWLogoType,
     StyledProperty,
+    NavbarDropdown,
 } from './styles'
 import NavToggle from '../UI/Icons/NavToggle'
 import MenuPanel from './MenuPanel'
@@ -90,7 +91,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
             </Navigation>
             <RightAnchor opened={opened}>
                 {breakpoint === 'desktop' && (
-                    <Dropdown
+                    <NavbarDropdown
                         bucket={headerData?.bucket}
                         dark={showDarkTheme || opened}
                         id="topnav-drop"

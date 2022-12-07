@@ -11,7 +11,6 @@ interface P {
 
 export const StyledDropdown = styled.div`
     position: relative;
-    height: 100%;
     color: ${({ dark }: P) => (dark ? '#1a1a1a' : 'white')};
     display: flex;
     align-items: center;
@@ -30,7 +29,7 @@ export const Panel = styled.ul`
     transform-origin: 100% 0;
     transition: 0.3s;
     position: absolute;
-    top: ${rem(55)};
+    top: calc(100% + ${rem(10)});
     left: ${rem(30)};
     overflow: hidden;
     list-style: none;

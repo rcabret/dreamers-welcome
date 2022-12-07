@@ -3,15 +3,7 @@ import { Content, PageContent } from '../../styles/global'
 import Block from '../../_components/UI/Block'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import { getPolicies, getPolicy } from '../../_lib/api'
-import styled from 'styled-components'
 import Dropdown from '../../_components/UI/Dropdown'
-import Blurb from '../../_components/UI/Blurb'
-
-const StyledDropdown = styled(Dropdown)`
-    position: relative;
-    height: auto;
-    left: 0;
-`
 
 const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
     const { content } = policy
@@ -25,7 +17,7 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
             <Block
                 hideSeparator
                 titleOverride={
-                    <StyledDropdown
+                    <Dropdown
                         dark
                         id="policies-dropdown"
                         links={dropdownData}
