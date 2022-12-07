@@ -63,13 +63,13 @@ const StyledMarkdown = styled(MarkdownModule)`
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         p {
-            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(48))};
+            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(46))};
         }
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         p {
-            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(40))};
+            font-size: ${({ responsive }: any) => (responsive ? '9.5vw' : rem(36))};
         }
     }
 `
