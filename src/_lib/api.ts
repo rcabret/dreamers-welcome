@@ -201,6 +201,7 @@ export const getFaq = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'faq',
         'fields.slug': slug,
+        include: 2,
     })
     if (entries.items) {
         return entries.items[0].fields
@@ -257,4 +258,3 @@ export const getPolicy = async (slug: string) => {
         return entries.items[0].fields
     }
 }
-
