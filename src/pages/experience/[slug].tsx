@@ -46,7 +46,11 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                 borderRadius={false}
                 fullHeight
             >
-                <BannerContent headerText={title} bookNowLink={bookNowLink} ctaText='RESERVE NOW' />
+                <BannerContent
+                    headerText={title}
+                    bookNowLink={bookNowLink}
+                    ctaText="RESERVE NOW"
+                />
             </BannerGridImage>
             <Blurb text={blurb} />
             <Block
@@ -86,10 +90,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                 <Block
                     title="THINGS TO KNOW"
                     content={
-                        <GridModule
-                            columns={thingsToKnow.length}
-                            sideScrollOnMobile
-                        >
+                        <GridModule columns={thingsToKnow.length}>
                             {thingsToKnow &&
                                 thingsToKnow.map((stat: any, i: number) => {
                                     const { title, text } = stat.fields
