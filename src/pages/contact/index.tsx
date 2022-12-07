@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Content } from '../../styles/global'
-import { getAllProperties, getProperty } from '../../_lib/api'
+import {getAllProperties, getAllPropertiesForPaths, getProperty} from '../../_lib/api'
 import Header from '../../_components/Typography/Header'
 import {
     FormContainer,
@@ -167,7 +167,7 @@ const Contact = ({ properties, setNavTheme }: any) => {
 export default Contact
 
 export async function getStaticProps() {
-    const rawData = await getAllProperties()
+    const rawData = await getAllPropertiesForPaths()
     const stringData = safeJsonStringify(rawData)
     const properties = JSON.parse(stringData)
 

@@ -34,7 +34,7 @@ export const getProperty = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
         'fields.slug': slug,
-        include: 2,
+        include: 3,
     })
     if (entries.items) {
         return entries.items[0].fields
@@ -86,6 +86,7 @@ export const getPropertiesViaBucket = async (bucket?: string) => {
 export const getAllPropertiesForPaths = async () => {
     const entries = await client.getEntries({
         content_type: 'property',
+        order: 'fields.propertyName',
         select: 'fields.propertyName,fields.suites,fields.bucket,fields.slug,fields.propertyType',
         include: 1,
     })
