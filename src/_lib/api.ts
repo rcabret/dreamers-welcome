@@ -201,7 +201,7 @@ export const getFaq = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'faq',
         'fields.slug': slug,
-        include: 2,
+        include: 1,
     })
     if (entries.items) {
         return entries.items[0].fields
@@ -241,6 +241,7 @@ export const getPage = async (slug: string) => {
 export const getPolicies = async () => {
     const entries = await client.getEntries({
         content_type: 'policy',
+        include: 1,
     })
 
     if (entries.items) {
@@ -252,6 +253,7 @@ export const getPolicy = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'policy',
         'fields.slug': slug,
+        include: 1,
     })
 
     if (entries.items) {
