@@ -3,8 +3,8 @@ import { pathToBucket } from '../_utils/Parsers'
 export {}
 
 const client = require('contentful').createClient({
-    space: process.env.CONTENTFUL_SPACE_ID,
-    accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
 })
 
 export const getLandingpage = async () => {
@@ -22,7 +22,20 @@ export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
         'fields.slug': url,
+        select: 'fields.slug,fields.title,fields.blurb,fields.coverImage,fields.news,fields.experiences,fields.guides',
         include: 1,
+    })
+
+    if (entries.items) {
+        return entries.items[0].fields
+    }
+}
+
+export const getStaysForHomepage = async (url: string) => {
+    const entries = await client.getEntries({
+        content_type: 'homepage',
+        'fields.slug': url,
+        select: 'fields.stays',
     })
 
     if (entries.items) {

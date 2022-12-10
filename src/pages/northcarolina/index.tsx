@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     BannerGridImage,
     GridModule,
@@ -7,7 +7,7 @@ import {
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
-import { getHomepage } from '../../_lib/api'
+import { getHomepage, getStaysForHomepage } from '../../_lib/api'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
@@ -23,10 +23,20 @@ const StaysSwiperWrap = styled.div`
     width: calc(100% + ${rem(20)});
 `
 const Index = ({ data, setNavTheme }: any) => {
-    const { blurb, title, guides, experiences, coverImage, news, stays } = data
+    const { blurb, title, guides, experiences, coverImage, news } = data
+    const [stays, setStays] = useState(null)
 
     useEffect(() => {
         setNavTheme('light')
+
+        const getStays = async () => {
+            const rawData = await getStaysForHomepage('northcarolina')
+            const stringData = safeJsonStringify(rawData)
+            const data = JSON.parse(stringData)
+            const { stays } = data
+            setStays(stays)
+        }
+        getStays()
     }, [])
 
     return (
@@ -42,22 +52,26 @@ const Index = ({ data, setNavTheme }: any) => {
             </BannerGridImage>
             <Blurb text={blurb} />
 
-            <Block
-                title="OUR STAYS"
-                fullWidth
-                noPaddingBottom
-                content={
-                    <StaysSwiperWrap>
-                        <GridModule columns={2}>
-                            {stays &&
-                                stays.length &&
-                                stays.map((p: any) => (
-                                    <PropertyGridItem propertyObj={p.fields} />
-                                ))}
-                        </GridModule>
-                    </StaysSwiperWrap>
-                }
-            />
+            {stays && (
+                <Block
+                    title="OUR STAYS"
+                    fullWidth
+                    noPaddingBottom
+                    content={
+                        <StaysSwiperWrap>
+                            <GridModule columns={2}>
+                                {stays &&
+                                    stays.length &&
+                                    stays.map((p: any) => (
+                                        <PropertyGridItem
+                                            propertyObj={p.fields}
+                                        />
+                                    ))}
+                            </GridModule>
+                        </StaysSwiperWrap>
+                    }
+                />
+            )}
 
             {guides && guides.length && (
                 <StyledBlockForGrid

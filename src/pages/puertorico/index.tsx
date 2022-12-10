@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
     BannerGridImage,
     GridModule,
@@ -7,14 +7,16 @@ import {
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
-import { getHomepage } from '../../_lib/api'
-import ImageGridSlider from '../../_components/UI/Swiper'
+import { getHomepage, getStaysForHomepage } from '../../_lib/api'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import GuideItem from '../../_components/GuideItem'
 import ExperienceItem from '../../_components/ExperienceItem'
 import NewsItem from '../../_components/NewsItem'
 import safeJsonStringify from 'safe-json-stringify'
+import dynamic from 'next/dynamic'
+
+const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'));
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -37,11 +39,21 @@ const StaysSwiperWrap = styled.div`
         top: ${rem(-46)};
     }
 `
-const Index = ({ data, properties, setNavTheme }: any) => {
-    const { blurb, title, guides, experiences, coverImage, news, stays } = data
+const Index = ({ data, setNavTheme }: any) => {
+    const { blurb, title, guides, experiences, coverImage, news } = data
+    const [stays, setStays] = useState(null)
 
     useEffect(() => {
         setNavTheme('light')
+
+        const getStays = async () => {
+            const rawData = await getStaysForHomepage('puertorico')
+            const stringData = safeJsonStringify(rawData)
+            const data = JSON.parse(stringData)
+            const { stays } = data
+            setStays(stays)
+        }
+        getStays()
     }, [])
 
     return (
@@ -57,23 +69,24 @@ const Index = ({ data, properties, setNavTheme }: any) => {
             </BannerGridImage>
             <Blurb text={blurb} />
 
-            <Block
-                title="OUR STAYS"
-                fullWidth
-                showOverflow
-                noPaddingBottom
-                content={
-                    <StaysSwiperWrap>
-                        {/*@ts-ignore*/}
-                        <ImageGridSlider
-                            slug={'puertorico'}
-                            items={stays.map((x) => x.fields)}
-                            isProperties
-                            spaceBetween={0}
-                        />
-                    </StaysSwiperWrap>
-                }
-            />
+            {stays && (
+                <Block
+                    title="OUR STAYS"
+                    fullWidth
+                    showOverflow
+                    noPaddingBottom
+                    content={
+                        <StaysSwiperWrap>
+                            <ImageGridSlider
+                                slug={'puertorico'}
+                                items={stays.map((x) => x.fields)}
+                                isProperties
+                                spaceBetween={0}
+                            />
+                        </StaysSwiperWrap>
+                    }
+                />
+            )}
 
             {guides && guides.length && (
                 <StyledBlockForGrid
