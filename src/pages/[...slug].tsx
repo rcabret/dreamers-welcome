@@ -1,4 +1,8 @@
-import { getAllPropertiesForPaths, getProperty } from '../_lib/api'
+import {
+    getAllPropertiesForPaths,
+    getProperty,
+    getRestOfPropertyData,
+} from '../_lib/api'
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
@@ -60,9 +64,7 @@ const Property = ({
         bookNowLink,
         bottomBlurb,
         blurb,
-        carouselImages,
         concept,
-        faq,
         features,
         location,
         mapUrl,
@@ -70,9 +72,9 @@ const Property = ({
         news,
         propertyName,
         rooms,
+        slug,
         suites,
         thingsToKnow,
-        otherStays,
     } = propertyResponse
 
     const router = useRouter()
@@ -83,6 +85,11 @@ const Property = ({
     const [activeView, setView] = useState(suites[0])
     const [activeSlug, setSlug] = useState()
     const [lightbox, toggleLightbox] = useState<boolean>(false)
+    const [extraData, setExtraData] = useState<{
+        otherStays: any
+        carouselImages: any
+        faq: any
+    } | null>(null)
 
     useEffect(() => {
         setNavTheme('light')
@@ -90,6 +97,15 @@ const Property = ({
             bucket: bucket[0],
             property: propertyName,
         })
+
+        const getExtraData = async () => {
+            const rawData = await getRestOfPropertyData(slug)
+            const stringData = safeJsonStringify(rawData)
+            const data = JSON.parse(stringData)
+            setExtraData(data)
+        }
+
+        getExtraData()
     }, [])
 
     const getSubNavigationData = () => {
@@ -204,7 +220,7 @@ const Property = ({
                 )}
             </div>
 
-            {carouselImages && (
+            {extraData && extraData.carouselImages && (
                 <Block
                     noPaddingBottom
                     fullWidth
@@ -212,7 +228,7 @@ const Property = ({
                         <ImageSliderWrapper>
                             <Carousel
                                 toggle={toggleLightbox}
-                                items={carouselImages}
+                                items={extraData.carouselImages}
                             />
                         </ImageSliderWrapper>
                     }
@@ -286,18 +302,20 @@ const Property = ({
                 />
             )}
 
-            {faq && (
+            {extraData && extraData.faq && (
                 <Block
                     title="FAQs"
                     noPaddingBottom
                     content={
                         <>
                             <CollapsableList
-                                data={faq.fields.list.slice(0, 5)}
+                                data={extraData.faq.fields.list.slice(0, 5)}
                             />
-                            {faq.fields.list.length > 5 && (
+                            {extraData.faq.fields.list.length > 5 && (
                                 <SeeMore>
-                                    <Link href={`/faq/${faq.fields.slug}`}>
+                                    <Link
+                                        href={`/faq/${extraData.faq.fields.slug}`}
+                                    >
                                         SEE MORE
                                     </Link>
                                 </SeeMore>
@@ -324,29 +342,34 @@ const Property = ({
                     }
                 />
             )}
-            {otherStays && otherStays.length && (
+            {extraData && extraData.otherStays && extraData.otherStays.length && (
                 <StyledBlockForGrid
                     title="OTHER STAYS"
                     fullWidth
                     noPaddingBottom
                     content={
                         <GridModule columns={4} sideScrollOnMobile>
-                            {otherStays.length &&
-                                otherStays.map((x: any, i: number) => (
-                                    <PropertyGridItem
-                                        collapsed
-                                        key={x.fields.propertySlug}
-                                        propertyObj={x.fields}
-                                    />
-                                ))}
+                            {extraData.otherStays.length &&
+                                extraData.otherStays.map(
+                                    (x: any, i: number) => (
+                                        <PropertyGridItem
+                                            collapsed
+                                            key={x.fields.propertySlug}
+                                            propertyObj={x.fields}
+                                        />
+                                    )
+                                )}
                         </GridModule>
                     }
                 />
             )}
 
             {/* @ts-ignore*/}
-            {carouselImages && lightbox && (
-                <LightBox items={carouselImages} toggle={toggleLightbox} />
+            {extraData && extraData.carouselImages && lightbox && (
+                <LightBox
+                    items={extraData.carouselImages}
+                    toggle={toggleLightbox}
+                />
             )}
         </>
     )

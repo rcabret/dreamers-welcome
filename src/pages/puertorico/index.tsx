@@ -156,7 +156,6 @@ export async function getStaticProps() {
     const rawData = await getHomepage('puertorico')
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
-    //const properties = await getPropertiesViaBucket('puertorico')
 
     return {
         props: {

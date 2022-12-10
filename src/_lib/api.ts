@@ -47,24 +47,23 @@ export const getProperty = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
         'fields.slug': slug,
-        include: 3,
+        select: 'fields.slug,fields.propertyName,fields.bucket,fields.location,fields.propertyType,fields.bannerImage,fields.bannerHeader,fields.bannerDescriptionList,fields.bookNowLink,fields.blurb,fields.bottomBlurb,fields.concept,fields.suites,fields.rooms,fields.address,fields.mapUrl,fields.features,fields.thingsToKnow',
+        include: 2,
     })
     if (entries.items) {
         return entries.items[0].fields
     }
 }
 
-export const getOtherStays = async (bucket: string, propertySlug: string) => {
+export const getRestOfPropertyData = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
-        order: 'fields.propertyName',
-        'fields.bucket[in]': bucket,
-        'fields.slug[ne]': propertySlug,
-        include: 1,
-        limit: 4,
+        'fields.slug': slug,
+        select: 'fields.faq,fields.carouselImages,fields.otherStays',
+        include: 2,
     })
     if (entries.items) {
-        return entries.items.map((x: { fields: {} }) => x.fields)
+        return entries.items[0].fields
     }
 }
 
