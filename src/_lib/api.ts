@@ -59,7 +59,7 @@ export const getRestOfPropertyData = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
         'fields.slug': slug,
-        select: 'fields.faq,fields.carouselImages,fields.otherStays',
+        select: 'fields.faq,fields.carouselImages,fields.otherStays,fields.news',
         include: 2,
     })
     if (entries.items) {

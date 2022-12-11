@@ -69,7 +69,6 @@ const Property = ({
         location,
         mapUrl,
         propertyType,
-        news,
         propertyName,
         rooms,
         slug,
@@ -89,6 +88,7 @@ const Property = ({
         otherStays: any
         carouselImages: any
         faq: any
+        news: any
     } | null>(null)
 
     useEffect(() => {
@@ -328,15 +328,15 @@ const Property = ({
                     }
                 />
             )}
-            {news && (
+            {extraData && extraData.news && (
                 <StyledBlockForGrid
                     title="IN THE NEWS"
                     fullWidth
                     noPaddingBottom
                     content={
                         <GridModule columns={4} sideScrollOnMobile>
-                            {news.length &&
-                                news.map((x: any, i: number) => (
+                            {extraData.news.length &&
+                                extraData.news.map((x: any, i: number) => (
                                     <NewsItem
                                         key={x.slug + i}
                                         newsObj={x.fields}

@@ -25,7 +25,6 @@ const StaysSwiperWrap = styled.div`
 const Index = ({ data, setNavTheme }: any) => {
     const { blurb, title, guides, experiences, coverImage, news } = data
     const [stays, setStays] = useState(null)
-
     useEffect(() => {
         setNavTheme('light')
 
