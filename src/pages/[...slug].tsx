@@ -101,6 +101,7 @@ const Property = ({
             property: propertyName,
         })
 
+        setExtraData(null)
         const getExtraData = async () => {
             const rawData = await getRestOfPropertyData(slug)
             const stringData = safeJsonStringify(rawData)
