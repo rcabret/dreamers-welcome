@@ -93,6 +93,9 @@ const Property = ({
 
     useEffect(() => {
         setNavTheme('light')
+    }, [])
+
+    useEffect(() => {
         setHeaderData({
             bucket: bucket[0],
             property: propertyName,
@@ -106,7 +109,7 @@ const Property = ({
         }
 
         getExtraData()
-    }, [])
+    }, [router.query])
 
     const getSubNavigationData = () => {
         if (pType === 'Suites') {

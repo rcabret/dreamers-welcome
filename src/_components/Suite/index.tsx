@@ -32,7 +32,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                     title="OVERVIEW"
                     content={
                         <ConceptTextContainer>
-                            <BodyText size="xlg">{description}</BodyText>
+                            <MarkdownModule data={description} />
                         </ConceptTextContainer>
                     }
                 />
@@ -48,7 +48,9 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                               title={highlightName}
                               blurb={blurb}
                               images={images}
-                              hideSeparator={hideFirstSeparator && i === 0 && !description}
+                              hideSeparator={
+                                  hideFirstSeparator && i === 0 && !description
+                              }
                           />
                       )
                   })
