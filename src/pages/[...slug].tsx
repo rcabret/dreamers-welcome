@@ -6,7 +6,7 @@ import {
 import Blurb from '../_components/UI/Blurb'
 import Suite from '../_components/Suite'
 import BannerContent from '../_components/UI/BannerContent'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import {
     BannerGridImage,
@@ -30,6 +30,7 @@ import Link from 'next/link'
 import { StyledButton } from '../styles/landing/styles'
 import { bucketToPath } from '../_utils/Parsers'
 import safeJsonStringify from 'safe-json-stringify'
+import { viewportContext } from '../_utils/ViewportProvider'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -90,6 +91,8 @@ const Property = ({
         faq: any
         news: any
     } | null>(null)
+
+    const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('light')
@@ -243,22 +246,28 @@ const Property = ({
                 <Block
                     title="FEATURES"
                     content={
-                        <GridModule
-                            columns={features.length}
-                            sideScrollOnMobile={false}
-                        >
-                            {features &&
-                                features.map((feature: any) => (
-                                    <BlockListWrap key={feature.fields.title}>
-                                        <Header size={4}>
-                                            {feature.fields.title}
-                                        </Header>
-                                        <MarkdownModule
-                                            data={feature.fields.text}
-                                        />
-                                    </BlockListWrap>
-                                ))}
-                        </GridModule>
+                        breakpoint !== 'mobile' ? (
+                            <GridModule
+                                columns={features.length}
+                                sideScrollOnMobile={false}
+                            >
+                                {features &&
+                                    features.map((feature: any) => (
+                                        <BlockListWrap
+                                            key={feature.fields.title}
+                                        >
+                                            <Header size={4}>
+                                                {feature.fields.title}
+                                            </Header>
+                                            <MarkdownModule
+                                                data={feature.fields.text}
+                                            />
+                                        </BlockListWrap>
+                                    ))}
+                            </GridModule>
+                        ) : (
+                            <CollapsableList data={features} />
+                        )
                     }
                 />
             )}
@@ -267,22 +276,26 @@ const Property = ({
                 <Block
                     title="THINGS TO KNOW"
                     content={
-                        <GridModule
-                            columns={thingsToKnow.length}
-                            sideScrollOnMobile={false}
-                        >
-                            {thingsToKnow &&
-                                thingsToKnow.map((thing: any) => (
-                                    <BlockListWrap key={thing.fields.title}>
-                                        <Header size={4}>
-                                            {thing.fields.title}
-                                        </Header>
-                                        <MarkdownModule
-                                            data={thing.fields.text}
-                                        />
-                                    </BlockListWrap>
-                                ))}
-                        </GridModule>
+                        breakpoint !== 'mobile' ? (
+                            <GridModule
+                                columns={thingsToKnow.length}
+                                sideScrollOnMobile={false}
+                            >
+                                {thingsToKnow &&
+                                    thingsToKnow.map((thing: any) => (
+                                        <BlockListWrap key={thing.fields.title}>
+                                            <Header size={4}>
+                                                {thing.fields.title}
+                                            </Header>
+                                            <MarkdownModule
+                                                data={thing.fields.text}
+                                            />
+                                        </BlockListWrap>
+                                    ))}
+                            </GridModule>
+                        ) : (
+                            <CollapsableList data={thingsToKnow} />
+                        )
                     }
                 />
             )}
