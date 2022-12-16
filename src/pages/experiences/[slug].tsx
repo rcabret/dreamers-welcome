@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 import { getExperiences, getExperiencesPage } from '../../_lib/api'
 import ExperienceItem from '../../_components/ExperienceItem'
 import safeJsonStringify from 'safe-json-stringify'
+import { pathToBucket } from '../../_utils/Parsers'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -26,10 +27,22 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const Experiences = ({ experiences, experiencesPage, setNavTheme }: any) => {
+const Experiences = ({
+    experiences,
+    experiencesPage,
+    setNavTheme,
+    setHeaderData,
+}: any) => {
     const router = useRouter()
     useEffect(() => {
         setNavTheme('dark')
+
+        const slug = router.query.slug as string
+        setHeaderData({
+            bucket: pathToBucket(slug || ''),
+            simpleNav: false,
+            property: undefined,
+        })
     }, [])
     const { blurb } = experiencesPage
     const [activeSlug, setSlug] = useState<string>(
@@ -89,7 +102,7 @@ export default Experiences
 export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getExperiences(context.params.slug)
     const stringData = safeJsonStringify(rawData)
-    const experiences = JSON.parse(stringData);
+    const experiences = JSON.parse(stringData)
     const experiencesPage = await getExperiencesPage(context.params.slug)
     return {
         props: {

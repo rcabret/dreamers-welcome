@@ -1,13 +1,12 @@
 import '../styles/main.scss'
 import type { AppProps } from 'next/app'
 import { ViewportProvider } from '../_utils/ViewportProvider'
-import { ReactNode, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import TopNav from '../_components/Navigation'
 import styled from 'styled-components'
 import Footer from '../_components/Footer'
 import EmailCapture from '../_components/EmailCapture'
 import { useRouter } from 'next/router'
-import { getPostUrl } from '../_lib/apiConstants'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -25,32 +24,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     const [headerData, setHeaderData] = useState<HeaderData | undefined>(
         undefined
     )
-    const router = useRouter()
-    const blockList = ['/[...slug]', '/experience/[slug]', '/guide/[slug]', '/']
-
-    useEffect(() => {
-        if (blockList.includes(router.pathname)) {
-            return
-        }
-
-        let data
-        if (router.asPath.indexOf('puertorico') > -1) {
-            data = {
-                bucket: 'Puerto Rico',
-                simpleNav: false,
-                property: undefined,
-            }
-        } else if (router.asPath.indexOf('northcarolina') > -1) {
-            data = {
-                bucket: 'North Carolina',
-                simpleNav: false,
-                property: undefined,
-            }
-        } else {
-            data = { property: undefined, simpleNav: false }
-        }
-        setHeaderData({ ...headerData, ...data })
-    }, [router])
 
     return (
         <ViewportProvider>

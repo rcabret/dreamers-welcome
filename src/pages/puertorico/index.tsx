@@ -16,7 +16,7 @@ import NewsItem from '../../_components/NewsItem'
 import safeJsonStringify from 'safe-json-stringify'
 import dynamic from 'next/dynamic'
 
-const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'));
+const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'))
 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
@@ -39,12 +39,19 @@ const StaysSwiperWrap = styled.div`
         top: ${rem(-46)};
     }
 `
-const Index = ({ data, setNavTheme }: any) => {
+const Index = ({ data, setNavTheme, setHeaderData }: any) => {
     const { blurb, title, guides, experiences, coverImage, news } = data
     const [stays, setStays] = useState(null)
 
     useEffect(() => {
         setNavTheme('light')
+
+        const data = {
+            bucket: 'Puerto Rico',
+            simpleNav: false,
+            property: undefined,
+        }
+        setHeaderData(data)
 
         const getStays = async () => {
             const rawData = await getStaysForHomepage('puertorico')

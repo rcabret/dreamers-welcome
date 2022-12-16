@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 interface Props {
     properties: any
     setNavTheme: any
-    setBucket: any
+    setHeaderData: any
 }
 
 const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
@@ -19,10 +19,13 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
 
     useEffect(() => {
         setNavTheme('dark')
+
+        const bucket = router.query.slug
+            ? pathToBucket(router.query.slug[0] as string)
+            : undefined
+
         setHeaderData({
-            bucket: router.query.slug
-                ? pathToBucket(router.query.slug[0] as string)
-                : undefined,
+            bucket: bucket,
         })
     }, [])
 

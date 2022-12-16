@@ -6,6 +6,7 @@ import { GridModule, GridWrapper } from '../../styles/global'
 
 import { useRouter } from 'next/router'
 import GuideItem from '../../_components/GuideItem'
+import { pathToBucket } from '../../_utils/Parsers'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -26,7 +27,12 @@ const links: { name: string; slug: string }[] = [
     },
 ]
 
-const GuideBooks = ({ guides, guidesPage, setNavTheme }: any) => {
+const GuideBooks = ({
+    guides,
+    guidesPage,
+    setNavTheme,
+    setHeaderData,
+}: any) => {
     const router = useRouter()
 
     const [activeSlug, setSlug] = useState<string>(
@@ -36,6 +42,13 @@ const GuideBooks = ({ guides, guidesPage, setNavTheme }: any) => {
 
     useEffect(() => {
         setNavTheme('dark')
+
+        const slug = router.query.slug as string
+        setHeaderData({
+            bucket: pathToBucket(slug || ''),
+            simpleNav: false,
+            property: undefined,
+        })
     }, [])
 
     useEffect(() => {
@@ -63,12 +76,14 @@ const GuideBooks = ({ guides, guidesPage, setNavTheme }: any) => {
     return (
         <>
             <Blurb text={guidesPage.blurb} eyebrow="GUIDEBOOKS" fullHeight />
-            <SubNavigation
-                activeSlug={activeSlug}
-                data={links}
-                queryParam="type"
-                queryArray={router.query.slug || []}
-            />
+            {activeGuides && activeGuides.length ? (
+                <SubNavigation
+                    activeSlug={activeSlug}
+                    data={links}
+                    queryParam="type"
+                    queryArray={router.query.slug || []}
+                />
+            ) : null}
 
             <GridWrapper padding id="anchor_view">
                 <GridModule columns={3}>

@@ -47,7 +47,8 @@ export const MarkupWrapper = styled.div`
         column-span: all;
     }
 
-    h3, h4 {
+    h3,
+    h4 {
         margin-bottom: ${rem('20px')};
         max-width: ${rem('500px')};
     }
@@ -92,6 +93,12 @@ export const MarkupWrapper = styled.div`
         text-decoration: underline;
     }
 
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        ul {
+            padding-left: ${rem(20)};
+        }
+    }
+
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         column-count: ${({ columns = ColumnsMap.one }: MarkdownStyleProps) =>
             ColumnsMap[columns] - 1};
@@ -104,10 +111,6 @@ export const MarkupWrapper = styled.div`
 
         p {
             padding-right: 0;
-        }
-
-        ul {
-            padding-left: ${rem(20)};
         }
     }
 `

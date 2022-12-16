@@ -22,11 +22,18 @@ const StaysSwiperWrap = styled.div`
     left: ${rem(-10)};
     width: calc(100% + ${rem(20)});
 `
-const Index = ({ data, setNavTheme }: any) => {
+const Index = ({ data, setNavTheme, setHeaderData }: any) => {
     const { blurb, title, guides, experiences, coverImage, news } = data
     const [stays, setStays] = useState(null)
     useEffect(() => {
         setNavTheme('light')
+
+        const data = {
+            bucket: 'North Carolina',
+            simpleNav: false,
+            property: undefined,
+        }
+        setHeaderData(data)
 
         const getStays = async () => {
             const rawData = await getStaysForHomepage('northcarolina')
