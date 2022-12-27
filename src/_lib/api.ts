@@ -179,6 +179,7 @@ export const getGuidesPage = async (bucket: string) => {
 export const getExperiences = async (bucket?: string) => {
     const query: any = {
         content_type: 'activity',
+        select: 'fields.title,fields.slug,fields.tileImage,fields.price,fields.tileText',
     }
 
     if (bucket) {
