@@ -212,6 +212,19 @@ export const getExperience = async (slug: string) => {
     }
 }
 
+export const getOtherExperiences = async (slug: string) => {
+    const entries = await client.getEntries({
+        content_type: 'activity',
+        'fields.slug': slug,
+        select: 'fields.otherExperiences',
+        include: 2,
+    })
+
+    if (entries.items) {
+        return entries.items.map((x: { fields: any }) => x.fields)
+    }
+}
+
 export const getFaq = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'faq',
