@@ -166,6 +166,15 @@ const Property = ({
         <>
             <Head>
                 <title>{propertyName} by DW</title>
+                <meta property="og:title" content={`${propertyName} by DW`} />
+                <meta
+                    property="og:description"
+                    content={`${propertyType[0]} in ${location}`}
+                />
+                <meta
+                    property="og:image"
+                    content={`https:${bannerImage.fields.file.url}?w=700`}
+                />
             </Head>
             <BannerGridImage
                 imageObj={bannerImage}
