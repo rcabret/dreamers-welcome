@@ -47,7 +47,7 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
         }
     } else if (hrReg.test(x)) {
         r = {
-            reg: hrsReg,
+            reg: hrReg,
             string: 'HR',
         }
     }

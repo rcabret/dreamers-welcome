@@ -92,6 +92,14 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                                 DW RADIO
                             </a>
                         </li>
+                        <li>
+                            <a
+                                href="https://www.instagram.com/dreamers.welcome"
+                                target="_blank"
+                            >
+                                INSTA
+                            </a>
+                        </li>
                     </ul>
                     <Button inverse href="/contact">
                         CONTACT US
