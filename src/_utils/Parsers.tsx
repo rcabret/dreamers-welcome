@@ -12,6 +12,7 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
     const amReg = /AM|am/
     const pmReg = /PM|pm/
     const hrsReg = /HRS|hrs/
+    const hrReg = /HR|hr/
     const mnsReg = /MNS|mns/
 
     if (testString.indexOf('$') > -1) {
@@ -43,6 +44,11 @@ export const parseMoneyOrTime = (x: string, size = 20) => {
         r = {
             reg: mnsReg,
             string: 'MNS',
+        }
+    } else if (hrReg.test(x)) {
+        r = {
+            reg: hrsReg,
+            string: 'HR',
         }
     }
 

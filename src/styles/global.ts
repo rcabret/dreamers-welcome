@@ -187,3 +187,11 @@ export const PageContent = styled.div`
         font-size: ${rem(24)};
     }
 `
+
+export const StatsGridModule = styled(GridModule)`
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        > div {
+            margin-bottom: ${rem(40)};
+        }
+    }
+`

@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
     BannerGridImage,
     BlockListWrap,
     GridModule,
     Stat,
+    StatsGridModule,
     StyledBlockForGrid,
 } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
@@ -17,6 +18,7 @@ import Header from '../../_components/Typography/Header'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import ExperienceItem from '../../_components/ExperienceItem'
 import safeJsonStringify from 'safe-json-stringify'
+import { viewportContext } from '../../_utils/ViewportProvider'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
@@ -30,6 +32,8 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         bucket,
         otherExperiences,
     } = experience
+
+    const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('light')
@@ -66,22 +70,29 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                     title="DETAILS"
                     noPaddingBottom
                     content={
-                        <GridModule columns={details.length}>
+                        <StatsGridModule columns={details.length}>
                             {details &&
                                 details.map((stat: any, i: number) => {
                                     const { title, text } = stat.fields
                                     return (
                                         <div key={title}>
+                                            {breakpoint == 'mobile' && (
+                                                <BodyText size="md">
+                                                    {title}
+                                                </BodyText>
+                                            )}
                                             <Stat>
                                                 {parseMoneyOrTime(text, 30)}
                                             </Stat>
-                                            <BodyText size="md">
-                                                {title}
-                                            </BodyText>
+                                            {breakpoint !== 'mobile' && (
+                                                <BodyText size="md">
+                                                    {title}
+                                                </BodyText>
+                                            )}
                                         </div>
                                     )
                                 })}
-                        </GridModule>
+                        </StatsGridModule>
                     }
                 />
             )}

@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react'
-import { BannerGridImage, GridModule, Stat } from '../../styles/global'
+import React, { useContext, useEffect } from 'react'
+import {
+    BannerGridImage,
+    GridModule,
+    Stat,
+    StatsGridModule,
+} from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import { getAbout } from '../../_lib/api'
@@ -9,10 +14,14 @@ import BodyText from '../../_components/Typography/BodyText'
 import GridImage from '../../_components/UI/GridImage'
 import { NewsTextWrapper } from '../../_components/NewsItem/styles'
 import { ConceptTextContainer, StaffMetadata } from '../../styles/about/styles'
+import { parseMoneyOrTime } from '../../_utils/Parsers'
+import { viewportContext } from '../../_utils/ViewportProvider'
 
 const About = ({ about, setHeaderData, setNavTheme }: any) => {
     const { bannerImage, bannerHeader, blurb, concept, founders, ourReach } =
         about
+
+    const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
         setNavTheme('light')
@@ -69,18 +78,29 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
             <Block
                 title="BY THE NUMBERS"
                 content={
-                    <GridModule columns={4}>
+                    <StatsGridModule columns={4}>
                         {ourReach &&
                             ourReach.map((stat: any, i: number) => {
                                 const { title, text } = stat.fields
                                 return (
                                     <div key={title}>
-                                        <Stat>{text}</Stat>
-                                        <BodyText size="md">{title}</BodyText>
+                                        {breakpoint == 'mobile' && (
+                                            <BodyText size="md">
+                                                {title}
+                                            </BodyText>
+                                        )}
+                                        <Stat>
+                                            {parseMoneyOrTime(text, 30)}
+                                        </Stat>
+                                        {breakpoint !== 'mobile' && (
+                                            <BodyText size="md">
+                                                {title}
+                                            </BodyText>
+                                        )}
                                     </div>
                                 )
                             })}
-                    </GridModule>
+                    </StatsGridModule>
                 }
             />
         </>
