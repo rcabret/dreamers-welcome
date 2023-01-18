@@ -64,6 +64,10 @@ export const ContactUs = styled(Button)`
     position: absolute !important;
     right: ${rem(30)};
     top: ${rem(30)};
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        right: ${rem(15)};
+    }
 `
 
 export const Copyright = styled.span`
