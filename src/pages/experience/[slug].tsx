@@ -19,6 +19,7 @@ import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import ExperienceItem from '../../_components/ExperienceItem'
 import safeJsonStringify from 'safe-json-stringify'
 import { viewportContext } from '../../_utils/ViewportProvider'
+import CollapsableList from '../../_components/UI/CollapsableList'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
@@ -101,18 +102,26 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                 <Block
                     title="THINGS TO KNOW"
                     content={
-                        <GridModule columns={thingsToKnow.length}>
-                            {thingsToKnow &&
-                                thingsToKnow.map((stat: any, i: number) => {
-                                    const { title, text } = stat.fields
-                                    return (
-                                        <BlockListWrap key={title}>
-                                            <Header size={4}>{title}</Header>
-                                            <MarkdownModule data={text} />
+                        breakpoint !== 'mobile' ? (
+                            <GridModule
+                                columns={thingsToKnow.length}
+                                sideScrollOnMobile={false}
+                            >
+                                {thingsToKnow &&
+                                    thingsToKnow.map((thing: any) => (
+                                        <BlockListWrap key={thing.fields.title}>
+                                            <Header size={4}>
+                                                {thing.fields.title}
+                                            </Header>
+                                            <MarkdownModule
+                                                data={thing.fields.text}
+                                            />
                                         </BlockListWrap>
-                                    )
-                                })}
-                        </GridModule>
+                                    ))}
+                            </GridModule>
+                        ) : (
+                            <CollapsableList data={thingsToKnow} />
+                        )
                     }
                 />
             )}
