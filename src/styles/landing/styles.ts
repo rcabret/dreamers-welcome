@@ -3,6 +3,7 @@ import Header from '../../_components/Typography/Header'
 import Button from '../../_components/UI/Buttons/Button'
 import { rem } from 'polished'
 import Blurb from '../../_components/UI/Blurb'
+import { BREAKPOINTS } from '../../_constants/brekpoints'
 
 export const Circle = styled.div`
     width: 98vw;
@@ -32,6 +33,10 @@ export const Circle = styled.div`
 
     #inner {
         background: white;
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        bottom: ${rem(-380)};
     }
 `
 
