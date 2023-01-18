@@ -56,6 +56,10 @@ export const FlexContainer = styled.div`
     * {
         color: #1a1a1a;
     }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        height: ${rem(700)};
+    }
 `
 export const StyledHeader = styled(Header)`
     text-align: center;
