@@ -31,6 +31,7 @@ import { StyledButton } from '../styles/landing/styles'
 import { bucketToPath } from '../_utils/Parsers'
 import safeJsonStringify from 'safe-json-stringify'
 import { viewportContext } from '../_utils/ViewportProvider'
+import Head from 'next/head'
 
 const CollapsableList = dynamic(
     () => import('../_components/UI/CollapsableList')
@@ -163,6 +164,9 @@ const Property = ({
     // @ts-ignore
     return (
         <>
+            <Head>
+                <title>{propertyName} by DW</title>
+            </Head>
             <BannerGridImage
                 imageObj={bannerImage}
                 border={false}
