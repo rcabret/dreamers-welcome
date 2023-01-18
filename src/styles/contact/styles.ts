@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { rem } from 'polished'
 import BodyText from '../../_components/Typography/BodyText'
+import {BREAKPOINTS} from "../../_constants/brekpoints";
 
 export const FormContainer = styled.div`
     max-width: ${rem(700)};
@@ -10,6 +11,11 @@ export const FormContainer = styled.div`
     border-radius: ${rem(10)};
     border: 1px solid #c1c1c1;
     margin-bottom: ${rem(100)};
+  
+  
+  @media (max-width: ${BREAKPOINTS.MOBILE}) {
+    padding: ${rem(20)};
+  }
 
     input,
     select,
@@ -83,23 +89,21 @@ export const StyledInput = styled.input`
 `
 
 export const StyledSelect = styled.select`
-    border-radius: ${rem(40)};
-    height: ${rem(50)};
-    -moz-appearance: none; /* Firefox */
-    -webkit-appearance: none; /* Safari and Chrome */
-    appearance: none;
-    cursor: pointer;
+  border-radius: ${rem(40)};
+  height: ${rem(50)};
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none;
+  cursor: pointer;
+  color: #7a7a7a !important;
 
-    option:disabled {
-        color: #c1c1c1 !important;
-    }
+  label {
+    position: relative;
+  }
 
-    label {
-        position: relative;
-    }
-    label:after {
-        right: 80px;
-    }
+  label:after {
+    right: 80px;
+  }
 `
 
 export const StyledTextarea = styled.textarea`

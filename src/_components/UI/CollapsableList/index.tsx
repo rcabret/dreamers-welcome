@@ -19,11 +19,6 @@ interface ListStyleProps {
 const ListWrapper = styled.div`
     position: relative;
 
-    p {
-        padding-top: ${rem('10px')};
-        padding-bottom: ${rem('20px')};
-    }
-
     .extraPadding {
         p {
             padding-top: ${rem('30px')};
@@ -50,7 +45,7 @@ const Title = styled.div`
     h3 {
         margin-right: ${rem(60)};
     }
-  
+
     ${({ noPaddingBottom }: ListStyleProps) =>
         noPaddingBottom &&
         `
@@ -62,6 +57,10 @@ const Title = styled.div`
         border-top: none;
         padding-top: 0;
     `}
+`
+
+const Wrap = styled.div`
+    padding:  ${rem(20)} 0;
 `
 
 class CollapsableList extends Component<any, any> {
@@ -121,7 +120,9 @@ class CollapsableList extends Component<any, any> {
                                         }
                                         duration={500}
                                     >
-                                        <MarkdownModule data={text} />
+                                        <Wrap>
+                                            <MarkdownModule data={text} />
+                                        </Wrap>
                                     </AnimateHeight>
                                 </>
                             )

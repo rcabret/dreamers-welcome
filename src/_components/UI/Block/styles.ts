@@ -71,6 +71,10 @@ export const Title = styled.div`
         float: none;
         padding: 0 ${rem(20)};
         margin-bottom: ${rem(40)};
+
+        h4 {
+            font-weight: 700;
+        }
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
@@ -110,6 +114,7 @@ export const BlockContent = styled.div`
     @media(max-width: ${BREAKPOINTS.TABLET}) {
         padding: ${({ showOverflow }: BI) =>
             showOverflow ? '0' : `0 ${rem(15)}`};
+        padding-top: ${rem(20)};
 
     }
 `

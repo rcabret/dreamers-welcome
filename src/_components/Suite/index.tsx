@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Highlight from './Highlight'
 import Block from '../UI/Block'
 import { BlockListWrap, GridModule } from '../../styles/global'
 import Header from '../Typography/Header'
 import MarkdownModule from '../Typography/MarkdownModule'
 import { ConceptTextContainer } from '../../styles/about/styles'
-import BodyText from '../Typography/BodyText'
+import CollapsableList from '../UI/CollapsableList'
+import { viewportContext } from '../../_utils/ViewportProvider'
 
 interface SuiteProps {
     data: {
@@ -24,6 +25,9 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
     }
     const { fields } = data
     const { highlights, features, description } = fields
+
+    const breakpoint = useContext(viewportContext)
+
     return (
         <>
             {description && (
@@ -59,20 +63,30 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                 <Block
                     title="FEATURES"
                     noPaddingBottom
+                    sideScrollOnMobile={false}
                     content={
-                        <GridModule columns={3} sideScrollOnMobile={false}>
-                            {features &&
-                                features.map((feature: any) => (
-                                    <BlockListWrap key={feature.fields.title}>
-                                        <Header size={4}>
-                                            {feature.fields.title}
-                                        </Header>
-                                        <MarkdownModule
-                                            data={feature.fields.text}
-                                        />
-                                    </BlockListWrap>
-                                ))}
-                        </GridModule>
+                        breakpoint !== 'mobile' ? (
+                            <GridModule
+                                columns={features.length}
+                                sideScrollOnMobile={false}
+                            >
+                                {features &&
+                                    features.map((feature: any) => (
+                                        <BlockListWrap
+                                            key={feature.fields.title}
+                                        >
+                                            <Header size={4}>
+                                                {feature.fields.title}
+                                            </Header>
+                                            <MarkdownModule
+                                                data={feature.fields.text}
+                                            />
+                                        </BlockListWrap>
+                                    ))}
+                            </GridModule>
+                        ) : (
+                            <CollapsableList data={features} />
+                        )
                     }
                 />
             )}

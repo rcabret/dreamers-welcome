@@ -58,10 +58,6 @@ export const MarkupWrapper = styled.div`
         break-before: column;
     }
 
-    p:last-of-type {
-        margin-bottom: 0;
-    }
-
     p {
         margin-bottom: ${rem(20)};
         max-width: ${rem(800)};

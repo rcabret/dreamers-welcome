@@ -4,6 +4,7 @@ import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import BodyText from '../../Typography/BodyText'
 import Button from '../Buttons/Button'
+import {BREAKPOINTS} from "../../../_constants/brekpoints";
 
 const BannerContentWrap = styled.div`
     display: flex;
@@ -46,6 +47,10 @@ const StyledButton = styled(Button)`
     bottom: ${rem(26)};
     margin-left: 0;
     z-index: 90;
+  
+  @media(max-width: ${BREAKPOINTS.MOBILE}) {
+      right: ${rem(15)};
+  }
 `
 
 const OpacityLayer = styled.aside`
