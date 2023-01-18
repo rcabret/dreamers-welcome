@@ -248,6 +248,7 @@ const Property = ({
 
             {features && (
                 <Block
+                    noPaddingBottom
                     title="FEATURES"
                     content={
                         breakpoint !== 'mobile' ? (
