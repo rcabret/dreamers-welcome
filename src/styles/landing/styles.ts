@@ -59,6 +59,7 @@ export const FlexContainer = styled.div`
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         height: ${rem(700)};
+        min-height: auto;
     }
 `
 export const StyledHeader = styled(Header)`
