@@ -46,6 +46,11 @@ const BlurbWrap = styled.div`
         h1 {
             font-size: ${rem(38)};
         }
+
+        .separator {
+            margin: 0;
+            width: 100%;
+        }
     }
 `
 

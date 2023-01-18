@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { Swiper } from 'swiper/react'
 import { rem } from 'polished'
 import Button from '../Buttons/Button'
+import {BREAKPOINTS} from "../../../_constants/brekpoints";
 
 export const StyledSwiper = styled(Swiper)`
     .swiper-button-next {
@@ -60,6 +61,12 @@ export const NavigationWrap = styled.div`
             transform: rotate(180deg);
         }
     }
+  
+  
+   @media(max-width: ${BREAKPOINTS.MOBILE}) {
+     top: ${rem(-46)};
+     right: ${rem(20)};
+   }
 `
 
 export const ImageSliderWrapper = styled.div`

@@ -47,6 +47,7 @@ const Highlight = ({
             fullWidth
             hideSeparator={hideSeparator}
             showOverflow
+            noPaddingBottom
             content={
                 <>
                     <SliderWrap>

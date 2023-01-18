@@ -60,7 +60,8 @@ const Title = styled.div`
 `
 
 const Wrap = styled.div`
-    padding:  ${rem(20)} 0;
+    padding-top: ${rem(40)};
+    padding-bottom: ${rem(20)};
 `
 
 class CollapsableList extends Component<any, any> {
@@ -112,11 +113,6 @@ class CollapsableList extends Component<any, any> {
                                             this.state.activeIndex === i
                                                 ? 'auto'
                                                 : 0
-                                        }
-                                        className={
-                                            i === data.length - 1
-                                                ? 'extraPadding'
-                                                : ''
                                         }
                                         duration={500}
                                     >

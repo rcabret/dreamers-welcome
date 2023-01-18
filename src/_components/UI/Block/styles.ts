@@ -31,8 +31,8 @@ export const BlockWrapper = styled.div`
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         .separator {
-            width: calc(100% - ${rem(30)});
-            left: ${rem(15)};
+            width: 100%;
+            left: 0;
         }
     }
 `

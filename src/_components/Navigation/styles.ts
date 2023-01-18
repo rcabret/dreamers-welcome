@@ -89,6 +89,10 @@ export const StyledDWLogoType = styled(DWLogoType)`
         fill: ${({ dark }: NavigationStyleProps) =>
             dark ? '#1a1a1a' : 'white'};
     }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        width: ${rem(150)};
+    }
 `
 export const StyledDWLogo = styled(DWLogo)`
     position: absolute;
@@ -96,6 +100,10 @@ export const StyledDWLogo = styled(DWLogo)`
     * {
         fill: ${({ dark }: NavigationStyleProps) =>
             dark ? '#1a1a1a' : 'white'};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        width: ${rem(20)};
     }
 `
 export const StyledByDWLogo = styled(ByDw)`
@@ -105,6 +113,10 @@ export const StyledByDWLogo = styled(ByDw)`
     path {
         fill: ${({ dark }: NavigationStyleProps) =>
             dark ? '#1a1a1a' : 'white'};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        width: ${rem(54)};
     }
 `
 
@@ -141,7 +153,6 @@ export const StyledProperty = styled.div`
     justify-content: center;
 
     h3 {
-        transition: 0.3s font-size;
         font-size: ${rem(20)};
         ${({ active }: NavigationStyleProps) =>
             active &&
@@ -154,6 +165,12 @@ export const StyledProperty = styled.div`
             css`
                 color: white !important;
             `};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        h3 {
+            font-size: ${rem(18)};
+        }
     }
 `
 

@@ -275,6 +275,7 @@ const Property = ({
             {thingsToKnow && (
                 <Block
                     title="THINGS TO KNOW"
+                    noPaddingBottom
                     content={
                         breakpoint !== 'mobile' ? (
                             <GridModule
@@ -315,6 +316,7 @@ const Property = ({
             {address && (
                 <Block
                     title="INFO"
+                    noPaddingBottom
                     content={<MarkdownModule data={address} />}
                 />
             )}
