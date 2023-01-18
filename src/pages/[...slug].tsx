@@ -76,6 +76,7 @@ const Property = ({
         slug,
         suites,
         thingsToKnow,
+        tileImage,
     } = propertyResponse
 
     const router = useRouter()
@@ -169,11 +170,11 @@ const Property = ({
                 <meta property="og:title" content={`${propertyName} by DW`} />
                 <meta
                     property="og:description"
-                    content={`${propertyType[0]} in ${location}`}
+                    content={`${propertyType[0]} in ${location}, ${bucket[0]}`}
                 />
                 <meta
                     property="og:image"
-                    content={`https:${bannerImage.fields.file.url}?w=700`}
+                    content={`https:${tileImage.fields.file.url}?w=700`}
                 />
             </Head>
             <BannerGridImage
