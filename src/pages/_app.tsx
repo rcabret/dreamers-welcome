@@ -6,7 +6,7 @@ import TopNav from '../_components/Navigation'
 import styled from 'styled-components'
 import Footer from '../_components/Footer'
 import EmailCapture from '../_components/EmailCapture'
-import { useRouter } from 'next/router'
+import TagManager from 'react-gtm-module'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -24,6 +24,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const [headerData, setHeaderData] = useState<HeaderData | undefined>(
         undefined
     )
+
+    useEffect(() => {
+        TagManager.initialize({ gtmId: 'GTM-KC6QD2H' })
+    }, [])
 
     return (
         <ViewportProvider>
