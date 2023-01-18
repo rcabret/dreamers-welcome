@@ -142,6 +142,14 @@ export const HamburgerWrap = styled.div`
     right: 30px;
     height: 100%;
     cursor: pointer;
+
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        right: ${rem(20)};
+    }
+
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        right: ${rem(15)};
+    }
 `
 
 export const StyledProperty = styled.div`
