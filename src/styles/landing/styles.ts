@@ -45,7 +45,7 @@ export const FlexContainer = styled.div`
     top: 0;
     display: flex;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     align-items: flex-start;
     justify-content: center;
     padding-top: 100px;
@@ -58,8 +58,6 @@ export const FlexContainer = styled.div`
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
-        height: ${rem(700)};
-        min-height: auto;
     }
 `
 export const StyledHeader = styled(Header)`

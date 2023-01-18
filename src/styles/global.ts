@@ -115,7 +115,7 @@ export const TopSection = styled.div`
 
 export const BannerGridImage = styled(GridImage)`
     height: 100vh;
-    min-height: 700px;
+    min-height: ${rem(700)};
     position: relative;
     //max-height: 960px;
 `
