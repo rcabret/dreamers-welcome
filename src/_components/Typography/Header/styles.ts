@@ -14,10 +14,6 @@ export const H1Styled = styled.h1.attrs({ lan: 'en' })`
     line-height: 1;
     font-weight: ${(props) => (props.bold ? 900 : 400)};
     text-transform: ${(props) => (props.uppercase ? 'uppercase' : 'none')};
-    -webkit-hyphens: auto;
-    -moz-hyphens: auto;
-    -ms-hyphens: auto;
-    hyphens: auto;
     margin: 0;
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
