@@ -24,6 +24,7 @@ import CollapsableList from '../../_components/UI/CollapsableList'
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
         bannerImage,
+        mobileBannerImage,
         title,
         blurb,
         info,
@@ -47,6 +48,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         <>
             <BannerGridImage
                 imageObj={bannerImage}
+                mobileImageObj={mobileBannerImage}
                 border={false}
                 borderRadius={false}
                 fullHeight

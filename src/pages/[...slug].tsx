@@ -60,6 +60,7 @@ const Property = ({
     const {
         address,
         bannerImage,
+        mobileBannerImage,
         bannerHeader,
         bannerDescriptionList,
         bucket,
@@ -179,6 +180,7 @@ const Property = ({
             </Head>
             <BannerGridImage
                 imageObj={bannerImage}
+                mobileImageObj={mobileBannerImage}
                 border={false}
                 borderRadius={false}
                 fullHeight

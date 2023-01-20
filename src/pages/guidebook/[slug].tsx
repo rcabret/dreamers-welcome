@@ -15,8 +15,15 @@ import { bucketToPath } from '../../_utils/Parsers'
 import Blurb from '../../_components/UI/Blurb'
 
 const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
-    const { bannerImage, blurb, title, bucket, description, otherGuides } =
-        guide
+    const {
+        bannerImage,
+        mobileBannerImage,
+        blurb,
+        title,
+        bucket,
+        description,
+        otherGuides,
+    } = guide
 
     useEffect(() => {
         setNavTheme('light')
@@ -29,6 +36,7 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
         <>
             <BannerGridImage
                 imageObj={bannerImage}
+                mobileImageObj={mobileBannerImage}
                 border={false}
                 borderRadius={false}
                 fullHeight

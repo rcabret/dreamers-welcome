@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Image from 'next/image'
 import { ImageMask, Container } from './styles'
 import { ContentfulImage } from '../../../_constants/DataTypes'
+import { viewportContext } from '../../../_utils/ViewportProvider'
+import { getModuleBuildInfo } from 'next/dist/build/webpack/loaders/get-module-build-info'
 
 interface GridImageProps {
     badge?: JSX.Element
@@ -14,6 +16,7 @@ interface GridImageProps {
     metadata?: JSX.Element
     showMetadata?: boolean
     imageObj?: ContentfulImage
+    mobileImageObj?: ContentfulImage
     fullHeight?: boolean
     disabled?: boolean
     sizes?: string
@@ -32,6 +35,7 @@ const GridImage = ({
     fixedHeight,
     ratio = 0.67,
     imageObj,
+    mobileImageObj = null,
     sizes,
     widthQuery,
 }: GridImageProps) => {
@@ -39,7 +43,12 @@ const GridImage = ({
         return null
     }
 
-    const { fields } = imageObj
+    const breakpoint = useContext(viewportContext)
+
+    const imageToRender =
+        breakpoint === 'mobile' && mobileImageObj ? mobileImageObj : imageObj
+
+    const { fields } = imageToRender
 
     const { file } = fields
     const { details, url } = file
@@ -60,7 +69,7 @@ const GridImage = ({
         return ratio
     }
 
-    const final_ratio = getCorrectRatio([height, width], ratio);
+    const final_ratio = getCorrectRatio([height, width], ratio)
 
     return (
         <Container
@@ -75,7 +84,7 @@ const GridImage = ({
                 hasHover={hasHover}
                 ratio={final_ratio}
             >
-                {imageObj ? (
+                {imageToRender ? (
                     <>
                         <aside />
                         <Image
