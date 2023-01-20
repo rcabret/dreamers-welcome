@@ -23,7 +23,15 @@ const StaysSwiperWrap = styled.div`
     width: calc(100% + ${rem(20)});
 `
 const Index = ({ data, setNavTheme, setHeaderData }: any) => {
-    const { blurb, title, guides, experiences, coverImage, news } = data
+    const {
+        blurb,
+        title,
+        guides,
+        experiences,
+        coverImage,
+        mobileCoverImage,
+        news,
+    } = data
     const [stays, setStays] = useState(null)
     useEffect(() => {
         setNavTheme('light')
@@ -49,6 +57,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         <>
             <BannerGridImage
                 imageObj={coverImage}
+                mobileImageObj={mobileCoverImage}
                 border={false}
                 borderRadius={false}
                 fullHeight
