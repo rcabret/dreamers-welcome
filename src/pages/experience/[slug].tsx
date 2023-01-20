@@ -20,6 +20,7 @@ import ExperienceItem from '../../_components/ExperienceItem'
 import safeJsonStringify from 'safe-json-stringify'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import CollapsableList from '../../_components/UI/CollapsableList'
+import Head from 'next/head'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
@@ -46,6 +47,15 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
 
     return (
         <>
+            <Head>
+                <title>{title} | Dreamers Welcome</title>
+                <meta property="og:title" content={title} />
+                <meta property="og:description" content={blurb} />
+                <meta
+                    property="og:image"
+                    content={`https:${bannerImage.fields.file.url}?w=700`}
+                />
+            </Head>
             <BannerGridImage
                 imageObj={bannerImage}
                 mobileImageObj={mobileBannerImage}

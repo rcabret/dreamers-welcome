@@ -3,9 +3,10 @@ import React, { useContext, useEffect } from 'react'
 import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
-import { getAllProperties, getPropertiesViaBucket } from '../../_lib/api'
+import { getPropertiesViaBucket } from '../../_lib/api'
 import { pathToBucket } from '../../_utils/Parsers'
 import { useRouter } from 'next/router'
+import Head from 'next/head'
 
 interface Props {
     properties: any
@@ -34,22 +35,27 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
     }
 
     return (
-        <Content padding>
-            <GridWrapper border={false} padding>
-                <GridModule columns={3} sideScrollOnMobile={false}>
-                    {properties &&
-                        properties.map(
-                            (property: { slug: string }, i: number) => (
-                                <PropertyGridItem
-                                    collapsed
-                                    key={property.slug + i}
-                                    propertyObj={property}
-                                />
-                            )
-                        )}
-                </GridModule>
-            </GridWrapper>
-        </Content>
+        <>
+            <Head>
+                <title>Stays | Dreamers Welcome</title>
+            </Head>
+            <Content padding>
+                <GridWrapper border={false} padding>
+                    <GridModule columns={3} sideScrollOnMobile={false}>
+                        {properties &&
+                            properties.map(
+                                (property: { slug: string }, i: number) => (
+                                    <PropertyGridItem
+                                        collapsed
+                                        key={property.slug + i}
+                                        propertyObj={property}
+                                    />
+                                )
+                            )}
+                    </GridModule>
+                </GridWrapper>
+            </Content>
+        </>
     )
 }
 
