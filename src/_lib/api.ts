@@ -22,7 +22,7 @@ export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
         'fields.slug': url,
-        select: 'fields.slug,fields.title,fields.blurb,fields.coverImage,fields.news,fields.experiences,fields.guides',
+        select: 'fields.slug,fields.title,fields.blurb,fields.coverImage,fields.mobileCoverImage,fields.news,fields.experiences,fields.guides',
         include: 1,
     })
 
@@ -47,7 +47,7 @@ export const getProperty = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'property',
         'fields.slug': slug,
-        select: 'fields.slug,fields.propertyName,fields.bucket,fields.location,fields.propertyType,fields.bannerImage,fields.bannerHeader,fields.bannerDescriptionList,fields.bookNowLink,fields.blurb,fields.bottomBlurb,fields.concept,fields.suites,fields.rooms,fields.address,fields.mapUrl,fields.features,fields.thingsToKnow,fields.tileImage',
+        select: 'fields.slug,fields.propertyName,fields.bucket,fields.location,fields.propertyType,fields.bannerImage,fields.mobileBannerImage,fields.bannerHeader,fields.bannerDescriptionList,fields.bookNowLink,fields.blurb,fields.bottomBlurb,fields.concept,fields.suites,fields.rooms,fields.address,fields.mapUrl,fields.features,fields.thingsToKnow,fields.tileImage',
         include: 2,
     })
     if (entries.items) {
