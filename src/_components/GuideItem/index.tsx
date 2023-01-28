@@ -18,7 +18,8 @@ const GuideItem = ({ data }: any) => {
                         <GuidesMetadata>
                             <Header size={3}>{title}</Header>
                             <BodyText size="sm">
-                                {description.substring(0, 300)}... (Read more)
+                                {description.substring(0, 300)}
+                                {description.length > 300 && '... (Read More)'}
                             </BodyText>
                         </GuidesMetadata>
                     }
