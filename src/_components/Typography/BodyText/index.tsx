@@ -33,7 +33,7 @@ const getMobileBodySize = (size: HeaderProps['size']) => {
     switch (size) {
         default:
         case 'sm':
-            return rem('12px')
+            return rem('14px')
         case 'md':
             return rem('16px')
         case 'lg':

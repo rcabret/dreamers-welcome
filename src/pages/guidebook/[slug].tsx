@@ -2,17 +2,16 @@ import React, { useEffect } from 'react'
 import {
     BannerGridImage,
     GridModule,
-    Stat,
     StyledBlockForGrid,
 } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import { getGuide, getGuides } from '../../_lib/api'
 import Block from '../../_components/UI/Block'
-import BodyText from '../../_components/Typography/BodyText'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import GuideItem from '../../_components/GuideItem'
 import { bucketToPath } from '../../_utils/Parsers'
 import Blurb from '../../_components/UI/Blurb'
+import MarkdownModule from '../../_components/Typography/MarkdownModule'
 
 const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
     const {
@@ -48,7 +47,7 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
                 title="INFO"
                 content={
                     <ConceptTextContainer>
-                        <BodyText size="xlg">{description}</BodyText>
+                        <MarkdownModule data={description} />
                     </ConceptTextContainer>
                 }
             />

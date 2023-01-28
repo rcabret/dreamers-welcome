@@ -16,6 +16,7 @@ import { NewsTextWrapper } from '../../_components/NewsItem/styles'
 import { ConceptTextContainer, StaffMetadata } from '../../styles/about/styles'
 import { parseMoneyOrTime } from '../../_utils/Parsers'
 import { viewportContext } from '../../_utils/ViewportProvider'
+import MarkdownModule from '../../_components/Typography/MarkdownModule'
 
 const About = ({ about, setHeaderData, setNavTheme }: any) => {
     const {
@@ -49,7 +50,7 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
                 title="CONCEPT"
                 content={
                     <ConceptTextContainer>
-                        <BodyText size="xlg">{concept}</BodyText>
+                        <MarkdownModule data={concept} />
                     </ConceptTextContainer>
                 }
             />
