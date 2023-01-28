@@ -34,6 +34,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         thingsToKnow,
         bucket,
         otherExperiences,
+        includedWithStay,
     } = experience
 
     const breakpoint = useContext(viewportContext)

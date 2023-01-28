@@ -9,7 +9,7 @@ import { parseMoneyOrTime } from '../../_utils/Parsers'
 import { viewportContext } from '../../_utils/ViewportProvider'
 
 const ExperienceItem = ({ data }: any) => {
-    const { title, slug, tileImage, price, tileText } = data
+    const { title, slug, tileImage, price, tileText, includedWithStay } = data
     const breakpoint = useContext(viewportContext)
     return (
         <Link key={title} href={`/experience/${slug}`} passHref>
@@ -20,12 +20,18 @@ const ExperienceItem = ({ data }: any) => {
                     metadata={
                         <GuidesMetadata>
                             <Header size={3}>{title}</Header>
-                            <PriceText>
-                                <Header size={2}>
-                                    {parseMoneyOrTime(price)}
-                                </Header>
-                                <span> per person</span>
-                            </PriceText>
+                            {!includedWithStay ? (
+                                <PriceText>
+                                    <Header size={2}>
+                                        {parseMoneyOrTime(price)}
+                                    </Header>
+                                    <span> per person</span>
+                                </PriceText>
+                            ) : (
+                                <PriceText>
+                                    <Header size={3}>*Included with stay</Header>
+                                </PriceText>
+                            )}
                             {breakpoint !== 'mobile' && (
                                 <BodyText size="sm">{tileText}</BodyText>
                             )}
