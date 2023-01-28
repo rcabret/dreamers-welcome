@@ -12,15 +12,20 @@ export const StaffMetadata = styled.div`
 
 export const ConceptTextContainer = styled.div`
     padding-right: ${rem(40)};
+
+    a {
+        text-decoration: underline;
+    }
+  
     * {
         font-size: ${rem(29)};
         max-width: ${rem(1000)} !important;
     }
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
-      * {
-        font-size: ${rem(26)};
-      }
+        * {
+            font-size: ${rem(26)};
+        }
     }
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
