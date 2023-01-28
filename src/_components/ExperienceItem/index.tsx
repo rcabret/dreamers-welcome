@@ -29,7 +29,7 @@ const ExperienceItem = ({ data }: any) => {
                                 </PriceText>
                             ) : (
                                 <PriceText>
-                                    <Header size={3}>*Included with stay</Header>
+                                    <Header size={4}>Included with stay</Header>
                                 </PriceText>
                             )}
                             {breakpoint !== 'mobile' && (
