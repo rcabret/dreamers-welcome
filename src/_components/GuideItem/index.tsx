@@ -16,11 +16,10 @@ const GuideItem = ({ data }: any) => {
                     imageObj={tileImage}
                     metadata={
                         <GuidesMetadata>
-                            {/*<BodyText size="sm">
-                                                      {guide.labels[0]}
-                                                  </BodyText>*/}
                             <Header size={3}>{title}</Header>
-                            <BodyText size="sm">{description}</BodyText>
+                            <BodyText size="sm">
+                                {description.substring(0, 300)}... (Read more)
+                            </BodyText>
                         </GuidesMetadata>
                     }
                 />
