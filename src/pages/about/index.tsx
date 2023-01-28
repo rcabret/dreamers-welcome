@@ -18,8 +18,15 @@ import { parseMoneyOrTime } from '../../_utils/Parsers'
 import { viewportContext } from '../../_utils/ViewportProvider'
 
 const About = ({ about, setHeaderData, setNavTheme }: any) => {
-    const { bannerImage, bannerHeader, blurb, concept, founders, ourReach } =
-        about
+    const {
+        bannerImage,
+        bannerHeader,
+        mobileBannerImage,
+        blurb,
+        concept,
+        founders,
+        ourReach,
+    } = about
 
     const breakpoint = useContext(viewportContext)
 
@@ -30,6 +37,7 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
         <>
             <BannerGridImage
                 imageObj={bannerImage}
+                mobileImageObj={mobileBannerImage}
                 border={false}
                 borderRadius={false}
                 fullHeight
