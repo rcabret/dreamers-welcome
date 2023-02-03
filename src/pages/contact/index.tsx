@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { Content } from '../../styles/global'
-import {getAllProperties, getAllPropertiesForPaths, getProperty} from '../../_lib/api'
+import {
+    getAllProperties,
+    getAllPropertiesForPaths,
+    getProperty,
+} from '../../_lib/api'
 import Header from '../../_components/Typography/Header'
 import {
     FormContainer,
@@ -14,9 +18,13 @@ import {
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
 
-const Contact = ({ properties, setNavTheme }: any) => {
+const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
         setNavTheme('dark')
+        setHeaderData({
+            simpleNav: false,
+            property: undefined,
+        })
     }, [])
 
     const [inProgress, setInProgress] = useState(false)
