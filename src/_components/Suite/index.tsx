@@ -34,11 +34,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                 <Block
                     hideSeparator
                     title="OVERVIEW"
-                    content={
-                        <ConceptTextContainer>
-                            <MarkdownModule data={description} />
-                        </ConceptTextContainer>
-                    }
+                    content={<MarkdownModule data={description} />}
                 />
             )}
             {highlights && highlights.length
