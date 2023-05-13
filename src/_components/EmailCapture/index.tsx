@@ -20,9 +20,30 @@ const Wrapper = styled.div`
     }
 `
 
-const EmailCapture = () => {
+const EmailCapture = ({inFirstVisitModal} : any) => {
     const url = getPostUrl()
-    return (
+    if(inFirstVisitModal){
+        return (
+            <Wrapper>
+                <div>
+                    <StyledHeader size={2}>Are you a dreamer?</StyledHeader>
+                    <MailchimpSubscribe
+                        url={url}
+                        render={({ subscribe, status, message }) => (
+                            <SubscribeForm
+                                status={status}
+                                message={message}
+                                onValidated={(formData: any) => {
+                                    subscribe(formData)
+                                }}
+                            />
+                        )}
+                    />
+                </div>
+            </Wrapper>
+        )
+    }
+    else return (
         <Block
             noPaddingBottom
             fullWidth

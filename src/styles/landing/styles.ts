@@ -99,7 +99,7 @@ export const BottomAnchor = styled.div`
     position: absolute;
     cursor: pointer;
     bottom: ${rem(20)};
-    z-index: 100;
+    z-index: 10;
 
     h3 {
         text-align: center;
