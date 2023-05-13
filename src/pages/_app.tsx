@@ -8,9 +8,6 @@ import Footer from '../_components/Footer'
 import EmailCapture from '../_components/EmailCapture'
 import TagManager from 'react-gtm-module'
 import Head from 'next/head'
-import FirstVisitModal from '../_components/Modal/FirstVisitModal'
-import '../../public/styles/global.css'
-import Script from 'next/script'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -28,17 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     const [headerData, setHeaderData] = useState<HeaderData | undefined>(
         undefined
     )
-    const [firstModalShow, setFirstModalShow] = useState(false)
 
     useEffect(() => {
-        const visited = localStorage.getItem('visited');
-        if(visited != 'true'){
-            let timer = setTimeout(() => {
-                setFirstModalShow(true)                
-            }, 2500);
-        }
-        // setFirstModalShow(true)  
-        localStorage.setItem('visited', 'true');
         TagManager.initialize({ gtmId: 'GTM-KC6QD2H' })
     }, [])
 
@@ -71,20 +59,6 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
-                <Script strategy="lazyOnload" id="facebook-pixel">
-                    {`
-                    !function(f,b,e,v,n,t,s)
-                    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-                    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-                    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-                    n.queue=[];t=b.createElement(e);t.async=!0;
-                    t.src=v;s=b.getElementsByTagName(e)[0];
-                    s.parentNode.insertBefore(t,s)}(window, document,'script',
-                    'https://connect.facebook.net/en_US/fbevents.js');
-                    fbq('init', '1594089821088907');
-                    fbq('track', 'PageView');
-                    `}
-                </Script>
             </Head>
             <ViewportProvider>
                 <TopNav navTheme={navTheme} headerData={headerData} />
@@ -95,10 +69,9 @@ function MyApp({ Component, pageProps }: AppProps) {
                         setNavTheme={setNavTheme}
                     />
                 </StyledMain>
-                <EmailCapture inFirstVisitModal={false}/>
+                <EmailCapture />
                 <Footer activeBucket={headerData?.bucket} />
             </ViewportProvider>
-            <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)}/>
         </>
     )
 }
