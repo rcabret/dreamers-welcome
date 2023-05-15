@@ -59,12 +59,28 @@ const Footer = ({ activeBucket }: any) => {
                             DW RADIO
                         </a>
                     </li>
+                </ul>
+                <ul>
                     <li>
                         <a
                             href="https://www.instagram.com/dreamers.welcome"
                             target="_blank"
                         >
                             INSTA
+                        </a>
+                    </li>
+                    <li>
+                        <a href='https://www.pinterest.com/dreamers_welcome'
+                            target="_blank"
+                        >
+                            PINTEREST
+                        </a>
+                    </li>
+                    <li>
+                        <a href='https://www.pinterest.com/dreamers_welcome'
+                            target="_blank"
+                        >
+                            FACEBOOK
                         </a>
                     </li>
                 </ul>

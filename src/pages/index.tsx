@@ -32,7 +32,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
         setNavTheme('dark')
         setHeaderData({
-            simpleNav: true,
+            simpleNav: false,
         })
     }, [])
 

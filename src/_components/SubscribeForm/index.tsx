@@ -3,16 +3,7 @@ import InputField from '../UI/InputField'
 import styled from 'styled-components'
 import { rem } from 'polished'
 
-const Form = styled.form`
-    width: 100%;
-    max-width: ${rem(600)};
-    margin: 0 auto;
 
-    > div {
-        position: relative;
-        width: 100%;
-    }
-`
 
 const StyledButtonInput = styled(InputField)`
     position: absolute;
@@ -41,7 +32,18 @@ const StyledButtonInput = styled(InputField)`
     }
 `
 
-const SubscribeForm = ({ status, message, onValidated }: any) => {
+const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
+    const Form = styled.form`
+        margin-top: ${marginTop} !important;
+        width: 100%;
+        max-width: ${rem(600)};
+        margin: 0 auto;
+
+        > div {
+            position: relative;
+            width: 100%;
+        }
+    `
     const [email, setEmail] = useState('')
     const [placeholder, setPlaceholder] = useState('SUBSCRIBE')
 
