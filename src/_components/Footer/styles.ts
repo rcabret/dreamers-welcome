@@ -24,6 +24,10 @@ export const FooterStyled = styled.footer`
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         height: ${rem(450)};
+        padding: ${rem(10)};
+        ul {
+            margin-right: 5vw;
+        }
     }
 `
 
