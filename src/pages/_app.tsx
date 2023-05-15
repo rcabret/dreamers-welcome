@@ -32,6 +32,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
         const visited = localStorage.getItem('visited');
+        console.log(visited)
         if(visited != 'true'){
             let timer = setTimeout(() => {
                 setFirstModalShow(true)                
