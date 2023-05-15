@@ -77,7 +77,7 @@ const Footer = ({ activeBucket }: any) => {
                         </a>
                     </li>
                     <li>
-                        <a href='https://www.pinterest.com/dreamers_welcome'
+                        <a href='https://m.facebook.com/dreamers.puertorico'
                             target="_blank"
                         >
                             FACEBOOK

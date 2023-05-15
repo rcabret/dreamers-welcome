@@ -38,9 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 setFirstModalShow(true)                
             }, 2500);
         }
-        // setFirstModalShow(true)  
-        // localStorage.setItem('visited', 'true');
-        localStorage.clear();
+        localStorage.setItem('visited', 'true');
         TagManager.initialize({ gtmId: 'GTM-KC6QD2H' })
     }, [])
 
