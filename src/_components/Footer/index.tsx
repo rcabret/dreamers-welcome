@@ -25,33 +25,33 @@ const Footer = ({ activeBucket }: any) => {
             <StyledFooterLogo />
             <LeftLinks>
                 <ul>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <Link href={getLink('stays')}>STAYS</Link>
                     </li>
                     {activeBucket && (
                         <>
-                            <li>
+                            <li className='text-sm sm:text-xl'>
                                 <Link href={getLink('experiences')}>
                                     EXPERIENCES
                                 </Link>
                             </li>
-                            <li>
+                            <li className='text-sm sm:text-xl'>
                                 <Link href={getLink('guidebooks')}>GUIDEBOOKS</Link>
                             </li>
                         </>
                     )}
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <Link href={'/faq/general'}>FAQs</Link>
                     </li>
                 </ul>
                 <ul>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <Link href={'/about'}>ABOUT</Link>
                     </li>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <Link href={'/news'}>NEWS</Link>
                     </li>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <a
                             href="https://open.spotify.com/user/krlki7u9768cfjkk49xb4iz6n"
                             target="_blank"
@@ -61,7 +61,7 @@ const Footer = ({ activeBucket }: any) => {
                     </li>
                 </ul>
                 <ul>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <a
                             href="https://www.instagram.com/dreamers.welcome"
                             target="_blank"
@@ -69,14 +69,14 @@ const Footer = ({ activeBucket }: any) => {
                             INSTA
                         </a>
                     </li>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <a href='https://www.pinterest.com/dreamers_welcome'
                             target="_blank"
                         >
                             PINTEREST
                         </a>
                     </li>
-                    <li>
+                    <li className='text-sm sm:text-xl'>
                         <a href='https://m.facebook.com/dreamers.puertorico'
                             target="_blank"
                         >

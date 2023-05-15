@@ -88,4 +88,7 @@ export const Policies = styled.span`
     a:hover {
         text-decoration: underline;
     }
+    @media (max-width: ${BREAKPOINTS.MOBILE}) {
+        margin-left: ${rem(120)};
+    }
 `

@@ -73,7 +73,7 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                         {!activeBucket && <aside />}
                     </li>
                 </MainList>
-                <div className="anchorSection" onClick={() => onClose(false)}>
+                <div className="anchorSection flex justify-around" onClick={() => onClose(false)}>
                     <ul>
                         <li>
                             <Link href="/about">ABOUT</Link>
@@ -92,12 +92,28 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                                 DW RADIO
                             </a>
                         </li>
+                    </ul>
+                    <ul>
                         <li>
                             <a
                                 href="https://www.instagram.com/dreamers.welcome"
                                 target="_blank"
                             >
                                 INSTA
+                            </a>
+                        </li>
+                        <li>
+                            <a href='https://www.pinterest.com/dreamers_welcome'
+                                target="_blank"
+                            >
+                                PINTEREST
+                            </a>
+                        </li>
+                        <li>
+                            <a href='https://m.facebook.com/dreamers.puertorico'
+                                target="_blank"
+                            >
+                                FACEBOOK
                             </a>
                         </li>
                     </ul>
