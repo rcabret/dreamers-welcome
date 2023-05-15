@@ -53,7 +53,7 @@ const Footer = ({ activeBucket }: any) => {
                     </li>
                     <li>
                         <a
-                            href="https://www.pinterest.com/dreamers_welcome"
+                            href="https://open.spotify.com/user/krlki7u9768cfjkk49xb4iz6n"
                             target="_blank"
                         >
                             DW RADIO

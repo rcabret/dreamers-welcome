@@ -8,8 +8,6 @@ import Footer from '../_components/Footer'
 import EmailCapture from '../_components/EmailCapture'
 import TagManager from 'react-gtm-module'
 import Head from 'next/head'
-import FirstVisitModal from '../_components/Modal/FirstVisitModal'
-import '../../public/styles/global.css'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -27,17 +25,8 @@ function MyApp({ Component, pageProps }: AppProps) {
     const [headerData, setHeaderData] = useState<HeaderData | undefined>(
         undefined
     )
-    const [firstModalShow, setFirstModalShow] = useState(false)
 
     useEffect(() => {
-        const visited = localStorage.getItem('visited');
-        if(visited != 'true'){
-            let timer = setTimeout(() => {
-                setFirstModalShow(true)                
-            }, 2500);
-        }
-        // setFirstModalShow(true)  
-        localStorage.setItem('visited', 'true');
         TagManager.initialize({ gtmId: 'GTM-KC6QD2H' })
     }, [])
 
@@ -105,9 +94,8 @@ function MyApp({ Component, pageProps }: AppProps) {
                         setNavTheme={setNavTheme}
                     />
                 </StyledMain>
-                <EmailCapture inFirstVisitModal={false}/>
+                <EmailCapture/>
                 <Footer activeBucket={headerData?.bucket} />
-                <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)}/>
             </ViewportProvider>
         </>
     )
