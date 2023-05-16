@@ -88,11 +88,13 @@ const Footer = ({ activeBucket }: any) => {
             <ContactUs href={'/contact'} inverse>
                 CONTACT US
             </ContactUs>
-            <Copyright>&copy; DW {moment().year()}</Copyright>
-            <Policies>
-                <Link href={'/privacy'}>Privacy</Link>&nbsp;and&nbsp;
-                <Link href={'/booking-policy/general'}>Booking Policy</Link>
-            </Policies>
+            <div className='flex absolute bottom-7 left-5'>
+                <Copyright>&copy; DW {moment().year()}</Copyright>
+                <Policies>
+                    <Link href={'/privacy'}>Privacy</Link>&nbsp;and&nbsp;
+                    <Link href={'/booking-policy/general'}>Booking Policy</Link>
+                </Policies>
+            </div>
         </FooterStyled>
     )
 }

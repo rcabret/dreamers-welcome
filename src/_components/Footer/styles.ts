@@ -76,23 +76,14 @@ export const ContactUs = styled(Button)`
 `
 
 export const Copyright = styled.span`
-    position: absolute;
-    bottom: ${rem(30)};
-    left: ${rem(30)};
     color: #575757;
 `
 
 export const Policies = styled.span`
-    position: absolute;
-    left: ${rem(30)};
-    margin-left: ${rem(140)};
-    bottom: ${rem(30)};
+    margin-left: 10px;
     color: #575757;
 
     a:hover {
         text-decoration: underline;
-    }
-    @media (max-width: ${BREAKPOINTS.MOBILE}) {
-        margin-left: ${rem(120)};
     }
 `

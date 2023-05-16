@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import { BREAKPOINTS } from '../../../_constants/brekpoints'
 
 const StyledInput = styled.input`
     border-radius: ${rem(40)};
@@ -11,6 +12,9 @@ const StyledInput = styled.input`
     border: 1px solid #c1c1c1;
     padding: ${rem(20)};
     font-size: ${rem(18)};
+    @media (max-width: ${BREAKPOINTS.TABLET}) {
+        font-size: 13px;
+    }
 `
 
 const StyledButton = styled.button`

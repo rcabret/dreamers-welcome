@@ -36,8 +36,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         if(visited != 'true'){
             let timer = setTimeout(() => {
                 setFirstModalShow(true)                
-            }, 2500);
+            }, 3000);
         }
+        // setFirstModalShow(true)
         localStorage.setItem('visited', 'true');
         TagManager.initialize({ gtmId: 'GTM-KC6QD2H' })
     }, [])
