@@ -31,10 +31,7 @@ const StyledButtonInput = styled(InputField)`
         }
     }
 `
-
-const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
-    const Form = styled.form`
-        margin-top: ${marginTop} !important;
+const Form = styled.form`
         width: 100%;
         max-width: ${rem(600)};
         margin: 0 auto;
@@ -44,6 +41,9 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
             width: 100%;
         }
     `
+
+const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
+    
     const [email, setEmail] = useState('')
     const [placeholder, setPlaceholder] = useState('SUBSCRIBE')
 
@@ -67,7 +67,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     }, [message, status])
 
     return (
-        <Form onSubmit={(e) => handleSubmit(e)}>
+        <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)}>
             <div>
                 <InputField
                     onChangeHandler={setEmail}

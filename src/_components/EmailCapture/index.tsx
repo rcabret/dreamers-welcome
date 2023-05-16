@@ -10,22 +10,21 @@ import { getPostUrl } from '../../_lib/apiConstants'
 const StyledHeader = styled(Header)`
     text-align: center;
 `
-
-
-
-const EmailCapture = ({inFirstVisitModal} : any) => {
-    const Wrapper = styled.div`
+const Wrapper = styled.div`
         width: 100%;
-        padding: ${inFirstVisitModal ? rem(50) : rem(100)} 0;
 
         form {
             margin-top: ${rem(80)};
         }
     `
+
+
+const EmailCapture = ({inFirstVisitModal} : any) => {
+    
     const url = getPostUrl()
     if(inFirstVisitModal){
         return (
-            <Wrapper>
+            <Wrapper style = {{['padding'as any] : '3rem 0'}}>
                 <div>
                     <StyledHeader size={2}>Are you a dreamer?</StyledHeader>
                     <p className='mt-5 px-3 text-lg text-center'>Sign up for our updates and be the first to hear about exclusive offers and the latest news</p>
@@ -53,7 +52,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
             fullWidth
             title="STAY CONNECTED"
             content={
-                <Wrapper>
+                <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                     <div>
                         <StyledHeader size={2}>Are you a dreamer?</StyledHeader>
                         <MailchimpSubscribe
