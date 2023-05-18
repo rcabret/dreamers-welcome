@@ -86,6 +86,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                         'https://connect.facebook.net/en_US/fbevents.js');
                         fbq('init', '1594089821088907');
                         fbq('track', 'PageView');
+                        fbq('set', 'api_access_token', 'EAAI4LqKv20ABAFSIGBKZAvEZBYJ0Dx4YXNZBPZAUzceB96ZCMHt41HjqwgZCplrhAtApYa0V1Nmw7IfheObMvTo0SIo4N3uAZA1f0lpfuOoZBHrxgUUjvHtdif08tUw5FFG03eGbOkT9ZBoj3uali8APr8gjtGyRRb1OisPWflJwccphPc9ZCju3RZBB5CvV1ZAxIXMZD');
                     `
                     }}
                 />
