@@ -41,7 +41,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                             />
                         )}
                     />
-                    <p className='text-sm block mx-auto mt-2 max-w-[37.5rem] w-full'>We respect your privacy.</p>
+                    <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
                 </div>
             </Wrapper>
         )
@@ -55,11 +55,12 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                     <div>
                         <StyledHeader size={2}>Are you a dreamer?</StyledHeader>
+                        <p className='my-5 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
                         <MailchimpSubscribe
                             url={url}
                             render={({ subscribe, status, message }) => (
                                 <SubscribeForm
-                                    marginTop='5rem'
+                                    marginTop='3rem'
                                     status={status}
                                     message={message}
                                     onValidated={(formData: any) => {
@@ -68,6 +69,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                                 />
                             )}
                         />
+                        <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
                     </div>
                 </Wrapper>
             }
