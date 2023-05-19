@@ -30,7 +30,7 @@ const FirstVisitModal = ({ modalOpen, onClose }) => {
       />
       {/* content */}
       <div
-        className={`fixed rounded-md lg:w-2/5 w-4/5 h-auto px-5 duration-500 transition-opacity ease-in-out bg-white shadow-lg max-w-full p-0 z-50 ${
+        className={`fixed rounded-[50px] lg:w-2/5 w-4/5 h-auto px-5 duration-500 transition-opacity ease-in-out bg-white shadow-lg max-w-full p-0 z-50 ${
           modalOpen ? 'opacity-100' : ' opacity-0'
         }`}
       >

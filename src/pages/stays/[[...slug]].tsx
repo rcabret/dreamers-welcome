@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 
 import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
@@ -17,23 +17,23 @@ interface Props {
 const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
+    const [bucket, setBucket] = useState('');
 
     useEffect(() => {
         setNavTheme('dark')
 
-        const bucket = router.query.slug
+        const bkt = router.query.slug
             ? pathToBucket(router.query.slug[0] as string)
             : undefined
-
+        setBucket(bkt as string)
         setHeaderData({
-            bucket: bucket,
+            bucket: bkt,
         })
     }, [])
 
     if (!properties.length) {
         return null
     }
-
     return (
         <>
             <Head>
@@ -41,7 +41,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
             </Head>
             <Content padding>
                 <GridWrapper border={false} padding>
-                    <GridModule columns={3} sideScrollOnMobile={false}>
+                    <GridModule columns={bucket == "North Carolina" ? 2 : 3} sideScrollOnMobile={false}>
                         {properties &&
                             properties.map(
                                 (property: { slug: string }, i: number) => (

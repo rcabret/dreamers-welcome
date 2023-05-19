@@ -45,7 +45,7 @@ const Form = styled.form`
 const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     
     const [email, setEmail] = useState('')
-    const [placeholder, setPlaceholder] = useState('SUBSCRIBE')
+    const [placeholder, setPlaceholder] = useState('Enter your email')
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -61,7 +61,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
             setEmail('')
             setPlaceholder('THANKS FOR SUBSCRIBING!')
             setTimeout(() => {
-                setPlaceholder('SUBSCRIBE')
+                setPlaceholder('Enter your email')
             }, 3000)
         }
     }, [message, status])
@@ -82,8 +82,8 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
                     label={
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             viewBox="0 0 512 376.83"
                         >
                             <path

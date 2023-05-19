@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 
 const DWLogoType = ({ className }: { className?: string }) => (
-    <Link href="/stays" passHref>
+    <Link href="/" passHref>
         <a>
             <svg
                 className={className}
