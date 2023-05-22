@@ -55,6 +55,8 @@ export const LeftLinks = styled.div`
     }
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
+        padding: 0 20px;
+        float: none;
         display: flex;
         margin-left: 0;
         margin-top: ${rem(80)};
