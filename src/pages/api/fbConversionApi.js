@@ -9,6 +9,12 @@ export async function sendConversionEvent(eventData) {
   try {
     const response = await axios.post(apiUrl, eventData, {
       params: { access_token },
+      mode: 'cors',
+      headers: {
+          'X-Requested-With': 'XMLHttpRequest',
+          "Content-Type": "application/json",
+          'Access-Control-Allow-Origin': '*',
+      },
     });
     console.log('Conversion event sent successfully:', response.data);
   } catch (error) {
