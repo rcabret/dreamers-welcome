@@ -4,7 +4,6 @@ export async function sendConversionEvent(eventData) {
   const pixelID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
 
   const apiUrl = `https://graph.facebook.com/v16.0/${pixelID}/events`;
-  console.log(eventData)
   try {
     const response = await axios.post(apiUrl, {
       data: [eventData],
