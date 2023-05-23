@@ -1,23 +1,22 @@
-import axios from 'axios';
-
-
+import axios from "axios";
 export async function sendConversionEvent(eventData) {
   const access_token = process.env.NEXT_PUBLIC_FACEBOOK_ACCESS_TOKEN;
   const pixelID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
-  const apiUrl = `https://graph.facebook.com/v16.0/${pixelID}/events`;
 
+  const apiUrl = `https://graph.facebook.com/v16.0/${pixelID}/events`;
+  console.log(eventData)
   try {
-    const response = await axios.post(apiUrl, eventData, {
-      params: { access_token },
-      mode: 'cors',
+    const response = await axios.post(apiUrl, {
+      data: [eventData],
+    }, {
       headers: {
-          'X-Requested-With': 'XMLHttpRequest',
-          "Content-Type": "application/json",
-          'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${access_token}`,
       },
     });
-    console.log('Conversion event sent successfully:', response.data);
+
+    console.log(response.data); // Success response
   } catch (error) {
-    console.error('Error sending conversion event:', error);
+    console.error(error); // Error response
   }
 }

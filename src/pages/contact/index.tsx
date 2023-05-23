@@ -18,6 +18,7 @@ import {
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
 import {sendConversionEvent} from '../api/fbConversionApi';
+import crypto from 'crypto'
 
 const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
@@ -61,12 +62,12 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
         } else {
             data.bucket = 'DESTINATION N/A'
         }
-
+        let hashedEmail = crypto.createHash('sha256').update(JSON.stringify(data.email)).digest('hex');
         const contactEvent = {
             event_name: 'Contact',
             event_time: Math.floor(Date.now() / 1000),
             user_data: {
-              em: data.email, // User's email (optional)
+              em: hashedEmail, // User's email (optional)
             },
             custom_data: {
               name: data.name,
