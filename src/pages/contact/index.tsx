@@ -17,6 +17,7 @@ import {
 } from '../../styles/contact/styles'
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
+import {sendConversionEvent} from '../api/fbConversionApi';
 
 const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
@@ -61,6 +62,20 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
             data.bucket = 'DESTINATION N/A'
         }
 
+        const contactEvent = {
+            event_name: 'Contact',
+            event_time: Math.floor(Date.now() / 1000),
+            user_data: {
+              em: data.email, // User's email (optional)
+            },
+            custom_data: {
+              name: data.name,
+              property: data.property,
+              subject : data.subject,
+              message: data.message
+            },
+          };
+        sendConversionEvent(contactEvent);
         fetch('/api/contact', {
             method: 'POST',
             headers: {
