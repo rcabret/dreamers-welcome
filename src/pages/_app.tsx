@@ -73,6 +73,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="msapplication-TileColor" content="#da532c" />
                 <meta name="theme-color" content="#ffffff" />
                 <meta name="google-site-verification" content="1M2WGJ4z9PIe6P57go_NDWoyk79NI9oXBIeRFDM65Jo" />
+                <meta name="facebook-domain-verification" content="8i88ic4qn6mgfjigvxmlkt7ih2sp7c" />
                 <script
                     dangerouslySetInnerHTML={{
                     __html: `
