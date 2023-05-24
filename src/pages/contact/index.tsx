@@ -73,8 +73,10 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
               name: data.name,
               property: data.property,
               subject : data.subject,
-              message: data.message
-            },
+              message: data.message,
+              userAgent : navigator.userAgent
+            },            
+            action_source: 'website'
           };
         sendConversionEvent(contactEvent);
         fetch('/api/contact', {
