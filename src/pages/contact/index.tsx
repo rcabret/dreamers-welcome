@@ -68,9 +68,11 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
             event_time: Math.floor(Date.now() / 1000),
             action_source: 'website',
             event_source_url: 'https://www.dreamerswelcome.com/contact',
+            event_id: 'contact',
             user_data: {
-              em: hashedEmail,
-              client_user_agent: navigator.userAgent
+              em: [hashedEmail],
+              client_user_agent: navigator.userAgent,
+              ph: []
             },
             custom_data: {
               name: data.name,
