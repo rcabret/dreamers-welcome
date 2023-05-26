@@ -25,7 +25,6 @@ export const getHomepage = async (url: string) => {
         select: 'fields.slug,fields.title,fields.blurb,fields.coverImage,fields.mobileCoverImage,fields.news,fields.experiences,fields.guides',
         include: 1,
     })
-
     if (entries.items) {
         return entries.items[0].fields
     }

@@ -114,10 +114,8 @@ const Property = ({
             const data = JSON.parse(stringData)
             setExtraData(data)
         }
-
         getExtraData()
     }, [router.query])
-
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
             return suites.map((x: { fields: any }) => {

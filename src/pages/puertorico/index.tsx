@@ -62,7 +62,6 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         }
         getStays()
     }, [])
-
     return (
         <>
             <BannerGridImage
