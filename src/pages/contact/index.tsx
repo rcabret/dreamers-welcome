@@ -70,7 +70,7 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
             event_source_url: 'https://www.dreamerswelcome.com/contact',
             user_data: {
               em: hashedEmail,
-              client_user_agent: navigator.userAgent
+            //   client_user_agent: navigator.userAgent
             },
             custom_data: {
               name: data.name,
