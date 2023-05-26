@@ -106,7 +106,6 @@ const Property = ({
             bucket: bucket[0],
             property: propertyName,
         })
-
         setExtraData(null)
         const getExtraData = async () => {
             const rawData = await getRestOfPropertyData(slug)
