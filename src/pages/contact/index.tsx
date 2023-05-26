@@ -64,11 +64,11 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
         }
         let hashedEmail = crypto.createHash('sha256').update(JSON.stringify(data.email)).digest('hex');
         const contactEvent = {
-            event_name: 'Contact Us',
+            event_name: 'Contact',
             event_time: Math.floor(Date.now() / 1000),
             action_source: 'website',
             event_source_url: 'https://www.dreamerswelcome.com/contact',
-            event_id: 'contact_us',
+            event_id: 'contact',
             user_data: {
               em: [hashedEmail],
               client_user_agent: navigator.userAgent,
