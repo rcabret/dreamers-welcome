@@ -66,6 +66,8 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
         const contactEvent = {
             event_name: 'Contact',
             event_time: Math.floor(Date.now() / 1000),
+            action_source: 'website',
+            event_source_url: 'https://www.dreamerswelcome.com/contact',
             user_data: {
               em: hashedEmail,
               client_user_agent: navigator.userAgent
@@ -74,11 +76,8 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
               name: data.name,
               property: data.property,
               subject : data.subject,
-              message: data.message,
-              userAgent : navigator.userAgent
-            },            
-            action_source: 'website',
-            event_source_url: 'https://www.dreamerswelcome.com/contact'
+              message: data.message
+            }
           };
         sendConversionEvent(contactEvent);
         fetch('/api/contact', {
