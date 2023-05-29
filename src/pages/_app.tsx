@@ -10,7 +10,6 @@ import TagManager from 'react-gtm-module'
 import Head from 'next/head'
 import FirstVisitModal from '../_components/Modal/FirstVisitModal'
 import '../../public/styles/global.css'
-import Script from 'next/script'
 
 const StyledMain = styled.main`
     width: 100%;
@@ -76,8 +75,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="google-site-verification" content="1M2WGJ4z9PIe6P57go_NDWoyk79NI9oXBIeRFDM65Jo" />
                 <meta name="facebook-domain-verification" content="8i88ic4qn6mgfjigvxmlkt7ih2sp7c" />
                 <meta name="p:domain_verify" content="92466f0124ec9f4ae7dd68abc151da17"/>
-                <Script
-                    strategy="lazyOnload"
+                <script
                     dangerouslySetInnerHTML={{
                     __html: `
                         !function(f,b,e,v,n,t,s)
