@@ -17,8 +17,28 @@ import {
 } from '../../styles/contact/styles'
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
-import {sendConversionEvent} from '../api/fbConversionApi';
-import crypto from 'crypto'
+import { sendConversionEvent } from '../api/fbConversionApi';
+
+async function generateSHA256Hash(input: string): Promise<string> {
+    let hash = '';
+    const charCodeArray = new TextEncoder().encode(input);
+
+    const buffer = charCodeArray.reduce((buffer, byte) => {
+        buffer.push(byte);
+        return buffer;
+    }, [] as number[]);
+
+    const cryptoSubtle = window.crypto.subtle;
+    if (cryptoSubtle) {
+        const hashBuffer = await cryptoSubtle.digest('SHA-256', new Uint8Array(buffer));
+        const hashArray = Array.from(new Uint8Array(hashBuffer));
+        hash = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+    } else {
+        throw new Error('SHA-256 hashing is not supported in this environment.');
+    }
+
+    return hash;
+}
 
 const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
     useEffect(() => {
@@ -62,45 +82,49 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
         } else {
             data.bucket = 'DESTINATION N/A'
         }
-        let hashedEmail = crypto.createHash('sha256').update(JSON.stringify(data.email)).digest('hex');
-        const contactEvent = {
-            event_name: 'Contact Us',
-            event_time: Math.floor(Date.now() / 1000),
-            action_source: 'website',
-            event_source_url: 'https://www.dreamerswelcome.com/contact',
-            event_id: 'contact_us',
-            user_data: {
-              em: [hashedEmail],
-              client_user_agent: navigator.userAgent,
-              ph: []
-            },
-            custom_data: {
-              name: data.name,
-              property: data.property,
-              subject : data.subject,
-              message: data.message
-            }
-          };
-        sendConversionEvent(contactEvent);
-        fetch('/api/contact', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json, text/plain, */*',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        }).then((res) => {
-            if (res.status === 200) {
-                window.scrollTo({
-                    behavior: 'smooth',
-                    top: 0,
-                })
-                setInProgress(false)
-                setSubmitted(true)
-            } else {
-                setInProgress(false)
-            }
+        generateSHA256Hash(JSON.stringify(data.email)).then((hashedEmail) => {
+            const contactEvent = {
+                event_name: 'Contact Us',
+                event_time: Math.floor(Date.now() / 1000),
+                action_source: 'website',
+                event_source_url: 'https://www.dreamerswelcome.com/contact',
+                event_id: 'contact_us',
+                user_data: {
+                    em: [hashedEmail],
+                    client_user_agent: navigator.userAgent,
+                    ph: []
+                },
+                custom_data: {
+                    name: data.name,
+                    property: data.property,
+                    subject: data.subject,
+                    message: data.message
+                }
+            };
+            sendConversionEvent(contactEvent);
+            fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json, text/plain, */*',
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            }).then((res) => {
+                if (res.status === 200) {
+                    window.scrollTo({
+                        behavior: 'smooth',
+                        top: 0,
+                    })
+                    setInProgress(false)
+                    setSubmitted(true)
+                } else {
+                    setInProgress(false)
+                }
+            })
         })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 
     // @ts-ignore
