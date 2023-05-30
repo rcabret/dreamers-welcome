@@ -5,8 +5,10 @@ import Button from '../../UI/Buttons/Button'
 import { bucketLinks } from '../../../_constants/links'
 import { viewportContext } from '../../../_utils/ViewportProvider'
 import {NavbarDropdown} from "../styles";
+import { useRouter } from 'next/router';
 
 const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
+    const router = useRouter();
     const getLink = (slug: string) =>
         `/${slug}${
             activeBucket
@@ -62,14 +64,14 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                 )}
                 <MainList id="main_list" onClick={() => onClose(false)}>
                     <li>
-                        <Link href={getLink('stays')}>STAYS</Link>
+                        <Link href={router.query ? getLink('stays') : ""}>STAYS</Link>
                     </li>
                     <li>
-                        <Link href={getLink('experiences')}>EXPERIENCES</Link>
+                        <Link href={router.query ? getLink('experiences') : ""}>EXPERIENCES</Link>
                         {!activeBucket && <aside />}
                     </li>
                     <li>
-                        <Link href={getLink('guidebooks')}>GUIDEBOOKS</Link>
+                        <Link href={router.query ? getLink('guidebooks') : ""}>GUIDEBOOKS</Link>
                         {!activeBucket && <aside />}
                     </li>
                 </MainList>
