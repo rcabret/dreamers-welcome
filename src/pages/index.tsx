@@ -15,7 +15,6 @@ const BottomAnchor = dynamic(() => import('../styles/landing/styles').then((modu
 const ContentWrap = dynamic(() => import('../styles/landing/styles').then((module) => module.ContentWrap));
 const Header = dynamic(() => import('../_components/Typography/Header').then((module) => module.default));
 import { viewportContext } from '../_utils/ViewportProvider'
-import {sendConversionEvent} from './api/fbConversionApi';
 
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     const [prData, setPRData] = useState<{
@@ -30,22 +29,6 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
-        const contactEvent = {
-            event_name: 'View Content',
-            event_time: Math.floor(Date.now() / 1000),
-            action_source: 'website',
-            event_source_url: 'https://www.dreamerswelcome.com',
-            event_id: 'view_content',
-            user_data: {
-              em: [],
-              client_user_agent: navigator.userAgent,
-              ph: []
-            },
-            custom_data: {
-              
-            }
-          };
-        sendConversionEvent(contactEvent);
         setNavTheme('dark')
         setHeaderData({
             simpleNav: false,
