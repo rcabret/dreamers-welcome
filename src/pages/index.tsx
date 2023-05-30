@@ -14,6 +14,8 @@ const StyledHeader = dynamic(() => import('../styles/landing/styles').then((modu
 const BottomAnchor = dynamic(() => import('../styles/landing/styles').then((module) => module.BottomAnchor));
 const ContentWrap = dynamic(() => import('../styles/landing/styles').then((module) => module.ContentWrap));
 const Header = dynamic(() => import('../_components/Typography/Header').then((module) => module.default));
+
+import { sendConversionEvent } from './api/fbConversionApi';
 import { viewportContext } from '../_utils/ViewportProvider'
 
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
@@ -74,6 +76,22 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&temperature_unit=fahrenheit`
 
     useEffect(() => {
+        const contactEvent = {
+            event_name: 'PageView',
+            event_time: Math.floor(Date.now() / 1000),
+            action_source: 'website',
+            event_source_url: 'https://www.dreamerswelcome.com',
+            event_id: 'page_view',
+            user_data: {
+                em: [],
+                client_user_agent: navigator.userAgent,
+                ph: []
+            },
+            custom_data: {
+                test_event_code: 'TEST48544'
+            }
+        };
+        sendConversionEvent(contactEvent);
         const fetchData = async () => {
             await fetch(getWeatherApiUrl(18.2078212, -67.7099374))
                 .then((x) => x.json())
