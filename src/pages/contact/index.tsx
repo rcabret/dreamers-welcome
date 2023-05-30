@@ -98,7 +98,8 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                     name: data.name,
                     property: data.property,
                     subject: data.subject,
-                    message: data.message
+                    message: data.message,
+                    test_event_code: 'TEST48544'
                 }
             };
             sendConversionEvent(contactEvent);
