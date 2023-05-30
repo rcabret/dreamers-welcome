@@ -16,7 +16,7 @@ import {
 } from '../styles/landing/styles'
 import Header from '../_components/Typography/Header'
 import { viewportContext } from '../_utils/ViewportProvider'
-import {sendConversionEvent} from '../api/fbConversionApi';
+import {sendConversionEvent} from './api/fbConversionApi';
 
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     const [prData, setPRData] = useState<{
