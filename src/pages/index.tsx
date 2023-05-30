@@ -128,7 +128,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
             </FlexContainer>
             <ContentWrap id="view">
                 <div id="innerMain" />
-                <Link href={'/puertorico'} passHref>
+                <Link href={'/puertorico'} passHref prefetch={false}>
                     <a>
                         <Block
                             noPaddingBottom
@@ -142,7 +142,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                         />
                     </a>
                 </Link>
-                <Link href={'/northcarolina'} passHref>
+                <Link href={'/northcarolina'} passHref prefetch={false}>
                     <a>
                         <Block
                             noPaddingBottom
