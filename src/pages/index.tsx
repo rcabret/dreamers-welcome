@@ -1,20 +1,19 @@
 import { getLandingpage } from '../_lib/api'
-import { BannerGridImage } from '../styles/global'
-import BannerContent from '../_components/UI/BannerContent'
+import dynamic from 'next/dynamic';
+const BannerGridImage = dynamic(() => import('../styles/global').then((module) => module.BannerGridImage));
+const BannerContent = dynamic(() => import('../_components/UI/BannerContent').then((module) => module.default));
+const Block = dynamic(() => import('../_components/UI/Block').then((module) => module.default));
 import React, { useContext, useEffect, useState } from 'react'
 import { throttle } from '../_utils/Throttle'
-import Block from '../_components/UI/Block'
 import Link from 'next/link'
-import {
-    Circle,
-    ContentWrap,
-    FlexContainer,
-    StyledBlurb,
-    StyledButton,
-    StyledHeader,
-    BottomAnchor,
-} from '../styles/landing/styles'
-import Header from '../_components/Typography/Header'
+const Circle = dynamic(() => import('../styles/landing/styles').then((module) => module.Circle));
+const FlexContainer = dynamic(() => import('../styles/landing/styles').then((module) => module.FlexContainer));
+const StyledBlurb = dynamic(() => import('../styles/landing/styles').then((module) => module.StyledBlurb));
+const StyledButton = dynamic(() => import('../styles/landing/styles').then((module) => module.StyledButton));
+const StyledHeader = dynamic(() => import('../styles/landing/styles').then((module) => module.StyledHeader));
+const BottomAnchor = dynamic(() => import('../styles/landing/styles').then((module) => module.BottomAnchor));
+const ContentWrap = dynamic(() => import('../styles/landing/styles').then((module) => module.ContentWrap));
+const Header = dynamic(() => import('../_components/Typography/Header').then((module) => module.default));
 import { viewportContext } from '../_utils/ViewportProvider'
 import {sendConversionEvent} from './api/fbConversionApi';
 
