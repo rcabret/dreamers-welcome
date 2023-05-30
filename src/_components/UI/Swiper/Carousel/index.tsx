@@ -1,9 +1,11 @@
 // Import Swiper React components
+import dynamic from 'next/dynamic'
 import { SwiperSlide } from 'swiper/react'
 import 'swiper/css'
 import React, { Component } from 'react'
 import GridImage from '../../GridImage'
-import { SeeAllButton, StyledSwiper } from '../styles'
+const SeeAllButton = dynamic(() => import('../styles').then((module) => module.SeeAllButton));
+const StyledSwiper = dynamic(() => import('../styles').then((module) => module.StyledSwiper));
 import { Navigation, Pagination } from 'swiper'
 import { ContentfulImage } from '../../../../_constants/DataTypes'
 

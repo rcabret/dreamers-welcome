@@ -23,7 +23,7 @@ import MarkdownModule from '../_components/Typography/MarkdownModule'
 import dynamic from 'next/dynamic'
 import NewsItem from '../_components/NewsItem'
 import Map from '../_components/Map'
-import { ImageSliderWrapper } from '../_components/UI/Swiper/styles'
+const ImageSliderWrapper = dynamic(() => import('../_components/UI/Swiper/styles').then((module) => module.ImageSliderWrapper));
 import PropertyGridItem from '../_components/PropertyGridItem'
 import LightBox from '../_components/LightBox'
 import Link from 'next/link'

@@ -83,7 +83,6 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
             data.bucket = 'DESTINATION N/A'
         }
         generateSHA256Hash(JSON.stringify(data.email)).then((hashedEmail) => {
-            console.log(hashedEmail);
             const contactEvent = {
                 event_name: 'Contact Us',
                 event_time: Math.floor(Date.now() / 1000),
