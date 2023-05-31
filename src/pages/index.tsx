@@ -15,7 +15,6 @@ const BottomAnchor = dynamic(() => import('../styles/landing/styles').then((modu
 const ContentWrap = dynamic(() => import('../styles/landing/styles').then((module) => module.ContentWrap));
 const Header = dynamic(() => import('../_components/Typography/Header').then((module) => module.default));
 import Script from 'next/script';
-import Head from 'next/head';
 
 import { sendConversionEvent } from './api/fbConversionApi';
 import { viewportContext } from '../_utils/ViewportProvider'
@@ -106,17 +105,6 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     }
     return (
         <>
-            <Head>
-            <script
-                dangerouslySetInnerHTML={{
-                __html: `
-                    fbq('trackSingle', '1594089821088907', 'PageView', {
-                    event_source_url: 'https://www.dreamerswelcome.com'
-                  });
-                `
-                }}
-            />
-            </Head>
             <BannerGridImage
                 imageObj={landing.coverImage}
                 border={false}
