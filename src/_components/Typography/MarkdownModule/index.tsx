@@ -26,38 +26,23 @@ const MarkdownModule = ({
     responsive = false,
 }: MarkupProps) => {
     return (
-        <MarkupWrapper
-            className={className}
-            columns={columns}
-            border={border}
-            padding={padding}
-        >
+        <MarkupWrapper  className={className} columns={columns} border={border} adding={padding}  >
             <ReactMarkdown
                 components={{
                     h1: ({ children }) => (
-                        <Header size={1} responsive={responsive}>
-                            {children}
-                        </Header>
+                        <Header size={1} responsive={responsive}> {children} </Header>
                     ),
                     h2: ({ children }) => (
-                        <Header size={2} responsive={responsive}>
-                            {children}
-                        </Header>
+                        <Header size={2} responsive={responsive}> {children} </Header>
                     ),
                     h3: ({ children }) => (
-                        <Header size={3} responsive={responsive}>
-                            {children}
-                        </Header>
+                        <Header size={3} responsive={responsive}> {children} </Header>
                     ),
                     h4: ({ children }) => (
-                        <Header size={4} responsive={responsive}>
-                            {children}
-                        </Header>
+                        <Header size={4} responsive={responsive}>  {children} </Header>
                     ),
                     h5: ({ children }) => (
-                        <Header size={5} responsive={responsive}>
-                            {children}
-                        </Header>
+                        <Header size={5} responsive={responsive}> {children} </Header>
                     ),
                     p: ({ children }) => (
                         <BodyText size={size}>{children}</BodyText>

@@ -23,7 +23,6 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
                             <BodyText size="sm">{text}</BodyText>
                         </NewsTextWrapper>
                     )}
-
                     <GridImage border={false} imageObj={tileImage} />
                 </div>
             </ItemWrapperStyled>

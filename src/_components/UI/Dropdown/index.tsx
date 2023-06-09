@@ -40,36 +40,21 @@ const Dropdown = ({
 
         document.addEventListener('click', click)
 
-        return () => {
-            document.removeEventListener('click', click)
-        }
+        return () => { document.removeEventListener('click', click) }
     }, [])
 
     return (
-        <StyledDropdown
-            dark={dark}
-            onClick={() => setIsOpened(!isOpened)}
-            className={className}
-        >
+        <StyledDropdown dark={dark} onClick={() => setIsOpened(!isOpened)} className={className} >
             <div id={id}>
                 <Inner>
                     <Chevron dark={dark} />
-                    <div id={`panel-${id}`}>
-                        {isOpened || !bucket ? defaultLabel : bucket}
-                    </div>
+                    <div id={`panel-${id}`}>  {isOpened || !bucket ? defaultLabel : bucket} </div>
                 </Inner>
                 <Panel opened={isOpened}>
                     {links &&
                         links.length &&
                         links.map((link) => (
-                            <li
-                                onClick={() => onClick(link.slug)}
-                                className={
-                                    bucket === link.label ? 'active' : ''
-                                }
-                            >
-                                {link.label}
-                            </li>
+                            <li onClick={() => onClick(link.slug)} className={  bucket === link.label ? 'active' : '' } > {link.label} </li>
                         ))}
                 </Panel>
             </div>

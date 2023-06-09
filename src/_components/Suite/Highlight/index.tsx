@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { HighlightBlurb, SliderWrap } from './styles'
-import BodyText from '../../Typography/BodyText'
 import ImageGridSlider from '../../UI/Swiper'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import Block from '../../UI/Block'
@@ -51,12 +50,7 @@ const Highlight = ({
             content={
                 <>
                     <SliderWrap>
-                        <ImageGridSlider
-                            fixedHeight={height}
-                            slug={slug}
-                            items={images}
-                            spaceBetween={20}
-                        />
+                        <ImageGridSlider fixedHeight={height} slug={slug} items={images} spaceBetween={20} />
                     </SliderWrap>
                     <HighlightBlurb>
                         {blurb && <MarkdownModule data={blurb} />}

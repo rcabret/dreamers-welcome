@@ -136,30 +136,14 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                     <FormContainer>
                         <Header size={4}>CONTACT</Header>
                         <Header size={2}>Get in touch with us!</Header>
-                        <form
-                            onSubmit={handleSubmit((data) =>
-                                _handleSubmit(data)
-                            )}
-                        >
-                            <StyledInput
-                                {...register('name', { required: true })}
-                                placeholder="FULL NAME"
-                            />
+                        <form onSubmit={handleSubmit((data) => _handleSubmit(data) )} >
+                            <StyledInput {...register('name', { required: true })} placeholder="FULL NAME" />
                             {errors.name && <p>Please enter your full name.</p>}
-                            <StyledInput
-                                placeholder="EMAIL"
-                                type="email"
-                                {...register('email', { required: true })}
-                            />
-                            {errors.email && (
-                                <p>Please enter an email format.</p>
-                            )}
+                            <StyledInput placeholder="EMAIL"  type="email" {...register('email', { required: true })} />
+                            {errors.email && ( <p>Please enter an email format.</p>)}
                             <StyledSelectWrapper>
                                 <StyledSelect
-                                    {...register('subject', {
-                                        required: false,
-                                    })}
-                                >
+                                    {...register('subject', { required: false, })} >
                                     <option value="" disabled selected>
                                         SUBJECT
                                     </option>
@@ -177,14 +161,12 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                                     })}
                                 >
                                     <>
-                                        <option value="" disabled selected>
-                                            SELECT PROPERTY
-                                        </option>
+                                        <option value="" disabled selected> SELECT PROPERTY </option>
                                         <option>GENERAL PROPERTY</option>
                                         {properties &&
                                             properties.length &&
-                                            properties.map((p: any) => (
-                                                <option>
+                                            properties.map((p: any, index:any) => (
+                                                <option key={index}>
                                                     {p.propertyName.toUpperCase()}{' '}
                                                     {`(${p.bucket[0]})`}
                                                 </option>

@@ -14,11 +14,7 @@ const SubNavigation = ({
     queryParam?: string
 }) => {
     const router = useRouter()
-
-    const baseUrl =
-        queryArray && Array.isArray(queryArray)
-            ? queryArray.join('/')
-            : queryArray
+    const baseUrl = queryArray && Array.isArray(queryArray) ? queryArray.join('/'): queryArray
 
     const shallowRoute = (slug: string): void => {
         if (queryArray === undefined) {
@@ -35,7 +31,6 @@ const SubNavigation = ({
         }
 
         const tail = queryParam ? `?${queryParam}=${slug}` : `/${slug}`
-
         if (slug !== activeSlug) {
             router.push(`${baseUrl}${tail}`, undefined, { shallow: true })
         }

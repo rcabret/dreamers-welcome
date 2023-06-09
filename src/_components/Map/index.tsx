@@ -33,15 +33,7 @@ const Map = ({ link }: any) => {
             noPaddingBottom
             content={
                 <IFrameWrapper>
-                    <iframe
-                        src={link}
-                        width="100%"
-                        height="auto"
-                        style={{ border: 0 }}
-                        allowFullScreen={false}
-                        loading="lazy"
-                        referrerPolicy="no-referrer-when-downgrade"
-                    />
+                    <iframe src={link} width="100%" height="auto" style={{ border: 0 }} allowFullScreen={false} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
                 </IFrameWrapper>
             }
         />

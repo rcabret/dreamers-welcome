@@ -9,7 +9,6 @@ import { ContentfulImage } from '../../../_constants/DataTypes'
 import dynamic from 'next/dynamic'
 
 const PropertyGridItem = dynamic(() => import('../../PropertyGridItem'))
-
 interface SwiperProps {
     items: ContentfulImage[] | any[]
     slidesPerView?: number
@@ -91,14 +90,10 @@ class ImageGridSlider extends Component {
             <>
                 <NavigationWrap className="navigation-wrap">
                     <div onClick={() => this.prevSlide()}>
-                        <svg viewBox="0 0 8 16">
-                            <polyline points="0 0, 8 8, 0 16" />
-                        </svg>
+                        <svg viewBox="0 0 8 16"> <polyline points="0 0, 8 8, 0 16" /> </svg>
                     </div>
                     <div onClick={() => this.nextSlide()}>
-                        <svg viewBox="0 0 8 16">
-                            <polyline points="0 0, 8 8, 0 16" />
-                        </svg>
+                        <svg viewBox="0 0 8 16"><polyline points="0 0, 8 8, 0 16" /></svg>
                     </div>
                 </NavigationWrap>
                 <StyledSwiper

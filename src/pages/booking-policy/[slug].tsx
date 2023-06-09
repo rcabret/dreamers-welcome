@@ -17,13 +17,7 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
             <Block
                 hideSeparator
                 titleOverride={
-                    <Dropdown
-                        dark
-                        id="policies-dropdown"
-                        links={dropdownData}
-                        bucket={policy.title}
-                        defaultLabel="CHOOSE STAY"
-                    />
+                    <Dropdown dark id="policies-dropdown" links={dropdownData} bucket={policy.title} defaultLabel="CHOOSE STAY"/>
                 }
                 content={
                     <PageContent>
@@ -41,8 +35,8 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const policy = await getPolicy(context.params.slug)
     const policiesResponse = await getPolicies()
 
-    const faqGeneral = policiesResponse.filter((x) => x.slug == 'general')
-    let faqs = policiesResponse.filter((x) => x.slug !== 'general')
+    const faqGeneral = policiesResponse.filter((x:any) => x.slug == 'general')
+    let faqs = policiesResponse.filter((x:any) => x.slug !== 'general')
     faqs = [...faqGeneral, ...faqs]
 
     let dropdownData: { label: string; slug: string }[] = faqs.map(

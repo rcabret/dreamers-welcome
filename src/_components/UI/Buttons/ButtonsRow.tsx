@@ -51,13 +51,7 @@ const ButtonsRow = ({
                 links.map((link: { title: string; url: string }, i: number) => {
                     const { title, url } = link
                     return (
-                        <Button
-                            key={Math.random() * i}
-                            inverse={false}
-                            href={url}
-                        >
-                            {title}
-                        </Button>
+                        <Button key={Math.random() * i} inverse={false} href={url} >{title}</Button>
                     )
                 })}
         </StyledButtonRow>

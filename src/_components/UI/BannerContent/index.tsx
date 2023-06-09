@@ -84,21 +84,15 @@ const BannerContent = ({
             {showOpacity && <OpacityLayer />}
             <BannerContentWrap>
                 <Text>
-                    <Header size={1} uppercase>
-                        {headerText}
-                    </Header>
-                    {headerSubheader && (
-                        <BodyText size="lg">{headerSubheader}</BodyText>
-                    )}
+                    <Header size={1} uppercase> {headerText} </Header>
+                    {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}
                 </Text>
                 {description && (
                     <Description>
                         <BodyText size="lg">
                             {Array.isArray(description)
                                 ? description.map((x, i) => {
-                                      return `${x} ${
-                                          i < description.length - 1 ? '· ' : ''
-                                      }`
+                                      return `${x} ${i < description.length - 1 ? '· ' : '' }`
                                   })
                                 : description}
                         </BodyText>

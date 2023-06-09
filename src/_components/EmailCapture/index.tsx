@@ -8,16 +8,13 @@ import MailchimpSubscribe from 'react-mailchimp-subscribe'
 import { getPostUrl } from '../../_lib/apiConstants'
 
 const StyledHeader = styled(Header)`
-    text-align: center;
-`
+    text-align: center;`
+
 const Wrapper = styled.div`
         width: 100%;
-
         form {
             margin-top: ${rem(80)};
-        }
-    `
-
+        }`
 
 const EmailCapture = ({inFirstVisitModal} : any) => {
     
@@ -31,22 +28,14 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                     <MailchimpSubscribe
                         url={url}
                         render={({ subscribe, status, message }) => (
-                            <SubscribeForm
-                                marginTop='0.5rem'
-                                status={status}
-                                message={message}
-                                onValidated={(formData: any) => {
-                                    subscribe(formData)
-                                }}
-                            />
+                            <SubscribeForm marginTop='0.5rem' status={status} message={message} onValidated={(formData: any) => { subscribe(formData) }} />
                         )}
                     />
                     <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
                 </div>
             </Wrapper>
         )
-    }
-    else return (
+    }else return (
         <Block
             noPaddingBottom
             fullWidth
@@ -59,14 +48,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                         <MailchimpSubscribe
                             url={url}
                             render={({ subscribe, status, message }) => (
-                                <SubscribeForm
-                                    marginTop='3rem'
-                                    status={status}
-                                    message={message}
-                                    onValidated={(formData: any) => {
-                                        subscribe(formData)
-                                    }}
-                                />
+                                <SubscribeForm marginTop='3rem' status={status} message={message} onValidated={(formData: any) => { subscribe(formData) }} />
                             )}
                         />
                         <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
@@ -76,5 +58,4 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
         />
     )
 }
-
 export default EmailCapture

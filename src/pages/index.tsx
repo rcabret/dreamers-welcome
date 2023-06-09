@@ -14,9 +14,7 @@ const StyledHeader = dynamic(() => import('../styles/landing/styles').then((modu
 const BottomAnchor = dynamic(() => import('../styles/landing/styles').then((module) => module.BottomAnchor));
 const ContentWrap = dynamic(() => import('../styles/landing/styles').then((module) => module.ContentWrap));
 const Header = dynamic(() => import('../_components/Typography/Header').then((module) => module.default));
-import Script from 'next/script';
 
-import { sendConversionEvent } from './api/fbConversionApi';
 import { viewportContext } from '../_utils/ViewportProvider'
 
 const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
@@ -46,15 +44,9 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
 
         const onScroll = () => {
             const scrollTop = window.scrollY
-
             const style = {
-                width: `calc(98vw + ${scrollTop * 1.8}px)`,
-                /*
-                height: `calc(98vw + ${scrollTop * 1.8}px)`,
-*/
-                /*  transform: `translate3d(0,-${scrollTop * 1.2}px, 0)`,*/
+                width: `calc(98vw + ${scrollTop * 1.8}px)`,               
             }
-
             if (x && inner && innerMain) {
                 Object.assign(x.style, style)
                 Object.assign(inner.style, { opacity: 1 - scrollTop * 0.003 })
@@ -63,6 +55,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                 })
             }
         }
+        
         window.addEventListener('scroll', () => {
             throttle(onScroll)()
         })
@@ -105,21 +98,14 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
     }
     return (
         <>
-            <BannerGridImage
-                imageObj={landing.coverImage}
-                border={false}
-                borderRadius={false}
-                fullHeight
-            />
+            <BannerGridImage imageObj={landing.coverImage} border={false} borderRadius={false}  fullHeight />
             <FlexContainer>
                 <BottomAnchor onClick={() => scrollToBottom()}>
                     <Header size={3}>
                         CHOOSE <br /> YOUR DESTINATION
                     </Header>
                     <button>
-                        <svg viewBox="0 0 60 40">
-                            <polyline points="0 10, 30 38, 60 10" />
-                        </svg>
+                        <svg viewBox="0 0 60 40"> <polyline points="0 10, 30 38, 60 10" /> </svg>
                     </button>
                 </BottomAnchor>
                 <BannerContent headerText={landing.title} showOpacity={false} />
@@ -151,9 +137,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                             fullWidth
                             title={`${ncData?.temperature}\u00b0`}
                             content={
-                                <StyledHeader size={1} uppercase>
-                                    North Carolina
-                                </StyledHeader>
+                                <StyledHeader size={1} uppercase> North Carolina </StyledHeader>
                             }
                         />
                     </a>
@@ -167,7 +151,6 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
 }
 
 export default Home
-
 export async function getStaticProps() {
     const landing = await getLandingpage()
 

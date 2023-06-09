@@ -24,9 +24,7 @@ const ViewportProvider = ({ children }: { children: ReactNode }) => {
     }, [])
 
     return (
-        <viewportContext.Provider value={breakpoint}>
-            {children}
-        </viewportContext.Provider>
+        <viewportContext.Provider value={breakpoint}> {children} </viewportContext.Provider>
     )
 }
 

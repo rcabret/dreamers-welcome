@@ -47,41 +47,20 @@ const InputField = ({
 
     if (type === 'submit') {
         return (
-            <StyledButton
-                className={className}
-                type="submit"
-                disabled={validateInput(formValues)}
-            >
-                {label}
-            </StyledButton>
+            <StyledButton className={className} type="submit"  disabled={validateInput(formValues)} > {label} </StyledButton>
         )
     } else if (type === 'textarea') {
         return (
             <label>
                 {label}
-                <textarea
-                    onChange={(e) => onChangeHandler(e.target.value)}
-                    placeholder={placeholder}
-                    value={value}
-                    required={isRequired}
-                    className="inputField__field"
-                    rows={7}
-                    name={name}
-                />
+                <textarea onChange={(e) => onChangeHandler(e.target.value)}  placeholder={placeholder} value={value} required={isRequired} className="inputField__field" rows={7} name={name} />
             </label>
         )
     } else {
         return (
             <label>
                 {label && label}
-                <StyledInput
-                    onChange={(e) => onChangeHandler(e.target.value)}
-                    type={type}
-                    placeholder={placeholder}
-                    value={value}
-                    required={isRequired}
-                    name={name}
-                />
+                <StyledInput onChange={(e) => onChangeHandler(e.target.value)} type={type} placeholder={placeholder} value={value} required={isRequired} name={name}/>
             </label>
         )
     }

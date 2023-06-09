@@ -3,7 +3,6 @@ import Image from 'next/image'
 import { ImageMask, Container } from './styles'
 import { ContentfulImage } from '../../../_constants/DataTypes'
 import { viewportContext } from '../../../_utils/ViewportProvider'
-import { getModuleBuildInfo } from 'next/dist/build/webpack/loaders/get-module-build-info'
 
 interface GridImageProps {
     badge?: JSX.Element
@@ -35,7 +34,7 @@ const GridImage = ({
     fixedHeight,
     ratio = 0.67,
     imageObj,
-    mobileImageObj = null,
+    mobileImageObj,
     sizes,
     widthQuery,
 }: GridImageProps) => {
@@ -44,12 +43,10 @@ const GridImage = ({
     }
 
     const breakpoint = useContext(viewportContext)
-
     const imageToRender =
         breakpoint === 'mobile' && mobileImageObj ? mobileImageObj : imageObj
 
     const { fields } = imageToRender
-
     const { file } = fields
     const { details, url } = file
     const { image } = details
@@ -60,49 +57,20 @@ const GridImage = ({
         ratio: number | string
     ): number | string => {
         const [h, w] = dimensions
-        if (ratio === 'natural') {
-            return h / w
-        }
-        if (ratio === 'lightbox') {
-            return h > w ? h / w - 1 : h / w
-        }
+        if (ratio === 'natural') { return h / w}
+        if (ratio === 'lightbox') { return h > w ? h / w - 1 : h / w }
         return ratio
     }
 
     const final_ratio = getCorrectRatio([height, width], ratio)
 
     return (
-        <Container
-            border={border}
-            className={className}
-            fullHeight={fullHeight}
-        >
-            <ImageMask
-                borderRadius={borderRadius}
-                fixedHeight={fixedHeight}
-                fullHeight={fullHeight}
-                hasHover={hasHover}
-                ratio={final_ratio}
-            >
+        <Container border={border} className={className} fullHeight={fullHeight} >
+            <ImageMask borderRadius={borderRadius} fixedHeight={fixedHeight} fullHeight={fullHeight} hasHover={hasHover} ratio={final_ratio} >
                 {imageToRender ? (
                     <>
                         <aside />
-                        <Image
-                            src={
-                                `https:${url}${
-                                    widthQuery && !sizes
-                                        ? `?w=${widthQuery}`
-                                        : ''
-                                }` || '/'
-                            }
-                            layout="fill"
-                            sizes={sizes}
-                            objectFit={
-                                ratio !== 'lightbox' ? 'cover' : 'contain'
-                            }
-                            placeholder="blur"
-                            blurDataURL={`https:${url}?q=10`}
-                        />
+                        <Image src={`https:${url}${widthQuery && !sizes? `?w=${widthQuery}`: ''}` || '/'} alt="No Image" layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`} />
                         {children && children}
                     </>
                 ) : (
