@@ -272,7 +272,7 @@ export const getPolicies = async () => {
     })
 
     if (entries.items) {
-        return entries.items.map((x) => x.fields)
+        return entries.items.map((x:any) => x.fields)
     }
 }
 

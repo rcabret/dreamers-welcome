@@ -5,7 +5,7 @@ import Header from '../../Typography/Header'
 import BodyText from '../../Typography/BodyText'
 import Button from '../Buttons/Button'
 import {BREAKPOINTS} from "../../../_constants/brekpoints";
-import Breadcrumbs from 'nextjs-breadcrumbs';
+//import Breadcrumbs from 'nextjs-breadcrumbs';
 
 const BannerContentWrap = styled.div`
     display: flex;
@@ -90,7 +90,13 @@ const BannerContent = ({
                 </Text> */}
                 <Text>
                     <Header size={1} uppercase>
-                    <Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} replaceCharacterList={[{ from: '<ol>', to: '<ul>' }]} />
+                    {/* <Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} omitIndexList={[]} transformLabel={(title) => title + '  '} /> */}
+                    {headerText == 'travel well'?
+                    
+                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li></ol></nav>
+                    :
+                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li> <li>{'>'}</li><li>{headerText}</li></ol></nav>
+                    }
                     </Header>
                     {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}               
                 </Text>
