@@ -99,7 +99,7 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                     property: data.property,
                     subject: data.subject,
                     message: data.message,
-                    test_event_code: 'TEST48544'
+                    test_event_code: 'TEST61519'
                 }
             };
             sendConversionEvent(contactEvent);
@@ -180,12 +180,16 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                                 placeholder="MESSAGE"
                             />
                             {errors.message && <p>Please enter message.</p>}
-                            <StyledInput
+                            {/* <StyledInput
                                 type="submit"
                                 value="MESSAGE US"
                                 disabled={
                                     Object.keys(errors).length || inProgress
                                 }
+                            /> */}
+                            <StyledInput
+                                type="submit"
+                                value="MESSAGE US"
                             />
                         </form>
                     </FormContainer>

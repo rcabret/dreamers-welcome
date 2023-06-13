@@ -5,6 +5,7 @@ import Header from '../../Typography/Header'
 import BodyText from '../../Typography/BodyText'
 import Button from '../Buttons/Button'
 import {BREAKPOINTS} from "../../../_constants/brekpoints";
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 const BannerContentWrap = styled.div`
     display: flex;
@@ -83,10 +84,17 @@ const BannerContent = ({
         <div>
             {showOpacity && <OpacityLayer />}
             <BannerContentWrap>
-                <Text>
+                {/* <Text>
                     <Header size={1} uppercase> {headerText} </Header>
                     {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}
+                </Text> */}
+                <Text>
+                    <Header size={1} uppercase>
+                    <Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} replaceCharacterList={[{ from: '<ol>', to: '<ul>' }]} />
+                    </Header>
+                    {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}               
                 </Text>
+
                 {description && (
                     <Description>
                         <BodyText size="lg">
