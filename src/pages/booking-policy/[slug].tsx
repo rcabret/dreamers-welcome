@@ -14,6 +14,7 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
 
     return (
         <Content padding>
+            <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li><li>{'>'}</li><li>Booking Poilcy</li></ol></nav>
             <Block
                 hideSeparator
                 titleOverride={
