@@ -13,7 +13,9 @@ const Privacy = ({ data, setNavTheme }: any) => {
 
     return (
         <Content padding>
-            <Block hideSeparator title="Privacy" content={ <PageContent> <MarkdownModule data={content} /> </PageContent> } />
+            <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li><li>{'>'}</li><li>Privacy</li></ol></nav>
+            <Block hideSeparator content={ <PageContent> <MarkdownModule data={content} /> </PageContent> } />
+            {/* title="Privacy" */}
         </Content>
     )
 }
