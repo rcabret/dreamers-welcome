@@ -90,11 +90,7 @@ const BannerContent = ({
                 </Text> */}
                 <Text>
                     <Header size={1} uppercase>
-                    {headerText == 'travel well'?                    
-                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li>Home</li></ol></nav>
-                    :
-                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li> <li>{'>'}</li><li>{headerText}</li></ol></nav>
-                    }
+                    {headerText == 'travel well'? <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li>Home</li></ol></nav>  : <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li> <li>{'>'}</li><li>{headerText}</li></ol></nav>  }
                     </Header>
                     {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}               
                 </Text>
