@@ -90,10 +90,8 @@ const BannerContent = ({
                 </Text> */}
                 <Text>
                     <Header size={1} uppercase>
-                    {/* <Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} omitIndexList={[]} transformLabel={(title) => title + '  '} /> */}
-                    {headerText == 'travel well'?
-                    
-                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li></ol></nav>
+                    {headerText == 'travel well'?                    
+                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li>Home</li></ol></nav>
                     :
                     <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li> <li>{'>'}</li><li>{headerText}</li></ol></nav>
                     }
