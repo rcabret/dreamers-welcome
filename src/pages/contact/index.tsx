@@ -18,7 +18,7 @@ import {
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
 import { sendConversionEvent } from '../api/fbConversionApi';
-import Breadcrumbs from 'nextjs-breadcrumbs';
+//import Breadcrumbs from 'nextjs-breadcrumbs';
 
 async function generateSHA256Hash(input: string): Promise<string> {
     let hash = '';
@@ -136,7 +136,8 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                 {!submitted ? (
                     <FormContainer>
                         {/* <Header size={4}>CONTACT</Header> */}
-                        <Header size={4}><Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} omitIndexList={[1]} /></Header>
+                        {/* <Header size={4}><Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} omitIndexList={[1]} /></Header> */}
+                        <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home  </a></li><li>{'>'}</li><li>CONTACT</li></ol></nav>
                         <Header size={2}>Get in touch with us!</Header>
                         <form onSubmit={handleSubmit((data) => _handleSubmit(data) )} >
                             <StyledInput {...register('name', { required: true })} placeholder="FULL NAME" />
