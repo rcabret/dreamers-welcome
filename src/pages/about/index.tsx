@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from 'react'
-
 import {
     BannerGridImage,
     GridModule,
@@ -37,7 +36,13 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
     }, [])
     return (
         <>
-            <BannerGridImage imageObj={bannerImage} mobileImageObj={mobileBannerImage} border={false} borderRadius={false} fullHeight >
+            <BannerGridImage
+                imageObj={bannerImage}
+                mobileImageObj={mobileBannerImage}
+                border={false}
+                borderRadius={false}
+                fullHeight
+            >
                 <BannerContent headerText={bannerHeader} />
             </BannerGridImage>
             <Blurb text={blurb} />
@@ -115,6 +120,7 @@ export default About
 
 export async function getStaticProps() {
     const about = await getAbout()
+
     return {
         props: {
             about,

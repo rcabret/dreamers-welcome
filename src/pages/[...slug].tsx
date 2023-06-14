@@ -167,10 +167,22 @@ const Property = ({
             <Head>
                 <title>{propertyName} by DW</title>
                 <meta property="og:title" content={`${propertyName} by DW`} />
-                <meta property="og:description" content={`${propertyType[0]} in ${location}, ${bucket[0]}`} />
-                <meta property="og:image" content={`https:${tileImage.fields.file.url}?w=700`} />
+                <meta
+                    property="og:description"
+                    content={`${propertyType[0]} in ${location}, ${bucket[0]}`}
+                />
+                <meta
+                    property="og:image"
+                    content={`https:${tileImage.fields.file.url}?w=700`}
+                />
             </Head>
-            <BannerGridImage imageObj={bannerImage} mobileImageObj={mobileBannerImage} border={false} borderRadius={false} fullHeight>
+            <BannerGridImage
+                imageObj={bannerImage}
+                mobileImageObj={mobileBannerImage}
+                border={false}
+                borderRadius={false}
+                fullHeight
+            >
                 <BannerContent
                     headerText={bannerHeader}
                     headerSubheader={`${
@@ -187,18 +199,28 @@ const Property = ({
                 <Block
                     title="CONCEPT"
                     content={
-                        <ConceptTextContainer> <BodyText size="xlg">{concept}</BodyText></ConceptTextContainer>
+                        <ConceptTextContainer>
+                            <BodyText size="xlg">{concept}</BodyText>
+                        </ConceptTextContainer>
                     }
                 />
             )}
             {showSubNav && (
-                <SubNavigation activeSlug={activeSlug} queryArray={router.query.slug || []}  data={getSubNavigationData()}/>
+                <SubNavigation
+                    activeSlug={activeSlug}
+                    queryArray={router.query.slug || []}
+                    data={getSubNavigationData()}
+                />
             )}
             {/* Suites view for 'Suites' and House*/}
             <div id="anchor_view">
                 {pType !== 'Hotel' ? (
                     // Suites and Houses
-                    <Suite propertySlug={activeSlug || ''} data={activeView} hideFirstSeparator={showSubNav && suites.length > 1}/>
+                    <Suite
+                        propertySlug={activeSlug || ''}
+                        data={activeView}
+                        hideFirstSeparator={showSubNav && suites.length > 1}
+                    />
                 ) : (
                     // Hotel
                     activeView &&
@@ -206,7 +228,14 @@ const Property = ({
                     activeView.map((x, i) => {
                         const { name, blurb, images } = x.fields
                         return (
-                            <Highlight key={`${name}-${Math.random() * i}`} title={name} blurb={blurb} images={images}  slug={activeSlug || ''} hideSeparator={i === 0} />
+                            <Highlight
+                                key={`${name}-${Math.random() * i}`}
+                                title={name}
+                                blurb={blurb}
+                                images={images}
+                                slug={activeSlug || ''}
+                                hideSeparator={i === 0}
+                            />
                         )
                     })
                 )}
@@ -217,7 +246,12 @@ const Property = ({
                     noPaddingBottom
                     fullWidth
                     content={
-                        <ImageSliderWrapper> <Carousel toggle={toggleLightbox} items={extraData.carouselImages} /> </ImageSliderWrapper>
+                        <ImageSliderWrapper>
+                            <Carousel
+                                toggle={toggleLightbox}
+                                items={extraData.carouselImages}
+                            />
+                        </ImageSliderWrapper>
                     }
                 />
             )}
@@ -228,12 +262,21 @@ const Property = ({
                     title="FEATURES"
                     content={
                         breakpoint !== 'mobile' ? (
-                            <GridModule columns={features.length} sideScrollOnMobile={false} >
+                            <GridModule
+                                columns={features.length}
+                                sideScrollOnMobile={false}
+                            >
                                 {features &&
                                     features.map((feature: any) => (
-                                        <BlockListWrap key={feature.fields.title}>
-                                            <Header size={4}> {feature.fields.title} </Header>
-                                            <MarkdownModule data={feature.fields.text} />
+                                        <BlockListWrap
+                                            key={feature.fields.title}
+                                        >
+                                            <Header size={4}>
+                                                {feature.fields.title}
+                                            </Header>
+                                            <MarkdownModule
+                                                data={feature.fields.text}
+                                            />
                                         </BlockListWrap>
                                     ))}
                             </GridModule>
@@ -257,8 +300,12 @@ const Property = ({
                                 {thingsToKnow &&
                                     thingsToKnow.map((thing: any) => (
                                         <BlockListWrap key={thing.fields.title}>
-                                            <Header size={4}> {thing.fields.title} </Header>
-                                            <MarkdownModule data={thing.fields.text} />
+                                            <Header size={4}>
+                                                {thing.fields.title}
+                                            </Header>
+                                            <MarkdownModule
+                                                data={thing.fields.text}
+                                            />
                                         </BlockListWrap>
                                     ))}
                             </GridModule>
@@ -271,14 +318,22 @@ const Property = ({
 
             {bottomBlurb && bottomBlurb.length && (
                 <Blurb text={bottomBlurb} borderTop>
-                    <StyledButton href={`/experiences/${bucketToPath(bucket[0])}`} >  EXPERIENCES </StyledButton>
+                    <StyledButton
+                        href={`/experiences/${bucketToPath(bucket[0])}`}
+                    >
+                        EXPERIENCES
+                    </StyledButton>
                 </Blurb>
             )}
 
             {mapUrl && <Map link={mapUrl} />}
 
             {address && (
-                <Block title="INFO" noPaddingBottom content={<MarkdownModule data={address} />} />
+                <Block
+                    title="INFO"
+                    noPaddingBottom
+                    content={<MarkdownModule data={address} />}
+                />
             )}
 
             {extraData && extraData.faq && (
@@ -292,7 +347,11 @@ const Property = ({
                             />
                             {extraData.faq.fields.list.length > 5 && (
                                 <SeeMore>
-                                    <Link href={`/faq/${extraData.faq.fields.slug}`} >  SEE MORE  </Link>
+                                    <Link
+                                        href={`/faq/${extraData.faq.fields.slug}`}
+                                    >
+                                        SEE MORE
+                                    </Link>
                                 </SeeMore>
                             )}
                         </>
@@ -308,7 +367,10 @@ const Property = ({
                         <GridModule columns={4} sideScrollOnMobile>
                             {extraData.news.length &&
                                 extraData.news.map((x: any, i: number) => (
-                                    <NewsItem key={x.slug + i} newsObj={x.fields} />
+                                    <NewsItem
+                                        key={x.slug + i}
+                                        newsObj={x.fields}
+                                    />
                                 ))}
                         </GridModule>
                     }
@@ -324,7 +386,11 @@ const Property = ({
                             {extraData.otherStays.length &&
                                 extraData.otherStays.map(
                                     (x: any, i: number) => (
-                                        <PropertyGridItem collapsed key={x.fields.propertySlug} propertyObj={x.fields} />
+                                        <PropertyGridItem
+                                            collapsed
+                                            key={x.fields.propertySlug}
+                                            propertyObj={x.fields}
+                                        />
                                     )
                                 )}
                         </GridModule>
@@ -334,17 +400,22 @@ const Property = ({
 
             {/* @ts-ignore*/}
             {extraData && extraData.carouselImages && lightbox && (
-                <LightBox items={extraData.carouselImages} toggle={toggleLightbox} />
+                <LightBox
+                    items={extraData.carouselImages}
+                    toggle={toggleLightbox}
+                />
             )}
         </>
     )
 }
 
 export default Property
+
 export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getProperty(context.params.slug[0])
     const stringData = safeJsonStringify(rawData)
     const propertyResponse = JSON.parse(stringData)
+
     return {
         props: {
             propertyResponse,

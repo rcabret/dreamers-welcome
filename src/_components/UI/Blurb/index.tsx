@@ -4,7 +4,7 @@ import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
 import MarkdownModule from '../../Typography/MarkdownModule'
-//import Breadcrumbs from 'nextjs-breadcrumbs';
+
 const BlurbWrap = styled.div`
     min-height: ${rem('550px')};
     font-size: ${rem('70px')};
@@ -103,10 +103,7 @@ const Blurb = ({
             <div>
                 {eyebrow && (
                     <StyledHeader size={4} uppercase>
-                        {/* {eyebrow} */}
-                        <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home  </a></li><li>{'>'}</li><li>{eyebrow}</li></ol></nav>
-
-                        {/* <Breadcrumbs useDefaultStyle={false} labelsToUppercase={false}  /> */}
+                        {eyebrow}
                     </StyledHeader>
                 )}
                 <StyledMarkdown data={text} />

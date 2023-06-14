@@ -4,23 +4,30 @@ import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import Cross from '../../UI/Icons/Cross'
 import MarkdownModule from '../../Typography/MarkdownModule'
+
 import AnimateHeight from 'react-animate-height'
 
 interface ListProps {
     data: any[]
 }
+
 interface ListStyleProps {
     noPaddingTop?: boolean
     noPaddingBottom?: boolean
 }
+
 const ListWrapper = styled.div`
     position: relative;
 
     .extraPadding {
-        p { padding-top: ${rem('30px')}; }
+        p {
+            padding-top: ${rem('30px')};
+        }
     }
 
-    a { display: block; }
+    a {
+        display: block;
+    }
 
     svg {
         position: absolute;
@@ -28,13 +35,16 @@ const ListWrapper = styled.div`
         margin-right: ${rem('10px')};
     }
 `
+
 const Title = styled.div`
     padding: ${rem('14px')} 0;
     border-top: 1px solid #c1c1c1;
     display: flex;
     cursor: pointer;
 
-    h3 { margin-right: ${rem(60)}; }
+    h3 {
+        margin-right: ${rem(60)};
+    }
 
     ${({ noPaddingBottom }: ListStyleProps) =>
         noPaddingBottom &&
@@ -48,10 +58,12 @@ const Title = styled.div`
         padding-top: 0;
     `}
 `
+
 const Wrap = styled.div`
     padding-top: ${rem(40)};
     padding-bottom: ${rem(20)};
 `
+
 class CollapsableList extends Component<any, any> {
     constructor(props: ListProps) {
         super(props)
@@ -63,6 +75,7 @@ class CollapsableList extends Component<any, any> {
 
     toggle = (index: number) => {
         const { activeIndex } = this.state
+
         this.setState({
             activeIndex: activeIndex === index ? -1 : index,
         })
@@ -83,12 +96,29 @@ class CollapsableList extends Component<any, any> {
                             const { title, text } = item.fields
                             return (
                                 <>
-                                    <Title noPaddingTop={i === 0} noPaddingBottom={i === data.length - 1} onClick={() => this.toggle(i)} >
+                                    <Title
+                                        noPaddingTop={i === 0}
+                                        noPaddingBottom={i === data.length - 1}
+                                        onClick={() => this.toggle(i)}
+                                    >
                                         <Header size={3}>{title}</Header>
-                                        <Cross expanded={ i == this.state.activeIndex } />
+                                        <Cross
+                                            expanded={
+                                                i == this.state.activeIndex
+                                            }
+                                        />
                                     </Title>
-                                    <AnimateHeight height={ this.state.activeIndex === i ? 'auto' : 0 } duration={500} >
-                                        <Wrap> <MarkdownModule data={text} /> </Wrap>
+                                    <AnimateHeight
+                                        height={
+                                            this.state.activeIndex === i
+                                                ? 'auto'
+                                                : 0
+                                        }
+                                        duration={500}
+                                    >
+                                        <Wrap>
+                                            <MarkdownModule data={text} />
+                                        </Wrap>
                                     </AnimateHeight>
                                 </>
                             )

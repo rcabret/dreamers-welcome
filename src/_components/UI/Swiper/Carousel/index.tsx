@@ -60,7 +60,7 @@ class ImageSlider extends Component {
                     loop={true}
                     spaceBetween={0}
                     slidesPerView={1}
-                    onSlideChange={(swiper:any) =>
+                    onSlideChange={(swiper) =>
                         this.nextSlide(swiper.activeIndex)
                     }
                     navigation={true}
@@ -71,13 +71,23 @@ class ImageSlider extends Component {
                         this.items.length &&
                         this.items.map((x: any, i: number) => {
                             return (
-                                <SwiperSlide className="next" key={Math.random() * i} >
-                                    <GridImage sizes="100vw" imageObj={x} border={false} borderRadius={false} />
+                                <SwiperSlide
+                                    className="next"
+                                    key={Math.random() * i}
+                                >
+                                    <GridImage
+                                        sizes="100vw"
+                                        imageObj={x}
+                                        border={false}
+                                        borderRadius={false}
+                                    />
                                 </SwiperSlide>
                             )
                         })}
                 </StyledSwiper>
-                <SeeAllButton onClick={() => this.toggleLightBox()}>  All photos </SeeAllButton>
+                <SeeAllButton onClick={() => this.toggleLightBox()}>
+                    All photos
+                </SeeAllButton>
             </>
         )
     }

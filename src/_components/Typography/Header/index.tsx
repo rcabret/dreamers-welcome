@@ -30,27 +30,69 @@ const Header = ({
         default:
         case 1:
             return (
-                <H1Styled className={className}  bold={bold} responsive={responsive} uppercase={uppercase} > {children} </H1Styled>
+                <H1Styled
+                    className={className}
+                    bold={bold}
+                    responsive={responsive}
+                    uppercase={uppercase}
+                >
+                    {children}
+                </H1Styled>
             )
         case 2:
             return (
-                <H2Styled className={className}  bold={bold} responsive={responsive} uppercase={uppercase} > {children} </H2Styled>
+                <H2Styled
+                    className={className}
+                    bold={bold}
+                    responsive={responsive}
+                    uppercase={uppercase}
+                >
+                    {children}
+                </H2Styled>
             )
         case 3:
             return (
-                <H3Styled className={className} bold={bold} responsive={responsive} uppercase={uppercase} > {children} </H3Styled>
+                <H3Styled
+                    className={className}
+                    bold={bold}
+                    responsive={responsive}
+                    uppercase={uppercase}
+                >
+                    {children}
+                </H3Styled>
             )
         case 4:
             return (
-                <H4Styled className={className} bold={bold} responsive={responsive}  uppercase={uppercase} > {children} </H4Styled>
+                <H4Styled
+                    className={className}
+                    bold={bold}
+                    responsive={responsive}
+                    uppercase={uppercase}
+                >
+                    {children}
+                </H4Styled>
             )
         case 5:
             return (
-                <H5Styled className={className} bold={bold} responsive={responsive} uppercase={uppercase} > {children} </H5Styled>
+                <H5Styled
+                    className={className}
+                    bold={bold}
+                    responsive={responsive}
+                    uppercase={uppercase}
+                >
+                    {children}
+                </H5Styled>
             )
         case 6:
             return (
-                <H6Styled className={className} bold={bold} responsive={responsive} uppercase={uppercase} >  {children} </H6Styled>
+                <H6Styled
+                    className={className}
+                    bold={bold}
+                    responsive={responsive}
+                    uppercase={uppercase}
+                >
+                    {children}
+                </H6Styled>
             )
     }
 }

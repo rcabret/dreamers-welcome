@@ -11,7 +11,6 @@ import { getNews } from '../../_lib/api'
 import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
 import Header from '../../_components/Typography/Header'
-import Breadcrumbs from 'nextjs-breadcrumbs';
 
 const News = ({
     news,
@@ -39,9 +38,7 @@ const News = ({
         <Content padding>
             <TopSection padding>
                 <Header size={4} uppercase>
-                    {/* NEWS & UPDATES */}
-                    {/* <Breadcrumbs useDefaultStyle={true} labelsToUppercase={false} omitIndexList={[1]} /> */}
-                    <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav>
+                    NEWS & UPDATES
                 </Header>
             </TopSection>
             <GridWrapper border={false} padding>
