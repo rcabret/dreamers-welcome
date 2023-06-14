@@ -14,17 +14,13 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
 
     return (
         <Content padding>
-            <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li><li>{'>'}</li><li>Booking Poilcy</li></ol></nav>
+            {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li><li>{'>'}</li><li>Booking Poilcy</li></ol></nav> */}
             <Block
                 hideSeparator
                 titleOverride={
                     <Dropdown dark id="policies-dropdown" links={dropdownData} bucket={policy.title} defaultLabel="CHOOSE STAY"/>
                 }
-                content={
-                    <PageContent>
-                        <MarkdownModule data={content} />
-                    </PageContent>
-                }
+                content={<PageContent><MarkdownModule data={content} /></PageContent>}
             />
         </Content>
     )

@@ -103,10 +103,8 @@ const Blurb = ({
             <div>
                 {eyebrow && (
                     <StyledHeader size={4} uppercase>
-                        {/* {eyebrow} */}
-                        <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home  </a></li><li>{'>'}</li><li>{eyebrow}</li></ol></nav>
-
-                        {/* <Breadcrumbs useDefaultStyle={false} labelsToUppercase={false}  /> */}
+                        {eyebrow}
+                        {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home  </a></li><li>{'>'}</li><li>{eyebrow}</li></ol></nav> */}
                     </StyledHeader>
                 )}
                 <StyledMarkdown data={text} />
