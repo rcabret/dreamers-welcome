@@ -10,6 +10,7 @@ import TagManager from 'react-gtm-module'
 import Head from 'next/head'
 import FirstVisitModal from '../_components/Modal/FirstVisitModal'
 import '../../public/styles/global.css'
+import { sendPageViewEvent } from './api/sendPageViewEvent';
 
 const StyledMain = styled.main`
     width: 100%;
@@ -22,6 +23,8 @@ interface HeaderData {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+    const pixelID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
+
     // @ts-ignore
     const [navTheme, setNavTheme] = useState(undefined)
     const [headerData, setHeaderData] = useState<HeaderData | undefined>(
@@ -29,6 +32,11 @@ function MyApp({ Component, pageProps }: AppProps) {
     )
 
     const [firstModalShow, setFirstModalShow] = useState(false)
+
+    useEffect(() => {
+        sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
+      }, []);
+
 
     useEffect(() => {
         const visited = localStorage.getItem('visited');
