@@ -43,6 +43,9 @@ const Footer = ({ activeBucket }: any) => {
                     <li className='text-sm sm:text-xl'>
                         <Link href={'/faq/general'}>FAQs</Link>
                     </li>
+                    <li className='text-sm sm:text-xl'>
+                        <Link href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target="_blank">GIFT CARD</Link>
+                    </li>
                 </ul>
                 <ul>
                     <li className='text-sm sm:text-xl'>
@@ -67,6 +70,14 @@ const Footer = ({ activeBucket }: any) => {
                             target="_blank"
                         >
                             INSTA
+                        </a>
+                    </li>
+                    <li className='text-sm sm:text-xl'>
+                        <a
+                            href="https://www.tiktok.com/@dreamers.welcome"
+                            target="_blank"
+                        >
+                            TIKTOK
                         </a>
                     </li>
                     <li className='text-sm sm:text-xl'>
