@@ -44,7 +44,7 @@ const Footer = ({ activeBucket }: any) => {
                         <Link href={'/faq/general'}>FAQs</Link>
                     </li>
                     <li className='text-sm sm:text-xl'>
-                        <Link href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target="_blank">GIFT CARD</Link>
+                        <a href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target="_blank">GIFT CARD</a>
                     </li>
                 </ul>
                 <ul>
