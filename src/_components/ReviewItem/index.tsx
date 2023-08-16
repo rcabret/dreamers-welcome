@@ -13,11 +13,20 @@ const ReviewItem = ({ data }: any) => {
             <ItemWrapperStyled>
                 <TopSection>
                     <ImageWrapper>
-                        <GridImage  ratio={1} sizes={'5vw'} border={false} imageObj={coverImage} />
+                        <GridImage
+                            ratio={1}
+                            sizes={'5vw'}
+                            border={false}
+                            imageObj={coverImage}
+                        />
                     </ImageWrapper>
                     <section>
-                        <BodyText bold size="sm"> {name} </BodyText>
-                        <BodyText uppercase size="sm"> {stringDate} </BodyText>
+                        <BodyText bold size="sm">
+                            {name}
+                        </BodyText>
+                        <BodyText uppercase size="sm">
+                            {stringDate}
+                        </BodyText>
                     </section>
                 </TopSection>
                 <BodyText size="sm">{text}</BodyText>

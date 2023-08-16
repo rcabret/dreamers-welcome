@@ -39,8 +39,8 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const faqsResponse = await getFaqs()
     const faqPage = await getFaqPage()
 
-    const faqGeneral = faqsResponse.filter((x:any) => x.slug == 'general')
-    let faqs = faqsResponse.filter((x:any) => x.slug !== 'general')
+    const faqGeneral = faqsResponse.filter((x) => x.slug == 'general')
+    let faqs = faqsResponse.filter((x) => x.slug !== 'general')
     faqs = [...faqGeneral, ...faqs]
 
     let dropdownData: { label: string; slug: string }[] = faqs.map(

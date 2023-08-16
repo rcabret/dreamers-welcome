@@ -18,7 +18,6 @@ import {
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
 import { sendConversionEvent } from '../api/fbConversionApi';
-//import Breadcrumbs from 'nextjs-breadcrumbs';
 
 async function generateSHA256Hash(input: string): Promise<string> {
     let hash = '';
@@ -100,7 +99,7 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                     property: data.property,
                     subject: data.subject,
                     message: data.message,
-                    test_event_code: 'TEST61519'
+                    test_event_code: 'TEST48544'
                 }
             };
             sendConversionEvent(contactEvent);
@@ -136,16 +135,31 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                 {!submitted ? (
                     <FormContainer>
                         <Header size={4}>CONTACT</Header>
-                        {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li><li>{'>'}</li><li>CONTACT</li></ol></nav> */}
                         <Header size={2}>Get in touch with us!</Header>
-                        <form onSubmit={handleSubmit((data) => _handleSubmit(data) )} >
-                            <StyledInput {...register('name', { required: true })} placeholder="FULL NAME" />
+                        <form
+                            onSubmit={handleSubmit((data) =>
+                                _handleSubmit(data)
+                            )}
+                        >
+                            <StyledInput
+                                {...register('name', { required: true })}
+                                placeholder="FULL NAME"
+                            />
                             {errors.name && <p>Please enter your full name.</p>}
-                            <StyledInput placeholder="EMAIL"  type="email" {...register('email', { required: true })} />
-                            {errors.email && ( <p>Please enter an email format.</p>)}
+                            <StyledInput
+                                placeholder="EMAIL"
+                                type="email"
+                                {...register('email', { required: true })}
+                            />
+                            {errors.email && (
+                                <p>Please enter an email format.</p>
+                            )}
                             <StyledSelectWrapper>
                                 <StyledSelect
-                                    {...register('subject', { required: false, })} >
+                                    {...register('subject', {
+                                        required: false,
+                                    })}
+                                >
                                     <option value="" disabled selected>
                                         SUBJECT
                                     </option>
@@ -163,12 +177,14 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                                     })}
                                 >
                                     <>
-                                        <option value="" disabled selected> SELECT PROPERTY </option>
+                                        <option value="" disabled selected>
+                                            SELECT PROPERTY
+                                        </option>
                                         <option>GENERAL PROPERTY</option>
                                         {properties &&
                                             properties.length &&
-                                            properties.map((p: any, index:any) => (
-                                                <option key={index}>
+                                            properties.map((p: any) => (
+                                                <option>
                                                     {p.propertyName.toUpperCase()}{' '}
                                                     {`(${p.bucket[0]})`}
                                                 </option>
@@ -182,16 +198,12 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                                 placeholder="MESSAGE"
                             />
                             {errors.message && <p>Please enter message.</p>}
-                            {/* <StyledInput
+                            <StyledInput
                                 type="submit"
                                 value="MESSAGE US"
                                 disabled={
                                     Object.keys(errors).length || inProgress
                                 }
-                            /> */}
-                            <StyledInput
-                                type="submit"
-                                value="MESSAGE US"
                             />
                         </form>
                     </FormContainer>

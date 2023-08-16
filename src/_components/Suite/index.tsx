@@ -4,6 +4,7 @@ import Block from '../UI/Block'
 import { BlockListWrap, GridModule } from '../../styles/global'
 import Header from '../Typography/Header'
 import MarkdownModule from '../Typography/MarkdownModule'
+import { ConceptTextContainer } from '../../styles/about/styles'
 import CollapsableList from '../UI/CollapsableList'
 import { viewportContext } from '../../_utils/ViewportProvider'
 
@@ -29,13 +30,28 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
 
     return (
         <>
-            {description && ( <Block  hideSeparator title="OVERVIEW" content={<MarkdownModule data={description} />} /> )}
+            {description && (
+                <Block
+                    hideSeparator
+                    title="OVERVIEW"
+                    content={<MarkdownModule data={description} />}
+                />
+            )}
             {highlights && highlights.length
                 ? highlights.map((x: { fields: any }, i: number) => {
                       const { highlightName, blurb, images, slug } = x.fields
                       return (
                           // @ts-ignore
-                          <Highlight  key={`${slug}-${Math.random() * i}`}  slug={propertySlug}  title={highlightName} blurb={blurb}  images={images}  hideSeparator={hideFirstSeparator && i === 0 && !description }  />
+                          <Highlight
+                              key={`${slug}-${Math.random() * i}`}
+                              slug={propertySlug}
+                              title={highlightName}
+                              blurb={blurb}
+                              images={images}
+                              hideSeparator={
+                                  hideFirstSeparator && i === 0 && !description
+                              }
+                          />
                       )
                   })
                 : null}
@@ -46,7 +62,10 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                     sideScrollOnMobile={false}
                     content={
                         breakpoint !== 'mobile' ? (
-                            <GridModule  columns={features.length} sideScrollOnMobile={false} >
+                            <GridModule
+                                columns={features.length}
+                                sideScrollOnMobile={false}
+                            >
                                 {features &&
                                     features.map((feature: any) => (
                                         <BlockListWrap

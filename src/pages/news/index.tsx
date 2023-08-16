@@ -11,7 +11,6 @@ import { getNews } from '../../_lib/api'
 import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
 import Header from '../../_components/Typography/Header'
-import Breadcrumbs from 'nextjs-breadcrumbs';
 
 const News = ({
     news,

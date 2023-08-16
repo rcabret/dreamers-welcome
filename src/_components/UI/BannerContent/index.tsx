@@ -5,7 +5,6 @@ import Header from '../../Typography/Header'
 import BodyText from '../../Typography/BodyText'
 import Button from '../Buttons/Button'
 import {BREAKPOINTS} from "../../../_constants/brekpoints";
-//import Breadcrumbs from 'nextjs-breadcrumbs';
 
 const BannerContentWrap = styled.div`
     display: flex;
@@ -85,22 +84,21 @@ const BannerContent = ({
             {showOpacity && <OpacityLayer />}
             <BannerContentWrap>
                 <Text>
-                    <Header size={1} uppercase> {headerText} </Header>
-                    {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}
-                </Text>
-                {/* <Text>
                     <Header size={1} uppercase>
-                    {headerText == 'travel well'? <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li>Home</li></ol></nav>  : <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li> <li>{'>'}</li><li>{headerText}</li></ol></nav>  }
+                        {headerText}
                     </Header>
-                    {headerSubheader && ( <BodyText size="lg">{headerSubheader}</BodyText> )}               
-                </Text> */}
-
+                    {headerSubheader && (
+                        <BodyText size="lg">{headerSubheader}</BodyText>
+                    )}
+                </Text>
                 {description && (
                     <Description>
                         <BodyText size="lg">
                             {Array.isArray(description)
                                 ? description.map((x, i) => {
-                                      return `${x} ${i < description.length - 1 ? '· ' : '' }`
+                                      return `${x} ${
+                                          i < description.length - 1 ? '· ' : ''
+                                      }`
                                   })
                                 : description}
                         </BodyText>

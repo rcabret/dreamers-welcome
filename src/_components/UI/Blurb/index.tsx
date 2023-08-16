@@ -4,7 +4,7 @@ import { rem } from 'polished'
 import Header from '../../Typography/Header'
 import { BREAKPOINTS } from '../../../_constants/brekpoints'
 import MarkdownModule from '../../Typography/MarkdownModule'
-//import Breadcrumbs from 'nextjs-breadcrumbs';
+
 const BlurbWrap = styled.div`
     min-height: ${rem('550px')};
     font-size: ${rem('70px')};

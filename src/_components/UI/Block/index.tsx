@@ -31,7 +31,13 @@ const Block = ({
             {(title || titleOverride) && (
                 <Title fullWidth={fullWidth}>
                     <>
-                        {titleOverride ? ( <div>{titleOverride}</div> ) : ( <Header size={4} uppercase> {title} </Header> )}
+                        {titleOverride ? (
+                            <div>{titleOverride}</div>
+                        ) : (
+                            <Header size={4} uppercase>
+                                {title}
+                            </Header>
+                        )}
                         {link && <Link href={link}>VIEW ALL</Link>}
                     </>
                 </Title>
