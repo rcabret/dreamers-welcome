@@ -99,7 +99,7 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                                 href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted"
                                 target="_blank"
                             >
-                                GIFT CARD
+                                GIFT CARDS
                             </a>
                         </li>
                     </ul>
