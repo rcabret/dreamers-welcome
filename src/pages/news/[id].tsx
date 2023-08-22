@@ -44,7 +44,7 @@ const NewsItemDetails = ({ setNavTheme }: any) => {
       <div style={{ width: '60%', height: '50%', alignItems: 'center', marginLeft: '20%' }}>
         <Content padding>
           <TopSection padding>
-            <Header size={4} uppercase bold>
+            <Header size={2} uppercase bold className='text-center'>
               {title}
             </Header>
             <BodyText size="sm">{moment(date).format('MMMM Do YYYY')}</BodyText>
