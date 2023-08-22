@@ -4,7 +4,7 @@ import { rem } from 'polished'
 
 export const SubNav = styled.div`
     position: sticky;
-    height: ${rem(60)};
+    height: ${rem(64)};
     display: flex;
     align-items: center;
     top: 65px;

@@ -21,6 +21,13 @@ export const GridModule = styled.div`
         box-sizing: border-box;
         width: ${({ columns }: GMProps) => `${100 / columns}%`};
         text-decoration: none;
+        transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
+        z-index: 1; 
+    }
+    a: hover {
+        transform: scale(1.05);
+        z-index: 0.5;
+        transition: transform 0.3s ease-in-out, z-index 0s linear;
     }
 
     @media (max-width: ${rem(1200)}) {

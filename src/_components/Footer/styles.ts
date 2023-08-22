@@ -68,7 +68,7 @@ export const LeftLinks = styled.div`
 `
 
 export const ContactUs = styled(Button)`
-    position: absolute !important;
+    position: relative;
     right: ${rem(30)};
     top: ${rem(30)};
 

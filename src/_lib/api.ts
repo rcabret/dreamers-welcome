@@ -113,7 +113,17 @@ export const getNews = async () => {
         order: '-fields.date',
     })
     if (entries.items) {
-        return entries.items.map((x: { fields: {} }) => x.fields)
+        return entries.items
+    }
+}
+
+export const getNewsEntry = async (entryID?: string) => {
+    try {
+        const entry = await client.getEntry(entryID);
+        return entry.fields;
+    } catch (error) {
+        console.error('Error fetching news entry:', error);
+        throw error;
     }
 }
 

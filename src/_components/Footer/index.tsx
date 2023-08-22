@@ -12,6 +12,7 @@ import {
 } from './styles'
 import moment from 'moment'
 
+
 const Footer = ({ activeBucket }: any) => {
     const getLink = (slug: string) =>
         `/${slug}${
@@ -44,7 +45,7 @@ const Footer = ({ activeBucket }: any) => {
                         <Link href={'/faq/general'}>FAQs</Link>
                     </li>
                     <li className='text-sm sm:text-xl'>
-                        <a href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target="_blank">GIFT CARDS</a>
+                        <a href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target='_blank'>GIFT CARDS</a>
                     </li>
                 </ul>
                 <ul>
