@@ -13,12 +13,14 @@ const NewsItemDetails = ({ setNavTheme }: any) => {
     setNavTheme('dark')
   }, [])
 
-  const [_res, setRes] = useState()
+  const [_res, setRes] = useState([])
   const router = useRouter();
   const [date, setDate] = useState();
   const [text, setText] = useState();
-  const [tileImage, setImage] = useState();
+  const [test, setTest] = useState();
+  const [titleImage, setImage] = useState();
   const [title, setTitle] = useState();
+  const [description, setDesc] = useState();
   const { id } = router.query;
 
   useEffect(() => {
@@ -27,9 +29,10 @@ const NewsItemDetails = ({ setNavTheme }: any) => {
 
         const newsData = await getNewsEntry(id);
         setRes(newsData);
+        setTest(newsData?.test)
         setDate(newsData?.date)
         setText(newsData?.text)
-        setImage(newsData?.tileImage)
+        setImage(newsData?.titleImage)
         setTitle(newsData?.title)
       } catch (error) {
         console.error("Error fetching news:", error);
@@ -51,7 +54,7 @@ const NewsItemDetails = ({ setNavTheme }: any) => {
           </TopSection>
           <GridImage
             sizes={'33vw'}
-            imageObj={tileImage}
+            imageObj={titleImage}
             metadata={
               <GuidesMetadata>
                 <BodyText> </BodyText>

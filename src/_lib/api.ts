@@ -108,7 +108,7 @@ export const getAllPropertiesForPaths = async () => {
 
 export const getNews = async () => {
     const entries = await client.getEntries({
-        content_type: 'news',
+        content_type: 'blog',
         include: 1,
         order: '-fields.date',
     })

@@ -20,16 +20,24 @@ const links: { name: string; slug: string }[] = [
         slug: 'view_all',
     },
     {
-        name: 'AWARDS',
-        slug: 'awards',
+        name: 'ENTERTAINMENT',
+        slug: 'Entertainment',
     },
     {
-        name: 'TOP',
-        slug: 'top',
+        name: 'SPORTS',
+        slug: 'Sports',
     },
     {
         name: 'WELLNESS',
-        slug: 'wellness',
+        slug: 'Wellness',
+    },
+    {
+        name: 'WORLD AFFAIRS',
+        slug: 'World Affairs',
+    },
+    {
+        name: 'LOCAL',
+        slug: 'Local',
     },
 ]
 
@@ -70,16 +78,17 @@ const News = ({
         setSlug(queryTag)
 
         const checkForTags = (tags: any[], slug: string) => {
+            
             if (!tags.length) {
                 return
             }
-            return tags.find((tag: any) => tag.sys.id === slug)
+            return tags.find((tag: any) => tag === slug)
         }
 
         const newsToView =
             queryTag !== 'view_all'
                 ? [...news].filter((news: any) =>
-                    checkForTags(news.tileImage.metadata.tags, queryTag)
+                    checkForTags(news.test, queryTag)
                 )
                 : [...news]
 
