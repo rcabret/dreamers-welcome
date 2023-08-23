@@ -6,7 +6,6 @@ import GridImage from '../../_components/UI/GridImage'
 import { GuidesMetadata } from '../../_components/GuideItem/styles'
 import { getNewsEntry } from '../../_lib/api'
 import { Content, TopSection } from '../../styles/global'
-import { log } from 'console'
 import moment from 'moment'
 
 const NewsItemDetails = ({ setNavTheme }: any) => {

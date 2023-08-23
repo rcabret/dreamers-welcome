@@ -9,7 +9,6 @@ interface GMProps {
     dontBreak?: boolean
     sideScrollOnMobile?: boolean
 }
-
 export const GridModule = styled.div`
     position: relative;
     //padding-bottom: ${rem('20px')};
@@ -24,11 +23,7 @@ export const GridModule = styled.div`
         transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
         z-index: 1; 
     }
-    a: hover {
-        transform: scale(1.05);
-        z-index: 0.5;
-        transition: transform 0.3s ease-in-out, z-index 0s linear;
-    }
+    
 
     @media (max-width: ${rem(1200)}) {
         ${({ sideScrollOnMobile = false }: GMProps) =>

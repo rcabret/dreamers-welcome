@@ -95,19 +95,17 @@ const News = ({
     return (
         <Content padding>
             <TopSection padding>
-                <Header size={4} uppercase>
+                <Header size={3} uppercase className='text-center mb-5' >
                     NEWS & UPDATES
                 </Header>
                 {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
             </TopSection>
-            <div>
-                <SubNavigation
-                    activeSlug={activeSlug}
-                    data={links}
-                    queryParam="type"
-                    queryArray={router.query.slug || []}
-                />
-            </div>
+            <SubNavigation
+                activeSlug={activeSlug}
+                data={links}
+                queryParam="type"
+                queryArray={router.query.slug || []}
+            />
             <GridWrapper border={false} padding>
                 <GridModule columns={4} sideScrollOnMobile={false}>
                     {activeNews && activeNews.length ?
