@@ -41,16 +41,18 @@ const NewsItemDetails = ({ setNavTheme }: any) => {
     fetchData(id);
   }, [router]);
 
+  
   return (
     <>
       <div style={{ width: '60%', height: '50%', alignItems: 'center', marginLeft: '20%' }}>
         <Content padding>
           <TopSection padding>
-            <Header size={2} uppercase bold className='text-center'>
+            <Header size={2} uppercase bold className='text-center mb-2'>
               {title}
             </Header>
-            <BodyText size="sm">{moment(date).format('MMMM Do YYYY')}</BodyText>
-            {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
+            <hr/>
+            <BodyText size="sm"  className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')} Categories: {test}</BodyText>
+            <hr/>{/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
           </TopSection>
           <GridImage
             sizes={'33vw'}
@@ -58,7 +60,7 @@ const NewsItemDetails = ({ setNavTheme }: any) => {
             metadata={
               <GuidesMetadata>
                 <BodyText> </BodyText>
-                <BodyText size="sm">{text}</BodyText>
+                <BodyText size="md">{text}</BodyText>
               </GuidesMetadata>
             }
           />

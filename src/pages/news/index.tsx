@@ -80,7 +80,7 @@ const News = ({
         const checkForTags = (tags: any[], slug: string) => {
             
             if (!tags.length) {
-                return
+                return [...news]
             }
             return tags.find((tag: any) => tag === slug)
         }

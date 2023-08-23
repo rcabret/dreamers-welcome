@@ -47,7 +47,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
                         <NewsTextWrapper>
                             <BodyText size="sm">{stringDate} {test}</BodyText>
                             {/* <BodyText size='sm'>{test}</BodyText> */}
-                            <BodyText size='sm'>{text}</BodyText>
+                            <BodyText size='sm'>{text.slice(0, 200)}...</BodyText>
                             {/* <div id = 'rich-text-body'></div> */}
                             {/* <BodyText size="sm">{description}</BodyText> */}
                         </NewsTextWrapper>
