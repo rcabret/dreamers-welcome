@@ -27,7 +27,7 @@ export const GridModule = styled.div`
         padding: 5px;
     }
     .border {
-        border-width: 1px;
+      border:unset;
         height: 100%;
         padding: 10px;
         display:flex;
@@ -41,7 +41,17 @@ export const GridModule = styled.div`
         flex-grow: 1;
         margin-top:10px
     }
+    .grid_image {
+        margin-bottom: 1.25rem;
+    }
+    .grid_heading {
+        line-height: 1.9rem;
+    }
     
+    .grid_desc p {
+        margin-bottom: 10px;
+        line-height: 1.4rem;
+    }
 
     @media (max-width: ${rem(1200)}) {
         ${({ sideScrollOnMobile = false }: GMProps) =>
@@ -55,6 +65,18 @@ export const GridModule = styled.div`
                     width: 40% !important;
                     min-width: ${rem('340px')} !important;
                     white-space: normal !important;
+                }
+            `}
+    }
+    @media (max-width: ${rem(640)}) {
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            sideScrollOnMobile &&
+            css`
+               
+
+                > div,
+                > a {
+                    width: 100% !important;
                 }
             `}
     }
