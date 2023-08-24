@@ -11,6 +11,34 @@ import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
+import SubNavigation from '../../_components/Navigation/SubNavigation'
+
+const links: { name: string; slug: string }[] = [
+  {
+      name: 'VIEW ALL',
+      slug: 'view_all',
+  },
+  {
+      name: 'ENTERTAINMENT',
+      slug: 'Entertainment',
+  },
+  {
+      name: 'SPORTS',
+      slug: 'Sports',
+  },
+  {
+      name: 'WELLNESS',
+      slug: 'Wellness',
+  },
+  {
+      name: 'WORLD AFFAIRS',
+      slug: 'World Affairs',
+  },
+  {
+      name: 'LOCAL',
+      slug: 'Local',
+  },
+]
 
 const NewsItemDetails = ({
   setNavTheme,
@@ -41,7 +69,8 @@ const NewsItemDetails = ({
   const [_news, setNews] = useState<any[]>([
   ]);
 
-
+  const [_newsBottom, setNewsBottom] = useState<any[]>([
+  ]); 
 
   useEffect(() => {
     async function fetchNews() {
@@ -49,12 +78,45 @@ const NewsItemDetails = ({
         const res = await getNews()
         const news = res.map((x: { fields: {} }) => x.fields)
         setNews(news)
+        setNewsBottom(news)
       } catch (error) {
         console.error("Error in getNews: ", error)
       }
     }
     fetchNews();
   }, [])
+
+  const [activeSlug, setSlug] = useState<string>(
+    (router.query.type as string)
+)
+const [activeNews, setActiveNews] = useState<any[]>([
+    ..._news,
+])
+
+useEffect(() => {
+  const queryTag = (router.query.type as string)
+  // @ts-ignore
+  setSlug(queryTag)
+
+  const checkForTags = (tags: any[], slug: string) => {
+      
+      // if (!tags.length) {
+      //     return [..._news]
+      // }
+      return tags.find((tag: any) => tag === slug)
+  }
+
+  const newsToView =
+      queryTag !== 'view_all'
+          ? [..._news].filter((news: any) =>
+              checkForTags(news.test, queryTag)
+          )
+          : [..._news]
+
+  setNews(newsToView)
+}, [router, router.query])
+
+useEffect(() => { }, [activeNews])
 
   const handleClick = () => {
     window.history.go(-1);
@@ -92,16 +154,21 @@ const NewsItemDetails = ({
           <p onClick={handleClick} style={{ display:'flex',alignItems:"center",cursor:"pointer" }}>
           <AiOutlineArrowLeft  />&nbsp;Back
           </p>
+          {/* <SubNavigation
+                activeSlug={activeSlug}
+                data={links}
+                queryParam="type"
+                queryArray={'/news' || []}
+            /> */}
           <TopSection padding>
             <Header size={2} uppercase className='text-center mb-2'>
               {title}
             </Header>
-            <hr />
             <div className='sm_header'>
             <BodyText size="md" className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
             {test && <BodyText size="md" className='mb-2'>Categories: {test}</BodyText>}
             </div>
-            <hr />{/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
+            {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
           </TopSection>
           <GridImage
             sizes={'33vw'}
@@ -117,7 +184,7 @@ const NewsItemDetails = ({
         </Content>
       </div>
 
-      {_news && (
+      {_newsBottom && (
 
         <StyledBlockForGrid
           title='MORE NEWS'
@@ -129,7 +196,7 @@ const NewsItemDetails = ({
               columns={4}
               sideScrollOnMobile
             >
-              {_news && _news.length >= 4 ? (_news.sort(() => 0.5 - Math.random()).slice(0, 4).map((news: News, i: number) => (
+              {_newsBottom && _newsBottom.length >= 4 ? (_newsBottom.sort(() => 0.5 - Math.random()).slice(0, 4).map((news: News, i: number) => (
                 <NewsItem key={news.slug + i} newsObj={news}></NewsItem>)
               )) : (_news.map((news: News, i: number) => (
                 <NewsItem key={news.slug + i} newsObj={news}></NewsItem>)
