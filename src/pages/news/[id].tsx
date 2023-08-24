@@ -87,7 +87,7 @@ const NewsItemDetails = ({
 
   return (
     <>
-      <div style={{ width: '90%', height: '50%', alignItems: 'center', margin:"auto" }} className='grid_view'>
+      <div style={{ width: '90%', height: '50%', alignItems: 'center', margin:"auto" , marginBottom:"4em"}} className='grid_view'>
         <Content padding>
           <p onClick={handleClick} style={{ display:'flex',alignItems:"center",cursor:"pointer" }}>
           <AiOutlineArrowLeft  />&nbsp;Back
@@ -97,8 +97,10 @@ const NewsItemDetails = ({
               {title}
             </Header>
             <hr />
+            <div className='sm_header'>
             <BodyText size="md" className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-            {test && <BodyText size="sm" className='mb-2'>Categories: {test}</BodyText>}
+            {test && <BodyText size="md" className='mb-2'>Categories: {test}</BodyText>}
+            </div>
             <hr />{/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
           </TopSection>
           <GridImage
@@ -127,7 +129,6 @@ const NewsItemDetails = ({
               columns={4}
               sideScrollOnMobile
             >
-              {/* .sort(() => 0.5 - Math.random()) */}
               {_news && _news.length >= 4 ? (_news.sort(() => 0.5 - Math.random()).slice(0, 4).map((news: News, i: number) => (
                 <NewsItem key={news.slug + i} newsObj={news}></NewsItem>)
               )) : (_news.map((news: News, i: number) => (
