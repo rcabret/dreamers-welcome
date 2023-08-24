@@ -9,6 +9,7 @@ import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews, getNewsEntry } from '../../_lib/api'
 
 const NewsItem = ({ newsObj }: { newsObj: News }) => {
+  
     const { date, title, text, titleImage, test } = newsObj
     const [_res, setRes] = useState()
     const [id, setId] = useState();
@@ -36,26 +37,25 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     }
 
     return (
-        <a
+ 
+         <a
           onClick={handleClick}
           href={`/news/${id}`}
         >
-            <ItemWrapperStyled>
+            {/* <ItemWrapperStyled> */}
                 <div className="border">
                     <Header size={3}>{title}</Header>
                     {breakpoint !== 'mobile' && (
-                        <NewsTextWrapper>
+                        <NewsTextWrapper  className='grid_desc'>
                             <BodyText size="sm">{stringDate} {test}</BodyText>
-                            {/* <BodyText size='sm'>{test}</BodyText> */}
-                            <BodyText size='sm'>{text.slice(0, 200)}...</BodyText>
-                            {/* <div id = 'rich-text-body'></div> */}
-                            {/* <BodyText size="sm">{description}</BodyText> */}
+                            <BodyText size='sm'>{text?.slice(0, 200)}...</BodyText>
                         </NewsTextWrapper>
                     )}
                     <GridImage border={false} imageObj={titleImage} />
                 </div>
-            </ItemWrapperStyled>
+            {/* </ItemWrapperStyled> */}
         </a>
+      
     )
 }
 

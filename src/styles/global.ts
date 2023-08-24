@@ -12,7 +12,8 @@ interface GMProps {
 export const GridModule = styled.div`
     position: relative;
     //padding-bottom: ${rem('20px')};
-
+    display:flex;
+    flex-wrap:wrap;
     > div,
     > a {
         display: inline-block;
@@ -22,6 +23,23 @@ export const GridModule = styled.div`
         text-decoration: none;
         transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
         z-index: 1; 
+        margin-bottom: 20px;
+        padding: 5px;
+    }
+    .border {
+        border-width: 1px;
+        height: 100%;
+        padding: 10px;
+        display:flex;
+        flex-shrink:1;
+        flex-grow:1;
+        flex-direction:column;
+        border-radius: 0.625rem;
+    }
+    .grid_desc{
+        flex-shrink: 1;
+        flex-grow: 1;
+        margin-top:10px
     }
     
 
