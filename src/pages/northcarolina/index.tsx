@@ -42,6 +42,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
             property: undefined,
         }
         setHeaderData(data)
+        localStorage.setItem('bucket', data.bucket)
 
         const getStays = async () => {
             const rawData = await getStaysForHomepage('northcarolina')

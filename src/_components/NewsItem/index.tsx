@@ -13,6 +13,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     const { date, title, text, titleImage, test } = newsObj
     const [_res, setRes] = useState()
     const [id, setId] = useState();
+    // const _test = test.join(', ')
     
     const stringDate = moment(date).format('MMMM Do YYYY')
     const breakpoint = useContext(viewportContext)
@@ -44,14 +45,17 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
         >
             {/* <ItemWrapperStyled> */}
                 <div className="border">
-                    <Header size={3}>{title}</Header>
+                <GridImage border={false} imageObj={titleImage} className='grid_image' />
+                    <Header size={3} className='grid_heading'>{title}</Header>
                     {breakpoint !== 'mobile' && (
                         <NewsTextWrapper  className='grid_desc'>
-                            <BodyText size="sm">{stringDate} {test}</BodyText>
+                            <BodyText size="sm">{stringDate}</BodyText>
+                            {test && <BodyText  size="sm" className='mb-2'>Categories: {test}</BodyText>}
+                            {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
                             <BodyText size='sm'>{text?.slice(0, 200)}...</BodyText>
                         </NewsTextWrapper>
                     )}
-                    <GridImage border={false} imageObj={titleImage} />
+                  
                 </div>
             {/* </ItemWrapperStyled> */}
         </a>

@@ -59,8 +59,9 @@ const News = ({
     useEffect(() => {
         setNavTheme('dark')
         const slug = router.query.slug as string
+        const bucket = localStorage.getItem('bucket')
         setHeaderData({
-            bucket: undefined,
+            bucket: bucket,
         })
         setRes(res)
     }, [])
@@ -116,7 +117,7 @@ const News = ({
                 queryArray={router.query.slug || []}
             />
             <GridWrapper border={false} padding>
-                <GridModule columns={4} sideScrollOnMobile={false}>
+                <GridModule columns={3} sideScrollOnMobile={false}>
                     {activeNews && activeNews.length ?
                         activeNews.map((news: News, i: number) => (
                             <React.Suspense fallback={<div>Loading...</div>}>

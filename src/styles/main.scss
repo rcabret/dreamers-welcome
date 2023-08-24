@@ -62,3 +62,11 @@ a {
     margin: 0;
     padding: 0;
 }
+.grid_view h2 {
+    line-height: 60px;
+}
+@media(max-width:640px){
+    .grid_view h2 {
+        line-height: 44px;
+    }  
+}
