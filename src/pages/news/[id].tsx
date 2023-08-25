@@ -15,28 +15,28 @@ import SubNavigation from '../../_components/Navigation/SubNavigation'
 
 const links: { name: string; slug: string }[] = [
   {
-      name: 'VIEW ALL',
-      slug: 'view_all',
+    name: 'VIEW ALL',
+    slug: 'view_all',
   },
   {
-      name: 'ENTERTAINMENT',
-      slug: 'Entertainment',
+    name: 'ENTERTAINMENT',
+    slug: 'Entertainment',
   },
   {
-      name: 'SPORTS',
-      slug: 'Sports',
+    name: 'SPORTS',
+    slug: 'Sports',
   },
   {
-      name: 'WELLNESS',
-      slug: 'Wellness',
+    name: 'WELLNESS',
+    slug: 'Wellness',
   },
   {
-      name: 'WORLD AFFAIRS',
-      slug: 'World Affairs',
+    name: 'WORLD AFFAIRS',
+    slug: 'World Affairs',
   },
   {
-      name: 'LOCAL',
-      slug: 'Local',
+    name: 'LOCAL',
+    slug: 'Local',
   },
 ]
 
@@ -70,7 +70,7 @@ const NewsItemDetails = ({
   ]);
 
   const [_newsBottom, setNewsBottom] = useState<any[]>([
-  ]); 
+  ]);
 
   useEffect(() => {
     async function fetchNews() {
@@ -88,41 +88,38 @@ const NewsItemDetails = ({
 
   const [activeSlug, setSlug] = useState<string>(
     (router.query.type as string)
-)
-const [activeNews, setActiveNews] = useState<any[]>([
+  )
+  const [activeNews, setActiveNews] = useState<any[]>([
     ..._news,
-])
+  ])
 
-useEffect(() => {
-  const queryTag = (router.query.type as string)
-  // @ts-ignore
-  setSlug(queryTag)
+  useEffect(() => {
+    const queryTag = (router.query.type as string)
+    // @ts-ignore
+    setSlug(queryTag)
 
-  const checkForTags = (tags: any[], slug: string) => {
-      
+    const checkForTags = (tags: any[], slug: string) => {
+
       // if (!tags.length) {
       //     return [..._news]
       // }
       return tags.find((tag: any) => tag === slug)
-  }
+    }
 
-  const newsToView =
+    const newsToView =
       queryTag !== 'view_all'
-          ? [..._news].filter((news: any) =>
-              checkForTags(news.test, queryTag)
-          )
-          : [..._news]
+        ? [..._news].filter((news: any) =>
+          checkForTags(news.test, queryTag)
+        )
+        : [..._news]
 
-  setNews(newsToView)
-  
-  
-  
-}, [router, router.query])
-useEffect(() => { }, [activeNews])
+    setNews(newsToView)
 
-  const handleClick = () => {
-    window.history.go(-1);
-  }
+
+
+  }, [router, router.query])
+  useEffect(() => { }, [activeNews])
+
   useEffect(() => {
 
     async function fetchData(id: any) {
@@ -146,15 +143,15 @@ useEffect(() => { }, [activeNews])
     fetchData(id);
   }, [router]);
 
-
-
   return (
     <>
-      <div style={{ width: '90%', height: '50%', alignItems: 'center', margin:"auto" , marginBottom:"4em"}} className='grid_view'>
+      <div style={{ width: '90%', height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
         <Content padding>
-          <p onClick={handleClick} style={{ display:'flex',alignItems:"center",cursor:"pointer" }}>
-          <AiOutlineArrowLeft className='mr-1' />Back
-          </p>
+          <a href='/news'>
+            <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
+              <AiOutlineArrowLeft className='mr-1' />Back
+            </p>
+          </a>
           {/* <SubNavigation
                 activeSlug={activeSlug}
                 data={links}
@@ -166,13 +163,13 @@ useEffect(() => { }, [activeNews])
               {title}
             </Header>
             <div className='sm_header'>
-            <BodyText size="md" className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-            {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+              <BodyText size="md" className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+              {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>
             {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
           </TopSection>
           <GridImage
-          className='grid_view_image'
+            className='grid_view_image'
             sizes={'33vw'}
             imageObj={titleImage}
             metadata={
