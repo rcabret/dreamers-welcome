@@ -46,6 +46,10 @@ export const GridModule = styled.div`
     }
     .grid_heading {
         line-height: 1.9rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
     
     .grid_desc p {
@@ -62,13 +66,25 @@ export const GridModule = styled.div`
 
                 > div,
                 > a {
-                    width: 40% !important;
+                    // width: 40% !important;
                     min-width: ${rem('340px')} !important;
                     white-space: normal !important;
                 }
             `}
     }
-    @media (max-width: ${rem(640)}) {
+    @media (max-width: ${rem(991)}) {
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            sideScrollOnMobile &&
+            css`
+               
+
+                > div,
+                > a {
+                    width: 50% !important;
+                }
+            `}
+    }
+    @media (max-width: ${rem(767)}) {
         ${({ sideScrollOnMobile = false }: GMProps) =>
             sideScrollOnMobile &&
             css`
@@ -77,6 +93,11 @@ export const GridModule = styled.div`
                 > div,
                 > a {
                     width: 100% !important;
+                }
+                .grid_heading {
+                    line-height: 1.9rem;
+                    display: -webkit-box;
+                    -webkit-line-clamp: unset;
                 }
             `}
     }

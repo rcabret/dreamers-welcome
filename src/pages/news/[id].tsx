@@ -114,9 +114,6 @@ const NewsItemDetails = ({
         : [..._news]
 
     setNews(newsToView)
-
-
-
   }, [router, router.query])
   useEffect(() => { }, [activeNews])
 
@@ -149,7 +146,7 @@ const NewsItemDetails = ({
         <Content padding>
           <a href='/news'>
             <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
-              <AiOutlineArrowLeft className='mr-1' />Back
+              <AiOutlineArrowLeft className='mr-1' />News & Updates
             </p>
           </a>
           {/* <SubNavigation
@@ -162,7 +159,7 @@ const NewsItemDetails = ({
             <Header size={2} uppercase className='text-center mb-2'>
               {title}
             </Header>
-            <div className='sm_header'>
+            <div className='sm_header mt-custom'>
               <BodyText size="md" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
               {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>
