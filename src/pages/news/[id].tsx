@@ -163,7 +163,7 @@ const NewsItemDetails = ({
               {title}
             </Header>
             <div className='sm_header'>
-              <BodyText size="md" className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+              <BodyText size="md" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
               {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>
             {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
