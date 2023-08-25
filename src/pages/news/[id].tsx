@@ -59,7 +59,7 @@ const NewsItemDetails = ({
   const router = useRouter();
   const [date, setDate] = useState();
   const [text, setText] = useState();
-  const [test, setTest] = useState();
+  const [test, setTest] = useState([]);
   const [titleImage, setImage] = useState();
   const [title, setTitle] = useState();
   const [renderedHtml, setRenderedHtml] = useState<string>('');
@@ -114,8 +114,10 @@ useEffect(() => {
           : [..._news]
 
   setNews(newsToView)
+  
+  
+  
 }, [router, router.query])
-
 useEffect(() => { }, [activeNews])
 
   const handleClick = () => {
@@ -137,7 +139,6 @@ useEffect(() => { }, [activeNews])
         const rawRichTextField = newsData?.description;
         const htmlString = documentToHtmlString(rawRichTextField);
         setRenderedHtml(htmlString);
-
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -152,7 +153,7 @@ useEffect(() => { }, [activeNews])
       <div style={{ width: '90%', height: '50%', alignItems: 'center', margin:"auto" , marginBottom:"4em"}} className='grid_view'>
         <Content padding>
           <p onClick={handleClick} style={{ display:'flex',alignItems:"center",cursor:"pointer" }}>
-          <AiOutlineArrowLeft  />&nbsp;Back
+          <AiOutlineArrowLeft className='mr-1' />Back
           </p>
           {/* <SubNavigation
                 activeSlug={activeSlug}
@@ -166,18 +167,17 @@ useEffect(() => { }, [activeNews])
             </Header>
             <div className='sm_header'>
             <BodyText size="md" className='mb-2 mt-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-            {test && <BodyText size="md" className='mb-2'>Categories: {test}</BodyText>}
+            {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>
             {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
           </TopSection>
           <GridImage
+          className='grid_view_image'
             sizes={'33vw'}
             imageObj={titleImage}
             metadata={
               <GuidesMetadata>
-                <BodyText> </BodyText>
-                {/* <BodyText size="md">{text}</BodyText> */}
-                <div id="rich-text-body" dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+                <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
               </GuidesMetadata>
             }
           />

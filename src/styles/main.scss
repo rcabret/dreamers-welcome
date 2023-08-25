@@ -70,6 +70,34 @@ a {
     align-items: center;
     justify-content: space-between;
 }
+.grid_view_image>div:first-child {
+    height: 550px !important;
+    padding-top: 0px;
+    object-fit: cover;
+}
+
+.grid_view_image>div:first-child img {
+    object-fit: cover;
+}
+.htmlText
+    h1, .htmlText h2, .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
+    font-size: revert;
+    margin-top: 15px;
+
+}
+.htmlText p, .htmlText ac{
+    font-size: revert;
+} 
+.htmlText a{
+    color: #3366cc;
+}
+@media(max-width:767px){
+    .grid_view_image>div:first-child {
+        height: unset !important;
+        padding-top: 0px;
+        object-fit: cover;
+    }
+}
 @media(max-width:640px){
     .grid_view h2 {
         line-height: 44px;
