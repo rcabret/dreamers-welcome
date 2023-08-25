@@ -159,7 +159,7 @@ const NewsItemDetails = ({
             <Header size={2} uppercase className='text-center mb-2'>
               {title}
             </Header>
-            <div className='sm_header mt-custom'>
+            <div className='mt-custom'>
               <BodyText size="md" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
               {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>

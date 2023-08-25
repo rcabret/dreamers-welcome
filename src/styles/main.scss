@@ -69,10 +69,15 @@ a {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // margin-top: 3em;
+    font-size: 0.75rem !important;
+    margin-bottom: 0.35rem;
 }
 .mt-custom{
-    margin-top: 3em;
+    margin-top: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem !important;
 }
 .grid_view_image>div:first-child {
     height: 550px !important;
