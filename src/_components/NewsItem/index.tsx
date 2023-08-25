@@ -50,8 +50,8 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
         {breakpoint !== 'mobile' && (
           <NewsTextWrapper className='grid_desc'>
             <div className='sm_header'>
-              <BodyText size="sm">{stringDate}</BodyText>
-              {test && <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText>}
+              <BodyText size="xs">{stringDate}</BodyText>
+              {test && <BodyText size="xs" className='mb-2'>Categories: {_test}</BodyText>}
             </div>
             {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
             <BodyText size='sm'>{text?.slice(0, 200)}...</BodyText>
