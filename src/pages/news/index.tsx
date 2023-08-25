@@ -105,7 +105,7 @@ const News = ({
     return (
         <Content padding>
             <TopSection padding>
-                <Header size={2} uppercase className='text-center mb-5' >
+                <Header size={2} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
                 </Header>
                 {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}

@@ -83,14 +83,27 @@ a {
     h1, .htmlText h2, .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
     font-size: revert;
     margin-top: 15px;
+    // all: revert;
 
 }
 .htmlText p, .htmlText ac{
-    font-size: revert;
+    font-size: revert;all: revert;
 } 
-.htmlText a{
-    color: #3366cc;
+.htmlText a, .htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
+    all: revert;
 }
+.htmlText table, .htmlText th, .htmlText td {
+    // all: revert;
+    margin-top: auto;
+    border: 1px solid;
+    width: 25%;
+    height: auto;
+    text-align: center;
+  }
+
+
+
+
 @media(max-width:767px){
     .grid_view_image>div:first-child {
         height: unset !important;
