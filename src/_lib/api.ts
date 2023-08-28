@@ -106,6 +106,15 @@ export const getAllPropertiesForPaths = async () => {
     }
 }
 
+export const newsPage = async () => {
+    const entries = await client.getEntries({
+        content_type: 'newsPage',
+    })
+    if (entries.items) {        
+        return entries.items[0] ? entries.items[0].fields : null
+    }
+}
+
 export const getNews = async () => {
     const entries = await client.getEntries({
         content_type: 'blog',

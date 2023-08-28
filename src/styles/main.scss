@@ -80,7 +80,7 @@ a {
     font-size: 0.75rem !important;
 }
 .grid_view_image>div:first-child {
-    height: 550px !important;
+    height: 900px !important;
     padding-top: 0px;
     object-fit: cover;
 }
@@ -100,7 +100,7 @@ a {
 .htmlText p, .htmlText ac{
     font-size: revert;all: revert;
 } 
-.htmlText a, .htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
+.htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
     all: revert;
 }
 .htmlText table, .htmlText th, .htmlText td {
