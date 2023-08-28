@@ -145,11 +145,10 @@ const NewsItemDetails = ({
     }
     fetchData(id);
   }, [router]);
-console.log('otherNews', otherNews);
 
   return (
     <>
-      <div style={{ width: '90%', height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
+      <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
         <Content padding>
           <a href='/news'>
             <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
@@ -163,15 +162,24 @@ console.log('otherNews', otherNews);
                 queryArray={'/news' || []}
             /> */}
           <TopSection padding>
-            <Header size={2} className='text-center mb-2'>
+            <Header size={2} className='text-center mb-5'>
               {title}
             </Header>
-            <div className='mt-custom'>
-              <BodyText size="md" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+          
+          </TopSection>
+          {/* <BlockContent showOverflow={true} fullWidth={false}> */}
+            
+          
+            {/* </BlockContent> */}
+          {/* {blurb && <Blurb text={blurb} />} */}
+          <Block
+                content={
+                    <ConceptTextContainer>
+                        <div className='mt-custom'>
+              <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
               {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>
-          </TopSection>
-          <GridImage
+                      <GridImage
             className='grid_view_image'
             sizes={'33vw'}
             imageObj={titleImage}
@@ -181,10 +189,6 @@ console.log('otherNews', otherNews);
             //   </GuidesMetadata>
             // }
           />
-          {blurb && <Blurb text={blurb} />}
-          <Block
-                content={
-                    <ConceptTextContainer>
                       <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
                         <MarkdownModule data={description} />
                     </ConceptTextContainer>
