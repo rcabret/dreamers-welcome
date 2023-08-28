@@ -106,7 +106,8 @@ const News = ({
     }
 
     return (
-        <Content padding>
+        <>
+        {/* <Content padding> */}
             <Blurb text={blurb.blurb} eyebrow="NEWS & UPDATES" fullHeight />
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
@@ -130,7 +131,8 @@ const News = ({
                         )) : null}
                 </GridModule>
             </GridWrapper>
-        </Content>
+        {/* </Content> */}
+        </>
     )
 }
 
