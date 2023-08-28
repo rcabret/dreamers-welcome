@@ -5,7 +5,12 @@ import Header from '../../_components/Typography/Header'
 import GridImage from '../../_components/UI/GridImage'
 import { GuidesMetadata } from '../../_components/GuideItem/styles'
 import { getNewsEntry, getNews } from '../../_lib/api'
-import { Content, GridModule, StyledBlockForGrid, TopSection } from '../../styles/global'
+import { Content, GridModule, StyledBlockForGrid, TopSection, BannerGridImage } from '../../styles/global'
+import BannerContent from '../../_components/UI/BannerContent'
+import Blurb from '../../_components/UI/Blurb'
+import Block from '../../_components/UI/Block'
+import { ConceptTextContainer } from '../../styles/about/styles'
+import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import moment from 'moment'
 import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
@@ -65,11 +70,11 @@ const NewsItemDetails = ({
   const [renderedHtml, setRenderedHtml] = useState<string>('');
   const [description, setDesc] = useState()
   const { id } = router.query;
+  const [blurb, setBlurb] = useState()
 
   const [_news, setNews] = useState<any[]>([
   ]);
-
-  const [_newsBottom, setNewsBottom] = useState<any[]>([
+  const [otherNews, setOtherNews] = useState<any[]>([
   ]);
 
   useEffect(() => {
@@ -78,7 +83,6 @@ const NewsItemDetails = ({
         const res = await getNews()
         const news = res.map((x: { fields: {} }) => x.fields)
         setNews(news)
-        setNewsBottom(news)
       } catch (error) {
         console.error("Error in getNews: ", error)
       }
@@ -130,6 +134,8 @@ const NewsItemDetails = ({
         setImage(newsData?.titleImage)
         setTitle(newsData?.title)
         setDesc(newsData?.description)
+        setOtherNews(newsData?.otherNews)
+        setBlurb(newsData?.blurb)
         const rawRichTextField = newsData?.description;
         const htmlString = documentToHtmlString(rawRichTextField);
         setRenderedHtml(htmlString);
@@ -139,6 +145,7 @@ const NewsItemDetails = ({
     }
     fetchData(id);
   }, [router]);
+console.log('otherNews', otherNews);
 
   return (
     <>
@@ -156,29 +163,56 @@ const NewsItemDetails = ({
                 queryArray={'/news' || []}
             /> */}
           <TopSection padding>
-            <Header size={2} uppercase className='text-center mb-2'>
+            <Header size={2} className='text-center mb-2'>
               {title}
             </Header>
             <div className='mt-custom'>
               <BodyText size="md" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
               {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
             </div>
-            {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
           </TopSection>
           <GridImage
             className='grid_view_image'
             sizes={'33vw'}
             imageObj={titleImage}
-            metadata={
-              <GuidesMetadata>
-                <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-              </GuidesMetadata>
-            }
+            // metadata={
+            //   <GuidesMetadata>
+            //     <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+            //   </GuidesMetadata>
+            // }
           />
-        </Content>
+          {blurb && <Blurb text={blurb} />}
+          <Block
+                content={
+                    <ConceptTextContainer>
+                      <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+                        <MarkdownModule data={description} />
+                    </ConceptTextContainer>
+                }
+            />
+           {/* <GridImage
+                imageObj={titleImage}
+                // mobileImageObj={mobileBannerImage}
+                border={false}
+                borderRadius={false}
+                fullHeight
+            >
+                <BannerContent headerText={title} />
+            </GridImage> */}
+            {/* {blurb && <Blurb text={blurb} />} */}
+             {/* <Block
+                content={
+                    <ConceptTextContainer>
+                      <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+                        <MarkdownModule data={description} />
+                    </ConceptTextContainer>
+                }
+            /> */}
+         </Content> 
+       
       </div>
 
-      {_newsBottom && (
+      {otherNews && (
 
         <StyledBlockForGrid
           title='MORE NEWS'
@@ -190,10 +224,8 @@ const NewsItemDetails = ({
               columns={4}
               sideScrollOnMobile
             >
-              {_newsBottom && _newsBottom.length >= 4 ? (_newsBottom.sort(() => 0.5 - Math.random()).slice(0, 4).map((news: News, i: number) => (
-                <NewsItem key={news.slug + i} newsObj={news}></NewsItem>)
-              )) : (_news.map((news: News, i: number) => (
-                <NewsItem key={news.slug + i} newsObj={news}></NewsItem>)
+              {otherNews &&  (otherNews.map((news: News, i: number) => (
+                <NewsItem key={news.slug + i} newsObj={news?.fields}></NewsItem>)
               ))}
             </GridModule>
           }

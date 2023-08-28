@@ -8,10 +8,11 @@ import {
 } from '../../styles/global'
 import { useRouter } from 'next/router'
 import { viewportContext } from '../../_utils/ViewportProvider'
-import { getNews } from '../../_lib/api'
+import { getNews, newsPage } from '../../_lib/api'
 import NewsItem from '../../_components/NewsItem'
 import { News } from '../../_constants/DataTypes'
 import Header from '../../_components/Typography/Header'
+import Blurb from '../../_components/UI/Blurb'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
 
 const links: { name: string; slug: string }[] = [
@@ -43,12 +44,14 @@ const links: { name: string; slug: string }[] = [
 
 const News = ({
     news,
+    blurb,
     setNavTheme,
     res,
     setHeaderData,
 }: {
     news: any
     res: any
+    blurb: any
     setNavTheme: any
     setHeaderData: any
 }) => {
@@ -104,12 +107,13 @@ const News = ({
 
     return (
         <Content padding>
-            <TopSection padding>
-                <Header size={2} uppercase className='text-center mb-28' >
+            <Blurb text={blurb.blurb} eyebrow="NEWS & UPDATES" fullHeight />
+            {/* <TopSection padding>
+                <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
-                </Header>
+                </Header> */}
                 {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
-            </TopSection>
+            {/* </TopSection> */}
             <SubNavigation
                 activeSlug={activeSlug}
                 data={links}
@@ -134,11 +138,13 @@ export default News
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const res = await getNews()
+    const blurb = await newsPage()
     const news = res.map((x: { fields: {} }) => x.fields)
     return {
         props: {
             news,
-            res
+            res,
+            blurb
         },
     }
 }
