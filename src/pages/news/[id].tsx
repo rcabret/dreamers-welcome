@@ -107,7 +107,7 @@ const NewsItemDetails = ({
       // if (!tags.length) {
       //     return [..._news]
       // }
-      return tags.find((tag: any) => tag === slug)
+      return tags?.find((tag: any) => tag === slug)
     }
 
     const newsToView =
@@ -148,37 +148,38 @@ const NewsItemDetails = ({
 
   return (
     <>
-      <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
         <Content padding>
           <a href='/news'>
             <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
               <AiOutlineArrowLeft className='mr-1' />News & Updates
             </p>
           </a>
-          {/* <SubNavigation
-                activeSlug={activeSlug}
-                data={links}
-                queryParam="type"
-                queryArray={'/news' || []}
-            /> */}
           <TopSection padding>
             <Header size={2} className='text-center mb-5'>
               {title}
             </Header>
           
           </TopSection>
+         <div className='grid_head'>
+         <div className='mt-custom'>
+              <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+              {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+            </div>
+         </div>
+      <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
+          {/* <SubNavigation
+                activeSlug={activeSlug}
+                data={links}
+                queryParam="type"
+                queryArray={'/news' || []}
+            /> */}
+          
           {/* <BlockContent showOverflow={true} fullWidth={false}> */}
             
           
             {/* </BlockContent> */}
           {/* {blurb && <Blurb text={blurb} />} */}
-          <Block
-                content={
-                    <ConceptTextContainer>
-                        <div className='mt-custom'>
-              <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-              {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
-            </div>
+         
                       <GridImage
             className='grid_view_image'
             sizes={'33vw'}
@@ -189,11 +190,18 @@ const NewsItemDetails = ({
             //   </GuidesMetadata>
             // }
           />
+          <div>
+          <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+          </div>
+          {/* <Block
+                content={
+                    <ConceptTextContainer>
+                      
                       <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
                         <MarkdownModule data={description} />
                     </ConceptTextContainer>
                 }
-            />
+            /> */}
            {/* <GridImage
                 imageObj={titleImage}
                 // mobileImageObj={mobileBannerImage}
@@ -212,9 +220,9 @@ const NewsItemDetails = ({
                     </ConceptTextContainer>
                 }
             /> */}
-         </Content> 
        
       </div>
+         </Content> 
 
       {otherNews && (
 
