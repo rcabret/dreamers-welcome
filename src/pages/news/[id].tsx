@@ -149,9 +149,9 @@ const NewsItemDetails = ({
   return (
     <>
         <Content padding>
-        
-         <div className='grid_head'>
-         <a href='/news'>
+          <div className='grid_head border-0 mt-0'>
+
+          <a href='/news'>
             <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
               <AiOutlineArrowLeft className='mr-1' />News & Updates
             </p>
@@ -162,6 +162,8 @@ const NewsItemDetails = ({
             </Header>
           
           </TopSection>
+          </div>
+         <div className='grid_head'>
          <div className='mt-custom'>
               <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
               {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
