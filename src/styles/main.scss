@@ -65,6 +65,11 @@ a {
 .grid_view h2 {
     line-height: 60px;
 }
+.grid_view , .mt-custom {
+    width: 100%;
+    max-width: 70%;
+    margin: auto;
+}
 .sm_header{
     display: flex;
     align-items: center;
@@ -73,7 +78,7 @@ a {
     margin-bottom: 0.35rem;
 }
 .mt-custom{
-    margin-top: 3rem;
+    margin-top: 40px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -89,12 +94,31 @@ a {
     object-fit: cover;
 }
 
-.htmlText
-    h1, .htmlText h2, .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
+.htmlText h1,  .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
     font-size: revert;
     margin-top: 15px;
     font-weight: revert;
-    // all: revert;
+    font-size: 42px;
+
+}
+.htmlText h2{
+    font-size: 40px;
+
+}
+.htmlText h3{
+    font-size: 38px;
+
+}
+.htmlText h4{
+    font-size: 36px;
+
+}
+.htmlText h5{
+    font-size: 34px;
+
+}
+.htmlText h6{
+    font-size: 32px;
 
 }
 .htmlText p, .htmlText ac{
@@ -114,12 +138,36 @@ a {
     // margin-right: auto;
   }
 
+  .grid_view div#rich-text-body p {
+    font-size: 29px;
+}
+.grid_head {
+    border-top: 1px solid #c1c1c1;
+    margin-top: 40px;
+    margin: 0px 1.875rem;
+}
+@media(max-width:1399px){
+    .grid_view,.mt-custom  {
+        max-width: 80%;
+    }
+}
+@media(max-width:1299px){
+    .grid_view,.mt-custom  {
+        max-width: 85%;
+    }
+}
+@media(max-width:1024px){
+    .grid_view ,.mt-custom {
+        max-width: 90%;
+    }
+}
 
-
-
-@media(max-width:767px){
+@media(max-width:767px){ .grid_view,.mt-custom  {
+    max-width: 100%;
+    padding: 0px 20px;
+}
     .grid_view_image>div:first-child {
-        height: 450px unset !important;
+        height: 450px !important;
         padding-top: 0px;
         object-fit: cover;
     }
