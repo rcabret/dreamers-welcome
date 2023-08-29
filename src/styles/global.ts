@@ -50,6 +50,7 @@ export const GridModule = styled.div`
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         overflow: hidden;
+        min-height: 62px;
     }
     
     .grid_desc p {
