@@ -23,16 +23,16 @@ const links: { name: string; slug: string }[] = [
         slug: 'view_all',
     },
     {
-        name: 'APARTMENTS',
-        slug: 'Suites',
-    },
-    {
         name: 'HOTELS',
         slug: "Hotel",
     },
     {
         name: 'HOUSES',
         slug: "House",
+    },
+    {
+        name: 'APARTMENTS+',
+        slug: 'Suites',
     }
 ]
 
