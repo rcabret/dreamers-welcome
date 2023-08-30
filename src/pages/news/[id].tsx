@@ -66,6 +66,7 @@ const NewsItemDetails = ({
   const [text, setText] = useState();
   const [test, setTest] = useState([]);
   const [titleImage, setImage] = useState();
+  const [mobileBannerImage, setMobileImage] = useState();
   const [title, setTitle] = useState();
   const [renderedHtml, setRenderedHtml] = useState<string>('');
   const [description, setDesc] = useState()
@@ -132,6 +133,7 @@ const NewsItemDetails = ({
         setDate(newsData?.date)
         setText(newsData?.text)
         setImage(newsData?.titleImage)
+        setMobileImage(newsData?.mobileBannerImage)
         setTitle(newsData?.title)
         setDesc(newsData?.description)
         setOtherNews(newsData?.otherNews)
@@ -148,84 +150,45 @@ const NewsItemDetails = ({
 
   return (
     <>
-        <Content padding>
-          <div className='grid_head border-0 mt-0'>
-
-          <a href='/news'>
-            <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
-              <AiOutlineArrowLeft className='mr-1' />News & Updates
-            </p>
-          </a>
+      <Content padding>
+        <div className='grid_head border-0 mt-0'>\
           <TopSection padding>
             <Header size={2} className='text-center mb-5'>
               {title}
             </Header>
-          
+
           </TopSection>
+        </div>\
+        <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
+          <div className='grid_info_wrapper'>
+            {/* test */}
+            <a href='/news' className='back_link'>
+              <p style={{ display: 'flex', alignItems: "center", cursor: "pointer" }}>
+                <AiOutlineArrowLeft className='mr-1' />News & Updates
+              </p>
+            </a>
+            <Block
+              content={
+                <ConceptTextContainer className='text_wrapper'>
+                  <GridImage
+                    className='grid_view_image'
+                    sizes={'33vw'}
+                    imageObj={titleImage}
+                    mobileImageObj={mobileBannerImage} />
+                  <div className='grid_head'>
+                    <div className='mt-custom'>
+                      <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+                      {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+                    </div>
+                  </div>
+                  <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
+                  <MarkdownModule data={description} />
+                </ConceptTextContainer>
+              }
+            />
           </div>
-         <div className='grid_head'>
-         <div className='mt-custom'>
-              <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-              {test && <BodyText size="md" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
-            </div>
-         </div>
-      <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
-          {/* <SubNavigation
-                activeSlug={activeSlug}
-                data={links}
-                queryParam="type"
-                queryArray={'/news' || []}
-            /> */}
-          
-          {/* <BlockContent showOverflow={true} fullWidth={false}> */}
-            
-          
-            {/* </BlockContent> */}
-          {/* {blurb && <Blurb text={blurb} />} */}
-         
-                      <GridImage
-            className='grid_view_image'
-            sizes={'33vw'}
-            imageObj={titleImage}
-            // metadata={
-            //   <GuidesMetadata>
-            //     <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-            //   </GuidesMetadata>
-            // }
-          />
-          <div>
-          <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-          </div>
-          {/* <Block
-                content={
-                    <ConceptTextContainer>
-                      
-                      <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-                        <MarkdownModule data={description} />
-                    </ConceptTextContainer>
-                }
-            /> */}
-           {/* <GridImage
-                imageObj={titleImage}
-                // mobileImageObj={mobileBannerImage}
-                border={false}
-                borderRadius={false}
-                fullHeight
-            >
-                <BannerContent headerText={title} />
-            </GridImage> */}
-            {/* {blurb && <Blurb text={blurb} />} */}
-             {/* <Block
-                content={
-                    <ConceptTextContainer>
-                      <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-                        <MarkdownModule data={description} />
-                    </ConceptTextContainer>
-                }
-            /> */}
-       
-      </div>
-         </Content> 
+        </div>
+      </Content>
 
       {otherNews && (
 
@@ -239,7 +202,7 @@ const NewsItemDetails = ({
               columns={4}
               sideScrollOnMobile
             >
-              {otherNews &&  (otherNews.map((news: News, i: number) => (
+              {otherNews && (otherNews.map((news: News, i: number) => (
                 <NewsItem key={news.slug + i} newsObj={news?.fields}></NewsItem>)
               ))}
             </GridModule>

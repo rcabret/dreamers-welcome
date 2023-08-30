@@ -58,7 +58,7 @@ const News = ({
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [_res, setRes] = useState([])
-
+    const [category, setCategory] = useState([])
     useEffect(() => {
         setNavTheme('dark')
         const slug = router.query.slug as string
@@ -67,11 +67,14 @@ const News = ({
             bucket: bucket,
         })
         setRes(res)
+        const check = news.map((x: { test: {} }) => x.test)
+        setCategory(check)
     }, [])
 
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
     )
+
     const [activeNews, setNews] = useState<any[]>([
         ...news,
     ])
@@ -82,8 +85,8 @@ const News = ({
         setSlug(queryTag)
 
         const checkForTags = (tags: any[], slug: string) => {
-            
-            if (!tags.length) {
+
+            if (!tags?.length) {
                 return [...news]
             }
             return tags.find((tag: any) => tag === slug)
@@ -107,13 +110,13 @@ const News = ({
 
     return (
         <>
-        {/* <Content padding> */}
+            {/* <Content padding> */}
             <Blurb text={blurb.blurb} eyebrow="NEWS & UPDATES" fullHeight />
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
                 </Header> */}
-                {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
+            {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
             {/* </TopSection> */}
             <SubNavigation
                 activeSlug={activeSlug}
@@ -125,13 +128,11 @@ const News = ({
                 <GridModule columns={3} sideScrollOnMobile={false}>
                     {activeNews && activeNews.length ?
                         activeNews.map((news: News, i: number) => (
-                            <React.Suspense fallback={<div>Loading...</div>}>
-                                <NewsItem key={news.slug + i} newsObj={news} />
-                            </React.Suspense>
+                            <NewsItem key={news.slug + i} newsObj={news} />
                         )) : null}
                 </GridModule>
             </GridWrapper>
-        {/* </Content> */}
+            {/* </Content> */}
         </>
     )
 }

@@ -3,16 +3,18 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
-import { getPropertiesViaBucket } from '../../_lib/api'
+import { getPropertiesViaBucket, getProperties } from '../../_lib/api'
 import { pathToBucket } from '../../_utils/Parsers'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
+import Blurb from '../../_components/UI/Blurb'
 
 interface Props {
     properties: any
     setNavTheme: any
     setHeaderData: any
+    blurb: any
 }
 
 const links: { name: string; slug: string }[] = [
@@ -25,16 +27,16 @@ const links: { name: string; slug: string }[] = [
         slug: 'Suites',
     },
     {
-        name: 'HOTEL',
+        name: 'HOTELS',
         slug: "Hotel",
     },
     {
-        name: 'HOUSE',
+        name: 'HOUSES',
         slug: "House",
     }
 ]
 
-const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
+const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
@@ -91,6 +93,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
             <Head>
                 <title>Stays | Dreamers Welcome</title>
             </Head>
+            <Blurb text={blurb.blurb} eyebrow="STAYS" fullHeight />
             <Content padding>
             <SubNavigation
                 activeSlug={activeSlug}
@@ -123,10 +126,11 @@ export async function getStaticProps(context: { params: { slug: string[] } }) {
     const properties = await getPropertiesViaBucket(
         context.params.slug ? context.params.slug[0] : undefined
     )
-
+    const blurb = await getProperties()
     return {
         props: {
             properties,
+            blurb,
         },
     }
 }

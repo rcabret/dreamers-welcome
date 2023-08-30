@@ -45,14 +45,17 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     >
       {/* <ItemWrapperStyled> */}
       <div className="border">
-        <GridImage border={false} imageObj={titleImage} className='grid_image' />
         <Header size={3} className='grid_heading'>{title}</Header>
+        <GridImage border={false} imageObj={titleImage} className='grid_image' />
+        <div className='grid_head'>
+          <div className='mt-custom1'>
+            <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+            {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+          </div>
+        </div>
         {breakpoint !== 'mobile' && (
           <NewsTextWrapper className='grid_desc'>
-            <div className='sm_header'>
-              <BodyText size="xs">{stringDate}</BodyText>
-              {test && <BodyText size="xs" className='mb-2 pe-2'>Categories: {_test}</BodyText>}
-            </div>
+
             {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
             <BodyText size='sm'>{text?.slice(0, 200)}...</BodyText>
           </NewsTextWrapper>
