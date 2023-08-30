@@ -65,11 +65,11 @@ a {
 .grid_view h2 {
     line-height: 60px;
 }
-.grid_view , .mt-custom {
-    width: 100%;
-    max-width: 70%;
-    margin: auto;
-}
+// .grid_view , .mt-custom {
+//     width: 100%;
+//     max-width: 70%;
+//     margin: auto;
+// }
 .sm_header{
     display: flex;
     align-items: center;
@@ -77,12 +77,23 @@ a {
     font-size: 0.75rem !important;
     margin-bottom: 0.35rem;
 }
+.mt-custom p {
+    font-size: 16px;
+}
 .mt-custom{
-    margin-top: 40px;
+    margin-top: 35px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.75rem !important;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+.mt-custom1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
 }
 .grid_view_image>div:first-child {
     height: 800px !important;
@@ -138,34 +149,45 @@ a {
     // margin-right: auto;
   }
 
-  .grid_view div#rich-text-body p {
-    font-size: 29px;
-}
-.grid_head {
-    border-top: 1px solid #c1c1c1;
-    margin: 0px 1.875rem;
-    margin-top: 50px;
-}
-@media(max-width:1399px){
-    .grid_view,.mt-custom  {
-        max-width: 80%;
-    }
-}
-@media(max-width:1299px){
-    .grid_view,.mt-custom  {
-        max-width: 85%;
-    }
-}
-@media(max-width:1024px){
-    .grid_view ,.mt-custom {
-        max-width: 90%;
-    }
+//   .grid_view div#rich-text-body p {
+//     font-size: 29px;
+// }
+// .grid_head {
+//     border-top: 1px solid #c1c1c1;
+//     margin: 0px 1.875rem;
+//     margin-top: 50px;
+// }
+a.back_link {
+    position: absolute;
+    left: 30px;
+    top: 46px;
+    z-index: 2;
 }
 
-@media(max-width:767px){ .grid_view,.mt-custom  {
-    max-width: 100%;
-    padding: 0px 20px;
+.grid_info_wrapper {
+    position: relative;
 }
+
+@media(max-width:960px){
+    a.back_link {
+        left: 17px;
+        top: 31px;
+    }
+    .grid_info_wrapper>div {
+        padding-top: 60px;
+    }
+   .grid_info_wrapper .text_wrapper{
+        padding-right: 0px;
+    }
+    .grid_view_image{
+        border: 0px !important;
+    }
+}
+@media(max-width:767px){
+// { .grid_view,.mt-custom  {
+//     max-width: 100%;
+//     padding: 0px 20px;
+// }
     .grid_view_image>div:first-child {
         height: 450px !important;
         padding-top: 0px;
