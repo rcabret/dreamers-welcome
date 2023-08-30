@@ -105,14 +105,14 @@ a {
     object-fit: cover;
 }
 
-.htmlText h1,  .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
-    font-size: revert;
-    margin-top: 15px;
-    font-weight: revert;
-    font-size: 42px;
-    line-height: 28px;
+// .htmlText h1,  .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
+//     font-size: revert;
+//     margin-top: 15px;
+//     font-weight: revert;
+//     font-size: 42px;
+//     line-height: 28px;
 
-}
+// }
 .htmlText h2{
     font-size: 40px;
 
@@ -133,11 +133,9 @@ a {
     font-size: 32px;
 
 }
-.htmlText p, .htmlText ac{
-    font-size: revert;
-    line-height: 29px;
-    // all: revert;
-    word-break: break-all;
+.htmlText p, .htmlText a{
+    line-height: 1.3;
+    word-break: break-word;
 } 
 .htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
     all: revert;
@@ -186,6 +184,9 @@ a.back_link {
     .grid_view_image{
         border: 0px !important;
     }
+//     .htmlText p, .htmlText a{
+//  line-height: 29px;
+//     } 
 }
 @media(max-width:767px){
 // { .grid_view,.mt-custom  {

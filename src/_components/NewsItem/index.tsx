@@ -53,13 +53,13 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
             {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
           </div>
         </div>
-        {breakpoint !== 'mobile' && (
+        {/* {breakpoint !== 'mobile' && ( */}
           <NewsTextWrapper className='grid_desc'>
 
             {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
             <BodyText size='sm'>{text?.slice(0, 200)}...</BodyText>
           </NewsTextWrapper>
-        )}
+        {/* )} */}
 
       </div>
       {/* </ItemWrapperStyled> */}
