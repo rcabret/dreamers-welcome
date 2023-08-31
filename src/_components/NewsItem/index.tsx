@@ -57,7 +57,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
           <NewsTextWrapper className='grid_desc'>
 
             {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
-            <BodyText size='sm'>{text?.slice(0, 200)}...</BodyText>
+            <BodyText size='sm' className='grid_body'>{text}</BodyText>
           </NewsTextWrapper>
         {/* )} */}
 

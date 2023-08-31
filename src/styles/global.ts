@@ -53,7 +53,12 @@ export const GridModule = styled.div`
         min-height: 62px;
         margin-bottom: 10px;
     }
-    
+    .grid_body {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
     .grid_desc p {
         margin-bottom: 10px;
         line-height: 1.4rem;
@@ -124,6 +129,7 @@ export const GridModule = styled.div`
                 > div,
                 > a {
                     width: 100%;
+                    margin:0px !important;
                 }
             `}
     }
