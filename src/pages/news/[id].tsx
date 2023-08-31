@@ -151,14 +151,14 @@ const NewsItemDetails = ({
   return (
     <>
       <Content padding>
-        <div className='grid_head border-0 mt-0'>\
+        <div className='grid_head border-0 mt-0'>
           <TopSection padding>
             <Header size={2} className='text-center mb-5'>
               {title}
             </Header>
 
           </TopSection>
-        </div>\
+        </div>
         <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
           <div className='grid_info_wrapper'>
             {/* test */}
