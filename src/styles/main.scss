@@ -63,7 +63,8 @@ a {
     padding: 0;
 }
 .grid_view h2 {
-    line-height: 60px;
+    line-height: 47px;
+    margin-bottom: 15px;
 }
 // .grid_view , .mt-custom {
 //     width: 100%;
@@ -116,28 +117,37 @@ a {
 // }
 .htmlText h2{
     font-size: 40px;
+    margin-bottom: 15px;
 
 }
 .htmlText h3{
     font-size: 38px;
+    margin-bottom: 15px;
+    line-height: 40px;
 
 }
 .htmlText h4{
     font-size: 36px;
+    margin-bottom: 15px;
+    line-height: 40px;
 
 }
 .htmlText h5{
     font-size: 34px;
+    margin-bottom: 15px;
+    line-height: 30px;
 
 }
 .htmlText h6{
     font-size: 32px;
+    margin-bottom: 15px;
+    line-height: 30px;
 
 }
 .htmlText p, .htmlText a{
     line-height: 1.3;
     word-break: break-word;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 } 
 .htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
     all: revert;
