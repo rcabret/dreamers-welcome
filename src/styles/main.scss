@@ -93,7 +93,8 @@ a {
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
-    gap: 15px;
+    column-gap: 15px;
+
 }
 .grid_view_image>div:first-child {
     height: 800px !important;
@@ -136,6 +137,7 @@ a {
 .htmlText p, .htmlText a{
     line-height: 1.3;
     word-break: break-word;
+    margin-bottom: 20px;
 } 
 .htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
     all: revert;
@@ -198,6 +200,9 @@ a.back_link {
         padding-top: 0px;
         object-fit: cover;
     }
+     .border{
+        border: 0px 10px;
+    }
     .sm_header {
         flex-wrap: wrap;
         justify-content: center;
@@ -206,6 +211,9 @@ a.back_link {
         width: 100%;
         flex-grow: 1;
         text-align: center;
+    }
+    .grid_desc, .grid_desc p {
+        margin-bottom: 0px !important;
     }
 }
 @media(max-width:640px){
