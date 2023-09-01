@@ -22,31 +22,32 @@ const Wrapper = styled.div`
 const EmailCapture = ({inFirstVisitModal} : any) => {
     
     const url = getPostUrl()
-    if(inFirstVisitModal){
-        return (
-            <Wrapper style = {{['padding'as any] : '3rem 0'}}>
-                <div>
-                    <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
-                    <p className='my-5 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
-                    <MailchimpSubscribe
-                        url={url}
-                        render={({ subscribe, status, message }) => (
-                            <SubscribeForm
-                                marginTop='0.5rem'
-                                status={status}
-                                message={message}
-                                onValidated={(formData: any) => {
-                                    subscribe(formData)
-                                }}
-                            />
-                        )}
-                    />
-                    <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
-                </div>
-            </Wrapper>
-        )
-    }
-    else return (
+    // if(inFirstVisitModal){
+    //     return (
+    //         <Wrapper style = {{['padding'as any] : '3rem 0'}}>
+    //             <div>
+    //                 <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
+    //                 <p className='my-5 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
+    //                 <MailchimpSubscribe
+    //                     url={url}
+    //                     render={({ subscribe, status, message }) => (
+    //                         <SubscribeForm
+    //                             marginTop='0.5rem'
+    //                             status={status}
+    //                             message={message}
+    //                             onValidated={(formData: any) => {
+    //                                 subscribe(formData)
+    //                             }}
+    //                         />
+    //                     )}
+    //                 />
+    //                 <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
+    //             </div>
+    //         </Wrapper>
+    //     )
+    // }
+    // else 
+    return (
         <Block
             noPaddingBottom
             fullWidth

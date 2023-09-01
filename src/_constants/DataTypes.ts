@@ -17,6 +17,7 @@ export interface News {
     title: string
     text: string
     titleImage: ContentfulImage
+    tileImage: ContentfulImage
     slug: string
     date: Date
     test: string
