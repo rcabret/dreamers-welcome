@@ -79,7 +79,6 @@ const News = ({
     const [activeNews, setNews] = useState<any[]>([
         ...news,
     ])
-    console.log("NEWS", news);
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
