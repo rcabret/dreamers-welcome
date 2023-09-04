@@ -14,6 +14,7 @@ import { News } from '../../_constants/DataTypes'
 import Header from '../../_components/Typography/Header'
 import Blurb from '../../_components/UI/Blurb'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
+import safeJsonStringify from 'safe-json-stringify'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -78,6 +79,7 @@ const News = ({
     const [activeNews, setNews] = useState<any[]>([
         ...news,
     ])
+    console.log("NEWS", news);
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
@@ -140,9 +142,12 @@ const News = ({
 export default News
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const res = await getNews()
+    const rawData = await getNews()
     const blurb = await newsPage()
+    const stringData = safeJsonStringify(rawData)
+    const res = JSON.parse(stringData)
     const news = res.map((x: { fields: {} }) => x.fields)
+
     return {
         props: {
             news,
