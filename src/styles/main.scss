@@ -88,7 +88,7 @@ a {
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 15px;
-    margin-bottom: 5px;
+    margin-bottom: 17px;
 }
 .mt-custom1{
     display: flex;
@@ -116,6 +116,9 @@ a {
 //     line-height: 28px;
 
 // }
+.htmlText {
+    padding: 0px 36px;
+}
 .htmlText h2{
     font-weight: bold;
     font-size: 40px;
@@ -183,6 +186,18 @@ a {
 //     margin: 0px 1.875rem;
 //     margin-top: 50px;
 // }
+.header-in-block {
+    font-size: 3rem !important;
+    line-height: 1 !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    text-align: center;
+}
+.text_wrapper_1 {
+    position: relative;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem !important;
+}
 .grid_head {
     padding: 0px 0.625rem;
     padding-right: 13px;
@@ -225,6 +240,9 @@ a.back_link {
         height: 450px !important;
         padding-top: 0px;
         object-fit: cover;
+    }
+    .header-in-block {
+        font-size: 1.75rem !important;
     }
      .border{
         border: 0px 10px;
