@@ -10,7 +10,7 @@ import { getNews, getNewsEntry } from '../../_lib/api'
 
 const NewsItem = ({ newsObj }: { newsObj: News }) => {
 
-  const { date, title, text, titleImage, test } = newsObj
+  const { date, title, text, titleImage, tileImage, test } = newsObj
   const [_res, setRes] = useState()
   const [id, setId] = useState();
   const _test = test && test.join(', ')
@@ -46,7 +46,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
       {/* <ItemWrapperStyled> */}
       <div className="border">
         <Header size={3} className='grid_heading'>{title}</Header>
-        <GridImage border={false} imageObj={titleImage} className='grid_image' />
+        <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
         <div className='grid_head'>
           <div className='mt-custom1'>
             <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>

@@ -27,7 +27,7 @@ export const GridModule = styled.div`
         padding: 5px;
     }
     .border {
-      border:unset;
+      border:1px solid #c1c1c1;;
         height: 100%;
         padding: 10px;
         display:flex;

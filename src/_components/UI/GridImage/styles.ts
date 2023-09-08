@@ -32,8 +32,8 @@ const getPaddingTop = ({ ratio, fullHeight }: GridImageStyleProps) => {
 
 export const Container = styled.div`
     height: ${(props: GridImageStyleProps) => getWrapperHeight(props)};
-    border: ${({ border }) =>
-        border ? `${rem('10px')} solid transparent` : 'none'};
+    /*border: ${({ border }) =>
+        border ? `${rem('10px')} solid transparent` : 'none'};*/
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         border: ${({ border }) =>
