@@ -43,6 +43,10 @@ const links: { name: string; slug: string }[] = [
     name: 'LOCAL',
     slug: 'Local',
   },
+  {
+    name: 'TEST',
+    slug: 'Test',
+},
 ]
 
 const NewsItemDetails = ({

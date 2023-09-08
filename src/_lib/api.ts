@@ -1,10 +1,12 @@
 import { pathToBucket } from '../_utils/Parsers'
-
 export {}
 
 const client = require('contentful').createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
+    // environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
+    // previewAccessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
+    // host: 'preview.contentful.com'
 })
 
 export const getLandingpage = async () => {
