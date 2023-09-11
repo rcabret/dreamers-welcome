@@ -18,6 +18,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import SubNavigation from '../../_components/Navigation/SubNavigation'
 
+
 const links: { name: string; slug: string }[] = [
   {
     name: 'VIEW ALL',
