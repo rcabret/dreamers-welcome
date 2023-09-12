@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@contentful/live-preview": "^2.9.6",
     "@contentful/rich-text-html-renderer": "^16.1.1",
     "@sendgrid/mail": "^7.7.0",
     "axios": "^1.4.0",

@@ -1,3 +1,4 @@
+import { log } from 'console'
 import { pathToBucket } from '../_utils/Parsers'
 export {}
 
@@ -5,8 +6,14 @@ const client = require('contentful').createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN,
     // environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
-    // previewAccessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
-    // host: 'preview.contentful.com'
+    host: 'cdn.contentful.com'
+})
+
+const preview = require('contentful').createClient({
+    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+    // environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
+    host: 'preview.contentful.com'
 })
 
 export const getLandingpage = async () => {
@@ -52,7 +59,7 @@ export const getProperty = async (slug: string) => {
         include: 2,
     })
     if (entries.items) {
-        return entries.items[0].fields
+        return entries.items[0]?.fields
     }
 }
 
@@ -109,7 +116,7 @@ export const getAllPropertiesForPaths = async () => {
 }
 
 export const newsPage = async () => {
-    const entries = await client.getEntries({
+    const entries = await preview.getEntries({
         content_type: 'newsPage',
     })
     if (entries.items) {        
@@ -132,14 +139,35 @@ export const getNews = async () => {
         include: 1,
         order: '-fields.date',
     })
+
     if (entries.items) {
         return entries.items
     }
 }
 
+export const getNewsForPreview = async (entryID) => {
+    // const entries = await client.getEntries({
+    //     content_type: 'blog',
+    //     include: 1,
+    //     order: '-fields.date',
+    // })
+    // if (entries.items) {
+    //     return entries.items
+    // }
+    try {
+        const entry = await preview.getEntry(entryID);
+        
+        return entry.fields;
+    } catch (error) {
+        console.error('Error fetching news entry:', error);
+        throw error;
+    }
+}
+
 export const getNewsEntry = async (entryID?: string) => {
     try {
-        const entry = await client.getEntry(entryID);
+        const entry = await preview.getEntry(entryID);
+        
         return entry.fields;
     } catch (error) {
         console.error('Error fetching news entry:', error);

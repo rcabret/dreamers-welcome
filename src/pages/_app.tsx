@@ -11,7 +11,8 @@ import Head from 'next/head'
 import FirstVisitModal from '../_components/Modal/FirstVisitModal'
 import '../../public/styles/global.css'
 import { sendPageViewEvent } from './api/sendPageViewEvent';
-
+import { ContentfulLivePreviewProvider } from '@contentful/live-preview/react'
+import "@contentful/live-preview/style.css"
 const StyledMain = styled.main`
     width: 100%;
     min-height: 100vh;
@@ -35,15 +36,14 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
-      }, []);
-
+    }, []);
+    
 
     useEffect(() => {
         const visited = localStorage.getItem('visited');
-        console.log(visited)
-        if(visited != 'true'){
+        if (visited != 'true') {
             let timer = setTimeout(() => {
-                setFirstModalShow(true)                
+                setFirstModalShow(true)
             }, 3000);
         }
         // setFirstModalShow(true)
@@ -82,10 +82,10 @@ function MyApp({ Component, pageProps }: AppProps) {
                 <meta name="theme-color" content="#ffffff" />
                 <meta name="google-site-verification" content="1M2WGJ4z9PIe6P57go_NDWoyk79NI9oXBIeRFDM65Jo" />
                 <meta name="facebook-domain-verification" content="8i88ic4qn6mgfjigvxmlkt7ih2sp7c" />
-                <meta name="p:domain_verify" content="92466f0124ec9f4ae7dd68abc151da17"/>
+                <meta name="p:domain_verify" content="92466f0124ec9f4ae7dd68abc151da17" />
                 <script
                     dangerouslySetInnerHTML={{
-                    __html: `
+                        __html: `
                         !function(f,b,e,v,n,t,s)
                         {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
                         n.callMethod.apply(n,arguments):n.queue.push(arguments)};
@@ -101,25 +101,32 @@ function MyApp({ Component, pageProps }: AppProps) {
                 />
                 <noscript>
                     <img
-                    height="1"
-                    width="1"
-                    style={{ display: 'none' }}
-                    src="https://www.facebook.com/tr?id=1594089821088907&ev=PageView&noscript=1"
+                        height="1"
+                        width="1"
+                        style={{ display: 'none' }}
+                        src="https://www.facebook.com/tr?id=1594089821088907&ev=PageView&noscript=1"
                     />
                 </noscript>
             </Head>
             <ViewportProvider>
                 <TopNav navTheme={navTheme} headerData={headerData} />
                 <StyledMain id="main">
-                    <Component
-                        {...pageProps}
-                        setHeaderData={setHeaderData}
-                        setNavTheme={setNavTheme}
-                    />
+                    <ContentfulLivePreviewProvider
+                      locale="en-US"
+                      enableInspectorMode={true}
+                      enableLiveUpdates={true}
+                    >
+                        <Component
+                            {...pageProps}
+                            setHeaderData={setHeaderData}
+                            setNavTheme={setNavTheme}
+                        />
+                    </ContentfulLivePreviewProvider>
+
                 </StyledMain>
-                <EmailCapture inFirstVisitModal={false}/>
+                <EmailCapture inFirstVisitModal={false} />
                 <Footer activeBucket={headerData?.bucket} />
-                <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)}/>
+                <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)} />
             </ViewportProvider>
         </>
     )

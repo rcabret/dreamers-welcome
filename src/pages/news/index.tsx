@@ -41,10 +41,10 @@ const links: { name: string; slug: string }[] = [
         name: 'LOCAL',
         slug: 'Local',
     },
-    {
-        name: 'TEST',
-        slug: 'Test',
-    }
+    // {
+    //     name: 'TEST',
+    //     slug: 'Test',
+    // }
 ]
 
 const News = ({
@@ -116,7 +116,7 @@ const News = ({
     return (
         <>
             {/* <Content padding> */}
-            <Blurb text={blurb.blurb} eyebrow="NEWS & UPDATES" fullHeight />
+            <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight />
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
