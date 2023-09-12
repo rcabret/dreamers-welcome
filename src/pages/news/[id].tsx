@@ -17,6 +17,7 @@ import { News } from '../../_constants/DataTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import SubNavigation from '../../_components/Navigation/SubNavigation'
+import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
 
 
 const links: { name: string; slug: string }[] = [
@@ -44,14 +45,20 @@ const links: { name: string; slug: string }[] = [
     name: 'LOCAL',
     slug: 'Local',
   },
+  {
+    name: 'TEST',
+    slug: 'Test',
+  },
 ]
 
 const NewsItemDetails = ({
   setNavTheme,
   setHeaderData,
+  id_
 }: {
   setNavTheme: any
   setHeaderData: any
+  id_: any
 }) => {
   useEffect(() => {
     setNavTheme('dark')
@@ -72,13 +79,15 @@ const NewsItemDetails = ({
   const [renderedHtml, setRenderedHtml] = useState<string>('');
   const [description, setDesc] = useState()
   const { id } = router.query;
+  const [_id, setId] = useState('')
+
   const [blurb, setBlurb] = useState()
 
   const [_news, setNews] = useState<any[]>([
   ]);
   const [otherNews, setOtherNews] = useState<any[]>([
   ]);
-
+  const inspectorProps = useContentfulInspectorMode()
   useEffect(() => {
     async function fetchNews() {
       try {
@@ -126,10 +135,15 @@ const NewsItemDetails = ({
   useEffect(() => {
 
     async function fetchData(id: any) {
+      
+      
       try {
 
         const newsData = await getNewsEntry(id);
+        // const entries = await getNewsEntry(id);
+        // const newsData = useContentfulLiveUpdates(entries);
         setRes(newsData);
+        setId(id)
         setTest(newsData?.test)
         setDate(newsData?.date)
         setText(newsData?.text)
@@ -148,7 +162,6 @@ const NewsItemDetails = ({
     }
     fetchData(id);
   }, [router]);
-
   return (
     <>
       <Content padding>
@@ -162,10 +175,13 @@ const NewsItemDetails = ({
         </div> */}
         <div style={{ height: '50%', alignItems: 'center', margin: "auto", marginBottom: "4em" }} className='grid_view'>
           <Block
-          className='text_wrapper_1'
+            className='text_wrapper_1'
             content={
               <ConceptTextContainer className='text_wrapper'>
-                <Header className='header-in-block'>
+                <Header className='header-in-block' {...inspectorProps({
+                  entryId: _id ,
+                  fieldId: 'title',
+                })}>
                   {title}
                 </Header>
 
