@@ -18,34 +18,30 @@ import safeJsonStringify from 'safe-json-stringify'
 
 const links: { name: string; slug: string }[] = [
     {
-        name: 'VIEW ALL',
-        slug: 'view_all',
+      name: 'VIEW ALL',
+      slug: 'view_all',
     },
     {
-        name: 'ENTERTAINMENT',
-        slug: 'Entertainment',
+      name: 'NEWS',
+      slug: 'News',
     },
     {
-        name: 'SPORTS',
-        slug: 'Sports',
+      name: 'EVENTS',
+      slug: 'Events',
     },
     {
-        name: 'WELLNESS',
-        slug: 'Wellness',
+      name: 'PROMOTIONS',
+      slug: 'Promotions',
     },
     {
-        name: 'WORLD AFFAIRS',
-        slug: 'World Affairs',
+      name: 'AWARDS',
+      slug: 'Awards',
     },
     {
-        name: 'LOCAL',
-        slug: 'Local',
-    },
-    // {
-    //     name: 'TEST',
-    //     slug: 'Test',
-    // }
-]
+      name: 'PRESS',
+      slug: 'Press',
+    }
+  ]
 
 const News = ({
     news,
