@@ -23,6 +23,9 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
       try {
         const newsData = await getNews();
         setRes(newsData);
+        const filteredArray = newsData.filter(item => item.fields.title == title);
+        const sys = filteredArray.map((x: { sys: string }) => x.sys.id)
+        setId(sys)
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -31,59 +34,56 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     fetchData();
   }, []);
 
-  const handleClick = async () => {
-    const filteredArray = _res.filter(item => item.fields.title == title);
-    const sys = filteredArray.map((x: { sys: string }) => x.sys.id)
-    setId(sys)
-  }
-
   return (
-  slug ? (<a href = {slug} target='_blank'>
-    <div className="border">
-        <Header size={3} className='grid_heading'>{title}</Header>
-        <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
-        <div className='grid_head'>
-          <div className='mt-custom1'>
-            <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-            {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+    slug ? (
+      <a href={slug} target='_blank'>
+        <div className="border">
+          <Header size={3} className='grid_heading'>{title}</Header>
+          <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
+          <div className='grid_head'>
+            <div className='mt-custom1'>
+              <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+              {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+            </div>
           </div>
-        </div>
-        {/* {breakpoint !== 'mobile' && ( */}
+          {/* {breakpoint !== 'mobile' && ( */}
           <NewsTextWrapper className='grid_desc'>
 
             {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
             <BodyText size='sm' className='grid_body'>{text}</BodyText>
           </NewsTextWrapper>
-        {/* )} */}
+          {/* )} */}
 
-      </div>
-      </a>)
-      : 
-    (<a
-       onClick={handleClick}
-       href={`/news/${id}`}
-     >
-      {/* <ItemWrapperStyled> */}
-      <div className="border">
-        <Header size={3} className='grid_heading'>{title}</Header>
-        <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
-        <div className='grid_head'>
-          <div className='mt-custom1'>
-            <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
-            {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
-          </div>
         </div>
-        {/* {breakpoint !== 'mobile' && ( */}
-          <NewsTextWrapper className='grid_desc'>
+      </a>
+    )
+      :
+      (
+        <a
+          href={`/news/${id}`}
+        >
+          {/* <ItemWrapperStyled> */}
+          <div className="border">
+            <Header size={3} className='grid_heading'>{title}</Header>
+            <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
+            <div className='grid_head'>
+              <div className='mt-custom1'>
+                <BodyText size="sm" className='mb-2'>{moment(date).format('MMMM Do YYYY')}</BodyText>
+                {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
+              </div>
+            </div>
+            {/* {breakpoint !== 'mobile' && ( */}
+            <NewsTextWrapper className='grid_desc'>
 
-            {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
-            <BodyText size='sm' className='grid_body'>{text}</BodyText>
-          </NewsTextWrapper>
-        {/* )} */}
+              {/* <BodyText size="sm" className='mb-2'>Categories: {_test}</BodyText> */}
+              <BodyText size='sm' className='grid_body'>{text}</BodyText>
+            </NewsTextWrapper>
+            {/* )} */}
 
-      </div>
-      {/* </ItemWrapperStyled> */}
-    </a>)
+          </div>
+          {/* </ItemWrapperStyled> */}
+        </a>
+      )
 
   )
 }
