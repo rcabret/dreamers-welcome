@@ -9,12 +9,12 @@ const client = require('contentful').createClient({
     host: 'cdn.contentful.com'
 })
 
-// const preview = require('contentful').createClient({
-//     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
-//     // environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
-//     accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
-//     host: 'preview.contentful.com'
-// })
+const preview = require('contentful').createClient({
+    space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
+    // environment: process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT,
+    accessToken: process.env.NEXT_PUBLIC_CONTENTFUL_PREVIEW_TOKEN,
+    host: 'preview.contentful.com'
+})
 
 export const getLandingpage = async () => {
     const entries = await client.getEntries({
@@ -155,7 +155,7 @@ export const getNewsForPreview = async (entryID) => {
     //     return entries.items
     // }
     try {
-        const entry = await client.getEntry(entryID);
+        const entry = await preview.getEntry(entryID);
         
         return entry.fields;
     } catch (error) {
@@ -166,7 +166,7 @@ export const getNewsForPreview = async (entryID) => {
 
 export const getNewsEntry = async (entryID?: string) => {
     try {
-        const entry = await client.getEntry(entryID);
+        const entry = await preview.getEntry(entryID);
         
         return entry.fields;
     } catch (error) {
