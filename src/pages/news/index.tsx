@@ -15,6 +15,7 @@ import Header from '../../_components/Typography/Header'
 import Blurb from '../../_components/UI/Blurb'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
 import safeJsonStringify from 'safe-json-stringify'
+import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
 
 const links: { name: string; slug: string }[] = [
     {
@@ -108,11 +109,19 @@ const News = ({
     if (!news.length) {
         return null
     }
+console.log('blurb', blurb);
+
+  const inspectorProps = useContentfulInspectorMode()
 
     return (
         <>
             {/* <Content padding> */}
-            <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight />
+            <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight 
+            {...inspectorProps({
+                entryId: 'kVTRrzVviydTHxX9LFA9J' ,
+                fieldId: 'blurb',
+              })}
+              />
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
