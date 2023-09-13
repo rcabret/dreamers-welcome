@@ -18,8 +18,7 @@ import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import SubNavigation from '../../_components/Navigation/SubNavigation'
 import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
-
-
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 const links: { name: string; slug: string }[] = [
   {
     name: 'VIEW ALL',
@@ -158,6 +157,21 @@ const NewsItemDetails = ({
     }
     fetchData(id);
   }, [router]);
+  const options = {
+    renderNode: {
+      'embedded-asset-block': node => {
+        const { title, description, file } = node.data.target.fields;
+        const imageUrl = file.url;
+        const altText = title || description || '';
+
+        return <img src={imageUrl} alt={altText} />;
+      },
+      'hyperlink': node => {
+        const { uri } = node.data;
+        return <a href={uri} target="_blank" rel="noopener noreferrer">{node.content[0].value}</a>;
+      },  
+    },
+  };
   return (
     <>
       <Content padding>
@@ -204,8 +218,11 @@ const NewsItemDetails = ({
                       {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
                     </div>
                   </div>
-                  <div id="rich-text-body" className='htmlText' dangerouslySetInnerHTML={{ __html: renderedHtml }} />
-                  <MarkdownModule data={description} />
+                  <div id="rich-text-body" className='htmlText' 
+                  // dangerouslySetInnerHTML={{ __html: renderedHtml }}
+                  />
+                  {description && documentToReactComponents(description, options)}
+                  {/* <MarkdownModule data={description} /> */}
                 </ConceptTextContainer>
               }
             />
