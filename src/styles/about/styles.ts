@@ -20,6 +20,7 @@ export const ConceptTextContainer = styled.div`
     * {
         font-size: ${rem(29)};
         max-width: ${rem(1000)} !important;
+        margin-bottom: 15px
     }
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
