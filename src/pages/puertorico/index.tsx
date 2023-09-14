@@ -52,6 +52,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
             property: undefined,
         }
         setHeaderData(data)
+        localStorage.setItem('bucket', data.bucket)
 
         const getStays = async () => {
             const rawData = await getStaysForHomepage('puertorico')
@@ -146,7 +147,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                                 news.map((x: any, i: number) => (
                                     <NewsItem
                                         key={x.slug + i}
-                                        newsObj={x.fields}
+                                        newsObj={x?.fields}
                                     />
                                 ))}
                         </GridModule>

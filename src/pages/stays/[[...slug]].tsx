@@ -3,18 +3,40 @@ import React, { useContext, useEffect, useState } from 'react'
 import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
-import { getPropertiesViaBucket } from '../../_lib/api'
+import { getPropertiesViaBucket, getProperties } from '../../_lib/api'
 import { pathToBucket } from '../../_utils/Parsers'
 import { useRouter } from 'next/router'
 import Head from 'next/head'
+import SubNavigation from '../../_components/Navigation/SubNavigation'
+import Blurb from '../../_components/UI/Blurb'
 
 interface Props {
     properties: any
     setNavTheme: any
     setHeaderData: any
+    blurb: any
 }
 
-const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
+const links: { name: string; slug: string }[] = [
+    {
+        name: 'VIEW ALL',
+        slug: 'view_all',
+    },
+    {
+        name: 'HOTELS',
+        slug: "Hotel",
+    },
+    {
+        name: 'HOUSES',
+        slug: "House",
+    },
+    {
+        name: 'APARTMENTS+',
+        slug: 'Suites',
+    }
+]
+
+const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
@@ -31,6 +53,38 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
         })
     }, [])
 
+    const [activeSlug, setSlug] = useState<string>(
+        (router.query.type as string) || 'view_all'
+    )
+    const [activeStays, setActiveStays] = useState<any[]>([
+        ...properties,
+    ])
+
+    useEffect(() => {
+        const queryTag = (router.query.type as string) || ('view_all' as string)
+        // @ts-ignore
+        setSlug(queryTag)
+
+        const checkForTags = (properties: any[], slug: string) => {
+            
+            if (!properties.length) {
+                return [...properties]
+            }
+            return  properties.find((tag: any) => tag === slug)
+        }
+
+        const propertiesToView =
+            queryTag !== 'view_all'
+                ? [...properties].filter((items: any) =>
+                    checkForTags(items.propertyType, queryTag)
+                )
+                : [...properties]
+
+        setActiveStays(propertiesToView)
+    }, [router, router.query])
+    
+    useEffect(() => { }, [activeStays])
+
     if (!properties.length) {
         return null
     }
@@ -39,11 +93,18 @@ const Stays = ({ properties, setNavTheme, setHeaderData }: Props) => {
             <Head>
                 <title>Stays | Dreamers Welcome</title>
             </Head>
+            <Blurb text={blurb.blurb} eyebrow="STAYS" fullHeight />
             <Content padding>
+            <SubNavigation
+                activeSlug={activeSlug}
+                data={links}
+                queryParam="type"
+                queryArray={router.query.slug || []}
+            />
                 <GridWrapper border={false} padding>
                     <GridModule columns={bucket == "North Carolina" ? 2 : 3} sideScrollOnMobile={false}>
-                        {properties &&
-                            properties.map(
+                        {activeStays &&
+                            activeStays.map(
                                 (property: { slug: string }, i: number) => (
                                     <PropertyGridItem
                                         collapsed
@@ -65,10 +126,11 @@ export async function getStaticProps(context: { params: { slug: string[] } }) {
     const properties = await getPropertiesViaBucket(
         context.params.slug ? context.params.slug[0] : undefined
     )
-
+    const blurb = await getProperties()
     return {
         props: {
             properties,
+            blurb,
         },
     }
 }

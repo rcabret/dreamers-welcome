@@ -67,6 +67,9 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                         <Link href={router.query ? getLink('stays') : ""}>STAYS</Link>
                     </li>
                     <li>
+                        <Link href="/news">NEWS</Link>
+                    </li>
+                    <li>
                         <Link href={router.query ? getLink('experiences') : ""}>EXPERIENCES</Link>
                         {!activeBucket && <aside />}
                     </li>
@@ -79,9 +82,6 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                     <ul>
                         <li>
                             <Link href="/about">ABOUT</Link>
-                        </li>
-                        <li>
-                            <Link href="/news">NEWS</Link>
                         </li>
                         <li>
                             <Link href="/faq/general">FAQs</Link>

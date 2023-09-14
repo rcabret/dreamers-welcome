@@ -9,11 +9,11 @@ interface GMProps {
     dontBreak?: boolean
     sideScrollOnMobile?: boolean
 }
-
 export const GridModule = styled.div`
     position: relative;
     //padding-bottom: ${rem('20px')};
-
+    display:flex;
+    flex-wrap:wrap;
     > div,
     > a {
         display: inline-block;
@@ -21,6 +21,47 @@ export const GridModule = styled.div`
         box-sizing: border-box;
         width: ${({ columns }: GMProps) => `${100 / columns}%`};
         text-decoration: none;
+        transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
+        z-index: 1; 
+        margin-bottom: 20px;
+        padding: 5px;
+    }
+    .border {
+      border:1px solid #c1c1c1;;
+        height: 100%;
+        padding: 10px;
+        display:flex;
+        flex-shrink:1;
+        flex-grow:1;
+        flex-direction:column;
+        border-radius: 0.625rem;
+    }
+    .grid_desc{
+        flex-shrink: 1;
+        flex-grow: 1;
+        margin-top:10px
+    }
+    .grid_image {
+        margin-bottom: 1.25rem;
+    }
+    .grid_heading {
+        line-height: 1.9rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        min-height: 62px;
+        margin-bottom: 10px;
+    }
+    .grid_body {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+    .grid_desc p {
+        margin-bottom: 10px;
+        line-height: 1.4rem;
     }
 
     @media (max-width: ${rem(1200)}) {
@@ -32,9 +73,38 @@ export const GridModule = styled.div`
 
                 > div,
                 > a {
-                    width: 40% !important;
+                    // width: 40% !important;
                     min-width: ${rem('340px')} !important;
                     white-space: normal !important;
+                }
+            `}
+    }
+    @media (max-width: ${rem(991)}) {
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            sideScrollOnMobile &&
+            css`
+               
+
+                > div,
+                > a {
+                    width: 50% !important;
+                }
+            `}
+    }
+    @media (max-width: ${rem(767)}) {
+        ${({ sideScrollOnMobile = false }: GMProps) =>
+            sideScrollOnMobile &&
+            css`
+               
+
+                > div,
+                > a {
+                    width: 100% !important;
+                }
+                .grid_heading {
+                    line-height: 1.9rem;
+                    display: -webkit-box;
+                    -webkit-line-clamp: unset;
                 }
             `}
     }
@@ -59,6 +129,7 @@ export const GridModule = styled.div`
                 > div,
                 > a {
                     width: 100%;
+                    margin:0px !important;
                 }
             `}
     }

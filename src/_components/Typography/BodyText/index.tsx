@@ -10,7 +10,7 @@ import { BREAKPOINTS } from '../../../_constants/brekpoints'
 interface HeaderProps {
     children: any
     className?: string
-    size?: 'sm' | 'md' | 'lg' | 'xlg'
+    size?: 'xs' | 'sm' | 'md' | 'lg' | 'xlg'
     bold?: boolean
     uppercase?: boolean
 }
@@ -18,6 +18,8 @@ interface HeaderProps {
 const getBodySize = (size: HeaderProps['size']) => {
     switch (size) {
         default:
+        case 'xs':
+            return rem('12px')
         case 'sm':
             return rem('14px')
         case 'md':
@@ -32,6 +34,8 @@ const getBodySize = (size: HeaderProps['size']) => {
 const getMobileBodySize = (size: HeaderProps['size']) => {
     switch (size) {
         default:
+        case 'xs':
+            return rem('12px')
         case 'sm':
             return rem('14px')
         case 'md':

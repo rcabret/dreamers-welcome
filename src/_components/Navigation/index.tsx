@@ -33,7 +33,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
     useEffect(() => {
         const onScroll = () => {
             const scrollTop = window.scrollY
-            setTop(scrollTop > 100)
+            setTop(scrollTop > 10)
         }
 
         window.addEventListener('scroll', () => {
@@ -46,6 +46,9 @@ const TopNav = ({ headerData, navTheme }: any) => {
         }
     }, [])
 
+    const handleClick = () => {
+        localStorage.removeItem('bucket');
+    }
     useEffect(() => {
         if (opened) {
             // @ts-ignore
@@ -69,7 +72,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
     return (
         <>
             <Navigation active={top} navTheme={navTheme} opened={opened}>
-                <NavInnerContainer>
+                <NavInnerContainer onClick={handleClick}>
                     <Link href={'/'} passHref>
                         <a>
                             <StyledDWLogo dark={showDarkTheme} />

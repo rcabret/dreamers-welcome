@@ -62,3 +62,210 @@ a {
     margin: 0;
     padding: 0;
 }
+.grid_view h2 {
+    line-height: 47px;
+    margin-bottom: 15px;
+}
+// .grid_view , .mt-custom {
+//     width: 100%;
+//     max-width: 70%;
+//     margin: auto;
+// }
+.sm_header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.75rem !important;
+    margin-bottom: 0.35rem;
+}
+.mt-custom p {
+    font-size: 16px;
+}
+.mt-custom{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 17px;
+}
+.mt-custom1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 15px;
+
+}
+.grid_view_image>div:first-child {
+    height: 800px !important;
+    padding-top: 0px;
+    object-fit: cover;
+}
+
+.grid_view_image>div:first-child img {
+    object-fit: cover;
+}
+
+// .htmlText h1,  .htmlText h3, .htmlText h4, .htmlText h5, .htmlText h6 {
+//     font-size: revert;
+//     margin-top: 15px;
+//     font: bolder;
+//     font-size: 42px;
+//     line-height: 28px;
+
+// }
+.htmlText {
+    padding: 0px 36px;
+}
+.htmlText h2{
+    font-weight: bold;
+    font-size: 40px;
+    margin-bottom: 9px;
+    margin-top: 19px;
+    line-height: 48px;
+
+}
+.htmlText h3{
+    font-size: 38px;
+    margin-bottom: 9px;
+    margin-top: 19px;
+    line-height: 46px;
+        font-weight: bold;
+
+}
+.htmlText h4{
+    font-size: 36px;
+    margin-bottom: 9px;
+    margin-top: 19px;
+    line-height: 42px;
+        font-weight: bold;
+
+}
+.htmlText h5{
+    font-size: 34px;
+    margin-bottom: 9px;
+    margin-top: 19px;
+    line-height: 42px;
+        font-weight: bold;
+
+}
+.htmlText h6{
+    font-size: 32px;
+    margin-bottom: 9px;
+    margin-top: 19px;
+    line-height: 38px;
+        font-weight: bold;
+
+}
+.htmlText p{
+    line-height: 1.3;
+    word-break: break-word;
+    margin-bottom: 15px;
+} 
+.htmlText blockquote , .htmlText ol, .htmlText ul, .htmlText li, .htmlText code{
+    all: revert;
+}
+// .desc-image {
+//     width:300px;
+//     height: 300px
+// }
+.htmlText table, .htmlText th, .htmlText td {
+    // all: revert;
+    margin-top: 15px;
+    border: 1px solid;
+    width: 25%;
+    height: auto;
+    text-align: center;
+    // margin-left: auto;
+    // margin-right: auto;
+  }
+
+//   .grid_view div#rich-text-body p {
+//     font-size: 29px;
+// }
+// .grid_head {
+//     border-top: 1px solid #c1c1c1;
+//     margin: 0px 1.875rem;
+//     margin-top: 50px;
+// }
+.header-in-block {
+    font-size: 3rem !important;
+    line-height: 1 !important;
+    font-weight: 400 !important;
+    text-transform: none !important;
+    text-align: center;
+}
+.text_wrapper_1 {
+    position: relative;
+    padding-top: 2.5rem;
+    padding-bottom: 3rem !important;
+}
+.grid_head {
+    padding: 0px 0.625rem;
+    padding-right: 13px;
+}
+a.back_link {
+    position: absolute;
+    left: 30px;
+    top: 46px;
+    z-index: 2;
+}
+
+.grid_info_wrapper {
+    position: relative;
+}
+
+@media(max-width:960px){
+    a.back_link {
+        left: 17px;
+        top: 31px;
+    }
+    .grid_info_wrapper>div {
+        padding-top: 60px;
+    }
+   .grid_info_wrapper .text_wrapper{
+        padding-right: 0px;
+    }
+    .grid_view_image{
+        border: 0px !important;
+    }
+//     .htmlText p, .htmlText a{
+//  line-height: 29px;
+//     } 
+}
+@media(max-width:767px){
+// { .grid_view,.mt-custom  {
+//     max-width: 100%;
+//     padding: 0px 20px;
+// }
+    .grid_view_image>div:first-child {
+        height: 450px !important;
+        padding-top: 0px;
+        object-fit: cover;
+    }
+    .header-in-block {
+        font-size: 1.75rem !important;
+    }
+     .border{
+        border: 0px 10px;
+    }
+    .sm_header {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .sm_header p{
+        width: 100%;
+        flex-grow: 1;
+        text-align: center;
+    }
+    .grid_desc, .grid_desc p {
+        margin-bottom: 0px !important;
+    }
+}
+@media(max-width:640px){
+    .grid_view h2 {
+        line-height: 44px;
+    }  
+}

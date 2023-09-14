@@ -46,7 +46,8 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
             </Wrapper>
         )
     }
-    else return (
+    else 
+    return (
         <Block
             noPaddingBottom
             fullWidth
