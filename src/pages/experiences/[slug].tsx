@@ -67,14 +67,14 @@ const Experiences = ({
         const expToView =
             queryTag !== 'view_all'
                 ? [...experiences].filter((exp: any) =>
-                      checkForTags(exp.metadata.tags, queryTag)
-                  )
+                    checkForTags(exp.metadata.tags, queryTag)
+                )
                 : [...experiences]
 
         setExperiences(expToView)
     }, [router, router.query])
 
-    useEffect(() => {}, [activeExperiences])
+    useEffect(() => { }, [activeExperiences])
     return (
         <>
             <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
@@ -88,8 +88,8 @@ const Experiences = ({
                 <GridModule columns={3}>
                     {activeExperiences && activeExperiences.length
                         ? activeExperiences.map((exp: any) => (
-                              <ExperienceItem data={exp.fields} />
-                          ))
+                            <ExperienceItem data={exp.fields} />
+                        ))
                         : null}
                 </GridModule>
             </GridWrapper>

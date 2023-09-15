@@ -129,7 +129,8 @@ export const getProperties = async () => {
         content_type: 'propertiesDev',
     })
     if (entries.items) {        
-        return entries.items[0] ? entries.items[0].fields : null
+        // return entries.items[0] ? entries.items[0].fields : null
+        return entries.items
     }
 }
 

@@ -50,6 +50,7 @@ export const H3Styled = styled.h3`
     }
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         font-size: ${rem(20)};
+        -webkit-line-clamp: unset !important;
     }
 `
 

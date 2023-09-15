@@ -17,7 +17,7 @@ interface Props {
     blurb: any
 }
 
-const links: { name: string; slug: string }[] = [
+const links_PR: { name: string; slug: string }[] = [
     {
         name: 'VIEW ALL',
         slug: 'view_all',
@@ -35,11 +35,26 @@ const links: { name: string; slug: string }[] = [
         slug: 'Suites',
     }
 ]
+const links_NC: { name: string; slug: string }[] = [
+    {
+        name: 'VIEW ALL',
+        slug: 'view_all',
+    },
+    {
+        name: 'HOTELS',
+        slug: "Hotel",
+    },
+    {
+        name: 'HOUSES',
+        slug: "House",
+    }
+]
 
 const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
+console.log('blurb?.fields?.blurb', blurb[0].fields.blurb);
 
     useEffect(() => {
         setNavTheme('dark')
@@ -93,14 +108,22 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
             <Head>
                 <title>Stays | Dreamers Welcome</title>
             </Head>
-            <Blurb text={blurb.blurb} eyebrow="STAYS" fullHeight />
+            <Blurb text={blurb[0]?.fields?.blurb} eyebrow="STAYS" fullHeight />
             <Content padding>
-            <SubNavigation
-                activeSlug={activeSlug}
-                data={links}
-                queryParam="type"
-                queryArray={router.query.slug || []}
-            />
+                {bucket == 'North Carolina' ?
+                    <SubNavigation
+                        activeSlug={activeSlug}
+                        data={links_NC}
+                        queryParam="type"
+                        queryArray={router.query.slug || []}
+                    /> :
+                    <SubNavigation
+                        activeSlug={activeSlug}
+                        data={links_PR}
+                        queryParam="type"
+                        queryArray={router.query.slug || []}
+                    />
+                }
                 <GridWrapper border={false} padding>
                     <GridModule columns={bucket == "North Carolina" ? 2 : 3} sideScrollOnMobile={false}>
                         {activeStays &&

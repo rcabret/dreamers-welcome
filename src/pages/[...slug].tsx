@@ -363,8 +363,9 @@ const Property = ({
                     title="IN THE NEWS"
                     fullWidth
                     noPaddingBottom
+                    link='/news'
                     content={
-                        <GridModule columns={4} sideScrollOnMobile>
+                        <GridModule columns={extraData?.news.length} sideScrollOnMobile>
                             {extraData.news.length &&
                                 extraData.news.map((x: any, i: number) => (
                                     <NewsItem
