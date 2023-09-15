@@ -100,6 +100,7 @@ export const GridModule = styled.div`
                 > div,
                 > a {
                     width: 100% !important;
+                    padding: 10px;
                 }
                 .grid_heading {
                     line-height: 1.9rem;
@@ -116,6 +117,7 @@ export const GridModule = styled.div`
                 > div,
                 > a {
                     width: 50%;
+                    padding: 10px;
                 }
             `}
     }

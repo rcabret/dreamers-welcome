@@ -31,6 +31,8 @@ export const FooterStyled = styled.footer`
         .absolute{
             position:relative;
             padding-top:3em;
+            left:0px;
+            padding-left: 18px;
         }
     }
 `
