@@ -16,33 +16,33 @@ import Blurb from '../../_components/UI/Blurb'
 import SubNavigation from '../../_components/Navigation/SubNavigation'
 import safeJsonStringify from 'safe-json-stringify'
 import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
-
+import Head from 'next/head'
 const links: { name: string; slug: string }[] = [
     {
-      name: 'VIEW ALL',
-      slug: 'view_all',
+        name: 'VIEW ALL',
+        slug: 'view_all',
     },
     {
-      name: 'NEWS',
-      slug: 'News',
+        name: 'NEWS',
+        slug: 'News',
     },
     {
-      name: 'EVENTS',
-      slug: 'Events',
+        name: 'EVENTS',
+        slug: 'Events',
     },
     {
-      name: 'PROMOTIONS',
-      slug: 'Promotions',
+        name: 'PROMOTIONS',
+        slug: 'Promotions',
     },
     {
-      name: 'AWARDS',
-      slug: 'Awards',
+        name: 'AWARDS',
+        slug: 'Awards',
     },
     {
-      name: 'PRESS',
-      slug: 'Press',
+        name: 'PRESS',
+        slug: 'Press',
     }
-  ]
+]
 
 const News = ({
     news,
@@ -109,19 +109,21 @@ const News = ({
     if (!news.length) {
         return null
     }
-console.log('blurb', blurb);
 
   const inspectorProps = useContentfulInspectorMode()
 
     return (
         <>
+            <Head>
+                <title>News | Dreamers Welcome</title>
+            </Head>
             {/* <Content padding> */}
-            <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight 
-            {...inspectorProps({
-                entryId: 'kVTRrzVviydTHxX9LFA9J' ,
-                fieldId: 'blurb',
-              })}
-              />
+            <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
+                {...inspectorProps({
+                    entryId: 'kVTRrzVviydTHxX9LFA9J',
+                    fieldId: 'blurb',
+                })}
+            />
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES

@@ -44,6 +44,27 @@ const GuideBooks = ({
         setNavTheme('dark')
 
         const slug = router.query.slug as string
+        // if (router.asPath.includes('/puertorico')) {
+        //     setHeaderData({
+        //         bucket: 'Puerto Rico',
+        //         simpleNav: false,
+        //         property: undefined,
+        //     })
+        // }
+        // else if (router.asPath.includes('/northcarolina')) {
+        //     setHeaderData({
+        //         bucket: 'North Carolina',
+        //         simpleNav: false,
+        //         property: undefined,
+        //     })
+        // }
+        // else {
+        //     setHeaderData({
+        //         bucket: '',
+        //         simpleNav: false,
+        //         property: undefined,
+        //     })
+        // }
         setHeaderData({
             bucket: pathToBucket(slug || ''),
             simpleNav: false,

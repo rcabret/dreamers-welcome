@@ -73,12 +73,13 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                     title="OUR STAYS"
                     fullWidth
                     noPaddingBottom
+                    link='/stays/northcarolina'
                     content={
                         <StaysSwiperWrap>
                             <GridModule columns={2}>
                                 {stays &&
                                     stays.length &&
-                                    stays.map((p: any) => (
+                                    stays.slice(0,3).map((p: any) => (
                                         <PropertyGridItem
                                             propertyObj={p.fields}
                                         />
@@ -135,7 +136,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                     noPaddingBottom
                     link="/news"
                     content={
-                        <GridModule columns={4} sideScrollOnMobile>
+                        <GridModule columns={news.length} sideScrollOnMobile>
                             {news.length &&
                                 news.map((x: any, i: number) => (
                                     <NewsItem
