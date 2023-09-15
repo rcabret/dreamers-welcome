@@ -17,7 +17,7 @@ interface Props {
     blurb: any
 }
 
-const links: { name: string; slug: string }[] = [
+const links_PR: { name: string; slug: string }[] = [
     {
         name: 'VIEW ALL',
         slug: 'view_all',
@@ -35,11 +35,26 @@ const links: { name: string; slug: string }[] = [
         slug: 'Suites',
     }
 ]
+const links_NC: { name: string; slug: string }[] = [
+    {
+        name: 'VIEW ALL',
+        slug: 'view_all',
+    },
+    {
+        name: 'HOTELS',
+        slug: "Hotel",
+    },
+    {
+        name: 'HOUSES',
+        slug: "House",
+    }
+]
 
 const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
+    const [_blurb, setBlurb] = useState('');
 
     useEffect(() => {
         setNavTheme('dark')
@@ -52,6 +67,21 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
             bucket: bkt,
         })
     }, [])
+
+    useEffect(() => {
+        const filteredBlurb = blurb.filter((blurbItem) => {
+            switch (bucket) {
+                case 'North Carolina':
+                    return blurbItem.fields.title === 'STAYS North Carolina';
+                default:
+                    return blurbItem.fields.title === 'STAYS Puerto Rico';
+            }
+        });
+    
+        if (filteredBlurb.length > 0) {
+            setBlurb(filteredBlurb[0].fields.blurb);
+        }
+    }, [bucket, blurb]);
 
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
@@ -66,11 +96,11 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
         setSlug(queryTag)
 
         const checkForTags = (properties: any[], slug: string) => {
-            
+
             if (!properties.length) {
                 return [...properties]
             }
-            return  properties.find((tag: any) => tag === slug)
+            return properties.find((tag: any) => tag === slug)
         }
 
         const propertiesToView =
@@ -82,25 +112,34 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
 
         setActiveStays(propertiesToView)
     }, [router, router.query])
-    
+
     useEffect(() => { }, [activeStays])
 
     if (!properties.length) {
         return null
     }
+
     return (
         <>
             <Head>
                 <title>Stays | Dreamers Welcome</title>
             </Head>
-            <Blurb text={blurb.blurb} eyebrow="STAYS" fullHeight />
+            <Blurb text={_blurb} eyebrow="STAYS" fullHeight />
             <Content padding>
-            <SubNavigation
-                activeSlug={activeSlug}
-                data={links}
-                queryParam="type"
-                queryArray={router.query.slug || []}
-            />
+                {bucket == 'North Carolina' ?
+                    <SubNavigation
+                        activeSlug={activeSlug}
+                        data={links_NC}
+                        queryParam="type"
+                        queryArray={router.query.slug || []}
+                    /> :
+                    <SubNavigation
+                        activeSlug={activeSlug}
+                        data={links_PR}
+                        queryParam="type"
+                        queryArray={router.query.slug || []}
+                    />
+                }
                 <GridWrapper border={false} padding>
                     <GridModule columns={bucket == "North Carolina" ? 2 : 3} sideScrollOnMobile={false}>
                         {activeStays &&

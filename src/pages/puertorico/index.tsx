@@ -15,6 +15,7 @@ import ExperienceItem from '../../_components/ExperienceItem'
 import NewsItem from '../../_components/NewsItem'
 import safeJsonStringify from 'safe-json-stringify'
 import dynamic from 'next/dynamic'
+import PropertyGridItem from '../../_components/PropertyGridItem'
 
 const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'))
 
@@ -83,14 +84,18 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                     fullWidth
                     showOverflow
                     noPaddingBottom
+                    link='/stays/puertorico'
                     content={
                         <StaysSwiperWrap>
-                            <ImageGridSlider
-                                slug={'puertorico'}
-                                items={stays.map((x) => x.fields)}
-                                isProperties
-                                spaceBetween={0}
-                            />
+                            <GridModule columns={3}>
+                                {stays &&
+                                    stays.length &&
+                                    stays.slice(0,3).map((p: any) => (
+                                        <PropertyGridItem
+                                            propertyObj={p.fields}
+                                        />
+                                    ))}
+                            </GridModule>
                         </StaysSwiperWrap>
                     }
                 />
@@ -142,7 +147,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                     noPaddingBottom
                     link="/news"
                     content={
-                        <GridModule columns={4} sideScrollOnMobile>
+                        <GridModule columns={news.length} sideScrollOnMobile>
                             {news.length &&
                                 news.map((x: any, i: number) => (
                                     <NewsItem

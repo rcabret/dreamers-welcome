@@ -119,6 +119,14 @@ a {
 .htmlText {
     padding: 0px 36px;
 }
+.htmlText h1{
+    font-weight: bold;
+    font-size: 42px;
+    margin-bottom: 9px;
+    margin-top: 19px;
+    line-height: 50px;
+
+}
 .htmlText h2{
     font-weight: bold;
     font-size: 40px;
@@ -196,6 +204,9 @@ a {
     font-weight: 400 !important;
     text-transform: none !important;
     text-align: center;
+}
+.text_wrapper_1 .separator {
+    display: none;
 }
 .text_wrapper_1 {
     position: relative;

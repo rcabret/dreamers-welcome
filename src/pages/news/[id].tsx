@@ -19,6 +19,8 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import SubNavigation from '../../_components/Navigation/SubNavigation'
 import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import Head from 'next/head'
+
 const links: { name: string; slug: string }[] = [
   {
     name: 'VIEW ALL',
@@ -169,11 +171,14 @@ const NewsItemDetails = ({
       'hyperlink': node => {
         const { uri } = node.data;
         return <a href={uri} target="_blank" rel="noopener noreferrer">{node.content[0].value}</a>;
-      },  
+      },
     },
   };
   return (
     <>
+      <Head>
+        <title>News | Dreamers Welcome</title>
+      </Head>
       <Content padding>
         {/* <div className='grid_head border-0 mt-0'>
           <TopSection padding>
@@ -189,7 +194,7 @@ const NewsItemDetails = ({
             content={
               <ConceptTextContainer className='text_wrapper'>
                 <Header className='header-in-block' {...inspectorProps({
-                  entryId: _id ,
+                  entryId: _id,
                   fieldId: 'title',
                 })}>
                   {title}
@@ -218,11 +223,13 @@ const NewsItemDetails = ({
                       {test && <BodyText size="sm" className='mb-2'>Categories: {test.join(', ')}</BodyText>}
                     </div>
                   </div>
-                  <div id="rich-text-body" className='htmlText' 
-                  // dangerouslySetInnerHTML={{ __html: renderedHtml }}
-                  />
+                  <div  id="rich-text-body" className='htmlText'>
                   {description && documentToReactComponents(description, options)}
-                  {/* <MarkdownModule data={description} /> */}
+                  </div>
+                  {/* <div id="rich-text-body" className='htmlText' */}
+                  {/* // dangerouslySetInnerHTML={{ __html: renderedHtml }} */}
+                  {/* /> */}
+                  {/* {description && documentToReactComponents(description, options)} */}
                 </ConceptTextContainer>
               }
             />
