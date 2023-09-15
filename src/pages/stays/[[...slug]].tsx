@@ -54,7 +54,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
-console.log('blurb?.fields?.blurb', blurb[0].fields.blurb);
+    const [_blurb, setBlurb] = useState('');
 
     useEffect(() => {
         setNavTheme('dark')
@@ -67,6 +67,21 @@ console.log('blurb?.fields?.blurb', blurb[0].fields.blurb);
             bucket: bkt,
         })
     }, [])
+
+    useEffect(() => {
+        const filteredBlurb = blurb.filter((blurbItem) => {
+            switch (bucket) {
+                case 'North Carolina':
+                    return blurbItem?.fields?.bucket[0] === 'North Carolina';
+                default:
+                    return blurbItem?.fields?.bucket[0] === 'Puerto Rico';
+            }
+        });
+    
+        if (filteredBlurb.length > 0) {
+            setBlurb(filteredBlurb[0].fields.blurb);
+        }
+    }, [bucket, blurb]);
 
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
@@ -81,11 +96,11 @@ console.log('blurb?.fields?.blurb', blurb[0].fields.blurb);
         setSlug(queryTag)
 
         const checkForTags = (properties: any[], slug: string) => {
-            
+
             if (!properties.length) {
                 return [...properties]
             }
-            return  properties.find((tag: any) => tag === slug)
+            return properties.find((tag: any) => tag === slug)
         }
 
         const propertiesToView =
@@ -97,18 +112,19 @@ console.log('blurb?.fields?.blurb', blurb[0].fields.blurb);
 
         setActiveStays(propertiesToView)
     }, [router, router.query])
-    
+
     useEffect(() => { }, [activeStays])
 
     if (!properties.length) {
         return null
     }
+
     return (
         <>
             <Head>
                 <title>Stays | Dreamers Welcome</title>
             </Head>
-            <Blurb text={blurb[0]?.fields?.blurb} eyebrow="STAYS" fullHeight />
+            <Blurb text={_blurb} eyebrow="STAYS" fullHeight />
             <Content padding>
                 {bucket == 'North Carolina' ?
                     <SubNavigation
