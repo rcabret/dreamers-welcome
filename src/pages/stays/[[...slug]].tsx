@@ -72,9 +72,9 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
         const filteredBlurb = blurb.filter((blurbItem) => {
             switch (bucket) {
                 case 'North Carolina':
-                    return blurbItem.fields.title === 'STAYS North Carolina';
+                    return blurbItem.fields.bucket[0] === 'North Carolina';
                 default:
-                    return blurbItem.fields.title === 'STAYS Puerto Rico';
+                    return blurbItem.fields.bucket[0] === 'Puerto Rico';
             }
         });
     
