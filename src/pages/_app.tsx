@@ -38,19 +38,35 @@ function MyApp({ Component, pageProps }: AppProps) {
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
     }, []);
     
-
     useEffect(() => {
         const visited = localStorage.getItem('visited');
-        if (visited != 'true') {
-            let timer = setTimeout(() => {
-                setFirstModalShow(true)
-            }, 3000);
+    
+        if (visited !== 'true') {
+            // Check if a timestamp exists in local storage
+            const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+    
+            if (!lastVisitTimestamp) {
+                // If no timestamp, set one and show the modal
+                localStorage.setItem('lastVisitTimestamp', Date.now().toString());
+                setTimeout(() => {
+                    setFirstModalShow(true);
+                }, 3000);
+            } else {
+                // If a timestamp exists, check if 24 hours have passed
+                const currentTime = Date.now();
+                const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
+    
+                if (timeSinceLastVisit >= 24 * 60 * 60 * 1000) {
+                    // If 24 hours have passed, show the modal and update the timestamp
+                    setTimeout(() => {
+                        setFirstModalShow(true);
+                    }, 3000);
+                    localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+                }
+            }
         }
-        // setFirstModalShow(true)
-        localStorage.setItem('visited', 'true');
-        TagManager.initialize({ gtmId: 'GTM-KC6QD2H' })
-    }, [])
-
+    },[])
+    
     return (
         <>
             <Head>

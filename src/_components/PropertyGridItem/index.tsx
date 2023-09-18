@@ -46,8 +46,8 @@ const PropertyGridItem = ({
     }
 
     return (
-        <ItemWrapper>
-            <div className="border">
+        <ItemWrapper className='stays_wraper'>
+            <div className="border stays_border">
                 <div>
                     <Link href={`/${slug}`} passHref shallow={false}>
                         <a>

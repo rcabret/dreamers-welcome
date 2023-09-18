@@ -24,7 +24,7 @@ export const GridModule = styled.div`
         transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
         z-index: 1; 
         margin-bottom: 20px;
-        padding: 5px;
+        padding: 27px;
     }
     .border {
       border:1px solid #c1c1c1;;
@@ -102,6 +102,9 @@ export const GridModule = styled.div`
                     width: 100% !important;
                     padding: 10px;
                 }
+                > a.news_anchor{
+                    padding: 25px;
+                }
                 .grid_heading {
                     line-height: 1.9rem;
                     display: -webkit-box;
@@ -118,6 +121,9 @@ export const GridModule = styled.div`
                 > a {
                     width: 50%;
                     padding: 10px;
+                }
+                a.news_anchor{
+                    padding: 25px;
                 }
             `}
     }
@@ -266,5 +272,6 @@ export const StatsGridModule = styled(GridModule)`
         > div {
             margin-bottom: ${rem(40)};
         }
+      
     }
 `

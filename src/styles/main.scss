@@ -227,7 +227,9 @@ a.back_link {
 .grid_info_wrapper {
     position: relative;
 }
-
+.mobile_link{
+    display: none;
+}
 @media(max-width:960px){
     a.back_link {
         left: 17px;
@@ -251,6 +253,15 @@ a.back_link {
 //     max-width: 100%;
 //     padding: 0px 20px;
 // }
+.desktop_link{
+    display: none;
+}
+.mobile_link{
+    display: block;
+    text-align: right;
+    padding-right: 15px;
+    color: #c1c1c1;
+}
     .grid_view_image>div:first-child {
         height: 450px !important;
         padding-top: 0px;

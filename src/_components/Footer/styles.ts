@@ -23,7 +23,7 @@ export const FooterStyled = styled.footer`
     }
 
     @media (max-width: ${BREAKPOINTS.TABLET}) {
-        height: ${rem(450)};
+        height: unset;
         padding: ${rem(10)};
         ul {
             margin-right: 5vw;
@@ -65,7 +65,7 @@ export const LeftLinks = styled.div`
         float: none;
         display: flex;
         margin-left: 0;
-        margin-top: ${rem(80)};
+        margin-top: ${rem(100)};
 
         ul {
             width: 100%;
