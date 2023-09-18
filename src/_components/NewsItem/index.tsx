@@ -40,7 +40,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
 
   return (
     slug ? (
-      <a href={slug} target='_blank'>
+      <a href={slug} target='_blank' className='news_anchor'>
         <div className="border">
           <Header size={3} className='grid_heading'>{title}</Header>
           <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
@@ -66,7 +66,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
         <a
           onClick={handleClick}
           href={`/news/${id}`}
-        >
+          className='news_anchor' >
           {/* <ItemWrapperStyled> */}
           <div className="border">
             <Header size={3} className='grid_heading'>{title}</Header>

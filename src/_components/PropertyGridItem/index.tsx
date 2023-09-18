@@ -46,11 +46,11 @@ const PropertyGridItem = ({
     }
 
     return (
-        <ItemWrapper>
-            <div className="border">
+        <ItemWrapper className='stays_wraper'>
+            <div className="border stays_border">
                 <div>
                     <Link href={`/${slug}`} passHref shallow={false}>
-                        <a>
+                  
                             <GridImage
                                 sizes={'50vw'}
                                 borderRadius={false}
@@ -58,7 +58,7 @@ const PropertyGridItem = ({
                                 ratio={0.68}
                                 imageObj={tileImage}
                             />
-                        </a>
+                    
                     </Link>
                     <Metadata>
                         <TopContainer>
