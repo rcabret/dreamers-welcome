@@ -140,7 +140,7 @@ const News = ({
                 <GridModule columns={3} sideScrollOnMobile={false}>
                     {activeNews && activeNews.length ?
                         activeNews.map((news: News, i: number) => (
-                            <NewsItem key={news.slug + i} newsObj={news} />
+                            <NewsItem key={i} newsObj={news} />
                         )) : null}
                 </GridModule>
             </GridWrapper>
