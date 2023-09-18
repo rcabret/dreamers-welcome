@@ -23,9 +23,6 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
       try {
         const newsData = await getNews();
         setRes(newsData);
-        const filteredArray = newsData.filter(item => item.fields.title == title);
-        const sys = filteredArray.map((x: { sys: string }) => x.sys.id)
-        setId(sys)
       } catch (error) {
         console.error("Error fetching news:", error);
       }
@@ -33,6 +30,13 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
 
     fetchData();
   }, []);
+
+  const handleClick = async () => {
+    const filteredArray = _res.filter(item => item.fields.title == title);
+    const sys = filteredArray.map((x: { sys: string }) => x.sys.id)
+    setId(sys)
+  }
+
 
   return (
     slug ? (
@@ -60,6 +64,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
       :
       (
         <a
+          onClick={handleClick}
           href={`/news/${id}`}
         >
           {/* <ItemWrapperStyled> */}
