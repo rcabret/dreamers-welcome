@@ -38,8 +38,6 @@ function MyApp({ Component, pageProps }: AppProps) {
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
     }, []);
     
-
-
     // useEffect(() => {
     //     const visited = localStorage.getItem('visited');
     //     if (visited != 'true') {
@@ -64,13 +62,13 @@ function MyApp({ Component, pageProps }: AppProps) {
                 localStorage.setItem('lastVisitTimestamp', Date.now().toString());
                 setTimeout(() => {
                     setFirstModalShow(true);
-                }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+                }, 3000); // 24 hours in milliseconds
             } else {
                 // If a timestamp exists, check if 24 hours have passed
                 const currentTime = Date.now();
                 const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
     
-                if (timeSinceLastVisit >= 24 * 60 * 60 * 1000) {
+                if (timeSinceLastVisit >= 40000) {
                     // If 24 hours have passed, show the modal and update the timestamp
                     setFirstModalShow(true);
                     localStorage.setItem('lastVisitTimestamp', currentTime.toString());
