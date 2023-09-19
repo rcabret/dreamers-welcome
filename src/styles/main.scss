@@ -247,6 +247,13 @@ a.back_link {
     .grid_view_image{
         border: 0px !important;
     }
+    .stays_wraper{
+        border-top: 0.3125rem solid transparent !important;
+    }
+    .stays_grid {
+        position: relative;
+        top: -25px;
+    }
 //     .htmlText p, .htmlText a{
 //  line-height: 29px;
 //     } 

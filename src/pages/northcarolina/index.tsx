@@ -70,6 +70,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
 
             {stays && (
                 <Block
+                className='stays_outer'
                     title="OUR STAYS"
                     fullWidth
                     noPaddingBottom
