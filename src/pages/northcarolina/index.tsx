@@ -75,7 +75,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                     noPaddingBottom
                     link='/stays/northcarolina'
                     content={
-                        <StaysSwiperWrap>
+                        <StaysSwiperWrap className='stays_grid'>
                             <GridModule columns={2}>
                                 {stays &&
                                     stays.length &&

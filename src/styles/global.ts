@@ -216,7 +216,7 @@ export const BlockListWrap = styled.div`
 
 export const StyledBlockForGrid = styled(Block)`
     > div:last-child {
-        margin-top: ${rem(20)};
+        margin-top: ${rem(10)};
 
         > div {
             left: -${rem(10)};

@@ -230,6 +230,9 @@ a.back_link {
 .mobile_link{
     display: none;
 }
+.stays_grid{
+    margin-top: 0px !important;
+}
 @media(max-width:960px){
     a.back_link {
         left: 17px;
