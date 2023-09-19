@@ -86,8 +86,8 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
                     noPaddingBottom
                     link='/stays/puertorico'
                     content={
-                        <StaysSwiperWrap>
-                            <GridModule columns={3}>
+                        <StaysSwiperWrap className='stays_grid'>
+                            <GridModule columns={3} >
                                 {stays &&
                                     stays.length &&
                                     stays.slice(0,3).map((p: any) => (

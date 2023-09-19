@@ -70,12 +70,13 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
 
             {stays && (
                 <Block
+                className='stays_outer'
                     title="OUR STAYS"
                     fullWidth
                     noPaddingBottom
                     link='/stays/northcarolina'
                     content={
-                        <StaysSwiperWrap>
+                        <StaysSwiperWrap className='stays_grid'>
                             <GridModule columns={2}>
                                 {stays &&
                                     stays.length &&
