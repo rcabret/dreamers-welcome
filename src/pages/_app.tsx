@@ -143,7 +143,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 </StyledMain>
                 <EmailCapture inFirstVisitModal={false} />
                 <Footer activeBucket={headerData?.bucket} />
-                <FirstVisitModal modalOpen={firstModalShow} onClose={onClose} />
+                <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)} />
             </ViewportProvider>
         </>
     )
