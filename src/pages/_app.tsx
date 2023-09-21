@@ -57,7 +57,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 const currentTime = Date.now();
                 const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
     
-                if (timeSinceLastVisit >= 24*60*60*1000) {
+                if (timeSinceLastVisit >= (24*60*60*1000)) {
                     // If 24 hours have passed, show the modal and update the timestamp
                     setTimeout(() => {
                         setFirstModalShow(true);
