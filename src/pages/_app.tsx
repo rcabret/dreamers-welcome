@@ -45,21 +45,29 @@ function MyApp({ Component, pageProps }: AppProps) {
         if (visited !== 'true') {
             // Check if a timestamp exists in local storage
             const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-            const currentTime = Date.now(); //24 * 60 * 60 * 1000
     
-            if (!lastVisitTimestamp || currentTime - parseInt(lastVisitTimestamp, 10) >= 10000) {
-                // If no timestamp exists or if 24 hours have passed, show the modal
+            if (!lastVisitTimestamp) {
+                // If no timestamp, set one and show the modal
+                localStorage.setItem('lastVisitTimestamp', Date.now().toString());
                 setTimeout(() => {
                     setFirstModalShow(true);
                 }, 3000);
+            } else {
+                // If a timestamp exists, check if 24 hours have passed
+                const currentTime = Date.now();
+                const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
     
-                // Update the 'lastVisitTimestamp' and 'visited' flag
-                localStorage.setItem('lastVisitTimestamp', currentTime.toString());
-                localStorage.setItem('visited', 'true');
+                if (timeSinceLastVisit >= 10000) {
+                    // If 24 hours have passed, show the modal and update the timestamp
+                    setTimeout(() => {
+                        setFirstModalShow(true);
+                    }, 3000);
+                    localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+                }
             }
         }
-    }, [])
-    
+    },[])
+
     return (
         <>
             <Head>
@@ -135,7 +143,7 @@ function MyApp({ Component, pageProps }: AppProps) {
                 </StyledMain>
                 <EmailCapture inFirstVisitModal={false} />
                 <Footer activeBucket={headerData?.bucket} />
-                <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)} />
+                <FirstVisitModal modalOpen={firstModalShow} onClose={onClose} />
             </ViewportProvider>
         </>
     )
