@@ -68,12 +68,19 @@ const StyledMarkdown = styled(MarkdownModule)`
         padding-right: 0;
     }
 
-    @media (max-width: ${BREAKPOINTS.MACBOOK}) {
+    @media (max-width: ${BREAKPOINTS.LARGESCREEN}) {
+        p {
+            font-size: ${({ responsive }: any) =>
+                responsive ? '9.5vw' : rem(60)};
+        }
+    }
+    @media (max-width: ${BREAKPOINTS.XLARGESCREEN}) {
         p {
             font-size: ${({ responsive }: any) =>
                 responsive ? '9.5vw' : rem(50)};
         }
     }
+
     @media (max-width: ${BREAKPOINTS.TABLET}) {
         p {
             font-size: ${({ responsive }: any) =>
