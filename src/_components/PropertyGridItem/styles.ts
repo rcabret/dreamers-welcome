@@ -16,7 +16,8 @@ export const Metadata = styled.aside`
 
 export const Location = styled.div`
     display: flex;
-    position: absolute;
+    // position: absolute;
+    margin-bottom: 1.25rem;
     align-items: center;
     height: 100%;
 
@@ -50,6 +51,7 @@ export const BottomContainer = styled.div`
 
     button {
         float: right;
+        width:100%;
     }
 `
 export const TopContainer = styled.div`
