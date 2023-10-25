@@ -54,6 +54,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
             onValidated({
                 EMAIL: email,
             })
+            window.location.href='https://dreamerswelcome.us10.list-manage.com/subscribe/post?u=896772311bdd3c6581bbc2972&id=e2dcd7acb9'     
     }
 
     useEffect(() => {
