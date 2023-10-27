@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import InputField from '../UI/InputField'
 import styled from 'styled-components'
 import { rem } from 'polished'
+import { stat } from 'fs'
 
 
 
@@ -43,7 +44,8 @@ const Form = styled.form`
     `
 
 const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
-    
+
+    var status 
     const [email, setEmail] = useState('')
     const [placeholder, setPlaceholder] = useState('Enter your email')
 
@@ -54,11 +56,12 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
             onValidated({
                 EMAIL: email,
             })
-            window.location.href='https://dreamerswelcome.us10.list-manage.com/subscribe/post?u=896772311bdd3c6581bbc2972&id=e2dcd7acb9'     
+            
+            // window.location.href='https://dreamerswelcome.us10.list-manage.com/subscribe/post?u=896772311bdd3c6581bbc2972&id=e2dcd7acb9'     
     }
-
+console.log("status--",status)
     useEffect(() => {
-        if (status === 'success') {
+        if (status === 'error') {
             setEmail('')
             setPlaceholder('THANKS FOR SUBSCRIBING!')
             setTimeout(() => {
@@ -66,6 +69,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
             }, 3000)
         }
     }, [message, status])
+   
 
     return (
         <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)}>
