@@ -48,6 +48,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     var status 
     const [email, setEmail] = useState('')
     const [placeholder, setPlaceholder] = useState('Enter your email')
+    const [newvalue,setnewvalue]=useState("")
 
     const handleSubmit = (e: any) => {
         e.preventDefault()
@@ -56,19 +57,22 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
             onValidated({
                 EMAIL: email,
             })
-            
+            setnewvalue("done")
             // window.location.href='https://dreamerswelcome.us10.list-manage.com/subscribe/post?u=896772311bdd3c6581bbc2972&id=e2dcd7acb9'     
     }
 console.log("status--",status)
+
     useEffect(() => {
         if (status === 'sending') {
             setEmail('')
-            setPlaceholder('THANKS FOR SUBSCRIBING!')
+            setnewvalue('THANKS FOR SUBSCRIBING!')
             setTimeout(() => {
                 setPlaceholder('Enter your email')
             }, 3000)
         }
     }, [message, status])
+
+
    
 
     return (
@@ -98,6 +102,8 @@ console.log("status--",status)
                         </svg>
                     }
                 />
+                <p>{newvalue}</p>
+
             </div>
         </Form>
     )
