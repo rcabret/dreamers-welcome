@@ -61,7 +61,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     }
 console.log("status--",status)
     useEffect(() => {
-        if (status === 'error') {
+        if (status === 'sending') {
             setEmail('')
             setPlaceholder('THANKS FOR SUBSCRIBING!')
             setTimeout(() => {
