@@ -48,7 +48,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     var status 
     const [email, setEmail] = useState('')
     const [placeholder, setPlaceholder] = useState('Enter your email')
-    const [newvalue,setnewvalue]=useState("")
+  
 
   
     const handleSubmit = (e: any) => {
