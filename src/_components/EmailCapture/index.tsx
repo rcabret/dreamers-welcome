@@ -22,7 +22,6 @@ const Wrapper = styled.div`
 const EmailCapture = ({inFirstVisitModal} : any) => {
     
     const url = getPostUrl()
-   
     if(inFirstVisitModal){
         return (
             <Wrapper style = {{['padding'as any] : '3rem 0'}}>
@@ -31,6 +30,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                     <p className='my-5 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
                     <MailchimpSubscribe
                         url={url}
+        
                         render={({ subscribe, status, message }) => (
                             <SubscribeForm
                                 marginTop='0.5rem'
