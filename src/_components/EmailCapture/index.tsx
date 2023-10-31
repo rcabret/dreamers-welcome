@@ -22,7 +22,7 @@ const Wrapper = styled.div`
 const EmailCapture = ({inFirstVisitModal} : any) => {
     
     const url = getPostUrl()
-    console.log("url-----",url)
+   
     if(inFirstVisitModal){
         return (
             <Wrapper style = {{['padding'as any] : '3rem 0'}}>
