@@ -28,6 +28,7 @@ export const Panel = styled.div`
         height: 100%;
         min-height: 700px;
         position: relative;
+        padding-bottom: ${rem(80)};
     }
 
     .anchorSection {
@@ -36,7 +37,7 @@ export const Panel = styled.div`
         max-height: ${rem(340)};
         min-height: ${rem(200)};
         height: 35vh;
-        bottom: 0;
+        bottom: 17px;
         width: calc(100% - ${rem(80)});
 
         ul {
@@ -53,7 +54,8 @@ export const Panel = styled.div`
 
         button {
             position: absolute;
-            bottom: ${rem(30)};
+            // bottom: ${rem(30)};
+            bottom: 0;
             margin: 0;
         }
     }

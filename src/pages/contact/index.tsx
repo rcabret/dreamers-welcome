@@ -110,7 +110,9 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify(data),
+
             }).then((res) => {
+            
                 if (res.status === 200) {
                     window.scrollTo({
                         behavior: 'smooth',
