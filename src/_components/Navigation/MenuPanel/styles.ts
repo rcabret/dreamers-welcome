@@ -24,7 +24,7 @@ export const Panel = styled.div`
     overflow-y: scroll;
 
     > div {
-        padding: ${rem(40)};
+        padding: ${rem(30)};
         height: 100%;
         min-height: 700px;
         position: relative;
@@ -37,7 +37,7 @@ export const Panel = styled.div`
         max-height: ${rem(340)};
         min-height: ${rem(200)};
         height: 35vh;
-        bottom: 17px;
+        bottom: 45px;
         width: calc(100% - ${rem(80)});
 
         ul {
@@ -55,7 +55,7 @@ export const Panel = styled.div`
         button {
             position: absolute;
             // bottom: ${rem(30)};
-            bottom: 0;
+            bottom: ${rem(30)};
             margin: 0;
         }
     }
@@ -78,7 +78,7 @@ const blurFadeIn = keyframes`
 `
 
 export const MainList = styled.ul`
-    margin-top: ${rem(100)};
+    margin-top: ${rem(60)};
     list-style: none;
     font-size: ${rem(40)};
     position: relative;
