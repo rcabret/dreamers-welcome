@@ -1,7 +1,6 @@
 export default async function (req: any, res: any) {
     const sgMail = require('@sendgrid/mail')
-     sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY_)
-    //  console.log(process.env.NEXT_PUBLIC_SENDGRID_API_KEY_)
+    sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY_)
 
     const mailData = {
         to: 'stay@dreamerspuertorico.com',
