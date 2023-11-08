@@ -1,6 +1,10 @@
 export default async function (req: any, res: any) {
     const sgMail = require('@sendgrid/mail')
     sgMail.setApiKey(process.env.NEXT_PUBLIC_SENDGRID_API_KEY_)
+<<<<<<< HEAD
+=======
+  
+>>>>>>> development
 
     const mailData = {
         to: 'stay@dreamerspuertorico.com',
@@ -23,7 +27,11 @@ export default async function (req: any, res: any) {
             res.end()
         })
         .catch((error: any) => {
+<<<<<<< HEAD
             console.log(error)
             res.status(500).json({ error: error.message || error.toString() })
+=======
+            res.status(500).json({ error: error.message || error.toString()})
+>>>>>>> development
         })
 }
