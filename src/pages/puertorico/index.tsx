@@ -50,7 +50,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         const data = {
             bucket: 'Puerto Rico',
             simpleNav: false,
-            property: undefined,
+            property: "",
         }
         setHeaderData(data)
         localStorage.setItem('bucket', data.bucket)

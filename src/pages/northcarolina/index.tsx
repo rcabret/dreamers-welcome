@@ -32,6 +32,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         mobileCoverImage,
         news,
     } = data
+
     const [stays, setStays] = useState(null)
     useEffect(() => {
         setNavTheme('light')
@@ -39,7 +40,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         const data = {
             bucket: 'North Carolina',
             simpleNav: false,
-            property: undefined,
+            property: "",
         }
         setHeaderData(data)
         localStorage.setItem('bucket', data.bucket)
@@ -66,6 +67,7 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
             >
                 <BannerContent headerText={title} />
             </BannerGridImage>
+            
             <Blurb text={blurb} />
 
             {stays && (

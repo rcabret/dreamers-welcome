@@ -49,6 +49,7 @@ export const getStaysForHomepage = async (url: string) => {
     if (entries.items) {
         return entries.items[0].fields
     }
+    console.log(entries)
 }
 
 export const getProperty = async (slug: string) => {

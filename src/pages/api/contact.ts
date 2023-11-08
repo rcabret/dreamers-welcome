@@ -27,8 +27,7 @@ export default async function (req: any, res: any) {
 
             console.log(error)
             res.status(500).json({ error: error.message || error.toString() })
-
-            res.status(500).json({ error: error.message || error.toString()})
+   
  
         })
 }
