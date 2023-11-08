@@ -47,7 +47,7 @@ export const Title = styled.div`
     }
 
     a {
-        color: #c1c1c1;
+        color: #454545;
         float: right;
     }
 
