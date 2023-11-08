@@ -24,11 +24,11 @@ export default async function (req: any, res: any) {
             res.end()
         })
         .catch((error: any) => {
-<<<<<<< HEAD
+
             console.log(error)
             res.status(500).json({ error: error.message || error.toString() })
-=======
+
             res.status(500).json({ error: error.message || error.toString()})
->>>>>>> development
+ 
         })
 }
