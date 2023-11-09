@@ -81,6 +81,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
             await fetch(getWeatherApiUrl(18.2078212, -67.7099374))
                 .then((x) => x.json())
                 .then((res) => {
+                    
                     setPRData(res.current_weather)
                 })
             await fetch(getWeatherApiUrl(35.3857677, -81.3990799))

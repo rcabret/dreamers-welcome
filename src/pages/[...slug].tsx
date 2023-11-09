@@ -161,6 +161,8 @@ const Property = ({
         setView(finalView)
     }, [router.query])
 
+   
+
     // @ts-ignore
     return (
         <>
@@ -236,8 +238,7 @@ const Property = ({
                                 slug={activeSlug || ''}
                                 hideSeparator={i === 0}
                             />
-                        )
-                    })
+                        )})
                 )}
             </div>
 
@@ -392,8 +393,7 @@ const Property = ({
                                             key={x.fields.propertySlug}
                                             propertyObj={x.fields}
                                         />
-                                    )
-                                )}
+                                    ) )}
                         </GridModule>
                     }
                 />
