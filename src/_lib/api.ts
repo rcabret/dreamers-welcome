@@ -25,6 +25,7 @@ export const getLandingpage = async () => {
     if (entries.items) {
         return entries.items[0].fields
     }
+
 }
 
 export const getHomepage = async (url: string) => {

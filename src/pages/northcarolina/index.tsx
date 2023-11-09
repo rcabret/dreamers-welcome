@@ -36,7 +36,6 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
     const [stays, setStays] = useState(null)
     useEffect(() => {
         setNavTheme('light')
-
         const data = {
             bucket: 'North Carolina',
             simpleNav: false,
@@ -44,7 +43,6 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         }
         setHeaderData(data)
         localStorage.setItem('bucket', data.bucket)
-
         const getStays = async () => {
             const rawData = await getStaysForHomepage('northcarolina')
             const stringData = safeJsonStringify(rawData)
@@ -161,7 +159,6 @@ export async function getStaticProps() {
     const rawData = await getHomepage('northcarolina')
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
-
     return {
         props: {
             data,
