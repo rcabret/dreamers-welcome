@@ -138,7 +138,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                             noPaddingBottom
                             fullWidth
                             // title={`${prData?.temperature}\u00b0`}
-                            title="Dreamers Welcome |"
+                            title=""
                             content={
                                 <StyledHeader size={1} uppercase>
                                     Puerto Rico
@@ -153,7 +153,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                             noPaddingBottom
                             fullWidth
                             // title={`${ncData?.temperature}\u00b0`}
-                            title="Dreamers Welcome |"
+                            title=""
                             content={
                                 <StyledHeader size={1} uppercase>
                                     North Carolina
