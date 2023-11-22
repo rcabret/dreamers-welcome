@@ -92,8 +92,9 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         }
         fetchData()
     }, [])
-
+ 
     const scrollToBottom = () => {
+       
         const anchor = document.getElementById('view')
         if (anchor) {
             setTimeout(function () {
@@ -137,8 +138,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                         <Block
                             noPaddingBottom
                             fullWidth
+                            title={prData?.temperature && `${prData.temperature}°`}
                             // title={`${prData?.temperature}\u00b0`}
-                            title=""
                             content={
                                 <StyledHeader size={1} uppercase>
                                     Puerto Rico
@@ -153,7 +154,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                             noPaddingBottom
                             fullWidth
                             // title={`${ncData?.temperature}\u00b0`}
-                            title=""
+                            title={ncData?.temperature && `${ncData.temperature}°`}
                             content={
                                 <StyledHeader size={1} uppercase>
                                     North Carolina
@@ -162,6 +163,7 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                         />
                     </a>
                 </Link>
+                
                 <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
                     <StyledButton href="/about">READ MORE</StyledButton>
                 </StyledBlurb>
