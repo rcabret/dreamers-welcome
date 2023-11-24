@@ -67,7 +67,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
             bucket: bkt,
         })
     }, [])
-
+  console.log("")
     useEffect(() => {
         const filteredBlurb = blurb.filter((blurbItem) => {
             switch (bucket) {
