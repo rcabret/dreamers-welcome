@@ -80,6 +80,8 @@ const Property = ({
         tileImage,
     } = propertyResponse
 
+
+    console.log("slug---------------------",slug)
     const router = useRouter()
 
     const pType = propertyType[0]
@@ -135,6 +137,7 @@ const Property = ({
 
     useEffect(() => {
         const a = router.query.slug as string[]
+        
         let viewToShow: string | undefined
         if (Array.isArray(a) && a.length > 1) {
             viewToShow = a.pop()
