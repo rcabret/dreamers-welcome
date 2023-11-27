@@ -112,6 +112,7 @@ export const getAllPropertiesForPaths = async () => {
         select: 'fields.propertyName,fields.suites,fields.bucket,fields.slug,fields.propertyType',
         include: 1,
     })
+   
     if (entries.items) {
         return entries.items.map((x: { fields: {} }) => x.fields)
     }

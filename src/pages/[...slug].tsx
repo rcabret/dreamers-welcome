@@ -80,13 +80,15 @@ const Property = ({
         tileImage,
     } = propertyResponse
 
-
-    console.log("slug---------------------",slug)
     const router = useRouter()
+
+    // console.log("suites---->>>>",suites)
+  
+
+
 
     const pType = propertyType[0]
     const showSubNav = pType === 'Suites' || pType === 'Hotel'
-
     const [activeView, setView] = useState(suites[0])
     const [activeSlug, setSlug] = useState()
     const [lightbox, toggleLightbox] = useState<boolean>(false)
@@ -137,7 +139,6 @@ const Property = ({
 
     useEffect(() => {
         const a = router.query.slug as string[]
-        
         let viewToShow: string | undefined
         if (Array.isArray(a) && a.length > 1) {
             viewToShow = a.pop()
@@ -167,6 +168,42 @@ const Property = ({
    
 
     // @ts-ignore
+    
+
+    // useEffect(() => {
+    //     const a = router.query.slug as string[];
+    //     let viewToShow: string | undefined;
+    
+    //     if (Array.isArray(a) && a.length > 1) {
+    //         viewToShow = a.pop();
+    //     } else {
+    //         // If type is Hotel show Suites as default route
+    //         viewToShow = pType === 'Hotel' ? 'suites' : (Array.isArray(suites) ? suites[0]?.fields.slug : undefined);
+    //     }
+    
+    //     // set slug
+    //     // @ts-ignore
+    //     setSlug(viewToShow);
+    
+    //     let finalView;
+    
+    //     if (pType === 'Hotel') {
+    //         finalView = getHotelView(viewToShow);
+    //     } else {
+    //         finalView =
+    //             Array.isArray(suites) &&
+    //             suites.length &&
+    //             suites.find((x: any) => x.fields.slug === viewToShow);
+    //     }
+    
+    //     setView(finalView);
+    // }, [router.query]);
+
+
+
+    
+    
+    
     return (
         <>
             <Head>
@@ -419,7 +456,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getProperty(context.params.slug[0])
     const stringData = safeJsonStringify(rawData)
     const propertyResponse = JSON.parse(stringData)
-
+    console.log("property response--->",propertyResponse)
     return {
         props: {
             propertyResponse,
@@ -429,12 +466,13 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 
 export async function getStaticPaths() {
     const allProperties = await getAllPropertiesForPaths()
-
+        
     // @ts-ignore
     let paths: { params: { slug: string[] } }[] = []
 
     // @ts-ignore
     allProperties.forEach((property) => {
+        
         const propertyType = property.propertyType[0]
         const pathObj = { params: { slug: [property.slug] } }
         paths.push(pathObj)
@@ -442,7 +480,7 @@ export async function getStaticPaths() {
         // Check for suite routes
         if (
             property.suites &&
-            property.suites.length > 1 &&
+            property.suites.length > 0 &&
             propertyType === 'Suites'
         ) {
             property.suites.map((y: { fields: { slug: string } }) => {
