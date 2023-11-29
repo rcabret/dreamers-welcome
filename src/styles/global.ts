@@ -24,7 +24,7 @@ export const GridModule = styled.div`
         transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
         z-index: 1; 
         margin-bottom: 20px;
-       padding:10px
+       padding:7px
     }
     .border {
       border:1px solid #c1c1c1;;
