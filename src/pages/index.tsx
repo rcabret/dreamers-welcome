@@ -133,7 +133,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                         <Block
                             noPaddingBottom
                             fullWidth
-                            title={`${prData?.temperature}\u00b0`}
+                            // title={`${prData?.temperature}\u00b0`}
+                            title={prData?.temperature && `${prData.temperature}°`}
                             content={
                                 <StyledHeader size={1} uppercase>
                                     Puerto Rico
@@ -147,7 +148,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
                         <Block
                             noPaddingBottom
                             fullWidth
-                            title={`${ncData?.temperature}\u00b0`}
+                            // title={`${ncData?.temperature}\u00b0`}
+                            title={ncData?.temperature && `${ncData.temperature}°`}
                             content={
                                 <StyledHeader size={1} uppercase>
                                     North Carolina
