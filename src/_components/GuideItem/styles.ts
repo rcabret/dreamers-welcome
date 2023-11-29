@@ -3,7 +3,7 @@ import {rem} from "polished";
 
 export const GuidesMetadata = styled.div`
     margin-top: ${rem('20px')};
-    margin-bottom: ${rem('30px')};
+    // margin-bottom: ${rem('30px')};
 
     > p:first-child {
         color: #c1c1c1;

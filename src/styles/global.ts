@@ -23,7 +23,7 @@ export const GridModule = styled.div`
         text-decoration: none;
         transition: transform 0.3s ease-in-out, z-index 0s linear 0.3s;
         z-index: 1; 
-        margin-bottom: 20px;
+        // margin-bottom: 20px;
        padding:7px
     }
     .border {
@@ -103,7 +103,8 @@ export const GridModule = styled.div`
                     padding: 10px;
                 }
                 > a.news_anchor{
-                    padding: 25px;
+                    padding: 20px;
+                    margin-bottom:0px;
                 }
                 .grid_heading {
                     line-height: 1.9rem;
