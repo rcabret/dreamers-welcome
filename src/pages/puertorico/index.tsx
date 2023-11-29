@@ -18,7 +18,7 @@ import dynamic from 'next/dynamic'
 import PropertyGridItem from '../../_components/PropertyGridItem'
 
 const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'))
-
+ 
 const StaysSwiperWrap = styled.div`
     overflow: hidden;
     width: 100%;
@@ -43,7 +43,7 @@ const StaysSwiperWrap = styled.div`
 const Index = ({ data, setNavTheme, setHeaderData }: any) => {
     const { blurb, title, guides, experiences, coverImage, mobileCoverImage, news } = data
     const [stays, setStays] = useState(null)
-
+      console.log("here__")
     useEffect(() => {
         setNavTheme('light')
 
