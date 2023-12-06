@@ -1,7 +1,7 @@
+import { useEffect, useState } from 'react'
 import '../styles/main.scss'
 import type { AppProps } from 'next/app'
 import { ViewportProvider } from '../_utils/ViewportProvider'
-import { useEffect, useState } from 'react'
 import TopNav from '../_components/Navigation'
 import styled from 'styled-components'
 import Footer from '../_components/Footer'
@@ -25,7 +25,7 @@ interface HeaderData {
 
 function MyApp({ Component, pageProps }: AppProps) {
     const pixelID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
-
+    const googleAnalyticsID ="UA-252792304-1"
     // @ts-ignore
     const [navTheme, setNavTheme] = useState(undefined)
     const [headerData, setHeaderData] = useState<HeaderData | undefined>(
@@ -35,8 +35,10 @@ function MyApp({ Component, pageProps }: AppProps) {
     const [firstModalShow, setFirstModalShow] = useState(false)
 
     useEffect(() => {
+        console.log('Google Analytics ID is defined:',  TagManager.initialize({ gtmId: googleAnalyticsID }));
+        TagManager.initialize({ gtmId: googleAnalyticsID });
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
-    }, []);
+    }, [googleAnalyticsID]);
     
     useEffect(() => {
         const visited = localStorage.getItem('visited');
@@ -111,6 +113,20 @@ function MyApp({ Component, pageProps }: AppProps) {
                         fbq('init', '1594089821088907');
                         fbq('track', 'PageView');
                     `
+                    }}
+                />
+                <script
+                    async
+                    src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
+                />
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', '${googleAnalyticsID}');
+                        `,
                     }}
                 />
                 <noscript>
