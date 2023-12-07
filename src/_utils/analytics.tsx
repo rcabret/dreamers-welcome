@@ -1,21 +1,31 @@
 // utils/analytics.ts
-// export const GA_TRACKING_ID = 'UA-252792304-1';
 
-// // Function to log a pageview
-// export const pageview = (url: string) => {
-//   (window as any).gtag('config', GA_TRACKING_ID, {
-//     page_path: url,
-//   });
-// };
+import ReactGA from 'react-ga';
+import TagManager from 'react-gtm-module';
 
-// // Initialize Google Analytics
-// export const initGA = () => {
-//   if (typeof window !== 'undefined') {
-//     (window as any).dataLayer = (window as any).dataLayer || [];
-//     function gtag() {
-//       (window as any).dataLayer.push(arguments);
-//     }
-//     gtag('js', new Date());
-//     gtag('config', GA_TRACKING_ID);
-//   }
-// };
+export const initializeGA = (trackingID: string) => {
+  try {
+  
+    TagManager.initialize({ gtmId: "UA-252792304-1" });
+    console.log(`Google Analytics initialized with ID: ${"UA-252792304-1"}`);
+  } catch (error) {
+    console.error('Error initializing Google Analytics:', error);
+  }
+};
+
+export const trackPageView = (pagePath: string) => {
+  try {
+   
+    ReactGA.pageview(pagePath);
+    console.log(`Page view tracked for path: ${pagePath}`);
+  } catch (error) {
+    console.error('Error tracking page view:', error);
+  }
+};
+
+
+declare global {
+  interface Window {
+    gtag?: (...args: any[]) => void;
+  }
+}
