@@ -13,6 +13,8 @@ import '../../public/styles/global.css'
 import { sendPageViewEvent } from './api/sendPageViewEvent';
 import { ContentfulLivePreviewProvider } from '@contentful/live-preview/react'
 import "@contentful/live-preview/style.css"
+
+
 const StyledMain = styled.main`
     width: 100%;
     min-height: 100vh;
@@ -22,6 +24,9 @@ interface HeaderData {
     property?: string
     simpleNav?: boolean
 }
+
+
+
 
 function MyApp({ Component, pageProps }: AppProps) {
     const pixelID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
@@ -119,16 +124,20 @@ function MyApp({ Component, pageProps }: AppProps) {
                     async
                     src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
                 />
-                <script
+                <script 
                     dangerouslySetInnerHTML={{
                         __html: `
-                            window.dataLayer = window.dataLayer || [];
-                            function gtag(){dataLayer.push(arguments);}
-                            gtag('js', new Date());
-                            gtag('config', '${googleAnalyticsID}');
+                      window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${googleAnalyticsID}', {
+                    page_path: window.location.pathname,
+                    });
+
                         `,
                     }}
                 />
+          
                 <noscript>
                     <img
                         height="1"
