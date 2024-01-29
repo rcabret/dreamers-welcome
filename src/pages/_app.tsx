@@ -47,7 +47,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     // Log initial page view
     trackPageView(router.pathname);
       
-   
+       console.log("id*************",googleAnalyticsID)
         TagManager.initialize({ gtmId: googleAnalyticsID });
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
   }, [googleAnalyticsID, router.pathname]);
