@@ -78,8 +78,10 @@ const Property = ({
         suites,
         thingsToKnow,
         tileImage,
-    } = propertyResponse || {}
+    } = propertyResponse 
 
+
+    
     const router = useRouter()
 
     // console.log("suites---->>>>",suites)
