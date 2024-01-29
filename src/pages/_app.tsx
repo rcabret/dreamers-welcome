@@ -58,7 +58,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     console.log("visited----")
     const visited = localStorage.getItem('visited');
     const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-
+    
     if (visited !== 'true') {
         if (!lastVisitTimestamp) {
             localStorage.setItem('lastVisitTimestamp', Date.now().toString());
