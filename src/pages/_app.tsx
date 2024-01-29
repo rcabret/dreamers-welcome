@@ -74,7 +74,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     }
   }, [firstModalShow]);
-
+ console.log("test")
   return (
     <>
       <Head>
