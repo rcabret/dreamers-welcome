@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   useEffect(() => {
-    console.log("visited----")
+   
     const visited = localStorage.getItem('visited');
     const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
 
