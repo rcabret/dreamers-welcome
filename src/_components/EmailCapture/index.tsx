@@ -20,10 +20,9 @@ const Wrapper = styled.div`
 
 
 const EmailCapture = ({inFirstVisitModal} : any) => {
-    console.log("first visit modal---",inFirstVisitModal)
+    console.log("check email")
     const url = getPostUrl()
     if(inFirstVisitModal){
-        console.log("here -----1",)
         return (
             <Wrapper style = {{['padding'as any] : '3rem 0'}}>
                 <div>
@@ -49,7 +48,6 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
         )
     }
     else 
-    console.log("here -----2",)
     return (
         <Block
             noPaddingBottom
