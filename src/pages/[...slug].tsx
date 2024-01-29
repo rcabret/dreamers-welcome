@@ -452,40 +452,19 @@ const Property = ({
 
 export default Property
 
-// export async function getStaticProps(context: { params: { slug: string } }) {
-//     const rawData = await getProperty(context.params.slug[0])
-//     const stringData = safeJsonStringify(rawData)
-//     const propertyResponse = JSON.parse(stringData)
-//     console.log("property response--->",propertyResponse)
-//     return {
-//         props: {
-//             propertyResponse,
-//         },
-//     }
-// }
-
-
-export async function getStaticProps(context) {
-    try {
-        const rawData = await getProperty(context.params.slug[0]);
-        const stringData = safeJsonStringify(rawData);
-        const propertyResponse = JSON.parse(stringData);
-
-        return {
-            props: {
-                propertyResponse,
-            },
-        };
-    } catch (error) {
-        console.error("Error fetching property data:", error);
-
-        return {
-            props: {
-                propertyResponse: {},
-            },
-        };
+export async function getStaticProps(context: { params: { slug: string } }) {
+    const rawData = await getProperty(context.params.slug[0])
+    const stringData = safeJsonStringify(rawData)
+    const propertyResponse = JSON.parse(stringData)
+    console.log("property response--->",propertyResponse)
+    return {
+        props: {
+            propertyResponse,
+        },
     }
 }
+
+
 
 
 
