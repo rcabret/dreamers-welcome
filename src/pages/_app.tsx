@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
     const visited = localStorage.getItem('visited');
     const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-
+     console.log("visited --",visited)
     if (visited !== 'true') {
       if (!lastVisitTimestamp) {
         localStorage.setItem('lastVisitTimestamp', Date.now().toString());
@@ -168,7 +168,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         </StyledMain>
         <EmailCapture inFirstVisitModal={false} />
         <Footer activeBucket={headerData?.bucket} />
-       
+        <FirstVisitModal modalOpen={firstModalShow} onClose={() => setFirstModalShow(false)} />
       </ViewportProvider>
     </>
   );
