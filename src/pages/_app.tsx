@@ -72,10 +72,20 @@ function MyApp({ Component, pageProps }: AppProps) {
             if (timeSinceLastVisit >= (24*60*60*1000)) {
                 setTimeout(() => {
                     setFirstModalShow(true);
-                }, 3000);
+                }, 1000);
                 localStorage.setItem('lastVisitTimestamp', currentTime.toString());
             }
         }
+    }else{
+      const currentTime = Date.now();
+      const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
+      // if (timeSinceLastVisit >= (2000)) {
+      if (timeSinceLastVisit >= (24*60*60*1000)) {
+          setTimeout(() => {
+              setFirstModalShow(true);
+          }, 1000);
+          localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+      }
     }
 }, [firstModalShow]);
 
