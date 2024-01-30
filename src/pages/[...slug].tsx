@@ -125,7 +125,7 @@ const Property = ({
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
             return suites.map((x: { fields: any }) => {
-                return { name: x.fields.name, slug: `${x.fields.slug}` }
+                return { name: x?.fields?.name, slug: `${x?.fields?.slug}` }
             })
         } else if (pType === 'Hotel') {
             return [
@@ -146,7 +146,7 @@ const Property = ({
             viewToShow = a.pop()
         } else {
             // If type is Hotel show Suites as default route
-            viewToShow = pType === 'Hotel' ? 'suites' : suites[0].fields.slug
+            viewToShow = pType === 'Hotel' ? 'suites' : suites[0]?.fields?.slug
         }
 
         // set slug
@@ -161,7 +161,7 @@ const Property = ({
             finalView =
                 suites &&
                 suites.length &&
-                suites.find((x: any) => x.fields.slug === viewToShow)
+                suites.find((x: any) => x?.fields?.slug === viewToShow)
         }
 
         setView(finalView)
@@ -217,7 +217,7 @@ const Property = ({
                 />
                 <meta
                     property="og:image"
-                    content={`https:${tileImage.fields.file.url}?w=700`}
+                    content={`https:${tileImage?.fields?.file.url}?w=700`}
                 />
             </Head>
             <BannerGridImage
@@ -270,7 +270,7 @@ const Property = ({
                     activeView &&
                     Array.isArray(activeView) &&
                     activeView.map((x, i) => {
-                        const { name, blurb, images } = x.fields
+                        const { name, blurb, images } = x?.fields
                         return (
                             <Highlight
                                 key={`${name}-${Math.random() * i}`}
@@ -312,13 +312,13 @@ const Property = ({
                                 {features &&
                                     features.map((feature: any) => (
                                         <BlockListWrap
-                                            key={feature.fields.title}
+                                            key={feature?.fields?.title}
                                         >
                                             <Header size={4}>
-                                                {feature.fields.title}
+                                                {feature?.fields?.title}
                                             </Header>
                                             <MarkdownModule
-                                                data={feature.fields.text}
+                                                data={feature?.fields?.text}
                                             />
                                         </BlockListWrap>
                                     ))}
@@ -342,12 +342,12 @@ const Property = ({
                             >
                                 {thingsToKnow &&
                                     thingsToKnow.map((thing: any) => (
-                                        <BlockListWrap key={thing.fields.title}>
+                                        <BlockListWrap key={thing?.fields?.title}>
                                             <Header size={4}>
-                                                {thing.fields.title}
+                                                {thing?.fields?.title}
                                             </Header>
                                             <MarkdownModule
-                                                data={thing.fields.text}
+                                                data={thing?.fields?.text}
                                             />
                                         </BlockListWrap>
                                     ))}
@@ -386,12 +386,12 @@ const Property = ({
                     content={
                         <>
                             <CollapsableList
-                                data={extraData.faq.fields.list.slice(0, 5)}
+                                data={extraData?.faq?.fields?.list.slice(0, 5)}
                             />
-                            {extraData.faq.fields.list.length > 5 && (
+                            {extraData?.faq?.fields?.list.length > 5 && (
                                 <SeeMore>
                                     <Link
-                                        href={`/faq/${extraData.faq.fields.slug}`}
+                                        href={`/faq/${extraData?.faq?.fields?.slug}`}
                                     >
                                         SEE MORE
                                     </Link>
@@ -413,7 +413,7 @@ const Property = ({
                                 extraData.news.map((x: any, i: number) => (
                                     <NewsItem
                                         key={x.slug + i}
-                                        newsObj={x.fields}
+                                        newsObj={x?.fields}
                                     />
                                 ))}
                         </GridModule>
@@ -432,8 +432,8 @@ const Property = ({
                                     (x: any, i: number) => (
                                         <PropertyGridItem
                                             collapsed
-                                            key={x.fields.propertySlug}
-                                            propertyObj={x.fields}
+                                            key={x?.fields?.propertySlug}
+                                            propertyObj={x?.fields}
                                         />
                                     ) )}
                         </GridModule>
@@ -492,7 +492,7 @@ export async function getStaticPaths() {
             property.suites.map((y: { fields: { slug: string } }) => {
                 const pathObj = {
                     params: {
-                        slug: [property.slug, y.fields.slug],
+                        slug: [property.slug, y?.fields?.slug],
                     },
                 }
                 paths.push(pathObj)
