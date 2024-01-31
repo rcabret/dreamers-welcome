@@ -38,6 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [navTheme, setNavTheme] = useState(undefined);
   const [headerData, setHeaderData] = useState<HeaderData | undefined>(undefined);
   const [firstModalShow, setFirstModalShow] = useState(false);
+  
 
   useEffect(() => {
     console.log("enterning useeffect 2 ")
@@ -50,76 +51,76 @@ function MyApp({ Component, pageProps }: AppProps) {
        console.log("id*************",googleAnalyticsID)
         TagManager.initialize({ gtmId: googleAnalyticsID });
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
+
   }, [googleAnalyticsID, router.pathname]);
 
 
 
-  useEffect(() => {
+//   useEffect(() => {
 
-    const visited = localStorage.getItem('visited');
-    const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+//     const visited = localStorage.getItem('visited');
+//     const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
     
-    if (visited !== 'true') {
-        if (!lastVisitTimestamp) {
-            localStorage.setItem('lastVisitTimestamp', Date.now().toString());
-            setTimeout(() => {
-                setFirstModalShow(true);
-            }, 3000);
-        } else {
-            const currentTime = Date.now();
-            const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
-            // if (timeSinceLastVisit >= (2000)) {
-            if (timeSinceLastVisit >= (24*60*60*1000)) {
-                setTimeout(() => {
-                    setFirstModalShow(true);
-                }, 1000);
-                localStorage.setItem('lastVisitTimestamp', currentTime.toString());
-            }
-        }
-    }else{
-      const currentTime = Date.now();
-      const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
-      // if (timeSinceLastVisit >= (2000)) {
-      if (timeSinceLastVisit >= (24*60*60*1000)) {
-          setTimeout(() => {
-              setFirstModalShow(true);
-          }, 1000);
-          localStorage.setItem('lastVisitTimestamp', currentTime.toString());
-      }
+//     if (visited !== 'true') {
+//         if (!lastVisitTimestamp) {
+//             localStorage.setItem('lastVisitTimestamp', Date.now().toString());
+//             setTimeout(() => {
+//                 setFirstModalShow(true);
+//             }, 1000);
+             
+//         } else {
+//             const currentTime = Date.now();
+//             const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
+//             // if (timeSinceLastVisit >= (3000)) {
+//             if (timeSinceLastVisit >= (24*60*60*1000)) {
+//                 setTimeout(() => {
+//                     setFirstModalShow(true);
+//                 }, 1000);
+//                 localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+//             }
+//         }
+//     }else{
+//       const currentTime = Date.now();
+//       const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
+//       // if (timeSinceLastVisit >= (3000)) {
+//       if (timeSinceLastVisit >= (24*60*60*1000)) {
+//           setTimeout(() => {
+//               setFirstModalShow(true);
+//           }, 1000);
+//           localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+//       }
+//     }
+// }, [firstModalShow]);
+
+
+useEffect(() => {
+  const visited = localStorage.getItem('visited');
+  const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
+  const currentTime = Date.now();
+
+  if (!visited) {
+    // First visit
+    localStorage.setItem('visited', 'true');
+    localStorage.setItem('lastVisitTimestamp', currentTime.toString());
+    
+      setFirstModalShow(true);
+    
+  } else {
+    // Returning visit
+    const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
+
+    if (timeSinceLastVisit >=(24*60*60*1000)) {
+      // Show popup if the time since the last visit is greater than 24 hours
+      setFirstModalShow(true);
+
+      // Update last visit timestamp to the current time
+      localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     }
-}, [firstModalShow]);
+    // No need to show the popup if the time since the last visit is less than 24 hours
+  }
+}, [router.pathname]); 
 
 
-  
-
-  // useEffect(() => {
-  //   const visited = localStorage.getItem('visited');
-  //   const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-  //   console.log("visited --", visited);
-  
-  //   if (!visited) {
-    
-  //     localStorage.setItem('lastVisitTimestamp', Date.now().toString());
-  //     setTimeout(() => {
-  //       setFirstModalShow(true);
-  //       localStorage.setItem('visited', 'true');
-  //     }, 3000);
-  //   } else {
-      
-  //     const currentTime = Date.now();
-  //     const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
-  
-  //     // if (timeSinceLastVisit >= (24 * 60 * 60 * 1000)) {
-  //       if (timeSinceLastVisit >= (5000)) {
-  //       setTimeout(() => {
-  //         setFirstModalShow(true);
-  //       }, 3000);
-  
-  //       localStorage.setItem('lastVisitTimestamp', currentTime.toString())
-  //     }
-  //   }
-  // }, [firstModalShow]);
-  
   
 
 
