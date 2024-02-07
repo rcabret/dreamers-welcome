@@ -157,6 +157,7 @@ export default Index
 
 export async function getStaticProps() {
     const rawData = await getHomepage('northcarolina')
+    console.log("rewdata---",rawData)
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
     return {

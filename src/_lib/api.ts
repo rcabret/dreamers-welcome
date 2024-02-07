@@ -28,6 +28,7 @@ export const getLandingpage = async () => {
 
 }
 
+
 export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
@@ -36,9 +37,12 @@ export const getHomepage = async (url: string) => {
         include: 1,
     })
     if (entries.items) {
+        console.log("entries---", entries.items[0].fields)
         return entries.items[0].fields
     }
 }
+
+console.log("in the lib ---",getHomepage )
 
 export const getStaysForHomepage = async (url: string) => {
     const entries = await client.getEntries({
