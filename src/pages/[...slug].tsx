@@ -205,7 +205,7 @@ const Property = ({
 
     
     
-    
+    console.log("property name ---------",propertyName)
     return (
         <>
             <Head>

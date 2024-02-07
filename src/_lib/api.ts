@@ -1,6 +1,7 @@
+
 import { log } from 'console'
 import { pathToBucket } from '../_utils/Parsers'
-export {}
+
 
 const client = require('contentful').createClient({
     space: process.env.NEXT_PUBLIC_CONTENTFUL_SPACE_ID,
@@ -37,12 +38,13 @@ export const getHomepage = async (url: string) => {
         include: 1,
     })
     if (entries.items) {
-        console.log("entries---", entries.items[0].fields)
+    
         return entries.items[0].fields
     }
 }
 
-console.log("in the lib ---",getHomepage )
+
+
 
 export const getStaysForHomepage = async (url: string) => {
     const entries = await client.getEntries({
@@ -68,6 +70,20 @@ export const getProperty = async (slug: string) => {
         return entries.items[0]?.fields
     }
 }
+
+export const getMetaData = async () => {
+    
+    const entries = await client.getEntries({
+        content_type: 'metaData',
+        select: 'fields.metaTitleField,fields.metaDescriptionField',
+        include: 2,
+    })
+    if (entries.items) {
+        return entries.items[0]?.fields
+    }
+}
+
+
 
 export const getRestOfPropertyData = async (slug: string) => {
     const entries = await client.getEntries({
