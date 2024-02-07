@@ -129,7 +129,7 @@ useEffect(() => {
   return (
     <>
       <Head>
-        <title>Dreamers Welcomeeeeee</title>
+        <title>Dreamers Welcome</title>
       
         <script
           async
