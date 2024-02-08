@@ -56,41 +56,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
 
-//   useEffect(() => {
 
-//     const visited = localStorage.getItem('visited');
-//     const lastVisitTimestamp = localStorage.getItem('lastVisitTimestamp');
-    
-//     if (visited !== 'true') {
-//         if (!lastVisitTimestamp) {
-//             localStorage.setItem('lastVisitTimestamp', Date.now().toString());
-//             setTimeout(() => {
-//                 setFirstModalShow(true);
-//             }, 1000);
-             
-//         } else {
-//             const currentTime = Date.now();
-//             const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
-//             // if (timeSinceLastVisit >= (3000)) {
-//             if (timeSinceLastVisit >= (24*60*60*1000)) {
-//                 setTimeout(() => {
-//                     setFirstModalShow(true);
-//                 }, 1000);
-//                 localStorage.setItem('lastVisitTimestamp', currentTime.toString());
-//             }
-//         }
-//     }else{
-//       const currentTime = Date.now();
-//       const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
-//       // if (timeSinceLastVisit >= (3000)) {
-//       if (timeSinceLastVisit >= (24*60*60*1000)) {
-//           setTimeout(() => {
-//               setFirstModalShow(true);
-//           }, 1000);
-//           localStorage.setItem('lastVisitTimestamp', currentTime.toString());
-//       }
-//     }
-// }, [firstModalShow]);
 
 
 useEffect(() => {
@@ -121,7 +87,6 @@ useEffect(() => {
 }, [router.pathname]); 
 
 
-  
 
 
  console.log("test")
@@ -130,7 +95,6 @@ useEffect(() => {
     <>
       <Head>
         <title>Dreamers Welcome</title>
-      
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}
@@ -147,7 +111,7 @@ useEffect(() => {
             `,
           }}
         />
-         <script
+        <script
     defer
     src="https://connect.podium.com/widget.js#ORG_TOKEN=645e6556-2a95-4ca0-b4a9-4ada9de5ddf7"
     id="podium-widget"
