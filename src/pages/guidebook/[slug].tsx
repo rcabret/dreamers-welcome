@@ -29,6 +29,7 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
         setHeaderData({
             bucket: bucket[0],
         })
+
     }, [])
 
     return (
@@ -85,7 +86,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
         },
     }
 }
-
+  console.log("here in guidebook---------")
 export async function getStaticPaths() {
     const guides = await getGuides()
     const paths: any = []

@@ -7,6 +7,7 @@ import { getExperiences, getExperiencesPage } from '../../_lib/api'
 import ExperienceItem from '../../_components/ExperienceItem'
 import safeJsonStringify from 'safe-json-stringify'
 import { pathToBucket } from '../../_utils/Parsers'
+import Head from 'next/head'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -33,11 +34,15 @@ const Experiences = ({
     setNavTheme,
     setHeaderData,
 }: any) => {
+    const [property,setProperty]= useState("")
     const router = useRouter()
+
     useEffect(() => {
         setNavTheme('dark')
 
         const slug = router.query.slug as string
+        console.log("in the experiences -------",slug)
+        setProperty(slug)
         setHeaderData({
             bucket: pathToBucket(slug || ''),
             simpleNav: false,
@@ -45,6 +50,7 @@ const Experiences = ({
         })
     }, [])
     const { blurb } = experiencesPage
+    
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
     )
@@ -77,7 +83,31 @@ const Experiences = ({
     useEffect(() => { }, [activeExperiences])
     return (
         <>
+        <Head>
+                <title>
+                    {property === 'puertorico'
+                        ? 'Experience in San Juan, PR | Dreamers Welcome'
+                        : 'Experiences in Wilmington, NC | Dreamers Welcome'}
+                </title>
+                <meta
+                    name="description"
+                    content={
+                        property === 'puertorico'
+                            ? 'Take advantage of amenities and daily/weekly events in your vacation location of choice. Explore tailored and authentic activities and make the most of your stay.'
+                            : 'Take advantage of amenities and daily/weekly events in your vacation location of choice. Explore tailored and authentic activities and make the most of your stay.'
+                    }
+                />
+                  <link
+                    rel="canonical"
+                    href={
+                        property === 'puertorico'
+                            ? 'https://www.dreamerswelcome.com/experiences/puertorico'
+                            : 'https://www.dreamerswelcome.com/experiences/northcarolina'
+                    }
+                />
+            </Head>
             <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
+
             <SubNavigation
                 activeSlug={activeSlug}
                 data={links}

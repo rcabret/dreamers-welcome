@@ -169,48 +169,106 @@ const Property = ({
 
    
 
-    // @ts-ignore
-    
-
-    // useEffect(() => {
-    //     const a = router.query.slug as string[];
-    //     let viewToShow: string | undefined;
-    
-    //     if (Array.isArray(a) && a.length > 1) {
-    //         viewToShow = a.pop();
-    //     } else {
-    //         // If type is Hotel show Suites as default route
-    //         viewToShow = pType === 'Hotel' ? 'suites' : (Array.isArray(suites) ? suites[0]?.fields.slug : undefined);
-    //     }
-    
-    //     // set slug
-    //     // @ts-ignore
-    //     setSlug(viewToShow);
-    
-    //     let finalView;
-    
-    //     if (pType === 'Hotel') {
-    //         finalView = getHotelView(viewToShow);
-    //     } else {
-    //         finalView =
-    //             Array.isArray(suites) &&
-    //             suites.length &&
-    //             suites.find((x: any) => x.fields.slug === viewToShow);
-    //     }
-    
-    //     setView(finalView);
-    // }, [router.query]);
 
 
+    const policyLinks = {
+        apt: {
+            link: 'https://www.dreamerswelcome.com/apt',
+            description: 'Explore these luxurious 8 vacation rentals nestled just three blocks from the beach in Puerto Rico’s colorful Santurce.',
+            title:'APT by DW | Laidback Luxury Vacation Rentals in San Juan'
+        },
+        "casa frida": {
+            link: 'https://www.dreamerswelcome.com/casa-frida',
+            description: 'Reach out to us for any queries or questions you may have relating to your next stay with Dreamers Welcome, by using the contact details provided.',
+            title:"APT by DW | Laidback Luxury Vacation Rentals in San Juan"
+        },
+        "dada jaja": {
+            link: 'https://www.dreamerswelcome.com/dadajaja',
+            description: 'Explore our four avant-garde self-check-in, beachside apartments that’ll draw you back to buzzy Santurce every weekend.',
+            title:"DaDa JaJa by DW | Laidback Luxury Vacation Rentals in San Juan"
+        },
+        "dreamcatcher":{
+            link: 'https://www.dreamerswelcome.com/dreamcatcher',
+            description: 'Explore Dreamcatcher, a multi-award winning full-service boutique hotel just a block from the beach and ten minutes by car to historic Old San Juan, Puerto Rico.',
+            title:"Dreamcatcher by DW | Boutique Vegetarian Hotel Located in San Juan"
+        },
+        "dreamers":{
+            link: 'https://www.dreamerswelcome.com/dreamers-nc',
+            description: 'Explore this boutique hotel in the center of historic downtown Wilmington, North Carolina.',
+            title:"Dreamers By DW | Boutique Hotel Located in Wilmington, NC"
+        },
+        "drift away":{
+            link: 'https://www.dreamerswelcome.com/drift-away',
+            description: 'Explore this laidback luxury 3 bedroom 1 bath vacation house rental in Wilmington, North Carolina.',
+            title:"Drift Away by DW | Laidback Luxury Vacation House Rental in Sunset Park"
+        },
+        "duna":{
+            link: 'https://www.dreamerswelcome.com/duna',
+            description: 'Explore our self check-in laidback luxury vacation rental apartments with a salt-water pool, spacious yard, unexpected florals and a brave design.',
+            title:"Duna by DW | Laidback Luxury Vacation Rentals Located in San Juan"
+        },
+        "mood haus":{
+            link: 'https://www.dreamerswelcome.com/moodhaus',
+            description: 'Four unique stays inspire with bold 70s design and retro-vintage details. These laidback luxury apartments feature outdoor terraces, full kitchens, and beach access.',
+            title:"Mood Haus by DW | Laidback Luxury Retro Apartments in San Juan"
+        },
+        "noa":{
+            link: 'https://www.dreamerswelcome.com/noa',
+            description: 'Three modern vintage-inspired self-check-in beachside apartments blend playful natural light and touches of tropical nostalgia to create extraordinary experiences.',
+            title:"Noa by DW | Laidback Luxury Vacation Rental Apartments in San Juan"
+        },
+        "paz":{
+            link: 'https://www.dreamerswelcome.com/paz',
+            description: 'Oversized airy beachside studio lofts bring an urban attitude to the tropics while the floor-to-ceiling windows invite the outdoors inside, creating a vibrant and organic atmosphere.',
+            title:"Paz by DW | Laidback Luxury Vacation Rental Apartments in San Juan"
+        },
+        "rosa":{
+            link: 'https://www.dreamerswelcome.com/rosa',
+            description: 'Stunning and eclectic designer lofts ooze ambiance and comfort, located in San Juan. Self-check-in apartments with spa-worthy outdoor baths.',
+            title:"Rosa by DW | Laidback Luxury Vacation Rental Apartments in San Juan"
+        },
+        "selva":{
+            link: 'https://www.dreamerswelcome.com/selva',
+            description: 'Laid-back luxury sprawled between a saltwater pool and seven acres of El Yunque’s emerald rainforest.',
+            title:"Selva by DW | Laidback Luxury Vacation House Rental in Luqillo"
+        },
+        "tropicalia":{
+            link: 'https://www.dreamerswelcome.com/tropicalia',
+            description: 'Four elegant self-check-in apartments tucked between Santurce’s vibrant art scene and the beach.Enjoy your San Juan stay in luxury with private outdoor spaces and beachside views.',
+            title:"Tropicalla by DW | Laidback Luxury Vacation Rental Apartment in Santurce"
+        },
+        "verde":{
+            link: 'https://www.dreamerswelcome.com/verde',
+            description: 'Four minimalist and vintage-styled self-check-in apartments with private outdoor spaces.',
+            title:"Verde by DW | Laidback Luxury Vacation Rental Apartments in San Juan"
+        },
+        "wald haus":{
+            link: 'https://www.dreamerswelcome.com/waldhaus',
+            description: '4 bed · 3.5 bath Vacation house rental with ocean view nestled in Naguabo rainforest. ',
+            title:"Wald Hause by DW | Laidback Luxury Vacation House Rental in Rainforest"
+        },
+      
 
+    };
+    
+    // Convert propertyName to lowercase and replace spaces with underscores to match the object keys
+    const formattedPropertyName = propertyName.toLowerCase().replace(/\s/g, '_');
+    const policyInfo = policyLinks[formattedPropertyName] || { link: '', description: '' };
+
+    
     
     
     console.log("property name ---------",propertyName)
+
+
+
     return (
         <>
             <Head>
-                <title>{propertyName} by DW</title>
-                <meta property="og:title" content={`${propertyName} by DW`} />
+            <title>{policyInfo.title}</title>
+            <meta name="description" content={policyInfo.description} />
+            <link rel="canonical" href={policyInfo.link} />
+            <meta property="og:title" content={`${propertyName} by DW`} />
                 <meta
                     property="og:description"
                     content={`${propertyType[0]} in ${location}, ${bucket[0]}`}

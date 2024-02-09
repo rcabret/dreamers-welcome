@@ -17,6 +17,7 @@ import { ConceptTextContainer, StaffMetadata } from '../../styles/about/styles'
 import { parseMoneyOrTime } from '../../_utils/Parsers'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
+import Head from 'next/head'
 
 const About = ({ about, setHeaderData, setNavTheme }: any) => {
     const {
@@ -36,6 +37,11 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
     }, [])
     return (
         <>
+          <Head>
+                <title>About Dreamers Welcome | Boutique Hotels & Laidback Luxury Vacation Rentals</title>
+                <meta name="description" content="With over 60 laidback luxury vacation rentals stretching from Puerto Rico to North Carolina, Dreamers Welcome is an LGBTQIA-owned hospitality group with progressive amenities." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/about" />
+            </Head>
             <BannerGridImage
                 imageObj={bannerImage}
                 mobileImageObj={mobileBannerImage}

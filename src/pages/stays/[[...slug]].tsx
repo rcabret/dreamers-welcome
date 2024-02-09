@@ -121,8 +121,10 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
 
     return (
         <>
-            <Head>
-                <title>Stays | Dreamers Welcome</title>
+          <Head>
+                <title>Laidback Luxury Vacation Rentals & Boutique Hotels in Puerto Rico & NC, USA</title>
+                <meta name="description" content="Indulge in our laidback luxury vacation rentals & designer hotels with progressive amenities, vegan-forward cuisine, and access to authentic local experiences." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/stays" />
             </Head>
             <Blurb text={_blurb} eyebrow="STAYS" fullHeight />
             <Content padding>

@@ -40,12 +40,14 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const breakpoint = useContext(viewportContext)
 
     useEffect(() => {
+      
         setNavTheme('light')
         setHeaderData({
             bucket: bucket[0],
         })
     }, [])
-
+ 
+   
     return (
         <>
             <Head>
@@ -56,6 +58,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
                     property="og:image"
                     content={`https:${bannerImage.fields.file.url}?w=700`}
                 />
+                
             </Head>
             <BannerGridImage
                 imageObj={bannerImage}
@@ -169,7 +172,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getExperience(context.params.slug)
     const stringData = safeJsonStringify(rawData)
     const experience = JSON.parse(stringData)
-
+    
     return {
         props: {
             experience,
@@ -179,6 +182,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 
 export async function getStaticPaths() {
     const experience = await getExperiences()
+   
     const paths: any = []
     experience.forEach((x: { fields: { slug: string } }) => {
         const { slug } = x.fields

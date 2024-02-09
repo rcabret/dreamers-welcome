@@ -64,6 +64,7 @@ const News = ({
     useEffect(() => {
         setNavTheme('dark')
         const slug = router.query.slug as string
+       
         const bucket = localStorage.getItem('bucket')
         setHeaderData({
             bucket: bucket,
@@ -114,9 +115,11 @@ const News = ({
 
     return (
         <>
-            <Head>
-                <title>News | Dreamers Welcome</title>
-            </Head>
+              <Head>
+        <title>News | Dreamers Welcome</title>
+        <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
+        <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
+    </Head>
             {/* <Content padding> */}
             <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
                 {...inspectorProps({

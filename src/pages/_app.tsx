@@ -87,14 +87,16 @@ useEffect(() => {
 }, [router.pathname]); 
 
 
-
-
  console.log("test")
 
   return (
     <>
       <Head>
-        <title>Dreamers Welcome</title>
+      
+                <title>Boutique Hotels & Laidback Luxury Vacation Rentals| Dreamers Welcome</title>
+                <meta name="description" content="From Puerto Rico to North Carolina, every DW luxury vacation rental was designed by creatives and hospitality gurus sharing one beautiful common priority: you." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/" />
+         
         <script
           async
           src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsID}`}

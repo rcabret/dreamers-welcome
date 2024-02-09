@@ -18,6 +18,7 @@ import {
 import Chevron from '../../_components/UI/Icons/Chevron'
 import safeJsonStringify from 'safe-json-stringify'
 import { sendConversionEvent } from '../api/fbConversionApi';
+import Head from  'next/head'
 
 async function generateSHA256Hash(input: string): Promise<string> {
     let hash = '';
@@ -132,6 +133,12 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
 
     // @ts-ignore
     return (
+        <>    
+        <Head>
+        <title>Contact Us | Dreamers Welcome</title>
+        <meta name="description" content="Reach out to us for any queries or questions you may have relating to your next stay with Dreamers Welcome, by using the contact details provided." />
+        <link rel="canonical" href="https://www.dreamerswelcome.com/contact"/>
+    </Head>
         <Content padding>
             <div style={{ margin: '0 15px' }}>
                 {!submitted ? (
@@ -217,6 +224,7 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
                 )}
             </div>
         </Content>
+        </>
     )
 }
 

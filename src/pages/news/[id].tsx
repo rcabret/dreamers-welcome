@@ -104,11 +104,12 @@ const NewsItemDetails = ({
   const [activeNews, setActiveNews] = useState<any[]>([
     ..._news,
   ])
-
+  
   useEffect(() => {
     const queryTag = (router.query.type as string)
     // @ts-ignore
     setSlug(queryTag)
+   
 
     const checkForTags = (tags: any[], slug: string) => {
 

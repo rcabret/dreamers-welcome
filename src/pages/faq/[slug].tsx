@@ -5,6 +5,7 @@ import CollapsableList from '../../_components/UI/CollapsableList'
 import Dropdown from '../../_components/UI/Dropdown'
 import { getFaq, getFaqPage, getFaqs } from '../../_lib/api'
 import Blurb from '../../_components/UI/Blurb'
+import Head from 'next/head'
 
 const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
     const { list } = faq
@@ -14,6 +15,12 @@ const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
     }, [])
 
     return (
+        <>
+          <Head>
+                <title>Frequently Asked Questions | Dreamers Welcome</title>
+                <meta name="description" content="Browse through frequently asked questions of all the Dreamers Welcome properties that provide you will all the information at a glance." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/faq/general"/>
+            </Head>
         <Content padding>
             <Blurb text={faqPage.blurb} eyebrow="FAQs" />
             <Block
@@ -29,6 +36,7 @@ const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
                 content={<CollapsableList data={list} />}
             />
         </Content>
+        </>
     )
 }
 

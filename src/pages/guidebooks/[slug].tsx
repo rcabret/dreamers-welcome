@@ -7,6 +7,7 @@ import { GridModule, GridWrapper } from '../../styles/global'
 import { useRouter } from 'next/router'
 import GuideItem from '../../_components/GuideItem'
 import { pathToBucket } from '../../_utils/Parsers'
+import Head from 'next/head'
 
 const links: { name: string; slug: string }[] = [
     {
@@ -34,7 +35,7 @@ const GuideBooks = ({
     setHeaderData,
 }: any) => {
     const router = useRouter()
-
+    const [property,setproperty]=useState('')
     const [activeSlug, setSlug] = useState<string>(
         (router.query.type as string) || 'view_all'
     )
@@ -44,6 +45,8 @@ const GuideBooks = ({
         setNavTheme('dark')
 
         const slug = router.query.slug as string
+        setproperty(slug)
+        
         // if (router.asPath.includes('/puertorico')) {
         //     setHeaderData({
         //         bucket: 'Puerto Rico',
@@ -72,6 +75,9 @@ const GuideBooks = ({
         })
     }, [])
 
+    console.log("here in guidebooks---------",property)
+
+
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
         // @ts-ignore
@@ -96,6 +102,30 @@ const GuideBooks = ({
 
     return (
         <>
+          
+          <Head>
+                <title>
+                    {property === 'northcarolina'
+                        ? 'North Carolina Guidebooks | Dreamers Welcome'
+                        : 'Puerto Rico Guidebooks | Dreamers Welcome'}
+                </title>
+                <meta
+                    name="description"
+                    content={
+                        property === 'northcarolina'
+                            ? 'Immerse yourself in our North Carolina designer hotel & laidback luxury vacation rentals. Our detailed guidebooks will walk you through North Carolina stunning landscape'
+                            : 'Immerse yourself in our Puerto Rican designer hotel & laidback luxury vacation rentals. Our detailed guidebooks will walk you through Puerto Rico rich culture.'
+                    }
+                />
+                  <link
+                    rel="canonical"
+                    href={
+                        property === 'northcarolina'
+                            ? 'https://www.dreamerswelcome.com/guidebooks/northcarolina'
+                            : 'https://www.dreamerswelcome.com/guidebooks/puertorico'
+                    }
+                />
+            </Head>
             <Blurb text={guidesPage.blurb} eyebrow="GUIDEBOOKS" fullHeight />
             {activeGuides && activeGuides.length ? (
                 <SubNavigation
@@ -143,3 +173,4 @@ export async function getStaticPaths(context: { params: { slug: string } }) {
         fallback: false,
     }
 }
+

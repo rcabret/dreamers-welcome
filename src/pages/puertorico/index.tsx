@@ -16,6 +16,7 @@ import NewsItem from '../../_components/NewsItem'
 import safeJsonStringify from 'safe-json-stringify'
 import dynamic from 'next/dynamic'
 import PropertyGridItem from '../../_components/PropertyGridItem'
+import Head from 'next/head'
 
 const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'))
  
@@ -64,8 +65,14 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         }
         getStays()
     }, [])
+    
     return (
         <>
+          <Head>
+                <title>Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW</title>
+                <meta name="description" content="Puerto Rico’s sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/puertorico" />
+            </Head>
             <BannerGridImage
                 imageObj={coverImage}
                 mobileImageObj={mobileCoverImage}

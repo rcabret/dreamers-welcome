@@ -15,6 +15,7 @@ import ExperienceItem from '../../_components/ExperienceItem'
 import PropertyGridItem from '../../_components/PropertyGridItem'
 import NewsItem from '../../_components/NewsItem'
 import safeJsonStringify from 'safe-json-stringify'
+import Head from 'next/head'
 
 const StaysSwiperWrap = styled.div`
     margin-top: ${rem(20)};
@@ -53,8 +54,14 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
         getStays()
     }, [])
 
+   
     return (
         <>
+              <Head>
+                <title>Laidback Luxury Vacation Rental & Boutique Hotel in North Carolina | DW</title>
+                <meta name="description" content="Cozy corners just a drift away from the beach. Cobalt walls. Floral chandeliers. Hammock swings and swaying Spanish moss. Dream your way to North Carolina." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/northcarolina" />
+            </Head>
             <BannerGridImage
                 imageObj={coverImage}
                 mobileImageObj={mobileCoverImage}
