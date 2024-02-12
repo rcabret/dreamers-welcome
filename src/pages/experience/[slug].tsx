@@ -131,15 +131,15 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
             description: 'Ground yourself with a yoga class, taught by our professional and friendly yoga instructors.',
             title:"Yoga Classes in Wilmington | Dreamers by DW"
         },
-
     }
 
 
     const formattedPropertyName = slug.toLowerCase().replace(/\s/g, '_');
-    console.log("formatted property--",formattedPropertyName)
-    const policyInfo = policyLinksObj[formattedPropertyName] || { link: '', description: '',title:''};
     
-    console.log("policy info ---",policyInfo)
+
+    const policyInfo = policyLinksObj[formattedPropertyName] || { link: '', description: '',title:''};
+
+    
 
 
 
