@@ -177,12 +177,12 @@ const Property = ({
             description: 'Explore these luxurious 8 vacation rentals nestled just three blocks from the beach in Puerto Rico’s colorful Santurce.',
             title:'APT by DW | Laidback Luxury Vacation Rentals in San Juan'
         },
-        "casa frida": {
+        "casa_frida": {
             link: 'https://www.dreamerswelcome.com/casa-frida',
             description: 'Reach out to us for any queries or questions you may have relating to your next stay with Dreamers Welcome, by using the contact details provided.',
-            title:"APT by DW | Laidback Luxury Vacation Rentals in San Juan"
+            title:"Casa Frida by DW | Laidback Luxury Vacation House Rental in San Juan"
         },
-        "dada jaja": {
+        "dada_jaja": {
             link: 'https://www.dreamerswelcome.com/dadajaja',
             description: 'Explore our four avant-garde self-check-in, beachside apartments that’ll draw you back to buzzy Santurce every weekend.',
             title:"DaDa JaJa by DW | Laidback Luxury Vacation Rentals in San Juan"
@@ -197,7 +197,7 @@ const Property = ({
             description: 'Explore this boutique hotel in the center of historic downtown Wilmington, North Carolina.',
             title:"Dreamers By DW | Boutique Hotel Located in Wilmington, NC"
         },
-        "drift away":{
+        "drift_away":{
             link: 'https://www.dreamerswelcome.com/drift-away',
             description: 'Explore this laidback luxury 3 bedroom 1 bath vacation house rental in Wilmington, North Carolina.',
             title:"Drift Away by DW | Laidback Luxury Vacation House Rental in Sunset Park"
@@ -207,7 +207,7 @@ const Property = ({
             description: 'Explore our self check-in laidback luxury vacation rental apartments with a salt-water pool, spacious yard, unexpected florals and a brave design.',
             title:"Duna by DW | Laidback Luxury Vacation Rentals Located in San Juan"
         },
-        "mood haus":{
+        "mood_haus":{
             link: 'https://www.dreamerswelcome.com/moodhaus',
             description: 'Four unique stays inspire with bold 70s design and retro-vintage details. These laidback luxury apartments feature outdoor terraces, full kitchens, and beach access.',
             title:"Mood Haus by DW | Laidback Luxury Retro Apartments in San Juan"
@@ -242,24 +242,23 @@ const Property = ({
             description: 'Four minimalist and vintage-styled self-check-in apartments with private outdoor spaces.',
             title:"Verde by DW | Laidback Luxury Vacation Rental Apartments in San Juan"
         },
-        "wald haus":{
+        "wald_haus":{
             link: 'https://www.dreamerswelcome.com/waldhaus',
             description: '4 bed · 3.5 bath Vacation house rental with ocean view nestled in Naguabo rainforest. ',
             title:"Wald Hause by DW | Laidback Luxury Vacation House Rental in Rainforest"
         },
-      
-
     };
     
     // Convert propertyName to lowercase and replace spaces with underscores to match the object keys
     const formattedPropertyName = propertyName.toLowerCase().replace(/\s/g, '_');
-    const policyInfo = policyLinks[formattedPropertyName] || { link: '', description: '' };
+    const policyInfo = policyLinks[formattedPropertyName] || { link: '', description: '',title:'' };
 
     
     
     
     console.log("property name ---------",propertyName)
-
+    
+    
 
 
     return (
@@ -516,7 +515,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getProperty(context.params.slug[0])
     const stringData = safeJsonStringify(rawData)
     const propertyResponse = JSON.parse(stringData)
-    console.log("property response--->",propertyResponse)
+  
     return {
         props: {
             propertyResponse,

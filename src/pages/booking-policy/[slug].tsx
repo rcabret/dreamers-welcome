@@ -37,8 +37,12 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
     
     
  console.log("booking policy---",policy.slug)
+
  let str = policy.slug
  let modStr = str[0].toUpperCase() + str.slice(1);
+
+ console.log("modefied string ----",modStr)
+ console.log("modified link-----",canonicalLink)
 
     return (    
         <>   
@@ -46,7 +50,7 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
                 <title>{modStr} Booking Policy | Dreamers Welcome</title>
                 <meta
                     name="description"
-                    content={`Learn about our cancellation, modification, and refund procedures, designed to accommodate your needs. Plan your dream getaway with confidence at Dreamers Welcome.`}
+                    content="Learn about our cancellation, modification, and refund procedures, designed to accommodate your needs. Plan your dream getaway with confidence at Dreamers Welcome."
                 />
                 <link
                     rel="canonical"

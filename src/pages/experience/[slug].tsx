@@ -24,6 +24,7 @@ import Head from 'next/head'
 
 const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     const {
+        slug,
         bannerImage,
         mobileBannerImage,
         title,
@@ -47,11 +48,107 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         })
     }, [])
  
-   
+
+
+    const policyLinksObj = {
+        "breakfast": {
+            link: 'https://www.dreamerswelcome.com/experience/breakfast',
+            description: 'Join us for our popular plant-based breakfast & brunch served everyday from 8 AM to 1 PM at Dreamcatcher by DW.',
+            title:"Vegetarian Breakfast & Brunch | Dreamcatcher by DW "
+        },
+        "breakfastnc": {
+            link: 'https://www.dreamerswelcome.com/experience/breakfastnc',
+            description: 'Join us for our popular plant-based breakfast & brunch served everyday from 8 AM to 1 PM at Dreamcatcher by DW.',
+            title:"Vegan Breakfast | Dreamers Welcome"
+        },
+        "dinner":{
+            link: 'https://www.dreamerswelcome.com/experience/dinner',
+            description: 'Join us on a culinary journey every Friday from 6 PM to 9 PM at Dreamcatcher by DW and indulge in our inspired four-course prix fixe vegetarian and vegan dinners.',
+            title:"Vegetarian Dinner | Dreamcatcher by DW"
+        },
+        "epicexcursionsnc":{
+            link: 'https://www.dreamerswelcome.com/experience/epicexcursionsnc',
+            description: 'Explore Epic Excursions with private boat charters, eco and dolphin boat tours, Masonboro Island and Lea Island tours, and much more.',
+            title:"Epic North Carolina Excursions | Dreamers by DW"
+        },
+        "massages":{
+            link: 'https://www.dreamerswelcome.com/experience/massages',
+            description: 'Take advantage of our Swedish, Thai, and deep-tissue massage offerings via private or couple massage packages in San Juan.',
+            title:"In-Room Private Massages in San Juan | Dreamers Welcome"
+        },
+        "massagesnc":{
+            link: 'https://www.dreamerswelcome.com/experience/massagesnc',
+            description: 'Explore our Swedish or deep-tissue private massages located in Wilmington, North Carolina.',
+            title:"In-Room Private Massages in North Carolina | Dreamers Welcome"
+        },
+        "photo":{
+            link: 'https://www.dreamerswelcome.com/experience/photo',
+            description: 'Capture your picture-perfect vacation moments with Hector Javier, an international professional photographer.',
+            title:"Private Photoshoot in San Juan | Dreamers Welcome"
+        },
+        "rainforest":{
+            link: 'https://www.dreamerswelcome.com/experience/rainforest',
+            description: 'Follow steep rainforest trails to majestic waterfalls, pristine rock slides and unbelievable views in a hiking excursion through Puerto Ricos El Yunque',
+            title:"Rainforest Hiking in El Yunque, Puerto Rico | Dreamers Welcome"
+        },
+        "salsa":{
+            link: 'https://www.dreamerswelcome.com/experience/salsa',
+            description: 'This authentic, cultural, Latin dancing experience is perfect for couples or groups. Join us for dance lessons in San Juan.',
+            title:"San Juan Salsa Lessons & Latin Dancing | Dreamers Welcome"
+        },
+        "snorkel":{
+            link: 'https://www.dreamerswelcome.com/experience/snorkel',
+            description: 'Take a guided snorkeling adventure in the coral reefs of Escambron. Rich with tiny seahorses, sea turtles, octopus, and tropical fish.',
+            title:"San Juan Guided Snorkeling | Dreamers Welcome"
+        },
+        "spoon-tour":{
+            link: 'https://www.dreamerswelcome.com/experience/spoon-tour',
+            description: 'Take a food tour any day of the week with SPOON – a boutique, family-owned-and-operated business in Puerto Rico.',
+            title:"Food Tour in San Juan | Dreamers Welcome"
+        },
+        "surfing":{
+            link: 'https://www.dreamerswelcome.com/experience/surfing',
+            description: 'Whether you are a complete beginner or an experienced rider looking to refine your skills, our expert instructors are here to guide you every step of the way.',
+            title:"Surfing Lessons In San Juan | Dreamers Welcome"
+        },
+        "waterfall":{
+            link: 'https://www.dreamerswelcome.com/experience/waterfall',
+            description: 'A guided tour through the waterfalls of Gozalandia, less than two hours from San Juan, offering positive vibes, rope swings, secluded swimming holes, swimmable caves and more.',
+            title:"Gozalandia Waterfall Tour | Dreamers Welcome"
+        },
+        "yoga-beach":{
+            link: 'https://www.dreamerswelcome.com/experience/yoga-beach',
+            description: 'Ground yourself with our morning yoga classes, taught by our professional and friendly yoga instructors. These morning classes are given at Ocean Park Beach, just a block away from the Dreamcatcher.',
+            title:"Yoga on the Beach in San Juan | Dreamers Welcome"
+        },
+        "yoga-night":{
+            link: 'https://www.dreamerswelcome.com/experience/yoga-night',
+            description: 'Finish off the day with our night yoga classes. With our skillful yoga instructors, you’ll be able to decompress after spending all day at the beach, exploring Old San Juan, or trekking through the rainforest .',
+            title:"Night Yoca in San Juan | Dreamers Welcome"
+        },
+        "yoganc":{
+            link: 'https://www.dreamerswelcome.com/experience/yoganc',
+            description: 'Ground yourself with a yoga class, taught by our professional and friendly yoga instructors.',
+            title:"Yoga Classes in Wilmington | Dreamers by DW"
+        },
+
+    }
+
+
+    const formattedPropertyName = slug.toLowerCase().replace(/\s/g, '_');
+    console.log("formatted property--",formattedPropertyName)
+    const policyInfo = policyLinksObj[formattedPropertyName] || { link: '', description: '',title:''};
+    
+    console.log("policy info ---",policyInfo)
+
+
+
     return (
         <>
             <Head>
-                <title>{title} | Dreamers Welcome</title>
+            <title>{policyInfo.title}</title>
+            <meta name="description" content={policyInfo.description} />
+            <link rel="canonical" href={policyInfo.link} />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={blurb} />
                 <meta
