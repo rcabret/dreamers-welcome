@@ -28,8 +28,10 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
 
     };
      
-    const canonicalLink = policyLinks[(policy.slug).toLowerCase()] || '';
 
+   
+    const canonicalLink = policyLinks[(policy.slug).toLowerCase()] || '';
+    console.log("property in booking policy",canonicalLink)
 
     useEffect(() => {
         setNavTheme('dark')
@@ -41,8 +43,7 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
  let str = policy.slug
  let modStr = str[0].toUpperCase() + str.slice(1);
 
- console.log("modefied string ----",modStr)
- console.log("modified link-----",canonicalLink)
+
 
     return (    
         <>   
@@ -107,6 +108,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
         },
     }
 }
+
 
 export async function getStaticPaths() {
     const faqs = await getPolicies()

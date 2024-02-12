@@ -8,6 +8,7 @@ import BodyText from '../Typography/BodyText'
 const GuideItem = ({ data }: any) => {
     const { title, slug, tileImage, description } = data
 
+    
     return (
         <Link key={title} href={`/guidebook/${slug}`} passHref>
             <a>
