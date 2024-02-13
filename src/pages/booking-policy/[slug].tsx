@@ -25,10 +25,8 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
         tropicalia: 'https://www.dreamerswelcome.com/booking-policy/tropicalia',
         verde: 'https://www.dreamerswelcome.com/booking-policy/verde',
         waldhaus: 'https://www.dreamerswelcome.com/booking-policy/waldhaus',
-
     };
      
-
    
     const canonicalLink = policyLinks[(policy.slug).toLowerCase()] || '';
     console.log("property in booking policy",canonicalLink)
@@ -38,7 +36,7 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
     }, [])
     
     
- console.log("booking policy---",policy.slug)
+console.log("in the booking policy ----",policy.slug)
 
  let str = policy.slug
  let modStr = str[0].toUpperCase() + str.slice(1);
@@ -114,7 +112,7 @@ export async function getStaticPaths() {
     const faqs = await getPolicies()
     const paths: any = []
     faqs.forEach((x: { slug: string }) => {
-        paths.push({ params: { slug: x.slug } })
+        paths.push({ params: { slug: x.slug }})
     })
     return {
         // @ts-ignore

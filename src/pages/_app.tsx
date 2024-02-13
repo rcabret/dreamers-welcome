@@ -87,7 +87,7 @@ useEffect(() => {
 }, [router.pathname]); 
 
 
- console.log("test")
+ console.log("in th _app page")
 
   return (
     <>

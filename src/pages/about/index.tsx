@@ -35,6 +35,9 @@ const About = ({ about, setHeaderData, setNavTheme }: any) => {
     useEffect(() => {
         setNavTheme('light')
     }, [])
+    
+
+    console.log("in the about page ---")
     return (
         <>
           <Head>

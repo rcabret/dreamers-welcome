@@ -115,7 +115,7 @@ const News = ({
 
     return (
         <>
-              <Head>
+        <Head>
         <title>News | Dreamers Welcome</title>
         <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
         <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>

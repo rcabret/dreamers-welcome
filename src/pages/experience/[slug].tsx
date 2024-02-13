@@ -58,8 +58,8 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         },
         "breakfastnc": {
             link: 'https://www.dreamerswelcome.com/experience/breakfastnc',
-            description: 'Join us for our popular plant-based breakfast & brunch served everyday from 8 AM to 1 PM at Dreamcatcher by DW.',
-            title:"Vegan Breakfast | Dreamers Welcome"
+            description: 'Every morning, Dreamers by DW offers a complimentary vegan breakfast. Dishes are fresh, healthy, and ever-evolving with the creative whims of our talented chef.',
+            title:"Complimentary Vegan Breakfast | Dreamers by DW"
         },
         "dinner":{
             link: 'https://www.dreamerswelcome.com/experience/dinner',
@@ -124,7 +124,7 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
         "yoga-night":{
             link: 'https://www.dreamerswelcome.com/experience/yoga-night',
             description: 'Finish off the day with our night yoga classes. With our skillful yoga instructors, you’ll be able to decompress after spending all day at the beach, exploring Old San Juan, or trekking through the rainforest .',
-            title:"Night Yoca in San Juan | Dreamers Welcome"
+            title:"Night Yoga in San Juan | Dreamers Welcome"
         },
         "yoganc":{
             link: 'https://www.dreamerswelcome.com/experience/yoganc',

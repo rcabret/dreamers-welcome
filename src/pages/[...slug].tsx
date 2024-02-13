@@ -245,7 +245,7 @@ const Property = ({
         "wald_haus":{
             link: 'https://www.dreamerswelcome.com/waldhaus',
             description: '4 bed · 3.5 bath Vacation house rental with ocean view nestled in Naguabo rainforest. ',
-            title:"Wald Hause by DW | Laidback Luxury Vacation House Rental in Rainforest"
+            title:"Wald Haus by DW | Laidback Luxury Vacation House Rental in Rainforest"
         },
     };
     
@@ -256,7 +256,7 @@ const Property = ({
     
     
     
-    console.log("property name ---------",propertyName)
+    console.log("in the ...slug page,property name ---------",propertyName)
     
     
 
