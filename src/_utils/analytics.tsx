@@ -7,7 +7,7 @@ export const initializeGA = (trackingID: string) => {
   try {
   
     TagManager.initialize({ gtmId: "UA-252792304-1" });
-    console.log(`Google Analytics initialized with ID: ${"UA-252792304-1"}`);
+    // console.log(`Google Analytics initialized with ID: ${"UA-252792304-1"}`);
   } catch (error) {
     console.error('Error initializing Google Analytics:', error);
   }
