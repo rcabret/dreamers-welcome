@@ -179,7 +179,7 @@ const Property = ({
         },
         "casa_frida": {
             link: 'https://www.dreamerswelcome.com/casa-frida',
-            description: 'Reach out to us for any queries or questions you may have relating to your next stay with Dreamers Welcome, by using the contact details provided.',
+            description: 'Explore our laidback luxury vacation house rental in San Juan. This mid-century designed 3-bedroom home will fulfill your dream stay in Puerto Rico.',
             title:"Casa Frida by DW | Laidback Luxury Vacation House Rental in San Juan"
         },
         "dada_jaja": {

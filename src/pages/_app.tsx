@@ -40,6 +40,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   const [firstModalShow, setFirstModalShow] = useState(false);
   
 
+
+
+
   useEffect(() => {
     console.log("enterning useeffect 2 ")
     // Initialize Google Analytics
@@ -69,7 +72,7 @@ useEffect(() => {
     localStorage.setItem('visited', 'true');
     localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     
-      setFirstModalShow(true);
+    setFirstModalShow(true);
     
   } else {
     // Returning visit
@@ -119,7 +122,6 @@ useEffect(() => {
     id="podium-widget"
     data-organization-api-token="645e6556-2a95-4ca0-b4a9-4ada9de5ddf7"
   />
-     
         <link
                     rel="apple-touch-icon"
                     sizes="180x180"
