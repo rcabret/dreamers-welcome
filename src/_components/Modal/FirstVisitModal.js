@@ -17,7 +17,7 @@ const FirstVisitModal = ({ modalOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed flex items-center justify-center inset-0 z-50 ${
+      className={`join_us_modal fixed flex items-center justify-center inset-0 z-50 ${
         modalOpen ? '' : 'pointer-events-none'
       }`}
     >

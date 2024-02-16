@@ -7,6 +7,9 @@ import MarkdownModule from '../Typography/MarkdownModule'
 import { ConceptTextContainer } from '../../styles/about/styles'
 import CollapsableList from '../UI/CollapsableList'
 import { viewportContext } from '../../_utils/ViewportProvider'
+import { useState} from 'react'
+import Modal from './modal'
+
 
 interface SuiteProps {
     data: {
@@ -19,26 +22,73 @@ interface SuiteProps {
     propertySlug: string
     hideFirstSeparator?: boolean
 }
+
+
 const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
     if (data && !data.fields) {
         return null
     }
     const { fields } = data
     const { highlights, features, description } = fields
-
+ 
     const breakpoint = useContext(viewportContext)
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+     
+      const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
+
+    const filteredHighlights = highlights.filter(
+        (highlight: { fields: { highlightName: string } }) =>
+            highlight?.fields?.highlightName !== 'Floorplan'
+    )
+
+
+    const floorplanHighlight = highlights.filter(
+        (highlight: { fields: { highlightName: string } }) =>
+            highlight?.fields?.highlightName === 'Floorplan'
+    )
+    
+    
+    
+
+
 
     return (
         <>
             {description && (
-                <Block
+              <div className='overview_wrapper'>
+                  <Block
+                  
                     hideSeparator
                     title="OVERVIEW"
                     content={<MarkdownModule data={description} />}
                 />
+                 {floorplanHighlight?.length>0?
+             <button className='cmn_btn floor_plan' onClick={openModal}>Floorplan</button>:null}
+              </div>
             )}
-            {highlights && highlights.length
-                ? highlights.map((x: { fields: any }, i: number) => {
+            
+             <Modal isOpen={isModalOpen} onClose={closeModal}>
+                {floorplanHighlight && (
+                    <Highlight
+                        slug={propertySlug}
+                        title={floorplanHighlight[0]?.fields.highlightName}
+                        blurb={floorplanHighlight[0]?.fields.blurb}
+                        images={floorplanHighlight[0]?.fields.images}
+                    />
+                )}
+            </Modal>
+            {filteredHighlights && highlights.length
+                ? filteredHighlights.map((x: { fields: any }, i: number) => {
                       const { highlightName, blurb, images, slug } = x.fields
                       return (
                           // @ts-ignore

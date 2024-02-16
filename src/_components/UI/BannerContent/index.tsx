@@ -106,7 +106,7 @@ const BannerContent = ({
                 )}
             </BannerContentWrap>
             {bookNowLink && (
-                <StyledButton outsideLink href={bookNowLink}>
+                <StyledButton outsideLink href={bookNowLink} className='book_now'>
                     {ctaText}
                 </StyledButton>
             )}

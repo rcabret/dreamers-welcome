@@ -42,7 +42,7 @@ const Block = ({
                     </>
                 </Title>
             )}
-            <BlockContent showOverflow={showOverflow} fullWidth={fullWidth}>
+            <BlockContent className='spacing_bt' showOverflow={showOverflow} fullWidth={fullWidth}>
                 {content}
             {link && <p className='mobile_link'> <Link href={link}>VIEW ALL</Link></p>}
             </BlockContent>

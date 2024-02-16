@@ -7,6 +7,7 @@ import Block from '../../UI/Block'
 import { viewportContext } from '../../../_utils/ViewportProvider'
 import MarkdownModule from '../../Typography/MarkdownModule'
 
+
 interface HighlightProps {
     title: string
     blurb: string
@@ -36,10 +37,14 @@ const Highlight = ({
     }
 
     const [height, setHeight] = useState(getCarouselHeight())
+    
 
+
+    
     useEffect(() => {
         setHeight(getCarouselHeight())
     }, [breakpoint])
+
 
     return (
         <Block
@@ -50,7 +55,7 @@ const Highlight = ({
             noPaddingBottom
             content={
                 <>
-                    <SliderWrap>
+                    <SliderWrap className='slider_wrapper'>
                         <ImageGridSlider
                             fixedHeight={height}
                             slug={slug}

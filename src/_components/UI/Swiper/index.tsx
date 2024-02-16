@@ -104,7 +104,7 @@ class ImageGridSlider extends Component {
                 <StyledSwiper
                     loop={false}
                     spaceBetween={this.spaceBetween}
-                    freeMode
+                    // freeMode
                     grabCursor={true}
                     slidesPerView={this.slidesPer}
                     onSwiper={(swiper) => this.setState({ swiper: swiper })}
