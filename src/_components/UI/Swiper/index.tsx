@@ -89,7 +89,7 @@ class ImageGridSlider extends Component {
     render() {
         return (
             <>
-                <NavigationWrap className="navigation-wrap">
+              {  this.images.length > 1 && <NavigationWrap className="navigation-wrap">
                     <div onClick={() => this.prevSlide()}>
                         <svg viewBox="0 0 8 16">
                             <polyline points="0 0, 8 8, 0 16" />
@@ -100,7 +100,7 @@ class ImageGridSlider extends Component {
                             <polyline points="0 0, 8 8, 0 16" />
                         </svg>
                     </div>
-                </NavigationWrap>
+                </NavigationWrap>}
                 <StyledSwiper
                     loop={false}
                     spaceBetween={this.spaceBetween}

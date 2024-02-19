@@ -244,7 +244,7 @@ button.book_now {
     min-width: 121px;
     height: 48px;
     font-weight: bold;
-    bottom: 29px;
+    bottom: 31px;
 }
 // modal csss
 .modal-content {
@@ -304,10 +304,26 @@ button.cmn_btn.floor_plan {
 .overview_wrapper {
     position: relative;
     padding-top: 40px;
-    padding-bottom: 80px;
+    // padding-bottom: 80px;
 }
 .spacing_bt {
     padding-top: 75px;
+}
+.join_us_modal input {
+    padding-right: 60px;
+}
+.floor_images_carousal img {
+    height: 500px;
+    object-fit: cover;
+    margin: auto;
+}
+.floor_images_carousal .swiper {
+    border-radius: 50px;
+}
+.floor_images_carousal h4 {
+    font-size: 1.125rem;
+    font-weight: 400;
+    text-transform: uppercase;
 }
 // 
 @media(max-width:960px){
@@ -343,6 +359,9 @@ button.cmn_btn.floor_plan {
 }
 
 @media(max-width:767px){
+    .floor_images_carousal img {
+        height: 350px;
+    }
     .modal_styling{
         padding: 10px;
     }

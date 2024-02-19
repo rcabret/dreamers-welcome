@@ -9,7 +9,12 @@ import CollapsableList from '../UI/CollapsableList'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import { useState} from 'react'
 import Modal from './modal'
+import { Swiper, SwiperSlide } from 'swiper/react';
 
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Pagination } from 'swiper'
 
 interface SuiteProps {
     data: {
@@ -78,14 +83,35 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
             )}
             
              <Modal isOpen={isModalOpen} onClose={closeModal}>
-                {floorplanHighlight && (
+                {/* {floorplanHighlight && (
                     <Highlight
                         slug={propertySlug}
                         title={floorplanHighlight[0]?.fields.highlightName}
                         blurb={floorplanHighlight[0]?.fields.blurb}
                         images={floorplanHighlight[0]?.fields.images}
                     />
-                )}
+                )} */}
+            
+              <div className='floor_images_carousal'>
+                <h4>FLOORPLAN</h4>
+              <Swiper
+                        slidesPerView={1}
+                        spaceBetween={20}
+                        pagination={{
+                        clickable: true,
+                        }}
+                        modules={[Pagination]}
+                        className="mySwiper"
+                    >
+                        {floorplanHighlight?.map((element: string, index) => {
+                            return element?.fields?.images.map((images: string, imgIndex) => {
+                                return (
+                                    <SwiperSlide> <img key={index + '-' + imgIndex} src={images.fields.file.url} alt="floor images" /></SwiperSlide>
+                                );
+                            });
+                        })}
+               </Swiper>
+              </div>
             </Modal>
             {filteredHighlights && highlights.length
                 ? filteredHighlights.map((x: { fields: any }, i: number) => {

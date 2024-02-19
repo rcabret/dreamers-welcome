@@ -354,7 +354,7 @@ const Property = ({
                         </ImageSliderWrapper>
                     }
                 />
-            )}
+            )}  
 
             {features && (
                 <Block

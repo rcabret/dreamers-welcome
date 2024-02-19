@@ -78,6 +78,7 @@ useEffect(() => {
     // Returning visit
     const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
 
+    // if (timeSinceLastVisit >=(3000)) {
     if (timeSinceLastVisit >=(24*60*60*1000)) {
       // Show popup if the time since the last visit is greater than 24 hours
       setFirstModalShow(true);
