@@ -74,7 +74,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
    
 
     return (
-        <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)}>
+        <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)} className='subscribe'>
             <div>
                 <InputField
                     onChangeHandler={setEmail}
