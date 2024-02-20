@@ -71,8 +71,10 @@ useEffect(() => {
     // First visit
     localStorage.setItem('visited', 'true');
     localStorage.setItem('lastVisitTimestamp', currentTime.toString());
-    
-    setFirstModalShow(true);
+    setTimeout(() => {
+      setFirstModalShow(true);
+    }, 10000);
+   
     
   } else {
     // Returning visit
@@ -81,8 +83,10 @@ useEffect(() => {
     // if (timeSinceLastVisit >=(3000)) {
     if (timeSinceLastVisit >=(24*60*60*1000)) {
       // Show popup if the time since the last visit is greater than 24 hours
-      setFirstModalShow(true);
-
+      setTimeout(() => {
+        setFirstModalShow(true);
+      }, 10000);
+  
       // Update last visit timestamp to the current time
       localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     }
@@ -115,7 +119,7 @@ useEffect(() => {
                 page_path: '${router.pathname}', // Use router.pathname for the dynamic page path
               });
             `,
-          }}
+          }} 
         />
         <script
     defer
@@ -164,7 +168,7 @@ useEffect(() => {
                         'https://connect.facebook.net/en_US/fbevents.js');
                         fbq('init', '1594089821088907');
                         fbq('track', 'PageView');
-                    `
+                    ` 
                     }}
                 />
                 <noscript>

@@ -252,6 +252,7 @@ button.book_now {
     background: #fff;
     max-width: 680px;
     padding: 0px 30px;
+    width: 100%;
 }
 
 .modal-overlay {
@@ -298,7 +299,7 @@ button.cmn_btn.floor_plan {
     position: absolute;
     left: 25%;
     bottom: 30px;
-    margin-left: 20px;
+    margin-left: 30px;
 }
 
 .overview_wrapper {
@@ -313,7 +314,7 @@ button.cmn_btn.floor_plan {
     padding-right: 60px;
 }
 .floor_images_carousal img {
-    height: 500px;
+    height: 400px;
     object-fit: cover;
     margin: auto;
 }
@@ -325,6 +326,11 @@ button.cmn_btn.floor_plan {
     font-weight: 400;
     text-transform: uppercase;
 }
+//*************
+.modal-content{
+    padding-bottom: 30px;
+}
+
 // 
 @media(max-width:960px){
     button.cmn_btn.floor_plan {
@@ -353,6 +359,12 @@ button.cmn_btn.floor_plan {
         position: relative;
         top: -25px;
     }
+    .modal-content {
+        max-width: 550px;
+    }
+    .floor_images_carousal img {
+        height: 350px;
+    }
 //     .htmlText p, .htmlText a{
 //  line-height: 29px;
 //     } 
@@ -360,7 +372,7 @@ button.cmn_btn.floor_plan {
 
 @media(max-width:767px){
     .floor_images_carousal img {
-        height: 350px;
+        height: auto;
     }
     .modal_styling{
         padding: 10px;

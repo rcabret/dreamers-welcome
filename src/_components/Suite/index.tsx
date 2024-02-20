@@ -93,7 +93,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                 )} */}
             
               <div className='floor_images_carousal'>
-                <h4>FLOORPLAN</h4>
+              <h4>FLOORPLAN</h4>
               <Swiper
                         slidesPerView={1}
                         spaceBetween={20}
