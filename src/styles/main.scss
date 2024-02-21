@@ -343,9 +343,14 @@ button.cmn_btn.floor_plan {
     background: #000;
 }
 // 
-@media(max-width:1199px){
+@media(max-width:1399px){
     .modal-content {
         max-width: 500px;
+    }
+}
+@media(max-width:1199px){
+    .modal-content {
+        max-width: 480px;
     }
 }
 @media(max-width:960px){
@@ -375,21 +380,17 @@ button.cmn_btn.floor_plan {
         position: relative;
         top: -25px;
     }
-    .modal-content {
-        max-width: 550px;
-    }
-    .floor_images_carousal img {
-        height: 350px;
-    }
+
+    // .floor_images_carousal img {
+    //     height: 350px;
+    // }
 //     .htmlText p, .htmlText a{
 //  line-height: 29px;
 //     } 
 }
 
 @media(max-width:767px){
-    .floor_images_carousal img {
-        height: auto;
-    }
+  
     .modal_styling{
         padding: 10px;
     }
@@ -399,10 +400,7 @@ button.cmn_btn.floor_plan {
     .join_us_modal{
         margin-bottom: 130px;
     }
-    .modal-content {
-        max-width:92%;
-       width: 100%;
-    }
+   
 // { .grid_view,.mt-custom  {
 //     max-width: 100%;
 //     padding: 0px 20px;
@@ -449,4 +447,10 @@ button.cmn_btn.floor_plan {
 
 .text_wrapper_1 .separator {
     display: none;
+}
+@media(max-width:576px){
+    .modal-content {
+        max-width:92%;
+       width: 100%;
+    }
 }
