@@ -250,7 +250,7 @@ button.book_now {
 .modal-content {
     border-radius: 50px;
     background: #fff;
-    max-width: 680px;
+    max-width: 550px;
     padding: 0px 30px;
     width: 100%;
 }
@@ -276,9 +276,9 @@ button.book_now {
 .modal-overlay .slider_wrapper {
 margin: 0;
 }
-.modal-content div:last-child {
-    padding: 0;
-}
+// .modal-content div:last-child {
+//     padding: 0;
+// }
 .modal-overlay .swiper {
     margin: 0px;
 }
@@ -314,17 +314,23 @@ button.cmn_btn.floor_plan {
     padding-right: 60px;
 }
 .floor_images_carousal img {
-    height: 400px;
-    object-fit: cover;
-    margin: auto;
+    height: 100%;
+    width: 100%;
+    max-width: 100%;
 }
-.floor_images_carousal .swiper {
-    border-radius: 50px;
+.floor_images_carousal .swiper .swiper-pagination{
+    bottom: 0px;
+    position: relative;
+    padding-top: 15px;
 }
 .floor_images_carousal h4 {
     font-size: 1.125rem;
     font-weight: 400;
     text-transform: uppercase;
+    margin-bottom: 10px;
+}
+.floor_images_carousal .swiper-slide {
+    height: auto;
 }
 //*************
 .modal-content{
@@ -333,7 +339,15 @@ button.cmn_btn.floor_plan {
 .subscribe input {
     padding-right: 60px;
 }
+.floor_images_carousal  .swiper-pagination-bullet-active {
+    background: #000;
+}
 // 
+@media(max-width:1199px){
+    .modal-content {
+        max-width: 500px;
+    }
+}
 @media(max-width:960px){
     button.cmn_btn.floor_plan {
         left: 0%;
@@ -386,7 +400,7 @@ button.cmn_btn.floor_plan {
         margin-bottom: 130px;
     }
     .modal-content {
-        max-width:96%;
+        max-width:92%;
        width: 100%;
     }
 // { .grid_view,.mt-custom  {
