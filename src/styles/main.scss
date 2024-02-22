@@ -250,7 +250,7 @@ button.book_now {
 .modal-content {
     border-radius: 50px;
     background: #fff;
-    max-width: 550px;
+    max-width: 45%;
     padding: 0px 30px;
     width: 100%;
 }
@@ -355,12 +355,12 @@ button.cmn_btn.floor_plan {
 }
 @media(max-width:1399px){
     .modal-content {
-        max-width: 500px;
+        max-width: 50%;
     }
 }
 @media(max-width:1199px){
     .modal-content {
-        max-width: 480px;
+        max-width: 75%;
     }
 }
 @media(max-width:960px){
