@@ -256,6 +256,9 @@ button.book_now {
 }
 
 .modal-overlay {
+    padding-top: 50px;
+    overflow: auto;
+    scrollbar-width: none;
     position: fixed;
     width: 100%;
     height: 100%;
