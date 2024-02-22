@@ -343,6 +343,11 @@ button.cmn_btn.floor_plan {
     background: #000;
 }
 // 
+@media(min-width:1921px){
+    .modal-content {
+        max-width: 50%;
+    }
+}
 @media(max-width:1399px){
     .modal-content {
         max-width: 500px;
