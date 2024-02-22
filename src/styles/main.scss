@@ -295,6 +295,7 @@ button.cmn_btn:hover{
     background:#000;
     color:#fff;
 }
+
 button.cmn_btn.floor_plan {
     position: absolute;
     left: 25%;
@@ -323,16 +324,20 @@ button.cmn_btn.floor_plan {
     position: relative;
     padding-top: 15px;
 }
-.floor_images_carousal h4 {
+.modal_header h4 {
     font-size: 1.125rem;
     font-weight: 400;
     text-transform: uppercase;
-    margin-bottom: 10px;
+   
 }
 .floor_images_carousal .swiper-slide {
     height: auto;
 }
 //*************
+.modal_header {
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
 .modal-content{
     padding-bottom: 30px;
 }
@@ -453,9 +458,10 @@ button.cmn_btn.floor_plan {
 .text_wrapper_1 .separator {
     display: none;
 }
+
 @media(max-width:576px){
     .modal-content {
-        max-width:92%;
+       max-width:92%;
        width: 100%;
     }
 }
