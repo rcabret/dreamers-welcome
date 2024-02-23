@@ -165,7 +165,9 @@ export const getNews = async () => {
     })
 
     if (entries.items) {
+        console.log("entries----", entries.items.length)
         return entries.items
+       
     }
 }
 

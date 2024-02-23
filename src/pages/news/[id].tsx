@@ -167,7 +167,7 @@ const NewsItemDetails = ({
         const imageUrl = file.url;
         const altText = title || description || '';
 
-        return <img src={imageUrl} alt={altText} />;
+        return <img src={imageUrl} alt={altText} loading="lazy" />;
       },
       'hyperlink': node => {
         const { uri } = node.data;
