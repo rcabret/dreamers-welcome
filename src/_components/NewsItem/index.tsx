@@ -9,6 +9,11 @@ import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews, getNewsEntry } from '../../_lib/api'
 
 const NewsItem = ({ newsObj }: { newsObj: News }) => {
+  // Check if newsObj is defined before destructuring
+  if (!newsObj) {
+    // Handle the case when newsObj is undefined
+    return null; // Or display a placeholder or error message
+  }
 
   const { date, title, text, titleImage, tileImage, test, slug } = newsObj
   const [_res, setRes] = useState()

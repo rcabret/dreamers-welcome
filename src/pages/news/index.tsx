@@ -17,6 +17,9 @@ import SubNavigation from '../../_components/Navigation/SubNavigation'
 import safeJsonStringify from 'safe-json-stringify'
 import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
 import Head from 'next/head'
+
+
+
 const links: { name: string; slug: string }[] = [
     {
         name: 'VIEW ALL',
@@ -43,6 +46,8 @@ const links: { name: string; slug: string }[] = [
         slug: 'Press',
     }
 ]
+
+
 
 const News = ({
     news,
