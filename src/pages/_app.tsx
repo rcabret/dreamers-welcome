@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   useEffect(() => {
-    console.log("enterning useeffect- 2 ")
+    console.log("enterning useeffect 2 ")
     // Initialize Google Analytics
     initializeGA(googleAnalyticsID);
 
