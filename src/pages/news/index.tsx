@@ -107,7 +107,7 @@ const News = ({
 
     useEffect(() => { }, [activeNews])
 
-    if (!news.length) {
+    if (!news?.length) {
         return null
     }
 
@@ -141,7 +141,7 @@ const News = ({
             />
             <GridWrapper border={false} padding>
                 <GridModule columns={3} sideScrollOnMobile={false}>
-                    {activeNews && activeNews.length ?
+                    {activeNews && activeNews?.length ?
                         activeNews.map((news: News, i: number) => (
                             <NewsItem key={i} newsObj={news} />
                         )) : null}
