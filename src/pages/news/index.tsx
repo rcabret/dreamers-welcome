@@ -169,7 +169,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const stringData = safeJsonStringify(rawData)
     const res = JSON.parse(stringData)
     const only20news = res.map((x: { fields: {} }) => x.fields)
-    let news =  only20news.slice(0,20)
+    let news =  only20news.slice(0,15)
     return {
         props: {
             news,
