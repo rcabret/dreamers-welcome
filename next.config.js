@@ -22,7 +22,7 @@ const nextConfig = {
     },
     experimental: {
         esmExternals: false,
-        largePageDataBytes: 90 * 1024 * 1024
+        largePageDataBytes:  300 * 1024 * 1024,
     }
 }
 
