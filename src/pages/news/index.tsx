@@ -105,7 +105,7 @@ const News = ({
 
     const inspectorProps = useContentfulInspectorMode()
 
-    console.log(" in the news page +++++", activeNews.length)
+    
 
     return (
         <>
