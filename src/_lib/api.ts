@@ -163,7 +163,7 @@ export const getNews = async () => {
         content_type: 'blog',
         include: 1,
         order: '-fields.date',
-        limit: 20, // Fetch only 20 items
+        // limit: 20, // Fetch only 20 items
     });
 
     if (entries.items) {
