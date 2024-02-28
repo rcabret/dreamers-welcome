@@ -1,5 +1,4 @@
 import React, { useState, useContext, useEffect } from 'react'
-
 import {
     Content,
     GridModule,
@@ -17,8 +16,6 @@ import SubNavigation from '../../_components/Navigation/SubNavigation'
 import safeJsonStringify from 'safe-json-stringify'
 import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
 import Head from 'next/head'
-
-
 
 const links: { name: string; slug: string }[] = [
     {
@@ -47,7 +44,7 @@ const links: { name: string; slug: string }[] = [
     }
 ]
 
-
+const PAGE_SIZE = 2; // Number of news items per page
 
 const News = ({
     news,
@@ -66,10 +63,11 @@ const News = ({
     const router = useRouter()
     const [_res, setRes] = useState([])
     const [category, setCategory] = useState([])
+    const [currentPage, setCurrentPage] = useState(1); // Current page number
+
     useEffect(() => {
         setNavTheme('dark')
-        const slug = router.query.slug as string
-       
+        const slug = router.query.slug as string       
         const bucket = localStorage.getItem('bucket')
         setHeaderData({
             bucket: bucket,
@@ -83,64 +81,45 @@ const News = ({
         (router.query.type as string) || 'view_all'
     )
 
-    const [activeNews, setNews] = useState<any[]>([
-        ...news,
-    ])
-
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
-        // @ts-ignore
         setSlug(queryTag)
-
-        const checkForTags = (tags: any[], slug: string) => {
-
-            if (!tags?.length) {
-                return [...news]
-            }
-            return tags.find((tag: any) => tag === slug)
-        }
-
-        const newsToView =
-            queryTag !== 'view_all'
-                ? [...news].filter((news: any) =>
-                    checkForTags(news.test, queryTag)
-                )
-                : [...news]
-
-        setNews(newsToView)
     }, [router, router.query])
 
-    useEffect(() => { }, [activeNews])
+    const handleNextPage = () => {
+        setCurrentPage(currentPage + 1);
+    };
+
+    const handlePrevPage = () => {
+        setCurrentPage(currentPage - 1);
+    };
 
     if (!news?.length) {
         return null
     }
 
-  const inspectorProps = useContentfulInspectorMode()
+    // Calculate start and end indices for pagination
+    const startIndex = (currentPage - 1) * PAGE_SIZE;
+    const endIndex = startIndex + PAGE_SIZE;
+    const paginatedNews = news.slice(startIndex, endIndex);
 
-  console.log(" in the news page +++++",activeNews.length)
+    const inspectorProps = useContentfulInspectorMode()
+
+    console.log(" in the news page +++++", activeNews.length)
 
     return (
         <>
-        <Head>
-        <title>News | Dreamers Welcome</title>
-        <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
-        <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
-    </Head>
-            {/* <Content padding> */}
-           
+            <Head>
+                <title>News | Dreamers Welcome</title>
+                <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
+                <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
+            </Head>
             <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
                 {...inspectorProps({
                     entryId: 'kVTRrzVviydTHxX9LFA9J',
                     fieldId: 'blurb',
                 })}
             />
-            {/* <TopSection padding>
-                <Header size={4} uppercase className='text-center mb-28' >
-                    NEWS & UPDATES
-                </Header> */}
-            {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
-            {/* </TopSection> */}
             <SubNavigation
                 activeSlug={activeSlug}
                 data={links}
@@ -149,18 +128,23 @@ const News = ({
             />
             <GridWrapper border={false} padding>
                 <GridModule columns={3} sideScrollOnMobile={false}>
-                    {activeNews && activeNews?.length ?
-                        activeNews.map((news: News, i: number) => (
-                            <NewsItem key={i} newsObj={news} />
-                        )) : null}
+                    {paginatedNews.map((newsItem: News, i: number) => (
+                        <NewsItem key={i} newsObj={newsItem} />
+                    ))}
                 </GridModule>
             </GridWrapper>
-            {/* </Content> */}
+            <div>
+                {currentPage > 1 && <button onClick={handlePrevPage}>Previous Page</button>}
+                {currentPage < Math.ceil(news.length / PAGE_SIZE) && <button onClick={handleNextPage}>Next Page</button>}
+            </div>
         </>
     )
 }
 
 export default News
+
+
+   
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getNews()
