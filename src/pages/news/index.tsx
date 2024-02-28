@@ -118,7 +118,7 @@ const News = ({
 
   const inspectorProps = useContentfulInspectorMode()
 
-  console.log(" in the news page +++++")
+  console.log(" in the news page +++++",activeNews.length)
 
     return (
         <>
@@ -168,8 +168,8 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     console.log("rawsdata ---->",rawData.length)
     const stringData = safeJsonStringify(rawData)
     const res = JSON.parse(stringData)
-    const news = res.map((x: { fields: {} }) => x.fields)
-
+    const only20news = res.map((x: { fields: {} }) => x.fields)
+    let news =  only20news.slice(0,20)
     return {
         props: {
             news,
