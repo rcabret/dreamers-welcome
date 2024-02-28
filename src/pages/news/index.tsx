@@ -165,6 +165,7 @@ export default News
 export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getNews()
     const blurb = await newsPage()
+   
     console.log("rawsdata ---->",rawData.length)
     const stringData = safeJsonStringify(rawData)
     const res = JSON.parse(stringData)
