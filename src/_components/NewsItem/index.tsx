@@ -16,6 +16,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
   }
 
   const { date, title, text, titleImage, tileImage, test, slug } = newsObj
+
   const [_res, setRes] = useState()
   const [id, setId] = useState();
   const _test = test && test.join(', ')
@@ -43,6 +44,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
   }
 
 
+
   return (
     slug ? (
       <a href={slug} target='_blank' className='news_anchor'>
@@ -64,7 +66,8 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
           {/* )} */}
 
         </div>
-      </a>
+      </a> 
+      
     )
       :
       (

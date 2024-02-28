@@ -121,7 +121,6 @@ const News = ({
   console.log(" in the news page +++++")
 
     return (
-       
         <>
         <Head>
         <title>News | Dreamers Welcome</title>
@@ -129,6 +128,7 @@ const News = ({
         <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
     </Head>
             {/* <Content padding> */}
+           
             <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
                 {...inspectorProps({
                     entryId: 'kVTRrzVviydTHxX9LFA9J',
@@ -165,7 +165,7 @@ export default News
 export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getNews()
     const blurb = await newsPage()
-   
+    console.log("rawsdata ---->",rawData.length)
     const stringData = safeJsonStringify(rawData)
     const res = JSON.parse(stringData)
     const news = res.map((x: { fields: {} }) => x.fields)

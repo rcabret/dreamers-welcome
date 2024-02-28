@@ -44,7 +44,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   useEffect(() => {
-    console.log("enterning useeffect 2 ")
+    console.log("enterning useeffect 2")
     // Initialize Google Analytics
     initializeGA(googleAnalyticsID);
 
@@ -73,9 +73,7 @@ useEffect(() => {
     localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     setTimeout(() => {
       setFirstModalShow(true);
-    }, 10000);
-   
-    
+    }, 10000);   
   } else {
     // Returning visit
     const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
@@ -127,7 +125,7 @@ useEffect(() => {
     id="podium-widget"
     data-organization-api-token="645e6556-2a95-4ca0-b4a9-4ada9de5ddf7"
   />
-        <link
+                <link
                     rel="apple-touch-icon"
                     sizes="180x180"
                     href="/favicons/apple-touch-icon.png"

@@ -200,7 +200,6 @@ const NewsItemDetails = ({
                 })}>
                   {title}
                 </Header>
-
               </ConceptTextContainer>
             }></Block>
           <div className='grid_info_wrapper'>
