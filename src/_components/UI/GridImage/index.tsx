@@ -70,7 +70,7 @@ const GridImage = ({
                 {imageToRender ? (
                     <>
                         <aside />
-                        <Image src={`https:${url}${widthQuery && !sizes? `?w=${widthQuery}`: ''}` || '/'} alt="No Image" layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`} loading="lazy" />
+                        <Image src={`https:${url}${widthQuery && !sizes? `?w=${widthQuery}`: ''}` || '/'} alt="No Image" layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`}  />
                         {children && children}
                     </>
                 ) : (
