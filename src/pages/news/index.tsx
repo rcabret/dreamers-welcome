@@ -178,4 +178,3 @@ export async function getStaticProps(context: { params: { slug: string } }) {
         },
     }
 }
-
