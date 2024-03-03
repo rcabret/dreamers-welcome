@@ -10,6 +10,7 @@ export interface ContentfulImage {
             }
         }
     }
+    description: string
     title: string
 }
 
@@ -23,4 +24,3 @@ export interface News {
     test: string
     // description: string
 }
-
