@@ -45,13 +45,11 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   useEffect(() => {
     console.log("enterning useeffect 2")
-    // Initialize Google Analytics
+
     initializeGA(googleAnalyticsID);
 
-    // Log initial page view
     trackPageView(router.pathname);
       
-        // console.log("id*************",googleAnalyticsID)
         TagManager.initialize({ gtmId: googleAnalyticsID });
         sendPageViewEvent(`${pixelID}`, { em: 'user@example.com' });
 
@@ -68,29 +66,29 @@ useEffect(() => {
   const currentTime = Date.now();
 
   if (!visited) {
-    // First visit
+    // First visit------
     localStorage.setItem('visited', 'true');
     localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     setTimeout(() => {
       setFirstModalShow(true);
     }, 10000);   
   } else {
-    // Returning visit
+   
     const timeSinceLastVisit = currentTime - parseInt(lastVisitTimestamp, 10);
-
-    // if (timeSinceLastVisit >=(3000)) {
+  
     if (timeSinceLastVisit >=(24*60*60*1000)) {
-      // Show popup if the time since the last visit is greater than 24 hours
+   
       setTimeout(() => {
         setFirstModalShow(true);
       }, 10000);
   
-      // Update last visit timestamp to the current time
       localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     }
-    // No need to show the popup if the time since the last visit is less than 24 hours
+  
   }
 }, [router.pathname]); 
+
+
 
 
  console.log("in the _app page")

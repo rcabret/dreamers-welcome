@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
-
+import React, { useContext, useEffect, useState,useRef } from 'react'
 import { Content, GridModule, GridWrapper } from '../../styles/global'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import PropertyGridItem from '../../_components/PropertyGridItem'
@@ -55,6 +54,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const router = useRouter()
     const [bucket, setBucket] = useState('');
     const [_blurb, setBlurb] = useState('');
+    const firstItemRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         setNavTheme('dark')
@@ -115,6 +115,14 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
 
     useEffect(() => { }, [activeStays])
 
+ 
+
+    useEffect(() => {
+        if (firstItemRef.current) {
+            firstItemRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [activeStays]);
+
     if (!properties.length) {
         return null
     }
@@ -127,31 +135,37 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
                 <link rel="canonical" href="https://www.dreamerswelcome.com/stays" />
             </Head>
             <Blurb text={_blurb} eyebrow="STAYS" fullHeight />
+            <div ref={firstItemRef}></div>
             <Content padding>
+              
                 {bucket == 'North Carolina' ?
                     <SubNavigation
                         activeSlug={activeSlug}
                         data={links_NC}
                         queryParam="type"
                         queryArray={router.query.slug || []}
+                   
                     /> :
                     <SubNavigation
                         activeSlug={activeSlug}
                         data={links_PR}
                         queryParam="type"
                         queryArray={router.query.slug || []}
-                    />
+                       
+                    />      
                 }
-                <GridWrapper border={false} padding>
-                    <GridModule columns={bucket == "North Carolina" ? 2 : 3} sideScrollOnMobile={false}>
+              
+           
+                <GridWrapper  border={false} padding>
+                    <GridModule  columns={bucket == "North Carolina" ? 2 : 3} sideScrollOnMobile={false} >
                         {activeStays &&
                             activeStays.map(
                                 (property: { slug: string }, i: number) => (
                                     <PropertyGridItem
-                                        collapsed
-                                        key={property.slug + i}
-                                        propertyObj={property}
-                                    />
+                                    collapsed
+                                    key={property.slug + i}
+                                    propertyObj={property}
+                                />
                                 )
                             )}
                     </GridModule>
@@ -188,3 +202,4 @@ export async function getStaticPaths(context: { params: { slug: string } }) {
         fallback: false,
     }
 }
+

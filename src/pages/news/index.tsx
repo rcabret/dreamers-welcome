@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect,useRef } from 'react'
 
 import {
     Content,
@@ -66,6 +66,8 @@ const News = ({
     const router = useRouter()
     const [_res, setRes] = useState([])
     const [category, setCategory] = useState([])
+    const firstItemRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         setNavTheme('dark')
         const slug = router.query.slug as string
@@ -86,6 +88,8 @@ const News = ({
     const [activeNews, setNews] = useState<any[]>([
         ...news,
     ])
+
+
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
@@ -116,6 +120,13 @@ const News = ({
         return null
     }
 
+
+    useEffect(() => {
+        if (firstItemRef.current) {
+            firstItemRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [activeNews]);
+
   const inspectorProps = useContentfulInspectorMode()
 
   console.log(" in the news page +++++",activeNews.length)
@@ -127,20 +138,24 @@ const News = ({
         <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
         <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
     </Head>
-            {/* <Content padding> */}
            
+            
             <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
                 {...inspectorProps({
                     entryId: 'kVTRrzVviydTHxX9LFA9J',
                     fieldId: 'blurb',
                 })}
             />
+
+            <div ref={firstItemRef}></div>
+             <Content padding>
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
                 </Header> */}
             {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
             {/* </TopSection> */}
+            
             <SubNavigation
                 activeSlug={activeSlug}
                 data={links}
@@ -155,7 +170,7 @@ const News = ({
                         )) : null}
                 </GridModule>
             </GridWrapper>
-            {/* </Content> */}
+            </Content>
         </>
     )
 }
