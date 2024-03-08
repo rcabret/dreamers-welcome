@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    // staticPageGenerationTimeout: 200000,
     reactStrictMode: false,
     compiler: {
         styledComponents: true,
@@ -21,6 +22,7 @@ const nextConfig = {
     },
     experimental: {
         esmExternals: false,
+        largePageDataBytes: 2 * 1024 * 1024 * 1024,
     }
 }
 

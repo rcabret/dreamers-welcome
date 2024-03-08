@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useState, useContext, useEffect,useRef } from 'react'
 
 import {
     Content,
@@ -17,6 +17,9 @@ import SubNavigation from '../../_components/Navigation/SubNavigation'
 import safeJsonStringify from 'safe-json-stringify'
 import { useContentfulLiveUpdates, useContentfulInspectorMode } from '@contentful/live-preview/react';
 import Head from 'next/head'
+
+
+
 const links: { name: string; slug: string }[] = [
     {
         name: 'VIEW ALL',
@@ -44,6 +47,8 @@ const links: { name: string; slug: string }[] = [
     }
 ]
 
+
+
 const News = ({
     news,
     blurb,
@@ -61,6 +66,8 @@ const News = ({
     const router = useRouter()
     const [_res, setRes] = useState([])
     const [category, setCategory] = useState([])
+    const firstItemRef = useRef<HTMLDivElement>(null);
+
     useEffect(() => {
         setNavTheme('dark')
         const slug = router.query.slug as string
@@ -81,6 +88,8 @@ const News = ({
     const [activeNews, setNews] = useState<any[]>([
         ...news,
     ])
+
+
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
@@ -107,11 +116,20 @@ const News = ({
 
     useEffect(() => { }, [activeNews])
 
-    if (!news.length) {
+    if (!news?.length) {
         return null
     }
 
+
+    useEffect(() => {
+        if (firstItemRef.current) {
+            firstItemRef.current.scrollIntoView({ behavior: 'smooth' });
+        }
+    }, [activeNews]);
+
   const inspectorProps = useContentfulInspectorMode()
+
+  console.log(" in the news page +++++",activeNews.length)
 
     return (
         <>
@@ -120,19 +138,24 @@ const News = ({
         <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
         <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
     </Head>
-            {/* <Content padding> */}
+           
+            
             <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
                 {...inspectorProps({
                     entryId: 'kVTRrzVviydTHxX9LFA9J',
                     fieldId: 'blurb',
                 })}
             />
+
+            <div ref={firstItemRef}></div>
+             <Content padding>
             {/* <TopSection padding>
                 <Header size={4} uppercase className='text-center mb-28' >
                     NEWS & UPDATES
                 </Header> */}
             {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home</a></li><li>{'>'}</li><li>News</li></ol></nav> */}
             {/* </TopSection> */}
+            
             <SubNavigation
                 activeSlug={activeSlug}
                 data={links}
@@ -141,13 +164,13 @@ const News = ({
             />
             <GridWrapper border={false} padding>
                 <GridModule columns={3} sideScrollOnMobile={false}>
-                    {activeNews && activeNews.length ?
+                    {activeNews && activeNews?.length ?
                         activeNews.map((news: News, i: number) => (
                             <NewsItem key={i} newsObj={news} />
                         )) : null}
                 </GridModule>
             </GridWrapper>
-            {/* </Content> */}
+            </Content>
         </>
     )
 }
@@ -157,10 +180,12 @@ export default News
 export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getNews()
     const blurb = await newsPage()
+   
+    console.log("rawsdata ---->",rawData.length)
     const stringData = safeJsonStringify(rawData)
     const res = JSON.parse(stringData)
     const news = res.map((x: { fields: {} }) => x.fields)
-
+    // let news =  only20news.slice(0,20)
     return {
         props: {
             news,

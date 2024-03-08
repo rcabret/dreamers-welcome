@@ -47,7 +47,10 @@ const SubNavigation = ({
         }
         return slug === activeSlug ? 'active' : ''
     }
-    return (
+
+
+    console.log("here in the subnavigation ------")
+    return (    
         <SubNav>
             <div>
                 {data &&

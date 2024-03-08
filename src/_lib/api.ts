@@ -142,7 +142,8 @@ export const newsPage = async () => {
     const entries = await client.getEntries({
         content_type: 'newsPage',
     })
-    if (entries.items) {        
+    if (entries.items) { 
+        // console.log("news page props ----",entries.items)       
         return entries.items[0] ? entries.items[0].fields : null
     }
 }
@@ -162,14 +163,17 @@ export const getNews = async () => {
         content_type: 'blog',
         include: 1,
         order: '-fields.date',
-    })
+        // limit: 20, // Fetch only 20 items
+    });
 
     if (entries.items) {
-        return entries.items
+        return entries.items;
     }
-}
+};
 
-export const getNewsForPreview = async (entryID) => {
+
+
+export const getNewsForPreview = async (entryID:any) => {
     // const entries = await client.getEntries({
     //     content_type: 'blog',
     //     include: 1,

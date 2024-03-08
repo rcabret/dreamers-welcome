@@ -9,8 +9,14 @@ import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews, getNewsEntry } from '../../_lib/api'
 
 const NewsItem = ({ newsObj }: { newsObj: News }) => {
+  // Check if newsObj is defined before destructuring
+  if (!newsObj) {
+    // Handle the case when newsObj is undefined
+    return null; // Or display a placeholder or error message
+  }
 
   const { date, title, text, titleImage, tileImage, test, slug } = newsObj
+
   const [_res, setRes] = useState()
   const [id, setId] = useState();
   const _test = test && test.join(', ')
@@ -38,6 +44,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
   }
 
 
+
   return (
     slug ? (
       <a href={slug} target='_blank' className='news_anchor'>
@@ -59,7 +66,8 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
           {/* )} */}
 
         </div>
-      </a>
+      </a> 
+      
     )
       :
       (

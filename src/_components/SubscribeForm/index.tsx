@@ -100,8 +100,6 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
                         </svg>
                     }
                 />
-          
-
             </div>
         </Form>
     )

@@ -75,8 +75,8 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                     ) : null}
                 </div>
             )}
-
-            <Modal isOpen={isModalOpen} onClose={closeModal}>
+            
+             <Modal isOpen={isModalOpen} onClose={closeModal} title="FLOORPLAN">
                 {/* {floorplanHighlight && (
                     <Highlight
                         slug={propertySlug}
@@ -85,10 +85,9 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                         images={floorplanHighlight[0]?.fields.images}
                     />
                 )} */}
-
-                <div className="floor_images_carousal">
-                    <h4>FLOORPLAN</h4>
-                    <Swiper
+            
+              <div className='floor_images_carousal'>
+              <Swiper
                         slidesPerView={1}
                         spaceBetween={20}
                         pagination={{

@@ -106,6 +106,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         }
     }
 
+ console.log("in the index page---")
+
     return (
         <>
             <BannerGridImage

@@ -122,6 +122,7 @@ const Property = ({
         }
         getExtraData()
     }, [router.query])
+    
     const getSubNavigationData = () => {
         if (pType === 'Suites') {
             return suites.map((x: { fields: any }) => {
