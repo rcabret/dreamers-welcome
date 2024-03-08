@@ -1,4 +1,10 @@
+# *
 User-agent: *
+Allow: /
 Disallow: /_next/
 
+# Host
+Host: https://www.dreamerswelcome.com
+
+# Sitemaps
 Sitemap: https://www.dreamerswelcome.com/sitemap.xml
