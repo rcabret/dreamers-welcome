@@ -67,7 +67,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
             bucket: bkt,
         })
     }, [])
-
+     
     useEffect(() => {
         const filteredBlurb = blurb.filter((blurbItem) => {
             switch (bucket) {
@@ -77,7 +77,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
                     return blurbItem?.fields?.bucket[0] === 'Puerto Rico';
             }
         });
-    
+                                                            
         if (filteredBlurb.length > 0) {
             setBlurb(filteredBlurb[0].fields.blurb);
         }
@@ -89,6 +89,8 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
     const [activeStays, setActiveStays] = useState<any[]>([
         ...properties,
     ])
+
+
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
@@ -111,9 +113,10 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
                 : [...properties]
 
         setActiveStays(propertiesToView)
+
     }, [router, router.query])
 
-    useEffect(() => { }, [activeStays])
+   
 
  
 
@@ -123,6 +126,8 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
         }
     }, [activeStays]);
 
+
+    
     if (!properties.length) {
         return null
     }

@@ -69,7 +69,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
         }
     }, [headerData])
 
- console.log("in the index file of subnavigation")
+
 
 
     return (
