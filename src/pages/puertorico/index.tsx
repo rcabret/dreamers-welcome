@@ -41,7 +41,7 @@ const StaysSwiperWrap = styled.div`
         top: ${rem(-46)};
     }
 `
-const Index = ({ data, setNavTheme, setHeaderData }: any) => {
+const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
     const { blurb, title, guides, experiences, coverImage, mobileCoverImage, news } = data
     const [stays, setStays] = useState(null)
       console.log("here__")
@@ -68,10 +68,10 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
     
     return (
         <>
-          <Head>
-                <title>Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW</title>
-                <meta name="description" content="Puerto Rico’s sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams." />
-                <link rel="canonical" href="https://www.dreamerswelcome.com/puertorico" />
+            <Head>
+                <title>{seoData.metaTitle}</title>
+                <meta name="description" content={seoData.metaDescription} />
+                <link rel="canonical" href={seoData.canonicalUrl} />
             </Head>
             <BannerGridImage
                 imageObj={coverImage}
@@ -176,10 +176,16 @@ export async function getStaticProps() {
     const rawData = await getHomepage('puertorico')
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
+    const seoData = data?.metadata?.fields
 
     return {
         props: {
             data,
+            seoData: {
+                metaTitle: seoData.metaTitle ?? "Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW",
+                metaDescription: seoData.metaDescription ?? "Puerto Rico's sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams.",
+                canonicalUrl: seoData.canonicalUrl ?? 'https://www.dreamerswelcome.com/puertorico'
+            }
         },
     }
 }

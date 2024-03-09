@@ -5,7 +5,7 @@ import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import { getPolicies, getPolicy } from '../../_lib/api'
 import Dropdown from '../../_components/UI/Dropdown'
 import Head from 'next/head'
-const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
+const BookingPolicy = ({ policy, dropdownData, setNavTheme, seoData }: any) => {
     const { content } = policy
 
     const policyLinks = {
@@ -46,16 +46,16 @@ const BookingPolicy = ({ policy, dropdownData, setNavTheme }: any) => {
     return (    
         <>   
          <Head>
-                <title>{modStr} Booking Policy | Dreamers Welcome</title>
-                <meta
-                    name="description"
-                    content="Learn about our cancellation, modification, and refund procedures, designed to accommodate your needs. Plan your dream getaway with confidence at Dreamers Welcome."
-                />
-                <link
-                    rel="canonical"
-                    href={canonicalLink}
-                />
-            </Head>
+            <title>{seoData?.metaTitle ?? `${modStr} Booking Policy | Dreamers Welcome`}</title>
+            <meta
+                name="description"
+                content={seoData?.metaDescription ?? "Learn about our cancellation, modification, and refund procedures, designed to accommodate your needs. Plan your dream getaway with confidence at Dreamers Welcome."}
+            />
+            <link
+                rel="canonical"
+                href={seoData?.canonicalUrl ?? canonicalLink}
+            />
+        </Head>
         <Content padding>
             {/* <nav className={'breadcrumbs'} aria-label="breadcrumbs"><ol className={'_2jvtI'}><li><a href="/">Home </a></li><li>{'>'}</li><li>Booking Poilcy</li></ol></nav> */}
             <Block
@@ -103,6 +103,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
         props: {
             policy,
             dropdownData,
+            seoData: policy?.metadata?.fields ?? null
         },
     }
 }

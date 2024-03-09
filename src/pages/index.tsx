@@ -6,6 +6,7 @@ const Block = dynamic(() => import('../_components/UI/Block').then((module) => m
 import React, { useContext, useEffect, useState } from 'react'
 import { throttle } from '../_utils/Throttle'
 import Link from 'next/link'
+import Head from 'next/head'
 const Circle = dynamic(() => import('../styles/landing/styles').then((module) => module.Circle));
 const FlexContainer = dynamic(() => import('../styles/landing/styles').then((module) => module.FlexContainer));
 const StyledBlurb = dynamic(() => import('../styles/landing/styles').then((module) => module.StyledBlurb));
@@ -19,7 +20,7 @@ import Script from 'next/script';
 import { sendConversionEvent } from './api/fbConversionApi';
 import { viewportContext } from '../_utils/ViewportProvider'
 
-const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
+const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
     const [prData, setPRData] = useState<{
         temperature: string
         time: string
@@ -110,6 +111,13 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
 
     return (
         <>
+            {seoData &&
+                <Head>
+                    <title>{seoData.metaTitle}</title>
+                    <meta name="description" content={seoData.metaDescription} />
+                    <link rel="canonical" href={seoData.canonicalUrl} />
+                </Head>
+            }
             <BannerGridImage
                 imageObj={landing.coverImage}
                 border={false}
@@ -183,6 +191,7 @@ export async function getStaticProps() {
     return {
         props: {
             landing,
+            seoData: landing?.metadata?.fields ?? null
         },
     }
 }

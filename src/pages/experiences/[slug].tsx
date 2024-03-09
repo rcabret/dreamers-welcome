@@ -10,146 +10,140 @@ import { pathToBucket } from '../../_utils/Parsers'
 import Head from 'next/head'
 
 const links: { name: string; slug: string }[] = [
-    {
-        name: 'VIEW ALL',
-        slug: 'view_all',
-    },
-    {
-        name: 'ADVENTURE',
-        slug: 'adventure',
-    },
-    {
-        name: 'FOOD',
-        slug: 'food',
-    },
-    {
-        name: 'WELLNESS',
-        slug: 'wellness',
-    },
+  {
+    name: 'VIEW ALL',
+    slug: 'view_all',
+  },
+  {
+    name: 'ADVENTURE',
+    slug: 'adventure',
+  },
+  {
+    name: 'FOOD',
+    slug: 'food',
+  },
+  {
+    name: 'WELLNESS',
+    slug: 'wellness',
+  },
 ]
 
 const Experiences = ({
-    experiences,
-    experiencesPage,
-    setNavTheme,
-    setHeaderData,
+  experiences,
+  experiencesPage,
+  setNavTheme,
+  setHeaderData,
+  seoData,
 }: any) => {
-    const [property,setProperty]= useState("")
-    const router = useRouter()
+  const [property, setProperty] = useState('')
+  const router = useRouter()
 
-    useEffect(() => {
-        setNavTheme('dark')
+  useEffect(() => {
+    setNavTheme('dark')
 
-        const slug = router.query.slug as string
-        console.log("in the experiences -------",slug)
-        setProperty(slug)
-        setHeaderData({
-            bucket: pathToBucket(slug || ''),
-            simpleNav: false,
-            property: undefined,
-        })
-    }, [])
-    const { blurb } = experiencesPage
-    
-    const [activeSlug, setSlug] = useState<string>(
-        (router.query.type as string) || 'view_all'
-    )
-    const [activeExperiences, setExperiences] = useState<any[]>([
-        ...experiences,
-    ])
+    const slug = router.query.slug as string
+    console.log('in the experiences -------', slug)
+    setProperty(slug)
+    setHeaderData({
+      bucket: pathToBucket(slug || ''),
+      simpleNav: false,
+      property: undefined,
+    })
+  }, [])
+  const { blurb } = experiencesPage
 
-    useEffect(() => {
-        const queryTag = (router.query.type as string) || ('view_all' as string)
-        // @ts-ignore
-        setSlug(queryTag)
+  const [activeSlug, setSlug] = useState<string>(
+    (router.query.type as string) || 'view_all'
+  )
+  const [activeExperiences, setExperiences] = useState<any[]>([...experiences])
 
-        const checkForTags = (tags: any[], slug: string) => {
-            if (!tags.length) {
-                return
-            }
-            return tags.find((tag: any) => tag.sys.id === slug)
-        }
+  useEffect(() => {
+    const queryTag = (router.query.type as string) || ('view_all' as string)
+    // @ts-ignore
+    setSlug(queryTag)
 
-        const expToView =
-            queryTag !== 'view_all'
-                ? [...experiences].filter((exp: any) =>
-                    checkForTags(exp.metadata.tags, queryTag)
-                )
-                : [...experiences]
+    const checkForTags = (tags: any[], slug: string) => {
+      if (!tags.length) {
+        return
+      }
+      return tags.find((tag: any) => tag.sys.id === slug)
+    }
 
-        setExperiences(expToView)
-    }, [router, router.query])
+    const expToView =
+      queryTag !== 'view_all'
+        ? [...experiences].filter((exp: any) =>
+            checkForTags(exp.metadata.tags, queryTag)
+          )
+        : [...experiences]
 
-    useEffect(() => { }, [activeExperiences])
-    return (
-        <>
-        <Head>
-                <title>
-                    {property === 'puertorico'
-                        ? 'Experience in San Juan, PR | Dreamers Welcome'
-                        : 'Experiences in Wilmington, NC | Dreamers Welcome'}
-                </title>
-                <meta
-                    name="description"
-                    content={
-                        property === 'puertorico'
-                            ? 'Take advantage of amenities and daily/weekly events in your vacation location of choice. Explore tailored and authentic activities and make the most of your stay.'
-                            : 'Take advantage of amenities and daily/weekly events in your vacation location of choice. Explore tailored and authentic activities and make the most of your stay.'
-                    }
-                />
-                  <link
-                    rel="canonical"
-                    href={
-                        property === 'puertorico'
-                            ? 'https://www.dreamerswelcome.com/experiences/puertorico'
-                            : 'https://www.dreamerswelcome.com/experiences/northcarolina'
-                    }
-                />
-            </Head>
-            <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
+    setExperiences(expToView)
+  }, [router, router.query])
 
-            <SubNavigation
-                activeSlug={activeSlug}
-                data={links}
-                queryParam="type"
-                queryArray={router.query.slug || []}
-            />
-            <GridWrapper padding id="anchor_view">
-                <GridModule columns={3}>
-                    {activeExperiences && activeExperiences.length
-                        ? activeExperiences.map((exp: any) => (
-                            <ExperienceItem data={exp.fields} />
-                        ))
-                        : null}
-                </GridModule>
-            </GridWrapper>
-        </>
-    )
+  useEffect(() => {}, [activeExperiences])
+
+  return (
+    <>
+      <Head>
+        <title>{seoData.metaTitle}</title>
+        <meta name="description" content={seoData.metaDescription} />
+        <link rel="canonical" href={seoData.canonicalUrl} />
+      </Head>
+      <Blurb text={blurb} eyebrow="EXPERIENCES" fullHeight />
+
+      <SubNavigation
+        activeSlug={activeSlug}
+        data={links}
+        queryParam="type"
+        queryArray={router.query.slug || []}
+      />
+      <GridWrapper padding id="anchor_view">
+        <GridModule columns={3}>
+          {activeExperiences && activeExperiences.length
+            ? activeExperiences.map((exp: any) => (
+                <ExperienceItem data={exp.fields} />
+              ))
+            : null}
+        </GridModule>
+      </GridWrapper>
+    </>
+  )
 }
 
 export default Experiences
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const rawData = await getExperiences(context.params.slug)
-    const stringData = safeJsonStringify(rawData)
-    const experiences = JSON.parse(stringData)
-    const experiencesPage = await getExperiencesPage(context.params.slug)
-    return {
-        props: {
-            experiences,
-            experiencesPage,
-        },
-    }
+  const rawData = await getExperiences(context.params.slug)
+  const stringData = safeJsonStringify(rawData)
+  const experiences = JSON.parse(stringData)
+  const experiencesPage = await getExperiencesPage(context.params.slug)
+  const seoMetaFields = experiencesPage?.metadata?.fields
+  const defaultPageTitle = 'Experiences | Dreamers Welcome'
+  const defaultPageDescription =
+    'Take advantage of amenities and daily/weekly events in your vacation location of choice. Explore tailored and authentic activities and make the most of your stay'
+  const defaultCanonical = `https://www.dreamerswelcome.com/experiences/${context.params.slug}`
+
+  return {
+    props: {
+      experiences,
+      experiencesPage,
+      seoData: {
+        metaTitle: seoMetaFields?.metaTitle ?? defaultPageTitle,
+        metaDescription:
+          seoMetaFields?.metaDescription ?? defaultPageDescription,
+        canonicalUrl: seoMetaFields?.canonicalUrl ?? defaultCanonical,
+      },
+    },
+  }
 }
 
 export async function getStaticPaths(context: { params: { slug: string } }) {
-    const paths = [
-        { params: { slug: 'puertorico' } },
-        { params: { slug: 'northcarolina' } },
-    ]
-    return {
-        // @ts-ignore
-        paths: paths,
-        fallback: false,
-    }
+  const paths = [
+    { params: { slug: 'puertorico' } },
+    { params: { slug: 'northcarolina' } },
+  ]
+  return {
+    // @ts-ignore
+    paths: paths,
+    fallback: false,
+  }
 }

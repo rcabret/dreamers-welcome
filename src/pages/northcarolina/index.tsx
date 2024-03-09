@@ -23,7 +23,7 @@ const StaysSwiperWrap = styled.div`
     left: ${rem(-10)};
     width: calc(100% + ${rem(20)});
 `
-const Index = ({ data, setNavTheme, setHeaderData }: any) => {
+const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
     const {
         blurb,
         title,
@@ -57,11 +57,12 @@ const Index = ({ data, setNavTheme, setHeaderData }: any) => {
    
     return (
         <>
-              <Head>
-                <title>Laidback Luxury Vacation Rental & Boutique Hotel in North Carolina | DW</title>
-                <meta name="description" content="Cozy corners just a drift away from the beach. Cobalt walls. Floral chandeliers. Hammock swings and swaying Spanish moss. Dream your way to North Carolina." />
-                <link rel="canonical" href="https://www.dreamerswelcome.com/northcarolina" />
+            <Head>
+                <title>{seoData.metaTitle}</title>
+                <meta name="description" content={seoData.metaDescription} />
+                <link rel="canonical" href={seoData.canonicalUrl} />
             </Head>
+            
             <BannerGridImage
                 imageObj={coverImage}
                 mobileImageObj={mobileCoverImage}
@@ -167,9 +168,16 @@ export async function getStaticProps() {
     
     const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
+    const seoData = data?.metadata?.fields
+
     return {
         props: {
             data,
+            seoData: {
+                metaTitle: seoData.metaTitle ?? "Laidback Luxury Vacation Rental & Boutique Hotel in North Carolina | DW",
+                metaDescription: seoData.metaDescription ?? "Cozy corners just a drift away from the beach. Cobalt walls. Floral chandeliers. Hammock swings and swaying Spanish moss. Dream your way to North Carolina.",
+                canonicalUrl: seoData.canonicalUrl ?? 'https://www.dreamerswelcome.com/northcarolina'
+            }
         },
     }
 }
