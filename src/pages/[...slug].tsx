@@ -264,17 +264,17 @@ const Property = ({
     return (
         <>
             <Head>
-                <title>{seoData.metaTitle ?? policyInfo.title}</title>
-                <meta name="description" content={seoData.metaDescription ?? policyInfo.description} />
-                <link rel="canonical" href={seoData.canonicalLink ?? policyInfo.link} />
-                <meta property="og:title" content={seoData.ogTitle ?? `${propertyName} by DW`} />
+                <title>{seoData?.metaTitle ?? policyInfo.title}</title>
+                <meta name="description" content={seoData?.metaDescription ?? policyInfo.description} />
+                <link rel="canonical" href={seoData?.canonicalLink ?? policyInfo.link} />
+                <meta property="og:title" content={seoData?.ogTitle ?? `${propertyName} by DW`} />
                 <meta
                     property="og:description"
-                    content={seoData.ogDescription ?? `${propertyType[0]} in ${location}, ${bucket[0]}`}
+                    content={seoData?.ogDescription ?? `${propertyType[0]} in ${location}, ${bucket[0]}`}
                 />
                 <meta
                     property="og:image"
-                    content={`https:${seoData.ogImage ? seoData.ogImage?.fields?.file?.url : tileImage?.fields?.file.url}?w=700`}
+                    content={`https:${seoData?.ogImage ? seoData?.ogImage?.fields?.file?.url : tileImage?.fields?.file.url}?w=700`}
                 />
             </Head>
             <BannerGridImage
