@@ -64,6 +64,9 @@ const GridImage = ({
 
     const final_ratio = getCorrectRatio([height, width], ratio)
 
+    console.log("gridImage---")
+
+
     return (
         <Container border={border} className={className} fullHeight={fullHeight} >
             <ImageMask borderRadius={borderRadius} fixedHeight={fixedHeight} fullHeight={fullHeight} hasHover={hasHover} ratio={final_ratio} >
