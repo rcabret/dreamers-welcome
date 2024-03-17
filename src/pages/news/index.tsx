@@ -55,12 +55,14 @@ const News = ({
     setNavTheme,
     res,
     setHeaderData,
+    seoData
 }: {
     news: any
     res: any
     blurb: any
     setNavTheme: any
     setHeaderData: any
+    seoData: any
 }) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
@@ -134,10 +136,16 @@ const News = ({
     return (
         <>
         <Head>
-        <title>News | Dreamers Welcome</title>
-        <meta name="description" content="The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties." />
-        <link rel="canonical" href="https://www.dreamerswelcome.com/news"/>
-    </Head>
+            <title>{seoData?.metaTitle}</title>
+            <meta
+                name="description"
+                content={seoData?.metaDescription}
+            />
+            <link
+                rel="canonical"
+                href={seoData?.canonicalUrl}
+            />
+        </Head>
            
             
             <Blurb text={blurb?.blurb} eyebrow="NEWS & UPDATES" fullHeight
@@ -186,11 +194,19 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const res = JSON.parse(stringData)
     const news = res.map((x: { fields: {} }) => x.fields)
     // let news =  only20news.slice(0,20)
+
+    const seoData = res?.seoMetadata?.fields
+
     return {
         props: {
             news,
             res,
-            blurb
+            blurb,
+            seoData: {
+                metaTitle: seoData?.metaTitle ?? 'News | Dreamers Welcome',
+                metaDescription: seoData?.metaDescription ?? "The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties.",
+                canonicalUrl: seoData?.canonicalUrl ?? "https://www.dreamerswelcome.com/news"
+            }
         },
     }
 }

@@ -33,6 +33,7 @@ const GuideBooks = ({
     guidesPage,
     setNavTheme,
     setHeaderData,
+    seoData
 }: any) => {
     const router = useRouter()
     const [property,setproperty]=useState('')
@@ -105,24 +106,16 @@ const GuideBooks = ({
           
           <Head>
                 <title>
-                    {property === 'northcarolina'
-                        ? 'North Carolina Guidebooks | Dreamers Welcome'
-                        : 'Puerto Rico Guidebooks | Dreamers Welcome'}
+                    {seoData.metaTitle}
                 </title>
                 <meta
                     name="description"
-                    content={
-                        property === 'northcarolina'
-                            ? 'Immerse yourself in our North Carolina designer hotel & laidback luxury vacation rentals. Our detailed guidebooks will walk you through North Carolina stunning landscape'
-                            : 'Immerse yourself in our Puerto Rican designer hotel & laidback luxury vacation rentals. Our detailed guidebooks will walk you through Puerto Rico rich culture.'
-                    }
+                    content={seoData.metaDescription}
                 />
-                  <link
+                <link
                     rel="canonical"
                     href={
-                        property === 'northcarolina'
-                            ? 'https://www.dreamerswelcome.com/guidebooks/northcarolina'
-                            : 'https://www.dreamerswelcome.com/guidebooks/puertorico'
+                       seoData.canonicalUrl
                     }
                 />
             </Head>
@@ -154,10 +147,26 @@ export default GuideBooks
 export async function getStaticProps(context: { params: { slug: string } }) {
     const guides = await getGuides(context.params.slug)
     const guidesPage = await getGuidesPage(context.params.slug)
+    const seoData = guidesPage?.seoMetadata?.fields
+    const defaultSeoTitle = context.params.slug === 'northcarolina'
+        ? 'North Carolina Guidebooks | Dreamers Welcome'
+        : 'Puerto Rico Guidebooks | Dreamers Welcome'
+    const defaultSeoDesc = context.params.slug === 'northcarolina'
+        ? 'Immerse yourself in our North Carolina designer hotel & laidback luxury vacation rentals. Our detailed guidebooks will walk you through North Carolina stunning landscape'
+        : 'Immerse yourself in our Puerto Rican designer hotel & laidback luxury vacation rentals. Our detailed guidebooks will walk you through Puerto Rico rich culture.'
+    const defaultCanonicalUrl =  context.params.slug === 'northcarolina'
+        ? 'https://www.dreamerswelcome.com/guidebooks/northcarolina'
+        : 'https://www.dreamerswelcome.com/guidebooks/puertorico'
+
     return {
         props: {
             guides,
             guidesPage,
+            seoData: {
+                metaTitle: seoData?.metaTitle ?? defaultSeoTitle,
+                metaDescription: seoData?.metaDescription ?? defaultSeoDesc,
+                canonicalUrl: seoData?.canonicalUrl ?? defaultCanonicalUrl
+            }
         },
     }
 }

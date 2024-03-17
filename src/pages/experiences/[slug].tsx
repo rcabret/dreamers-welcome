@@ -116,7 +116,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
   const stringData = safeJsonStringify(rawData)
   const experiences = JSON.parse(stringData)
   const experiencesPage = await getExperiencesPage(context.params.slug)
-  const seoMetaFields = experiencesPage?.metadata?.fields
+  const seoMetaFields = experiencesPage?.seoMetadata?.fields
   const defaultPageTitle = 'Experiences | Dreamers Welcome'
   const defaultPageDescription =
     'Take advantage of amenities and daily/weekly events in your vacation location of choice. Explore tailored and authentic activities and make the most of your stay'

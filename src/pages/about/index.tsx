@@ -120,7 +120,7 @@ export default About
 
 export async function getStaticProps() {
   const about = await getAbout()
-  const seoData = about?.metadata?.fields
+  const seoData = about?.seoMetadata?.fields
 
   return {
     props: {

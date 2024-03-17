@@ -41,7 +41,7 @@ async function generateSHA256Hash(input: string): Promise<string> {
     return hash;
 }
 
-const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
+const Contact = ({ properties, setNavTheme, setHeaderData, seoData }: any) => {
     useEffect(() => {
         setNavTheme('dark')
         setHeaderData({
@@ -135,10 +135,10 @@ const Contact = ({ properties, setNavTheme, setHeaderData }: any) => {
     return (
         <>    
         <Head>
-        <title>Contact Us | Dreamers Welcome</title>
-        <meta name="description" content="Reach out to us for any queries or questions you may have relating to your next stay with Dreamers Welcome, by using the contact details provided." />
-        <link rel="canonical" href="https://www.dreamerswelcome.com/contact"/>
-    </Head>
+            <title>{seoData.metaTitle}</title>
+            <meta name="description" content={seoData.metaDescription} />
+            <link rel="canonical" href={seoData.canonicalUrl}/>
+        </Head>
         <Content padding>
             <div style={{ margin: '0 15px' }}>
                 {!submitted ? (
@@ -234,10 +234,17 @@ export async function getStaticProps() {
     const rawData = await getAllPropertiesForPaths()
     const stringData = safeJsonStringify(rawData)
     const properties = JSON.parse(stringData)
+    const seoData = properties?.seoMetadata?.fields
 
     return {
         props: {
             properties,
+            seoData: {
+                metaTitle:
+                  seoData?.metaTitle ?? 'Contact Us | Dreamers Welcome',
+                metaDescription: seoData?.metaDescription ?? "Reach out to us for any queries or questions you may have relating to your next stay with Dreamers Welcome, by using the contact details provided.",
+                canonicalUrl: seoData?.canonicalUrl ?? 'https://www.dreamerswelcome.com/contact',
+            },
         },
     }
 }

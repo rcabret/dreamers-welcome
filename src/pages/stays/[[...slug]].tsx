@@ -49,7 +49,7 @@ const links_NC: { name: string; slug: string }[] = [
     }
 ]
 
-const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
+const Stays = ({ properties, setNavTheme, setHeaderData, blurb, seoData }: Props) => {
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
@@ -134,10 +134,10 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb }: Props) => {
 
     return (
         <>
-          <Head>
-                <title>Laidback Luxury Vacation Rentals & Boutique Hotels in Puerto Rico & NC, USA</title>
-                <meta name="description" content="Indulge in our laidback luxury vacation rentals & designer hotels with progressive amenities, vegan-forward cuisine, and access to authentic local experiences." />
-                <link rel="canonical" href="https://www.dreamerswelcome.com/stays" />
+            <Head>
+                <title>{seoData?.metaTitle}</title>
+                <meta name="description" content={seoData?.metaDescription} />
+                <link rel="canonical" href={seoData?.canonicalUrl} />
             </Head>
             <Blurb text={_blurb} eyebrow="STAYS" fullHeight />
             <div ref={firstItemRef}></div>
@@ -187,10 +187,17 @@ export async function getStaticProps(context: { params: { slug: string[] } }) {
         context.params.slug ? context.params.slug[0] : undefined
     )
     const blurb = await getProperties()
+    const seoData = blurb?.seoMetadata?.fields
+
     return {
         props: {
             properties,
             blurb,
+            seoData: {
+                metaTitle: seoData?.metaTitle ?? "Laidback Luxury Vacation Rentals & Boutique Hotels in Puerto Rico & NC, USA",
+                metaDescription: seoData?.metaDescription ?? "Indulge in our laidback luxury vacation rentals & designer hotels with progressive amenities, vegan-forward cuisine, and access to authentic local experiences.",
+                canonicalUrl: seoData?.canonicalUrl ?? "https://www.dreamerswelcome.com/stays"
+            }
         },
     }
 }

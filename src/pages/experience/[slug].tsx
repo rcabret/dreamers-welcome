@@ -22,7 +22,7 @@ import { viewportContext } from '../../_utils/ViewportProvider'
 import CollapsableList from '../../_components/UI/CollapsableList'
 import Head from 'next/head'
 
-const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
+const Experience = ({ experience, setHeaderData, setNavTheme, seoData }: any) => {
     const {
         slug,
         bannerImage,
@@ -146,16 +146,34 @@ const Experience = ({ experience, setHeaderData, setNavTheme }: any) => {
     return (
         <>
             <Head>
-            <title>{policyInfo.title}</title>
-            <meta name="description" content={policyInfo.description} />
-            <link rel="canonical" href={policyInfo.link} />
-                <meta property="og:title" content={title} />
-                <meta property="og:description" content={blurb} />
+                <title>{seoData?.metaTitle ?? policyInfo.title}</title>
+
+                <meta
+                    name="description"
+                    content={seoData?.metaDescription ?? policyInfo.description}
+                />
+                <link
+                    rel="canonical"
+                    href={seoData?.canonicalUrl ?? policyInfo.link}
+                />
+                <meta
+                    property="og:title"
+                    content={seoData?.ogTitle ?? title}
+                />
+                <meta
+                    property="og:description"
+                    content={
+                        seoData?.ogDescription ?? blurb
+                    }
+                />
                 <meta
                     property="og:image"
-                    content={`https:${bannerImage.fields.file.url}?w=700`}
-                />
-                
+                    content={`https:${
+                        seoData?.ogImage
+                        ? seoData?.ogImage?.fields?.file?.url
+                        : bannerImage.fields.file.url
+                    }?w=700`}
+                /> 
             </Head>
             <BannerGridImage
                 imageObj={bannerImage}
@@ -269,10 +287,13 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const rawData = await getExperience(context.params.slug)
     const stringData = safeJsonStringify(rawData)
     const experience = JSON.parse(stringData)
+    const seoData = experience?.seoMetadata?.fields
+
     
     return {
         props: {
             experience,
+            seoData: seoData ?? null
         },
     }
 }

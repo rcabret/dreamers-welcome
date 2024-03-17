@@ -13,7 +13,7 @@ import { ConceptTextContainer } from '../../styles/about/styles'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import moment from 'moment'
 import NewsItem from '../../_components/NewsItem'
-import { News } from '../../_constants/DataTypes'
+import { News, SeoData } from '../../_constants/DataTypes'
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer'
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import SubNavigation from '../../_components/Navigation/SubNavigation'
@@ -77,6 +77,7 @@ const NewsItemDetails = ({
   const [description, setDesc] = useState()
   const { id } = router.query;
   const [_id, setId] = useState('')
+  const [seoData, setSeoData] = useState<SeoData>({ metaTitle: 'News | Dreamers Welcome' });
 
   const [blurb, setBlurb] = useState()
 
@@ -151,6 +152,7 @@ const NewsItemDetails = ({
         setDesc(newsData?.description)
         setOtherNews(newsData?.otherNews)
         setBlurb(newsData?.blurb)
+        setSeoData({...seoData, ...newsData?.seoMetadata})
         const rawRichTextField = newsData?.description;
         const htmlString = documentToHtmlString(rawRichTextField);
         setRenderedHtml(htmlString);
@@ -178,7 +180,41 @@ const NewsItemDetails = ({
   return (
     <>
       <Head>
-        <title>News | Dreamers Welcome</title>
+          <title>{seoData?.metaTitle}</title>
+          {seoData?.metaDescription &&
+            <meta
+              name="description"
+              content={seoData?.metaDescription}
+            />
+          }
+          {seoData?.canonicalUrl &&
+            <link
+              rel="canonical"
+              href={seoData?.canonicalUrl}
+            />
+          }
+          {seoData?.ogTitle &&
+            <meta
+              property="og:title"
+              content={seoData?.ogTitle}
+            />
+          }
+          {seoData?.ogDescription &&
+            <meta
+              property="og:description"
+              content={
+                seoData?.ogDescription
+              }
+            />
+          }
+          {seoData?.ogImage &&
+            <meta
+              property="og:image"
+              content={`https:${
+                seoData?.ogImage?.fields?.file?.url
+              }?w=700`}
+            />
+          }
       </Head>
       <Content padding>
         {/* <div className='grid_head border-0 mt-0'>

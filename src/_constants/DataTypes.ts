@@ -24,3 +24,12 @@ export interface News {
     test: string
     // description: string
 }
+
+export interface SeoData {
+    metaTitle?: string;
+    metaDescription?: string;
+    canonicalUrl?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: any;
+}
