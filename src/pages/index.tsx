@@ -110,7 +110,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
         .then((res) => {
           setNCData(res.current_weather)
         })
-<<<<<<< HEAD
+
         return () => {
             window.removeEventListener('scroll', () => {
                 throttle(onScroll)()
@@ -151,8 +151,8 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
                 })
             }, 100)
         }
-=======
->>>>>>> 6000c0a964330bb38ae865fb5b286b9a3e4d27ae
+
+
     }
     fetchData()
   }, [])
@@ -169,13 +169,13 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
     }
   }
 
-<<<<<<< HEAD
+
 
 
  console.log("in the index page---")
-=======
+
   console.log('in the index page---')
->>>>>>> 6000c0a964330bb38ae865fb5b286b9a3e4d27ae
+
 
   return (
     <>

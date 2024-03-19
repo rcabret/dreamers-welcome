@@ -165,7 +165,7 @@ const Property = ({
         suites.find((x: any) => x?.fields?.slug === viewToShow)
     }
 
-<<<<<<< HEAD
+
     const policyLinks = {
         apt: {
             link: 'https://www.dreamerswelcome.com/apt',
@@ -502,7 +502,7 @@ const Property = ({
             )}
         </>
     )
-=======
+
     setView(finalView)
   }, [router.query])
 
@@ -856,7 +856,7 @@ const Property = ({
       )}
     </>
   )
->>>>>>> 6000c0a964330bb38ae865fb5b286b9a3e4d27ae
+
 }
 
 export default Property
