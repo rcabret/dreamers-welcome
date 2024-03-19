@@ -37,13 +37,23 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     fetchData();
   }, []);
 
+  // Set the card slug since this is how slugs are being handled currently
+  // Fixes slug showing up as undefined or bad link when 'open in new tab' click
+  useEffect(() => {
+    const filteredArray = _res?.filter(item => item.fields.title == title);
+
+    if(!filteredArray) return
+
+    const sys = filteredArray.map((x: { sys: string }) => x.sys.id)
+    setId(sys)
+  }, [_res, title])
+
   const handleClick = async () => {
     const filteredArray = _res.filter(item => item.fields.title == title);
     const sys = filteredArray.map((x: { sys: string }) => x.sys.id)
+
     setId(sys)
   }
-
-
 
   return (
     slug ? (

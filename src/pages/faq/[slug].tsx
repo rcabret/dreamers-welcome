@@ -7,7 +7,7 @@ import { getFaq, getFaqPage, getFaqs } from '../../_lib/api'
 import Blurb from '../../_components/UI/Blurb'
 import Head from 'next/head'
 
-const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
+const Faq = ({ faq, dropdownData, faqPage, setNavTheme, seoData }: any) => {
     const { list } = faq
 
     useEffect(() => {
@@ -16,11 +16,11 @@ const Faq = ({ faq, dropdownData, faqPage, setNavTheme }: any) => {
 
     return (
         <>
-          <Head>
-                <title>Frequently Asked Questions | Dreamers Welcome</title>
-                <meta name="description" content="Browse through frequently asked questions of all the Dreamers Welcome properties that provide you will all the information at a glance." />
-                <link rel="canonical" href="https://www.dreamerswelcome.com/faq/general"/>
-            </Head>
+         <Head>
+            <title>{seoData.metaTitle}</title>
+            <meta name="description" content={seoData.metaDescription} />
+            <link rel="canonical" href={seoData.canonicalUrl}/>
+        </Head>
         <Content padding>
             <Blurb text={faqPage.blurb} eyebrow="FAQs" />
             <Block
@@ -46,6 +46,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
     const faq = await getFaq(context.params.slug)
     const faqsResponse = await getFaqs()
     const faqPage = await getFaqPage()
+    const seoData = faqPage?.seoMetadata?.fields
 
     const faqGeneral = faqsResponse.filter((x) => x.slug == 'general')
     let faqs = faqsResponse.filter((x) => x.slug !== 'general')
@@ -59,11 +60,18 @@ export async function getStaticProps(context: { params: { slug: string } }) {
             }
         }
     )
+
     return {
         props: {
             faq,
             dropdownData,
             faqPage,
+            seoData: {
+                metaTitle:
+                  seoData?.metaTitle ?? 'Frequently Asked Questions | Dreamers Welcome',
+                metaDescription: seoData?.metaDescription ?? "Browse through frequently asked questions of all the Dreamers Welcome properties that provide you will all the information at a glance.",
+                canonicalUrl: seoData?.canonicalUrl ?? 'https://www.dreamerswelcome.com/faq/general',
+            }
         },
     }
 }

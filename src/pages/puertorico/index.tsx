@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import {
-    BannerGridImage,
-    GridModule,
-    StyledBlockForGrid,
+  BannerGridImage,
+  GridModule,
+  StyledBlockForGrid,
 } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
@@ -19,167 +19,178 @@ import PropertyGridItem from '../../_components/PropertyGridItem'
 import Head from 'next/head'
 
 const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'))
- 
+
 const StaysSwiperWrap = styled.div`
-    overflow: hidden;
-    width: 100%;
-    margin-top: ${rem(20)};
+  overflow: hidden;
+  width: 100%;
+  margin-top: ${rem(20)};
 
-    .swiper {
-        overflow: visible;
-        margin-left: ${rem(20)};
-        position: relative;
-        margin-right: ${rem(20)};
-    }
+  .swiper {
+    overflow: visible;
+    margin-left: ${rem(20)};
+    position: relative;
+    margin-right: ${rem(20)};
+  }
 
-    .swiper-slide {
-        max-width: 30%;
-        min-width: ${rem(370)};
-    }
+  .swiper-slide {
+    max-width: 30%;
+    min-width: ${rem(370)};
+  }
 
-    .navigation-wrap {
-        top: ${rem(-46)};
-    }
+  .navigation-wrap {
+    top: ${rem(-46)};
+  }
 `
-const Index = ({ data, setNavTheme, setHeaderData }: any) => {
-    const { blurb, title, guides, experiences, coverImage, mobileCoverImage, news } = data
-    const [stays, setStays] = useState(null)
-      console.log("here__")
-    useEffect(() => {
-        setNavTheme('light')
+const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
+  const {
+    blurb,
+    title,
+    guides,
+    experiences,
+    coverImage,
+    mobileCoverImage,
+    news,
+  } = data
+  const [stays, setStays] = useState(null)
+  console.log('here__')
+  useEffect(() => {
+    setNavTheme('light')
 
-        const data = {
-            bucket: 'Puerto Rico',
-            simpleNav: false,
-            property: "",
-        }
-        setHeaderData(data)
-        localStorage.setItem('bucket', data.bucket)
+    const data = {
+      bucket: 'Puerto Rico',
+      simpleNav: false,
+      property: '',
+    }
+    setHeaderData(data)
+    localStorage.setItem('bucket', data.bucket)
 
-        const getStays = async () => {
-            const rawData = await getStaysForHomepage('puertorico')
-            const stringData = safeJsonStringify(rawData)
-            const data = JSON.parse(stringData)
-            const { stays } = data
-            setStays(stays)
-        }
-        getStays()
-    }, [])
-    
-    return (
-        <>
-          <Head>
-                <title>Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW</title>
-                <meta name="description" content="Puerto Rico’s sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams." />
-                <link rel="canonical" href="https://www.dreamerswelcome.com/puertorico" />
-            </Head>
-            <BannerGridImage
-                imageObj={coverImage}
-                mobileImageObj={mobileCoverImage}
-                border={false}
-                borderRadius={false}
-                fullHeight
-                sizes={'100vw'}
-            >
-                <BannerContent headerText={title} />
-            </BannerGridImage>
-            <Blurb text={blurb} />
+    const getStays = async () => {
+      const rawData = await getStaysForHomepage('puertorico')
+      const stringData = safeJsonStringify(rawData)
+      const data = JSON.parse(stringData)
+      const { stays } = data
+      setStays(stays)
+    }
+    getStays()
+  }, [])
 
-            {stays && (
-                <Block
-                    title="OUR STAYS"
-                    fullWidth
-                    showOverflow
-                    noPaddingBottom
-                    link='/stays/puertorico'
-                    content={
-                        <StaysSwiperWrap className='stays_grid'>
-                            <GridModule columns={3} >
-                                {stays &&
-                                    stays.length &&
-                                    stays.slice(0,3).map((p: any) => (
-                                        <PropertyGridItem
-                                            propertyObj={p.fields}
-                                        />
-                                    ))}
-                            </GridModule>
-                        </StaysSwiperWrap>
-                    }
-                />
-            )}
+  return (
+    <>
+      <Head>
+        <title>{seoData.metaTitle}</title>
+        <meta name="description" content={seoData.metaDescription} />
+        <link rel="canonical" href={seoData.canonicalUrl} />
+      </Head>
+      <BannerGridImage
+        imageObj={coverImage}
+        mobileImageObj={mobileCoverImage}
+        border={false}
+        borderRadius={false}
+        fullHeight
+        sizes={'100vw'}
+      >
+        <BannerContent headerText={title} />
+      </BannerGridImage>
+      <Blurb text={blurb} />
 
-            {guides && guides.length && (
-                <StyledBlockForGrid
-                    title="GUIDEBOOKS"
-                    fullWidth
-                    noPaddingBottom
-                    link="/guidebooks/puertorico"
-                    content={
-                        <GridModule columns={guides.length} sideScrollOnMobile>
-                            {guides &&
-                                guides.length &&
-                                guides.map((guide: any) => (
-                                    <GuideItem data={guide.fields} />
-                                ))}
-                        </GridModule>
-                    }
-                />
-            )}
+      {stays && (
+        <Block
+          title="OUR STAYS"
+          fullWidth
+          showOverflow
+          noPaddingBottom
+          link="/stays/puertorico"
+          content={
+            <StaysSwiperWrap className="stays_grid">
+              <GridModule columns={3}>
+                {stays &&
+                  stays.length &&
+                  stays
+                    .slice(0, 3)
+                    .map((p: any) => (
+                      <PropertyGridItem propertyObj={p.fields} />
+                    ))}
+              </GridModule>
+            </StaysSwiperWrap>
+          }
+        />
+      )}
 
-            {experiences && experiences.length && (
-                <StyledBlockForGrid
-                    title="EXPERIENCES"
-                    fullWidth
-                    noPaddingBottom
-                    link="/experiences/puertorico"
-                    content={
-                        <GridModule
-                            columns={experiences.length}
-                            sideScrollOnMobile
-                        >
-                            {experiences &&
-                                experiences.length &&
-                                experiences.map((exp: any) => (
-                                    <ExperienceItem data={exp.fields} />
-                                ))}
-                        </GridModule>
-                    }
-                />
-            )}
+      {guides && guides.length && (
+        <StyledBlockForGrid
+          title="GUIDEBOOKS"
+          fullWidth
+          noPaddingBottom
+          link="/guidebooks/puertorico"
+          content={
+            <GridModule columns={guides.length} sideScrollOnMobile>
+              {guides &&
+                guides.length &&
+                guides.map((guide: any) => <GuideItem data={guide.fields} />)}
+            </GridModule>
+          }
+        />
+      )}
 
-            {news && news.length && (
-                <StyledBlockForGrid
-                    title="IN THE NEWS"
-                    fullWidth
-                    noPaddingBottom
-                    link="/news"
-                    content={
-                        <GridModule columns={news.length} sideScrollOnMobile>
-                            {news.length &&
-                                news.map((x: any, i: number) => (
-                                    <NewsItem
-                                        key={x.slug + i}
-                                        newsObj={x?.fields}
-                                    />
-                                ))}
-                        </GridModule>
-                    }
-                />
-            )}
-        </>
-    )
+      {experiences && experiences.length && (
+        <StyledBlockForGrid
+          title="EXPERIENCES"
+          fullWidth
+          noPaddingBottom
+          link="/experiences/puertorico"
+          content={
+            <GridModule columns={experiences.length} sideScrollOnMobile>
+              {experiences &&
+                experiences.length &&
+                experiences.map((exp: any) => (
+                  <ExperienceItem data={exp.fields} />
+                ))}
+            </GridModule>
+          }
+        />
+      )}
+
+      {news && news.length && (
+        <StyledBlockForGrid
+          title="IN THE NEWS"
+          fullWidth
+          noPaddingBottom
+          link="/news"
+          content={
+            <GridModule columns={news.length} sideScrollOnMobile>
+              {news.length &&
+                news.map((x: any, i: number) => (
+                  <NewsItem key={x.slug + i} newsObj={x?.fields} />
+                ))}
+            </GridModule>
+          }
+        />
+      )}
+    </>
+  )
 }
 
 export default Index
 
 export async function getStaticProps() {
-    const rawData = await getHomepage('puertorico')
-    const stringData = safeJsonStringify(rawData)
-    const data = JSON.parse(stringData)
+  const rawData = await getHomepage('puertorico')
+  const stringData = safeJsonStringify(rawData)
+  const data = JSON.parse(stringData)
+  const seoData = data?.seoMetadata?.fields
 
-    return {
-        props: {
-            data,
-        },
-    }
+  return {
+    props: {
+      data,
+      seoData: {
+        metaTitle:
+          seoData?.metaTitle ??
+          'Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW',
+        metaDescription:
+          seoData?.metaDescription ??
+          "Puerto Rico's sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams.",
+        canonicalUrl:
+          seoData?.canonicalUrl ?? 'https://www.dreamerswelcome.com/puertorico',
+      },
+    },
+  }
 }

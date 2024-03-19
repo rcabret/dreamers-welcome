@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import Head from  'next/head'
+
 import {
     BannerGridImage,
     GridModule,
@@ -13,7 +15,7 @@ import { bucketToPath } from '../../_utils/Parsers'
 import Blurb from '../../_components/UI/Blurb'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 
-const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
+const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
     const {
         bannerImage,
         mobileBannerImage,
@@ -34,6 +36,17 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData }: any) => {
 
     return (
         <>
+            <Head>
+                {seoData?.metaTitle &&
+                    <title>{seoData?.metaTitle}</title>
+                }
+                {seoData?.metaDescription &&
+                    <meta name="description" content={seoData?.metaDescription} />
+                }
+                {seoData?.canonicalUrl &&
+                    <link rel="canonical" href={seoData?.canonicalUrl}/>
+                }
+            </Head>
             <BannerGridImage
                 imageObj={bannerImage}
                 mobileImageObj={mobileBannerImage}
@@ -80,9 +93,12 @@ export default GuideBook
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const guide = await getGuide(context.params.slug)
+    const seoData = guide?.seoMetadata?.fields
+
     return {
         props: {
             guide,
+            seoData: seoData ?? null
         },
     }
 }
