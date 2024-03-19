@@ -10,6 +10,7 @@ export interface ContentfulImage {
             }
         }
     }
+    description: string
     title: string
 }
 
@@ -24,3 +25,11 @@ export interface News {
     // description: string
 }
 
+export interface SeoData {
+    metaTitle?: string;
+    metaDescription?: string;
+    canonicalUrl?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: any;
+}

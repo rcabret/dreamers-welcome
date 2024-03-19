@@ -47,7 +47,7 @@ const GridImage = ({
         breakpoint === 'mobile' && mobileImageObj ? mobileImageObj : imageObj
 
     const { fields } = imageToRender
-    const { file } = fields
+    const { file, description } = fields
     const { details, url } = file
     const { image } = details
     const { width, height } = image
@@ -57,8 +57,12 @@ const GridImage = ({
         ratio: number | string
     ): number | string => {
         const [h, w] = dimensions
-        if (ratio === 'natural') { return h / w}
-        if (ratio === 'lightbox') { return h > w ? h / w - 1 : h / w }
+        if (ratio === 'natural') {
+            return h / w
+        }
+        if (ratio === 'lightbox') {
+            return h > w ? h / w - 1 : h / w
+        }
         return ratio
     }
 
@@ -67,12 +71,22 @@ const GridImage = ({
 
 
     return (
-        <Container border={border} className={className} fullHeight={fullHeight} >
-            <ImageMask borderRadius={borderRadius} fixedHeight={fixedHeight} fullHeight={fullHeight} hasHover={hasHover} ratio={final_ratio} >
+        <Container
+            border={border}
+            className={className}
+            fullHeight={fullHeight}
+        >
+            <ImageMask
+                borderRadius={borderRadius}
+                fixedHeight={fixedHeight}
+                fullHeight={fullHeight}
+                hasHover={hasHover}
+                ratio={final_ratio}
+            >
                 {imageToRender ? (
                     <>
                         <aside />
-                        <Image src={`https:${url}${widthQuery && !sizes? `?w=${widthQuery}`: ''}` || '/'} alt="No Image" layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`}  />
+                        <Image src={`https:${url}${widthQuery && !sizes? `?w=${widthQuery}`: ''}` || '/'} alt={description} layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`}  />
                         {children && children}
                     </>
                 ) : (
