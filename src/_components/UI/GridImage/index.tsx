@@ -64,7 +64,6 @@ const GridImage = ({
 
     const final_ratio = getCorrectRatio([height, width], ratio)
 
-    console.log("gridImage---")
 
 
     return (

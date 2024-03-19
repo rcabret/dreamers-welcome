@@ -93,6 +93,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
         fetchData()
     }, [])
  
+
+    
     const scrollToBottom = () => {
        
         const anchor = document.getElementById('view')
@@ -105,6 +107,8 @@ const Home = ({ landing, setNavTheme, setHeaderData }: any) => {
             }, 100)
         }
     }
+
+
 
  console.log("in the index page---")
 

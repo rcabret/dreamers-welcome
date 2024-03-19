@@ -5,6 +5,7 @@ import MarkdownModule from '../_components/Typography/MarkdownModule'
 import { getPage } from '../_lib/api'
 import Head from 'next/head'
 
+
 const Privacy = ({ data, setNavTheme }: any) => {
     const { content } = data
 
@@ -12,7 +13,9 @@ const Privacy = ({ data, setNavTheme }: any) => {
         setNavTheme('dark')
     }, [])
 
-    console.log("privacy")
+
+   
+
     return (
         <>
          <Head>

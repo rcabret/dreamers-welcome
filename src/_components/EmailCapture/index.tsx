@@ -20,7 +20,7 @@ const Wrapper = styled.div`
 
 
 const EmailCapture = ({inFirstVisitModal} : any) => {
-    console.log("check email")
+    
     const url = getPostUrl()
     if(inFirstVisitModal){
         return (

@@ -255,7 +255,7 @@ const Property = ({
     
     
     
-    console.log("in the ...slug page,property name ---------",propertyName)
+   console.log(" in the stays --- in the slug---")
     
     
 
