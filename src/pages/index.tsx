@@ -110,49 +110,6 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
         .then((res) => {
           setNCData(res.current_weather)
         })
-
-        return () => {
-            window.removeEventListener('scroll', () => {
-                throttle(onScroll)()
-            })
-        }
-    }, [])
-
-    const getWeatherApiUrl = (lat: number, long: number) =>
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${long}&current_weather=true&temperature_unit=fahrenheit`
-
-    useEffect(() => {
-        const fetchData = async () => {
-            await fetch(getWeatherApiUrl(18.2078212, -67.7099374))
-                .then((x) => x.json())
-                .then((res) => {
-                    
-                    setPRData(res.current_weather)
-                })
-            await fetch(getWeatherApiUrl(35.3857677, -81.3990799))
-                .then((x) => x.json())
-                .then((res) => {
-                    setNCData(res.current_weather)
-                })
-        }
-        fetchData()
-    }, [])
- 
-
-    
-    const scrollToBottom = () => {
-       
-        const anchor = document.getElementById('view')
-        if (anchor) {
-            setTimeout(function () {
-                window.scrollTo({
-                    behavior: 'smooth',
-                    top: anchor.offsetTop - 120,
-                })
-            }, 100)
-        }
-
-
     }
     fetchData()
   }, [])
@@ -169,13 +126,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
     }
   }
 
-
-
-
- console.log("in the index page---")
-
   console.log('in the index page---')
-
 
   return (
     <>
