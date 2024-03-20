@@ -350,7 +350,12 @@ button.cmn_btn.floor_plan {
 .floor_images_carousal  .swiper-pagination-bullet-active {
     background: #000;
 }
-// 
+// 20 - march
+.flex.copywrite {
+    width: 100%;
+    padding-top: 6.5rem;
+    justify-content: center;
+}
 @media(min-width:1921px){
     .modal-content {
         max-width: 50%;
@@ -413,6 +418,10 @@ button.cmn_btn.floor_plan {
     .join_us_modal{
         margin-bottom: 130px;
     }
+    .flex.copywrite span {
+        font-size: 13px;
+        margin-bottom: -4px;
+    }
    
 // { .grid_view,.mt-custom  {
 //     max-width: 100%;
@@ -468,3 +477,4 @@ button.cmn_btn.floor_plan {
        width: 100%;
     }
 }
+

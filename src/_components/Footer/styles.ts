@@ -5,7 +5,7 @@ import Button from '../UI/Buttons/Button'
 import { BREAKPOINTS } from '../../_constants/brekpoints'
 
 export const FooterStyled = styled.footer`
-    height: ${rem(350)};
+  
     border-top: ${rem(1)} solid #c1c1c1;
     padding: ${rem(30)};
     position: relative;
@@ -95,3 +95,5 @@ export const Policies = styled.span`
         text-decoration: underline;
     }
 `
+
+

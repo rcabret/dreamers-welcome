@@ -161,7 +161,7 @@ const Footer = ({ activeBucket }: any) => {
             <ContactUs href={'/contact'} inverse>
                 CONTACT US
             </ContactUs>
-            <div className='flex absolute bottom-7 left-5'>
+            <div className='flex copywrite'>
                 <Copyright>&copy; DW {moment().year()}</Copyright>
                 <Policies>
                     <Link href={'/privacy'}>Privacy</Link>&nbsp;and&nbsp;
