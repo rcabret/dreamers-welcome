@@ -164,8 +164,8 @@ const Footer = ({ activeBucket }: any) => {
             <div className='flex copywrite'>
                 <Copyright>&copy; DW {moment().year()}</Copyright>
                 <Policies>
-                    <Link href={'/privacy'}>Privacy</Link>&nbsp;and&nbsp;
-                    <Link href={'/booking-policy/general'}>Booking Policy</Link>
+                    <a href='/privacy'>Privacy</a>&nbsp;and&nbsp;
+                    <a href='/booking-policy/general'>Booking Policy</a>
                 </Policies>
             </div>
         </FooterStyled>
