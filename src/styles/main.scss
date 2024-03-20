@@ -418,10 +418,12 @@ button.cmn_btn.floor_plan {
     .join_us_modal{
         margin-bottom: 130px;
     }
-    .flex.copywrite span {
-        font-size: 13px;
-        margin-bottom: -4px;
+    .flex.copywrite {
+        padding-top: 2.5rem;
+        justify-content: center;
+        padding-bottom: 5em;
     }
+    
    
 // { .grid_view,.mt-custom  {
 //     max-width: 100%;
