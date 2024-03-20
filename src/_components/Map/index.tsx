@@ -35,8 +35,7 @@ const Map = ({ link }: any) => {
                 <IFrameWrapper>
                     <iframe
                         src={link}
-                        width="100%"
-                        height="auto"
+                       className='text_us'
                         style={{ border: 0 }}
                         allowFullScreen={false}
                         loading="lazy"
