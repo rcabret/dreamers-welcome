@@ -20,12 +20,12 @@ const Wrapper = styled.div`
 
 
 const EmailCapture = ({inFirstVisitModal} : any) => {
-    console.log("check email")
+  
     const url = getPostUrl()
     if(inFirstVisitModal){
         return (
             <Wrapper className='modal_styling'>
-                <div>
+                <div className='join_us_wrapper'>
                     <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
                     <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
                     <MailchimpSubscribe

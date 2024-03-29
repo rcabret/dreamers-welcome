@@ -91,7 +91,6 @@ useEffect(() => {
 
 
 
- console.log("in the _app page")
 
   return (
     <>

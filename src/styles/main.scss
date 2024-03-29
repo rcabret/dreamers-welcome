@@ -356,6 +356,44 @@ button.cmn_btn.floor_plan {
     padding-top: 6.5rem;
     justify-content: center;
 }
+// 29 march
+.newsletter_wrapper {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+}
+.newsletter_wrapper label, .newsletter_wrapper .mobile_input {
+    width: 100%;
+}
+.submit_btn {
+    text-align: center;
+}
+
+.submit_btn button span {
+    display: flex;
+    gap: 10px;
+}
+
+.submit_btn button {
+    height: 2.5rem;
+    padding: 0.5rem 1.125rem;
+    border-radius: 30px;
+    background: #1a1a1a;
+    color: white;
+    text-transform: uppercase;
+    border: 1px solid #1a1a1a;
+    font-size: 1rem;
+}
+
+.join_us_wrapper .newsletter_wrapper {
+    display: block;
+}
+
+.join_us_wrapper .mobile_input {
+    margin: 15px 0px;
+}
+
 @media(min-width:1921px){
     .modal-content {
         max-width: 50%;
@@ -477,6 +515,15 @@ button.cmn_btn.floor_plan {
     .modal-content {
        max-width:92%;
        width: 100%;
+    }
+    .newsletter_wrapper{
+        display: block;
+    }
+    .mobile_input{
+        margin: 15px 0px;
+    }
+    .submit_btn{
+        margin-bottom: 10px;
     }
 }
 
