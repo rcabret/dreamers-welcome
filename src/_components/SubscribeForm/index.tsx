@@ -49,6 +49,9 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('');
     const [placeholder, setPlaceholder] = useState('Enter your email')
+    const [phonePlaceholder,setPhonePlaceholder]=useState('Enter mobile number (XXX) XXX-XXXX')
+    // const [placeholder, setPlaceholder] = useState('👍')
+
   
 
   
@@ -124,10 +127,11 @@ if(status==='error'){
         if (status === 'success') {
             setEmail('')
             setPhone('')
-           
             setPlaceholder('THANKS FOR SUBSCRIBING!')
+            setPhonePlaceholder('THANKS FOR SUBSCRIBING!')
             setTimeout(() => {
                 setPlaceholder('Enter your email')
+                setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
             }, 3000)
         }
     }, [message, status])
@@ -150,7 +154,7 @@ if(status==='error'){
                 onChangeHandler={setPhone}
                 type="tel"
                 value={phone}
-                placeholder="Enter your phone number"
+                placeholder={phonePlaceholder}
                 isRequired
                 />
              </div>
