@@ -100,7 +100,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
         if(email==='test@gmail.com'){
             window.alert('This email cannot be added to this list. Please enter a different email address.')
         }else{
-            setStoreEmail(email)
+            
             onValidated({
                 EMAIL: email,
                 SMSPHONE: phone 
@@ -114,7 +114,9 @@ console.log("email ----->",storeEmail)
 
 
 useEffect(()=>{
+
 if(status==='error'){
+   
     if(message==='There was an error, please try again later'){
         window.alert('Network issue')
     }else{
@@ -144,6 +146,7 @@ if(status==='error'){
     useEffect(() => {
         console.log("status---",status)
         if (status === 'success') {
+            setStoreEmail(email)
             setEmail('')
             setPhone('')
             setPlaceholder('THANKS FOR SUBSCRIBING!')
@@ -152,6 +155,7 @@ if(status==='error'){
                 setIsEmailSubscribedIn(true) 
                 setIsEmailSubscribed(true)
                 if(isEmailSubscribedIn===false){
+
                     setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
                 }
                
