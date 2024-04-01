@@ -33,6 +33,7 @@ const InputField = ({
     name,
     formValues,
     placeholder,
+    maxLength
 }: any) => {
     const validateInput = (values: any) => {
         if (
@@ -67,6 +68,7 @@ const InputField = ({
                     className="inputField__field"
                     rows={7}
                     name={name}
+                    
                 />
             </label>
         )
@@ -81,6 +83,7 @@ const InputField = ({
                     value={value}
                     required={isRequired}
                     name={name}
+                    maxLength={maxLength}
                 />
             </label>
         )

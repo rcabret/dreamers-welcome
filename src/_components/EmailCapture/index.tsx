@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Block from '../UI/Block'
 import styled from 'styled-components'
 import Header from '../Typography/Header'
@@ -20,25 +20,43 @@ const Wrapper = styled.div`
 
 
 const EmailCapture = ({inFirstVisitModal} : any) => {
-  
     const url = getPostUrl()
+    const [isEmailSubscribed,setIsEmailSubscribed]=useState(false)
+
+     
+
     if(inFirstVisitModal){
         return (
             <Wrapper className='modal_styling'>
                 <div className='join_us_wrapper'>
-                    <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
-                    <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
+                    {
+                      !isEmailSubscribed?(<>
+                        <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
+                        <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p></>
+                       )
+                      :
+                      (
+                        <>
+                        
+                      <StyledHeader size={2}>You're almost there!</StyledHeader>
+                      <p className='my-2 px-3 text-lg text-center'>Unlock exclusive savings when you sign up for mobile alerts.</p></>
+                      )
+                    }
+                   
+                   
                     <MailchimpSubscribe
                         url={url}
-        
                         render={({ subscribe, status, message }) => (
                             <SubscribeForm
                                 marginTop='0.5rem'
                                 status={status}
                                 message={message}
+                                setIsEmailSubscribed={setIsEmailSubscribed}
                                 onValidated={(formData: any) => {
                                     subscribe(formData)
-                                }}
+                                }
+                                
+                            }
                             />
                         )}
                     />
@@ -56,8 +74,19 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
             content={
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                     <div>
-                        <StyledHeader size={2}>Are you a dreamer?</StyledHeader>
-                        <p className='my-5 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p>
+                    {
+                      !isEmailSubscribed?(<>
+                        <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
+                        <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p></>
+                       )
+                      :
+                      (
+                        <>
+                        
+                      <StyledHeader size={2}>You're almost there!</StyledHeader>
+                      <p className='my-2 px-3 text-lg text-center'>Unlock exclusive savings when you sign up for mobile alerts.</p></>
+                      )
+                    }
                         <MailchimpSubscribe
                             url={url}
                             render={({ subscribe, status, message }) => (
@@ -65,9 +94,14 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                                     marginTop='3rem'
                                     status={status}
                                     message={message}
-                                    onValidated={(formData: any) => {
-                                        subscribe(formData)
+                                    setIsEmailSubscribed={setIsEmailSubscribed}
+                                    onValidated={(formData: any) => {   
+                                        
+                                        subscribe(formData) 
+                                      
                                     }}
+                                 
+                                
                                 />
                             )}
                         />

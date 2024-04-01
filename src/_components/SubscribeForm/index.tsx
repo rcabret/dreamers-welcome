@@ -3,6 +3,7 @@ import InputField from '../UI/InputField'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import { userAgent } from 'next/server'
+import { error } from 'console'
 
 
 
@@ -43,14 +44,16 @@ const Form = styled.form`
         }
     `
 
-const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
+const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubscribed }: any) => {
 
     var status 
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('');
     const [placeholder, setPlaceholder] = useState('Enter your email')
     const [phonePlaceholder,setPhonePlaceholder]=useState('Enter mobile number (XXX) XXX-XXXX')
-    // const [placeholder, setPlaceholder] = useState('👍')
+    const [isEmailSubscribedIn,setIsEmailSubscribedIn] = useState(false)
+    const [storeEmail,setStoreEmail]= useState('')
+
 
   
 
@@ -76,37 +79,53 @@ const SubscribeForm = ({marginTop,  status, message, onValidated }: any) => {
     
 
     const handleSubmit = (e: any) => {
-        e.preventDefault();
-   
-        if (!isEmailValid(email)) {
-            window.alert('Email is not in correct format');
-            return;
-        }
-    
-        if (!isPhoneNumberValid(phone)) {
-               window.alert('Phone number is not valid');
-            return;
-        }
-    
+     e.preventDefault();
 
-        onValidated({
-            EMAIL: email,
-            SMSPHONE: phone 
-        });
+      console.log('check is email subscribed =====',isEmailSubscribedIn)
+     
+        if(isEmailSubscribedIn===false){
+            if (!isEmailValid(email)) {
+                window.alert('Email is not in correct format');
+                return;
+            }
+        }else{
+            setEmail(storeEmail)
+            if (!isPhoneNumberValid(phone)) {
+                window.alert('Phone number is not valid');
+             return;
+         }
+         
+        }
+
+        if(email==='test@gmail.com'){
+            window.alert('This email cannot be added to this list. Please enter a different email address.')
+        }else{
+            setStoreEmail(email)
+            onValidated({
+                EMAIL: email,
+                SMSPHONE: phone 
+            });
+        }
+    
     };
-    
-useEffect(()=>{
 
+
+console.log("email ----->",storeEmail)
+
+
+useEffect(()=>{
 if(status==='error'){
     if(message==='There was an error, please try again later'){
         window.alert('Network issue')
     }else{
+       
         if(message==='An unexpected error occurred during sms opt-in')
         {
         window.alert('Check your number is correct?')
-        } else{
-         window.alert(message)
-    } }
+        } else{   
+            window.alert(message)
+            }
+    }
 }
 },[status])
 
@@ -130,26 +149,42 @@ if(status==='error'){
             setPlaceholder('THANKS FOR SUBSCRIBING!')
             setPhonePlaceholder('THANKS FOR SUBSCRIBING!')
             setTimeout(() => {
-                setPlaceholder('Enter your email')
-                setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
-            }, 3000)
+                setIsEmailSubscribedIn(true) 
+                setIsEmailSubscribed(true)
+                if(isEmailSubscribedIn===false){
+                    setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
+                }
+               
+            },3000 );
+            // setTimeout(() => {
+            //     setPlaceholder('Enter your email')
+            //     setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
+            // }, 2000)
         }
     }, [message, status])
 
-
    
 
-    return (
+
+
+console.log("sucscribeed ----",isEmailSubscribedIn)
+
+
+    return (<>
+    { isEmailSubscribedIn===false ?(
         <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)} className='subscribe'>
             <div className='newsletter_wrapper'>
-                <InputField
-                    onChangeHandler={setEmail}
-                    type="email"
-                    value={email}
-                    placeholder={placeholder}
-                    isRequired
-                />
-             <div className='mobile_input'>
+            <div className='mobile_input'>
+             <InputField
+             onChangeHandler={setEmail}
+             type="email"
+            
+             value={email}
+             placeholder={placeholder}
+             isRequired
+            />
+               </div>
+             {/* <div className='mobile_input'>
                    <InputField
                 onChangeHandler={setPhone}
                 type="tel"
@@ -157,30 +192,45 @@ if(status==='error'){
                 placeholder={phonePlaceholder}
                 isRequired
                 />
-             </div>
+             </div> */}
                <div className='submit_btn'>
                <StyledButtonInput
                     type="submit"
-                    formValues={[email,phone]}
-                    label={"Submit"
-                //        <span> Submit
-                //          <svg
-                //        xmlns="http://www.w3.org/2000/svg"
-                //        fillRule="evenodd"
-                //        clipRule="evenodd"
-                //        viewBox="0 0 512 376.83"
-                //    >
-                //        <path
-                //            fillRule="nonzero"
-                //            d="M355.12 372.7a12.026 12.026 0 0 1-17.09 1.06c-5-4.47-5.46-12.2-1.04-17.25l136.05-155.82H12.15c-6.71 0-12.15-5.5-12.15-12.28 0-6.77 5.44-12.27 12.15-12.27h460.9L336.99 20.32c-4.42-5.05-3.96-12.78 1.04-17.25 5.01-4.47 12.66-4 17.09 1.05l153.67 176c4.17 4.55 4.33 11.64.17 16.39L355.12 372.7z"
-                //        />
-                //    </svg>
-                //    </span>
-                    }
+                    formValues={[email]}
+                    label={"Submit"}
                 />
                </div>
             </div>
         </Form>
+        )
+        : (
+        <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)} className='subscribe'>
+            
+            <div className='newsletter_wrapper'>
+       
+             <div className='mobile_input'>
+                <InputField
+                onChangeHandler={setPhone} 
+                type="tel"
+                value={phone}
+                placeholder={phonePlaceholder}
+                isRequired
+                maxLength={14}
+                />
+             
+             </div>
+            <div className='submit_btn'>
+            <button className='submit_btn' disabled={!phone} onClick={(e) => handleSubmit(e)}>SUBMIT</button>
+                
+               {/* <StyledButtonInput
+                    type="submit"
+                    formValues={[phone]}
+                    label={"Submit" }
+                /> */}
+               </div>
+            </div>
+        </Form>)} 
+        </>
     )
 }
 
