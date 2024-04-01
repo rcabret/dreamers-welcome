@@ -215,7 +215,7 @@ console.log("sucscribeed ----",isEmailSubscribedIn)
                 value={phone}
                 placeholder={phonePlaceholder}
                 isRequired
-                maxLength={14}
+                maxLength={10}
                 />
              
              </div>
