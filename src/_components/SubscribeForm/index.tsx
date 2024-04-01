@@ -155,7 +155,7 @@ if(status==='error'){
                     setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
                 }
                
-            },3000 );
+            },2000 );
             // setTimeout(() => {
             //     setPlaceholder('Enter your email')
             //     setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
