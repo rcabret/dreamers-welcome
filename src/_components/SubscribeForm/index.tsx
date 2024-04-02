@@ -2,13 +2,8 @@ import React, { useEffect, useState } from 'react'
 import InputField from '../UI/InputField'
 import styled from 'styled-components'
 import { rem } from 'polished'
-import { userAgent } from 'next/server'
-import { error } from 'console'
-
-
-
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const StyledButtonInput = styled(InputField)` 
@@ -63,7 +58,8 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
       console.log('check is email subscribed =====',isEmailSubscribedIn)
    
         if(email==='test@gmail.com'){
-            window.alert('This email cannot be added to this list. Please enter a different email address.')
+            toast.error("This email cannot be added to this list. Please enter a different email address.");
+            // window.alert('This email cannot be added to this list. Please enter a different email address.')
         }
         if(isValid===true){
             onValidated({
@@ -86,14 +82,14 @@ console.log("email ----->",storeEmail)
 useEffect(()=>{
 if(status==='error'){
     if(message==='There was an error, please try again later'){
+        // toast.error()
         window.alert('Network issue')
     }else{
-       
         if(message==='An unexpected error occurred during sms opt-in')
         {
         window.alert('Check your number is correct?')
         } else{   
-            window.alert(message)
+        window.alert(message)
         }
     }
 }
@@ -192,6 +188,7 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                 />
                </div>
             </div>
+            <ToastContainer/>
         </Form>
         )
         : (
@@ -218,8 +215,9 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                 /> */}
                </div>
             </div>
+            <ToastContainer/>
         </Form>)} 
-        
+      
         </>
     )
 }   

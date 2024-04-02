@@ -469,7 +469,9 @@ button.cmn_btn.floor_plan {
         padding-bottom: 5em;
     }
     
-   
+   .thankyou_message{
+    font-size: 32px;
+   }
 // { .grid_view,.mt-custom  {
 //     max-width: 100%;
 //     padding: 0px 20px;
@@ -523,6 +525,9 @@ button.cmn_btn.floor_plan {
        max-width:92%;
        width: 100%;
     }
+    .thankyou_message{
+        font-size: 18px;
+       }
     .newsletter_wrapper{
         display: block;
     }
