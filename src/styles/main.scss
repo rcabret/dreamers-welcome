@@ -366,6 +366,10 @@ button.cmn_btn.floor_plan {
     text-align: center;
     padding-top: 6px;
 }
+.thankyou_message{
+    font-size: 32px;
+    font-weight: 500;
+   }
 .newsletter_wrapper label, .newsletter_wrapper .mobile_input {
     width: 100%;
 }
@@ -411,8 +415,14 @@ button.cmn_btn.floor_plan {
     .modal-content {
         max-width: 75%;
     }
+    .thankyou_message{
+        font-size: 24px;
+    }
 }
 @media(max-width:960px){
+    .thankyou_message{
+        font-size: 20px;
+    }
     button.cmn_btn.floor_plan {
         left: 0%;
     }
@@ -469,10 +479,7 @@ button.cmn_btn.floor_plan {
         padding-bottom: 5em;
     }
     
-   .thankyou_message{
-    font-size: 32px;
-    font-weight: 500;
-   }
+
 // { .grid_view,.mt-custom  {
 //     max-width: 100%;
 //     padding: 0px 20px;
