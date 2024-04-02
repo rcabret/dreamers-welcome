@@ -366,8 +366,8 @@ button.cmn_btn.floor_plan {
     text-align: center;
     padding-top: 6px;
 }
-.thankyou_message{
-    font-size: 32px;
+p.thankyou_message{
+    font-size: 32px !important;
     font-weight: 500;
    }
 .newsletter_wrapper label, .newsletter_wrapper .mobile_input {
@@ -415,12 +415,12 @@ button.cmn_btn.floor_plan {
     .modal-content {
         max-width: 75%;
     }
-    .thankyou_message{
+    p.thankyou_message{
         font-size: 24px;
     }
 }
 @media(max-width:960px){
-    .thankyou_message{
+    p.thankyou_message{
         font-size: 20px;
     }
     button.cmn_btn.floor_plan {
