@@ -239,6 +239,10 @@ a.back_link {
 .modal_styling{
     padding: 3rem;
 }
+
+.modal_styling.thankyou_msg {
+    padding-top: 3px;
+}
 button.book_now {
     padding: 0px;
     min-width: 121px;
@@ -357,7 +361,10 @@ button.cmn_btn.floor_plan {
     display: flex;
     gap: 10px;
     width: 100%;
-    align-items: center;
+}
+.newsletter_wrapper .submit_btn {
+    text-align: center;
+    padding-top: 6px;
 }
 .newsletter_wrapper label, .newsletter_wrapper .mobile_input {
     width: 100%;

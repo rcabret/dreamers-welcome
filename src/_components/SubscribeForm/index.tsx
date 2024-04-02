@@ -44,69 +44,39 @@ const Form = styled.form`
         }
     `
 
-const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubscribed }: any) => {
+const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubscribed, setisCompleted }: any) => {
 
     var status 
     const [email, setEmail] = useState('')
     const [phone, setPhone] = useState('');
-    const [placeholder, setPlaceholder] = useState('Enter your email')
-    const [phonePlaceholder,setPhonePlaceholder]=useState('Enter mobile number (XXX) XXX-XXXX')
+    const [phonePlaceholder,setPhonePlaceholder]=useState('Enter your mobile number')
     const [isEmailSubscribedIn,setIsEmailSubscribedIn] = useState(false)
     const [storeEmail,setStoreEmail]= useState('')
-
+    const [isValid,setIsValid]=useState(false)
+    const [complete,setcomplete]=useState(false)
 
   
 
-  
-    // const handleSubmit = (e: any) => {
-    //     e.preventDefault()
-    //     email &&
-    //         email.indexOf('@') > -1 &&
-    //         onValidated({
-    //             EMAIL: email,
-    //         })
-    // }
-
-
-
-
-    const isEmailValid = (email:any) => {
-        return   /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email);
-    };
-    const isPhoneNumberValid = (phone:any) => {
-        return /^\+?1?[-.\s]?\(?(\d{3})\)?[-.\s]?(\d{3})[-.\s]?(\d{4})$/.test(phone);
-    };
-    
 
     const handleSubmit = (e: any) => {
-     e.preventDefault();
-
+      e.preventDefault();
       console.log('check is email subscribed =====',isEmailSubscribedIn)
-     
-        if(isEmailSubscribedIn===false){
-            if (!isEmailValid(email)) {
-                window.alert('Email is not in correct format');
-                return;
-            }
-        }else{
-            setEmail(storeEmail)
-            if (!isPhoneNumberValid(phone)) {
-                window.alert('Phone number is not valid');
-             return;
-         }
-         
-        }
-
+   
         if(email==='test@gmail.com'){
             window.alert('This email cannot be added to this list. Please enter a different email address.')
-        }else{
-            
+        }
+        if(isValid===true){
             onValidated({
                 EMAIL: email,
                 SMSPHONE: phone 
             });
         }
-    
+        if(phone){
+            setcomplete(true)
+        }else{
+            setStoreEmail(email)
+        }
+            
     };
 
 
@@ -114,9 +84,7 @@ console.log("email ----->",storeEmail)
 
 
 useEffect(()=>{
-
 if(status==='error'){
-   
     if(message==='There was an error, please try again later'){
         window.alert('Network issue')
     }else{
@@ -126,7 +94,7 @@ if(status==='error'){
         window.alert('Check your number is correct?')
         } else{   
             window.alert(message)
-            }
+        }
     }
 }
 },[status])
@@ -142,36 +110,52 @@ if(status==='error'){
     // };
 
 
-
     useEffect(() => {
         console.log("status---",status)
         if (status === 'success') {
-            setStoreEmail(email)
-            setEmail('')
-            setPhone('')
-            setPlaceholder('THANKS FOR SUBSCRIBING!')
-            setPhonePlaceholder('THANKS FOR SUBSCRIBING!')
-            setTimeout(() => {
-                setIsEmailSubscribedIn(true) 
-                setIsEmailSubscribed(true)
-                if(isEmailSubscribedIn===false){
-
-                    setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
-                }
-               
-            },2000 );
-            // setTimeout(() => {
-            //     setPlaceholder('Enter your email')
-            //     setPhonePlaceholder('Enter mobile number (XXX) XXX-XXXX')
-            // }, 2000)
+        // setStoreEmail(email)
+        if(isEmailSubscribedIn===true){
+            if(complete===true){
+                setisCompleted(true)
+                setIsEmailSubscribed(false)
+            }
+        }
+        setIsEmailSubscribedIn(true) 
+        setIsEmailSubscribed(true)
         }
     }, [message, status])
 
-   
+ 
+
+const handleEmailValidityChange = (isValid: boolean) => {
+    setIsValid(isValid)
+};
+
+const handleChange = (value: string) => {
+    setEmail(value);
+  };
 
 
 
-console.log("sucscribeed ----",isEmailSubscribedIn)
+  const handleChange2 = (value: string) => {
+    
+    const numericValue = value.replace(/\D/g, '');
+    let formattedPhoneNumber = '';
+    if (numericValue.length <= 3) {
+        formattedPhoneNumber = numericValue;
+    } else if (numericValue.length <= 6) {
+        formattedPhoneNumber = `(${numericValue.slice(0, 3)}) ${numericValue.slice(3)}`;
+    } else {
+        formattedPhoneNumber = `(${numericValue.slice(0, 3)}) ${numericValue.slice(3, 6)}-${numericValue.slice(6, 10)}`;
+    }
+
+    setPhone(formattedPhoneNumber);
+};
+
+console.log('is valid in the subscription ----',isValid)
+    
+
+console.log("subscribed or not ---",isEmailSubscribedIn)
 
 
     return (<>
@@ -179,14 +163,16 @@ console.log("sucscribeed ----",isEmailSubscribedIn)
         <Form style={{['margin-top' as any]: marginTop}} onSubmit={(e) => handleSubmit(e)} className='subscribe'>
             <div className='newsletter_wrapper'>
             <div className='mobile_input'>
-             <InputField
-             onChangeHandler={setEmail}
-             type="email"
-            
-             value={email}
-             placeholder={placeholder}
-             isRequired
-            />
+            <InputField
+           //   label="Email"
+                type="email"
+                value={email}
+                onChangeHandler={handleChange} 
+                placeholder="Enter your email"
+                isRequired={true}
+                name="email"
+                onValidityChange={handleEmailValidityChange}
+                />
                </div>
              {/* <div className='mobile_input'>
                    <InputField
@@ -202,6 +188,7 @@ console.log("sucscribeed ----",isEmailSubscribedIn)
                     type="submit"
                     formValues={[email]}
                     label={"Submit"}
+                    // disabled={!isValid}
                 />
                </div>
             </div>
@@ -214,18 +201,16 @@ console.log("sucscribeed ----",isEmailSubscribedIn)
        
              <div className='mobile_input'>
                 <InputField
-                onChangeHandler={setPhone} 
+                onChangeHandler={(value: string) => handleChange2(value)} 
                 type="tel"
                 value={phone}
                 placeholder={phonePlaceholder}
                 isRequired
-                maxLength={14}
+                // maxLength={14}
                 />
-             
              </div>
             <div className='submit_btn'>
-            <button className='submit_btn' disabled={!phone} onClick={(e) => handleSubmit(e)}>SUBMIT</button>
-                
+            <button className='submit_btn' disabled={phone.length!=14} onClick={(e) => handleSubmit(e)}>SUBMIT</button>
                {/* <StyledButtonInput
                     type="submit"
                     formValues={[phone]}
@@ -234,8 +219,9 @@ console.log("sucscribeed ----",isEmailSubscribedIn)
                </div>
             </div>
         </Form>)} 
+        
         </>
     )
-}
+}   
 
 export default SubscribeForm

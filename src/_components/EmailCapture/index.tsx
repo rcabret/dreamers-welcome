@@ -22,14 +22,18 @@ const Wrapper = styled.div`
 const EmailCapture = ({inFirstVisitModal} : any) => {
     const url = getPostUrl()
     const [isEmailSubscribed,setIsEmailSubscribed]=useState(false)
-
+    const [isCompleted,setisCompleted]=useState(false)
      
+console.log('all the subscription completed --->>>>>>',isCompleted)
+
 
     if(inFirstVisitModal){
         return (
-            <Wrapper className='modal_styling'>
+            <Wrapper className={isCompleted ? 'modal_styling thankyou_msg' : 'modal_styling'}>
+            {
+             isCompleted?(<p className='my-2 px-3 text-lg text-center'><b>Thank you for subscribing!</b></p>): (
                 <div className='join_us_wrapper'>
-                    {
+                    { 
                       !isEmailSubscribed?(<>
                         <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
                         <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p></>
@@ -37,13 +41,10 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                       :
                       (
                         <>
-                        
                       <StyledHeader size={2}>You're almost there!</StyledHeader>
                       <p className='my-2 px-3 text-lg text-center'>Unlock exclusive savings when you sign up for mobile alerts.</p></>
                       )
                     }
-                   
-                   
                     <MailchimpSubscribe
                         url={url}
                         render={({ subscribe, status, message }) => (
@@ -52,6 +53,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                                 status={status}
                                 message={message}
                                 setIsEmailSubscribed={setIsEmailSubscribed}
+                                setisCompleted={setisCompleted}
                                 onValidated={(formData: any) => {
                                     subscribe(formData)
                                 }
@@ -61,7 +63,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                         )}
                     />
                     <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
-                </div>
+                </div>  )}
             </Wrapper>
         )
     }
@@ -73,15 +75,20 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
             title="STAY CONNECTED"
             content={
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
+                  {
+
+                   isCompleted?(<p className='my-2 px-3 text-lg text-center'><b>Thank you for subscribing!</b></p>):(
                     <div>
+                   
                     {
+                       
                       !isEmailSubscribed?(<>
                         <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
                         <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p></>
                        )
                       :
                       (
-                        <>
+                      <>
                         
                       <StyledHeader size={2}>You're almost there!</StyledHeader>
                       <p className='my-2 px-3 text-lg text-center'>Unlock exclusive savings when you sign up for mobile alerts.</p></>
@@ -95,18 +102,17 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                                     status={status}
                                     message={message}
                                     setIsEmailSubscribed={setIsEmailSubscribed}
+                                    setisCompleted={setisCompleted}
                                     onValidated={(formData: any) => {   
                                         
                                         subscribe(formData) 
                                       
                                     }}
-                                 
-                                
                                 />
                             )}
                         />
                         <p className='text-sm mt-2 text-center w-full'>We respect your privacy.</p>
-                    </div>
+                    </div>)}
                 </Wrapper>
             }
         />
