@@ -77,7 +77,7 @@ console.log('all the subscription completed --->>>>>>',isCompleted)
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                   {
 
-                   isCompleted?(<p className='my-2 px-3 text-lg text-center thankyou_message'><b>Thank you for subscribing!</b></p>):(
+                   isCompleted?(<p className='my-2 px-3 text-lg text-center thankyou_message'>Thank you for subscribing!</p>):(
                     <div>
                    
                     {
