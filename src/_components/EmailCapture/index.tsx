@@ -31,7 +31,11 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
         return (
             <Wrapper className={isCompleted ? 'modal_styling thankyou_msg' : 'modal_styling'}>
             {
-             isCompleted?(<p className='my-2 px-3 text-lg text-center'> Check your texts! <br/> Reply 'Y' to confirm your subscription.</p>): (
+             isCompleted?(<div>
+                 <StyledHeader size={2}> Check your texts! </StyledHeader>
+               <p className='my-2 px-3 text-lg text-center'> Reply 'Y' to confirm your subscription.</p>
+
+               </div>): (
                 <div className='join_us_wrapper'>
                     { 
                       !isEmailSubscribed?(<>
@@ -76,8 +80,12 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
             content={
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                   {
-                   isCompleted?(<p className='my-2 px-3 text-lg text-center thankyou_message'> Check your texts! <br /> Reply 'Y' to confirm your subscription.
-                   </p> ):(
+                   isCompleted?(<div>
+                    <StyledHeader size={2}> Check your texts! 
+                </StyledHeader>
+                   <p className='my-2 px-3 text-lg text-center'> Reply 'Y' to confirm your subscription.</p>
+
+                   </div> ):(
                     <div>
                     {
                       !isEmailSubscribed?(<>

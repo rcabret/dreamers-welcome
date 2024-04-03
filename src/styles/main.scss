@@ -242,6 +242,8 @@ a.back_link {
 
 .modal_styling.thankyou_msg {
     padding-top: 3px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 button.book_now {
     padding: 0px;
@@ -366,10 +368,7 @@ button.cmn_btn.floor_plan {
     text-align: center;
     padding-top: 6px;
 }
-p.thankyou_message{
-    font-size: 32px !important;
-    font-weight: 500;
-   }
+
 .newsletter_wrapper label, .newsletter_wrapper .mobile_input {
     width: 100%;
 }
@@ -415,14 +414,10 @@ p.thankyou_message{
     .modal-content {
         max-width: 75%;
     }
-    p.thankyou_message{
-        font-size: 24px;
-    }
+ 
 }
 @media(max-width:960px){
-    p.thankyou_message{
-        font-size: 20px;
-    }
+  
     button.cmn_btn.floor_plan {
         left: 0%;
     }
@@ -450,16 +445,11 @@ p.thankyou_message{
         top: -25px;
     }
 
-    // .floor_images_carousal img {
-    //     height: 350px;
-    // }
-//     .htmlText p, .htmlText a{
-//  line-height: 29px;
-//     } 
+  
 }
 
 @media(max-width:767px){
-  
+ 
     .modal_styling{
         padding: 10px;
     }
@@ -480,10 +470,6 @@ p.thankyou_message{
     }
     
 
-// { .grid_view,.mt-custom  {
-//     max-width: 100%;
-//     padding: 0px 20px;
-// }
 .desktop_link{
     display: none;
     color: #614545;
@@ -533,9 +519,7 @@ p.thankyou_message{
        max-width:92%;
        width: 100%;
     }
-    .thankyou_message{
-        font-size: 18px;
-       }
+  
     .newsletter_wrapper{
         display: block;
     }
