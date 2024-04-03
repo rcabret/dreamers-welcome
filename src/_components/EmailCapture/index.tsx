@@ -24,14 +24,14 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
     const [isEmailSubscribed,setIsEmailSubscribed]=useState(false)
     const [isCompleted,setisCompleted]=useState(false)
      
-console.log('all the subscription completed --->>>>>>',isCompleted)
+    console.log('all the subscription completed --->>>>>>',isCompleted)
 
 
     if(inFirstVisitModal){
         return (
             <Wrapper className={isCompleted ? 'modal_styling thankyou_msg' : 'modal_styling'}>
             {
-             isCompleted?(<p className='my-2 px-3 text-lg text-center'><b>Thank you for subscribing!</b></p>): (
+             isCompleted?(<p className='my-2 px-3 text-lg text-center'> Check your texts! <br/> Reply 'Y' to confirm your subscription.</p>): (
                 <div className='join_us_wrapper'>
                     { 
                       !isEmailSubscribed?(<>
@@ -76,12 +76,10 @@ console.log('all the subscription completed --->>>>>>',isCompleted)
             content={
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                   {
-
-                   isCompleted?(<p className='my-2 px-3 text-lg text-center thankyou_message'>Thank you for subscribing!</p>):(
+                   isCompleted?(<p className='my-2 px-3 text-lg text-center thankyou_message'> Check your texts! <br /> Reply 'Y' to confirm your subscription.
+                   </p> ):(
                     <div>
-                   
                     {
-                       
                       !isEmailSubscribed?(<>
                         <StyledHeader size={2}>Join for a chance to win a free stay!</StyledHeader>
                         <p className='my-2 px-3 text-lg text-center'>Be the first to hear about exclusive offers and the latest news.</p></>
