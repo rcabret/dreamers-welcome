@@ -3,6 +3,7 @@ import InputField from '../UI/InputField'
 import styled from 'styled-components'
 import { rem } from 'polished'
 import  toast ,{ Toaster } from 'react-hot-toast'
+import EmailCapture from '../EmailCapture'
 
 
 
@@ -39,6 +40,9 @@ const Form = styled.form`
         }
     `
 
+
+
+
 const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubscribed, setisCompleted }: any) => {
 
     var status 
@@ -56,12 +60,10 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
 
     const handleSubmit = (e: any) => {
       e.preventDefault();
-      console.log('check is email subscribed =====',isEmailSubscribedIn)
-   
+
         if(email==='test@gmail.com'){
            return setHoldError('This email cannot be added to this list. Please enter a different email address.')
-            // return toast.error("This email cannot be added to this list. Please enter a different email address.")
-            // window.alert('This email cannot be added to this list. Please enter a different email address.')
+            // return toast.error("This email cannot be added to this list. Please enter a different email address.")  
         }
         if(isValid===true){
             onValidated({
@@ -74,8 +76,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
             setcomplete(true)
         }else{
             setStoreEmail(email)
-        }
-            
+        }     
     };
 
 
@@ -85,15 +86,26 @@ console.log("email ----->",storeEmail)
 useEffect(()=>{
 if(status==='error'){
     if(message==='There was an error, please try again later'){
-        setHoldError('Network issue')
+        setHoldError('Network issue.')
     //    toast.error('Network issue')
     }else{
         if(message==='An unexpected error occurred during sms opt-in')
         {
         setHoldError("Check your number is correct?")
         // toast.error('Check your number is correct?')
-        } else{   
-        setHoldError(message)
+        } else{  
+            function formatErrorMessage(message: string): string {
+                // Capitalize the first letter
+                const capitalizedMessage = message.charAt(0).toUpperCase() + message.slice(1);
+                // Add a full stop at the end if it's not already there
+                const formattedMessage = capitalizedMessage.endsWith('.') ? capitalizedMessage : capitalizedMessage + '.';
+                return formattedMessage;
+            }
+            
+            // Example usage:
+            const errorMessage: string = message; // Your dynamic error message
+            const formattedErrorMessage: string = formatErrorMessage(errorMessage);  
+            setHoldError(formattedErrorMessage)
         // toast.error(message)
         }
     }
@@ -127,12 +139,12 @@ if(status==='error'){
     }, [message, status])
 
 
-    
  
 
 const handleEmailValidityChange = (isValid: boolean) => {
     setIsValid(isValid)
 };
+
 
 const handleChange = (value: string) => {
     setEmail(value);
@@ -152,10 +164,9 @@ const handleChange = (value: string) => {
     } else {
         formattedPhoneNumber = `(${numericValue.slice(0, 3)}) ${numericValue.slice(3, 6)}-${numericValue.slice(6, 10)}`;
     }
-
     setPhone(formattedPhoneNumber);
 };
-   
+
 
 console.log("subscribed or not ---",isEmailSubscribedIn)
 
@@ -196,7 +207,6 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                </div>
                {/* <p className='error_container'>{holdError}</p> */}
             </div>
-           
         </Form>
         )
         : (
@@ -220,7 +230,7 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                {/* <StyledButtonInput
                     type="submit"
                     formValues={[phone]}
-                    label={"Submit" }
+                    label={"Submit"}
                 /> */}
                </div>
             </div>
