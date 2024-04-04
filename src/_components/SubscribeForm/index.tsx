@@ -49,6 +49,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
     const [storeEmail,setStoreEmail]= useState('')
     const [isValid,setIsValid]=useState(false)
     const [complete,setcomplete]=useState(false)
+    const [holdError,setHoldError]=useState('')
 
   
 
@@ -58,7 +59,8 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
       console.log('check is email subscribed =====',isEmailSubscribedIn)
    
         if(email==='test@gmail.com'){
-            return toast.error("This email cannot be added to this list. Please enter a different email address.")
+           return setHoldError('This email cannot be added to this list. Please enter a different email address.')
+            // return toast.error("This email cannot be added to this list. Please enter a different email address.")
             // window.alert('This email cannot be added to this list. Please enter a different email address.')
         }
         if(isValid===true){
@@ -83,14 +85,16 @@ console.log("email ----->",storeEmail)
 useEffect(()=>{
 if(status==='error'){
     if(message==='There was an error, please try again later'){
-   
-       toast.error('Network issue')
+        setHoldError('Network issue')
+    //    toast.error('Network issue')
     }else{
         if(message==='An unexpected error occurred during sms opt-in')
         {
-       toast.error('Check your number is correct?')
+        setHoldError("Check your number is correct?")
+        // toast.error('Check your number is correct?')
         } else{   
-        toast.error(message)
+        setHoldError(message)
+        // toast.error(message)
         }
     }
 }
@@ -122,6 +126,8 @@ if(status==='error'){
         }
     }, [message, status])
 
+
+    
  
 
 const handleEmailValidityChange = (isValid: boolean) => {
@@ -130,12 +136,13 @@ const handleEmailValidityChange = (isValid: boolean) => {
 
 const handleChange = (value: string) => {
     setEmail(value);
+    setHoldError("")
   };
 
 
 
   const handleChange2 = (value: string) => {
-    
+    setHoldError('')
     const numericValue = value.replace(/\D/g, '');
     let formattedPhoneNumber = '';
     if (numericValue.length <= 3) {
@@ -148,9 +155,7 @@ const handleChange = (value: string) => {
 
     setPhone(formattedPhoneNumber);
 };
-
-console.log('is valid in the subscription ----',isValid)
-    
+   
 
 console.log("subscribed or not ---",isEmailSubscribedIn)
 
@@ -169,6 +174,7 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                 isRequired={true}
                 name="email"
                 onValidityChange={handleEmailValidityChange}
+                errohandler={holdError}
                 />
                </div>
              {/* <div className='mobile_input'>
@@ -188,6 +194,7 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                     // disabled={!isValid}
                 />
                </div>
+               {/* <p className='error_container'>{holdError}</p> */}
             </div>
            
         </Form>
@@ -204,6 +211,7 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                 value={phone}
                 placeholder={phonePlaceholder}
                 isRequired
+                errohandler={holdError}
                 // maxLength={14}
                 />
              </div>
@@ -216,7 +224,7 @@ console.log("subscribed or not ---",isEmailSubscribedIn)
                 /> */}
                </div>
             </div>
-        
+            {/* <p className='error_container'>{holdError}</p> */}
         </Form>)} 
         <Toaster  position="top-right" />
         </>
