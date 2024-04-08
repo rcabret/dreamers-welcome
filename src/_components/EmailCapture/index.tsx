@@ -95,7 +95,6 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                       :
                       (
                       <>
-                        
                       <StyledHeader size={2}>You're almost there!</StyledHeader>
                       <p className='my-2 px-3 text-lg text-center '>Unlock exclusive savings when you sign up for mobile alerts.</p></>
                       )

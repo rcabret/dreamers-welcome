@@ -95,15 +95,15 @@ if(status==='error'){
         // toast.error('Check your number is correct?')
         } else{  
             function formatErrorMessage(message: string): string {
-                // Capitalize the first letter
+              
                 const capitalizedMessage = message.charAt(0).toUpperCase() + message.slice(1);
-                // Add a full stop at the end if it's not already there
-                const formattedMessage = capitalizedMessage.endsWith('.') ? capitalizedMessage : capitalizedMessage + '.';
+             
+                const formattedMessage = capitalizedMessage.endsWith('.')||capitalizedMessage.endsWith('?') ? capitalizedMessage : capitalizedMessage + '.';
                 return formattedMessage;
             }
             
             // Example usage:
-            const errorMessage: string = message; // Your dynamic error message
+            const errorMessage: string = message; 
             const formattedErrorMessage: string = formatErrorMessage(errorMessage);  
             setHoldError(formattedErrorMessage)
         // toast.error(message)
