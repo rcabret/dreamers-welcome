@@ -110,7 +110,7 @@ useEffect(() => {
               function gtag(){dataLayer.push(arguments);}
               gtag('js', new Date());
               gtag('config', '${googleAnalyticsID}', {
-                page_path: '${router.pathname}', // Use router.pathname for the dynamic page path
+                page_path: '${router.pathname}', 
               });
             `,
           }} 
