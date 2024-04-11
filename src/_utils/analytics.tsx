@@ -6,7 +6,7 @@ import TagManager from 'react-gtm-module';
 export const initializeGA = (trackingID: string) => {
   try {
   
-    TagManager.initialize({ gtmId: "UA-252792304-1" });
+    TagManager.initialize({ gtmId: "GTM-KC6QD2H" });
     // console.log(`Google Analytics initialized with ID: ${"UA-252792304-1"}`);
   } catch (error) {
     console.error('Error initializing Google Analytics:', error);

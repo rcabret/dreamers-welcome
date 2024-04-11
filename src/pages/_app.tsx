@@ -34,7 +34,7 @@ interface HeaderData {
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const pixelID = process.env.NEXT_PUBLIC_FACEBOOK_PIXEL_ID;
-  const googleAnalyticsID = "UA-252792304-1";
+  const googleAnalyticsID = "GTM-KC6QD2H";
   const [navTheme, setNavTheme] = useState(undefined);
   const [headerData, setHeaderData] = useState<HeaderData | undefined>(undefined);
   const [firstModalShow, setFirstModalShow] = useState(false);

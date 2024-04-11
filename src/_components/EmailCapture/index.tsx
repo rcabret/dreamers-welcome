@@ -24,7 +24,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
     const [isEmailSubscribed,setIsEmailSubscribed]=useState(false)
     const [isCompleted,setisCompleted]=useState(false)
      
-    console.log('all the subscription completed --->>>>>>',isCompleted)
+    // console.log('all the subscription completed --->>>>>>',isCompleted)
 
 
     if(inFirstVisitModal){
@@ -81,8 +81,7 @@ const EmailCapture = ({inFirstVisitModal} : any) => {
                 <Wrapper  style = {{['padding'as any] : '6.25rem 0'}}>
                   {
                    isCompleted?(<div>
-                    <StyledHeader size={2}> Check your texts! 
-                </StyledHeader>
+                    <StyledHeader size={2}> Check your texts! </StyledHeader>
                    <p className='my-2 px-3 text-lg text-center'> Reply 'Y' to confirm your subscription.</p>
 
                    </div> ):(

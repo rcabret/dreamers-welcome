@@ -168,7 +168,7 @@ const handleChange = (value: string) => {
 };
 
 
-console.log("subscribed or not ---",isEmailSubscribedIn)
+// console.log("subscribed or not ---",isEmailSubscribedIn)
 
 
     return (<>

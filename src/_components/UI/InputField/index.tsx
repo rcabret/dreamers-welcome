@@ -69,7 +69,7 @@ const InputField = ({
         }
     };
 
-       console.log("is valid in hte input ---",isValid)
+    //    console.log("is valid in hte input ---",isValid)
 
     if (type === 'submit') {
         return (
