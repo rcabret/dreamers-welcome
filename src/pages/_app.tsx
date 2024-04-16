@@ -44,7 +44,8 @@ function MyApp({ Component, pageProps }: AppProps) {
 
 
   useEffect(() => {
-    console.log("enterning useeffect 2")
+
+    console.log("enterning useeffect 2--->")
 
     initializeGA(googleAnalyticsID);
 
@@ -84,7 +85,6 @@ useEffect(() => {
   
       localStorage.setItem('lastVisitTimestamp', currentTime.toString());
     }
-  
   }
 }, [router.pathname]); 
 
