@@ -152,7 +152,7 @@ const NewsItemDetails = ({
         setDesc(newsData?.description)
         setOtherNews(newsData?.otherNews)
         setBlurb(newsData?.blurb)
-        setSeoData({...seoData, ...newsData?.seoMetadata})
+        setSeoData({...seoData, ...newsData?.seoMetadata?.fields})
         const rawRichTextField = newsData?.description;
         const htmlString = documentToHtmlString(rawRichTextField);
         setRenderedHtml(htmlString);
