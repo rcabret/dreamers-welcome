@@ -58,23 +58,30 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
 
     return (
         <>
-            {description && (
-                <div className="overview_wrapper">
-                    <Block
+              <div className="overview_wrapper">
+                    {description ? (
+                     <>
+                       <Block
                         hideSeparator
                         title="OVERVIEW"
                         content={<MarkdownModule data={description} />}
                     />
-                    {floorplanHighlight?.length > 0 ? (
-                        <button
-                            className="cmn_btn floor_plan"
-                            onClick={openModal}
-                        >
-                            Floorplan
-                        </button>
-                    ) : null}
-                </div>
-            )}
+                     {floorplanHighlight?.length > 0 && (
+                      <button className="cmn_btn floor_plan" onClick={openModal}>
+                      Floorplan
+                       </button>
+                      )}
+                    </>
+ 
+                      ) : (
+                         floorplanHighlight?.length > 0 && (
+    
+                             <button className="cmn_btn floor_plan" onClick={openModal}>
+                              Floorplan
+                            </button>
+                             )
+                              )}
+                          </div>
             
              <Modal isOpen={isModalOpen} onClose={closeModal} title="FLOORPLAN">
                 {/* {floorplanHighlight && (
