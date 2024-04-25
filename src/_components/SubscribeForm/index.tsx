@@ -80,7 +80,7 @@ const SubscribeForm = ({marginTop,  status, message, onValidated,setIsEmailSubsc
     };
 
 
-console.log("email ----->",storeEmail)
+
 
 
 useEffect(()=>{

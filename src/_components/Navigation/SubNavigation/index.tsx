@@ -49,8 +49,7 @@ const SubNavigation = ({
     }
 
 
-console.log('In the subNavigation----')
- 
+
     
     return (    
         <SubNav>

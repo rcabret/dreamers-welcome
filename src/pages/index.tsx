@@ -126,7 +126,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
     }
   }
 
-  console.log('in the index page---')
+
 
   return (
     <>

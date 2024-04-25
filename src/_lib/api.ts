@@ -91,6 +91,11 @@ export const getRestOfPropertyData = async (slug: string) => {
     }
 }
 
+
+
+
+
+
 export const getAllProperties = async () => {
     const entries = await client.getEntries({
         content_type: 'property',
@@ -196,6 +201,7 @@ export const getNewsEntry = async (entryID?: string) => {
         throw error;
     }
 }
+
 
 export const getNewsViaProperty = async (propertySlug?: string) => {
     const entries = await client.getEntries({
@@ -325,6 +331,19 @@ export const getFaqs = async () => {
     }
 }
 
+export const getSlug = async (slug:string) => {
+    const entries = await client.getEntries({
+        content_type: 'blog',
+        'fields.slug': slug,
+    })
+    if (entries.items) {
+        console.log("fetched slug entries---",entries)
+        return entries.items[0] ? entries.items[0].fields : null
+    }
+}
+
+
+
 export const getFaqPage = async () => {
     const entries = await client.getEntries({
         content_type: 'faqsPage',
@@ -333,6 +352,9 @@ export const getFaqPage = async () => {
         return entries.items[0] ? entries.items[0].fields : null
     }
 }
+
+
+
 
 export const getPage = async (slug: string) => {
     const entries = await client.getEntries({

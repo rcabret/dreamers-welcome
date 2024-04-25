@@ -7,6 +7,7 @@ import { News } from '../../_constants/DataTypes'
 import { ItemWrapperStyled, NewsTextWrapper } from './styles'
 import { viewportContext } from '../../_utils/ViewportProvider'
 import { getNews, getNewsEntry } from '../../_lib/api'
+import Link from 'next/link';
 
 const NewsItem = ({ newsObj }: { newsObj: News }) => {
   // Check if newsObj is defined before destructuring
@@ -37,8 +38,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     fetchData();
   }, []);
 
-  // Set the card slug since this is how slugs are being handled currently
-  // Fixes slug showing up as undefined or bad link when 'open in new tab' click
+
   useEffect(() => {
     const filteredArray = _res?.filter(item => item.fields.title == title);
 
@@ -55,9 +55,12 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
     setId(sys)
   }
 
+  let default_slug = 'field'
+
+
   return (
     slug ? (
-      <a href={slug} target='_blank' className='news_anchor'>
+      <a href={slug?.startsWith('http') ? slug : `/news/${slug}`}  target={slug.startsWith('http') ? '_blank' : '_self'} className='news_anchor'>
         <div className="border">
           <Header size={3} className='grid_heading'>{title}</Header>
           <GridImage border={false} imageObj={titleImage ? titleImage : tileImage} className='grid_image' />
@@ -82,9 +85,10 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
       :
       (
         <a
-          onClick={handleClick}
-          href={`/news/${id}`}
-          className='news_anchor' >
+        onClick={handleClick}
+        // href={`/news/${id}`}
+        href={`/news/${default_slug}?Id=${id}`}
+        className='news_anchor' >
           {/* <ItemWrapperStyled> */}
           <div className="border">
             <Header size={3} className='grid_heading'>{title}</Header>

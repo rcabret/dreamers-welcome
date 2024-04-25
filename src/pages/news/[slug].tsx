@@ -4,7 +4,7 @@ import BodyText from '../../_components/Typography/BodyText'
 import Header from '../../_components/Typography/Header'
 import GridImage from '../../_components/UI/GridImage'
 import { GuidesMetadata } from '../../_components/GuideItem/styles'
-import { getNewsEntry, getNews } from '../../_lib/api'
+import { getNewsEntry, getNews,getSlug } from '../../_lib/api'
 import { Content, GridModule, StyledBlockForGrid, TopSection, BannerGridImage } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
@@ -86,6 +86,9 @@ const NewsItemDetails = ({
   const [otherNews, setOtherNews] = useState<any[]>([
   ]);
   const inspectorProps = useContentfulInspectorMode()
+
+
+
   useEffect(() => {
     async function fetchNews() {
       try {
@@ -129,16 +132,21 @@ const NewsItemDetails = ({
 
     setNews(newsToView)
   }, [router, router.query])
-  useEffect(() => { }, [activeNews])
+
 
   useEffect(() => {
 
     async function fetchData(id: any) {
-      
-      
       try {
-
-        const newsData = await getNewsEntry(id);
+        var newsData
+        const urlParams = new URLSearchParams(window.location.search);
+        let postId = urlParams.get('Id');
+        console.log('postid----->>>',postId)
+        if(postId){
+          newsData = await getNewsEntry(postId);
+        }else{
+          newsData = await getSlug(router.query.slug);
+        }
         // const entries = await getNewsEntry(id);
         // const newsData = useContentfulLiveUpdates(entries);
         setRes(newsData);
