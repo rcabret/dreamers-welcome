@@ -325,6 +325,7 @@ button.cmn_btn.floor_plan {
     height: 100%;
     width: 100%;
     max-width: 100%;
+    object-fit: contain;
 }
 .floor_images_carousal .swiper .swiper-pagination{
     bottom: 0px;
