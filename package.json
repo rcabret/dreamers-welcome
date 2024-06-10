@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
+   "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint"
+     
   },
   "dependencies": {
     "@contentful/live-preview": "^2.9.6",
