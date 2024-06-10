@@ -373,27 +373,6 @@ export const getTestSlugs = async () => {
 
 
 
-export const getAllNewsSlugs = async () => {
-    const entries = await client.getEntries({
-        content_type: 'blog',
-        select: 'fields.slug',
-    });
-    return entries.items.map(item => item.sys.id||item.fields.slug);
-};
-
-
-export const getFaqPage = async () => {
-    const entries = await client.getEntries({
-        content_type: 'faqsPage',
-    })
-    if (entries.items) {
-        return entries.items[0] ? entries.items[0].fields : null
-    }
-}
-
-
-
-
 export const getPage = async (slug: string) => {
     const entries = await client.getEntries({
         content_type: 'title',
