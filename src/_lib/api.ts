@@ -344,6 +344,15 @@ export const getSlug = async (slug:string) => {
 
 
 
+export const getAllNewsSlugs = async () => {
+    const entries = await client.getEntries({
+        content_type: 'blog',
+        select: 'fields.slug',
+    });
+    return entries.items.map(item => item.fields.slug);
+};
+
+
 export const getFaqPage = async () => {
     const entries = await client.getEntries({
         content_type: 'faqsPage',
