@@ -16,7 +16,7 @@ module.exports = {
         content_type: 'blog',
         select: 'fields.slug,sys.id',
     });
-    console.log('entries:', entries);
+  
     
     const slugs = entries.items.map(item => {
         if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) { 

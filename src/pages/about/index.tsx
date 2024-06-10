@@ -36,7 +36,7 @@ const About = ({ about, seoData, setHeaderData, setNavTheme }: any) => {
     setNavTheme('light')
   }, [])
 
-  console.log('in the about page ---')
+ 
   return (
     <>
       <Head>

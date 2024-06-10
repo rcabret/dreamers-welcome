@@ -146,7 +146,6 @@ const NewsItemDetails = ({
         var newsData
         const urlParams = new URLSearchParams(window.location.search);
         let postId = urlParams.get('Id');
-        console.log('postid----->>>',postId)
         if(postId){
           newsData = await getNewsEntry(postId);
         }else{

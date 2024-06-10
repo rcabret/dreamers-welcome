@@ -1,5 +1,4 @@
-
-import { log } from 'console'
+import { Content } from './../styles/global';
 import { pathToBucket } from '../_utils/Parsers'
 
 
@@ -52,7 +51,7 @@ export const getStaysForHomepage = async (url: string) => {
     if (entries.items) {
         return entries.items[0].fields
     }
-    console.log(entries)
+    
 }
 
 export const getProperty = async (slug: string) => {
@@ -141,8 +140,7 @@ export const newsPage = async () => {
     const entries = await client.getEntries({
         content_type: 'newsPage',
     })
-    if (entries.items) { 
-        // console.log("news page props ----",entries.items)       
+    if (entries.items) {    
         return entries.items[0] ? entries.items[0].fields : null
     }
 }
@@ -341,7 +339,6 @@ export const getSlug = async (slug:string) => {
         return entries.items[0] ? entries.items[0].fields : null
     }
 }
-
 
 
 export const getFaqPage = async () => {
