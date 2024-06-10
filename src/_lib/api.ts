@@ -337,10 +337,39 @@ export const getSlug = async (slug:string) => {
         'fields.slug': slug,
     })
     if (entries.items) {
-        console.log("fetched slug entries---",entries)
+        
         return entries.items[0] ? entries.items[0].fields : null
     }
 }
+
+
+export const getTestSlugs = async () => {
+    try {
+        const entries = await client.getEntries({
+            content_type: 'blog',
+            select: 'fields.slug,sys.id',
+        });
+        console.log('entries:', entries);
+
+        const slugs = entries.items.map(item => {
+            if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) {
+                // If fields exist and the slug starts with "https", return the full slug
+                return item.fields.slug;
+            } else if (item.fields && item.fields.slug) {
+                // If fields exist but the slug does not start with "https", construct the URL using it
+                return item.fields.slug;
+            } else {
+                // If fields do not exist or there is no slug in fields, use the entry ID
+                return item.sys.id
+            }
+        });
+         console.log('test ---------------------',slugs)
+        return slugs;
+    } catch (error) {
+        console.error("Error fetching all slugs:", error);
+        return [];
+    }
+};
 
 
 
@@ -349,7 +378,6 @@ export const getAllNewsSlugs = async () => {
         content_type: 'blog',
         select: 'fields.slug',
     });
-    console.log('entrinesss-------------',entries)
     return entries.items.map(item => item.sys.id||item.fields.slug);
 };
 

@@ -4,7 +4,7 @@ import BodyText from '../../_components/Typography/BodyText'
 import Header from '../../_components/Typography/Header'
 import GridImage from '../../_components/UI/GridImage'
 import { GuidesMetadata } from '../../_components/GuideItem/styles'
-import { getNewsEntry, getNews,getSlug,getAllNewsSlugs } from '../../_lib/api'
+import { getNewsEntry, getNews,getSlug } from '../../_lib/api'
 import { Content, GridModule, StyledBlockForGrid, TopSection, BannerGridImage } from '../../styles/global'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
@@ -90,9 +90,11 @@ const NewsItemDetails = ({
 
 
   useEffect(() => {
-
+  
     async function fetchNews() {
+
       try {
+      
         const res = await getNews()
         const news = res.map((x: { fields: {} }) => x.fields)
         setNews(news)
@@ -140,7 +142,7 @@ const NewsItemDetails = ({
     async function fetchData(id: any) {
       
       try {
-        let allnews = await getAllNewsSlugs()
+        
         var newsData
         const urlParams = new URLSearchParams(window.location.search);
         let postId = urlParams.get('Id');
