@@ -1,6 +1,6 @@
 // next-sitemap.config.js
 module.exports = {
-  siteUrl: process.env.SITE_URL || 'https://yourdomain.com',
+  siteUrl: process.env.SITE_URL || 'https://www.dreamerswelcome.com/',
   generateRobotsTxt: true,
   sitemapSize: 5000,
   outDir: './public', // Directory where sitemap files will be generated
