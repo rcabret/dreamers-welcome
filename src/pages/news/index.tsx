@@ -205,7 +205,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
             seoData: {
                 metaTitle: seoData?.metaTitle ?? 'News | Dreamers Welcome',
                 metaDescription: seoData?.metaDescription ?? "The Dreamers Welcome blog gives readers a peek at laidback luxury travel at its finest & shines the spotlight on travel stories within Dreamers Welcome properties.",
-                canonicalUrl: seoData?.canonicalUrl ?? "https://www.dreamerswelcome.com"
+                canonicalUrl: seoData?.canonicalUrl ?? "https://www.dreamerswelcome.com/news"
             }
         },
     }

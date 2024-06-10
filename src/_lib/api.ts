@@ -349,7 +349,8 @@ export const getAllNewsSlugs = async () => {
         content_type: 'blog',
         select: 'fields.slug',
     });
-    return entries.items.map(item => item.fields.slug);
+    console.log('entrinesss-------------',entries)
+    return entries.items.map(item => item.sys.id||item.fields.slug);
 };
 
 
