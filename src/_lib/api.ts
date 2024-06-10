@@ -343,33 +343,16 @@ export const getSlug = async (slug:string) => {
 }
 
 
-export const getTestSlugs = async () => {
-    try {
-        const entries = await client.getEntries({
-            content_type: 'blog',
-            select: 'fields.slug,sys.id',
-        });
-        console.log('entries:', entries);
 
-        const slugs = entries.items.map(item => {
-            if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) {
-                // If fields exist and the slug starts with "https", return the full slug
-                return item.fields.slug;
-            } else if (item.fields && item.fields.slug) {
-                // If fields exist but the slug does not start with "https", construct the URL using it
-                return item.fields.slug;
-            } else {
-                // If fields do not exist or there is no slug in fields, use the entry ID
-                return item.sys.id
-            }
-        });
-         console.log('test ---------------------',slugs)
-        return slugs;
-    } catch (error) {
-        console.error("Error fetching all slugs:", error);
-        return [];
+export const getFaqPage = async () => {
+    const entries = await client.getEntries({
+        content_type: 'faqsPage',
+    })
+    if (entries.items) {
+        return entries.items[0] ? entries.items[0].fields : null
     }
-};
+}
+
 
 
 
