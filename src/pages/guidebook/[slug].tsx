@@ -14,6 +14,7 @@ import GuideItem from '../../_components/GuideItem'
 import { bucketToPath } from '../../_utils/Parsers'
 import Blurb from '../../_components/UI/Blurb'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
     const {
@@ -25,6 +26,7 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
         description,
         otherGuides,
     } = guide
+    console.log('guide ---------',guide)
 
     useEffect(() => {
         setNavTheme('light')
@@ -33,6 +35,21 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
         })
 
     }, [])
+    const options = {
+        renderNode: {
+          'embedded-asset-block': node => {
+            const { title, description, file } = node.data.target.fields;
+            const imageUrl = file.url;
+            const altText = description || '';
+    
+            return  <img src={imageUrl} alt={altText} />;
+          },
+          'hyperlink': node => {
+            const { uri } = node.data;
+            return <a href={uri} target="_blank" rel="noopener noreferrer">{node.content[0].value}</a>;
+          },
+        },
+      };
 
     return (
         <>
@@ -58,9 +75,13 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
             </BannerGridImage>
             {blurb && <Blurb text={blurb} />}
             <Block
+             
                 title="INFO"
                 content={
                     <ConceptTextContainer>
+                           <div  id="rich-text-body" className='htmlText'>
+                  {description && documentToReactComponents(description, options)}
+                  </div>
                         <MarkdownModule data={description} />
                     </ConceptTextContainer>
                 }
@@ -102,7 +123,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
         },
     }
 }
-  console.log("here in guidebook---------")
+console.log("here in guidebook---------")
 export async function getStaticPaths() {
     const guides = await getGuides()
     const paths: any = []

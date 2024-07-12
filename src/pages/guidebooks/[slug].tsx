@@ -76,7 +76,7 @@ const GuideBooks = ({
         })
     }, [])
 
-    console.log("here in guidebooks---------",property)
+
 
 
     useEffect(() => {

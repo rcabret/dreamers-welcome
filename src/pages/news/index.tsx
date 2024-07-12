@@ -131,8 +131,7 @@ const News = ({
 
   const inspectorProps = useContentfulInspectorMode()
 
-
-
+  console.log("in the news index  ---------->")
     return (
         <>
         <Head>

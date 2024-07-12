@@ -34,6 +34,9 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
     news,
   } = data
 
+  console.log("guides length ------",guides)
+
+
   const [stays, setStays] = useState(null)
   useEffect(() => {
     setNavTheme('light')

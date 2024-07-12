@@ -88,7 +88,7 @@ const NewsItemDetails = ({
   const inspectorProps = useContentfulInspectorMode()
 
 
-
+console.log("in the news slug ---------->")
   useEffect(() => {
   
     async function fetchNews() {
@@ -190,6 +190,8 @@ const NewsItemDetails = ({
       },
     },
   };
+
+  console.log('description ---->',description)
   return (
     <>
       <Head>

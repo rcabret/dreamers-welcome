@@ -51,6 +51,9 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
     mobileCoverImage,
     news,
   } = data
+
+
+  console.log("guides length ------",guides)
   const [stays, setStays] = useState(null)
   console.log('here__')
   useEffect(() => {
@@ -177,6 +180,7 @@ export async function getStaticProps() {
   const stringData = safeJsonStringify(rawData)
   const data = JSON.parse(stringData)
   const seoData = data?.seoMetadata?.fields
+
 
   return {
     props: {

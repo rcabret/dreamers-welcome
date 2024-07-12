@@ -17,6 +17,7 @@ const NewsItem = ({ newsObj }: { newsObj: News }) => {
   }
 
   const { date, title, text, titleImage, tileImage, test, slug } = newsObj
+  // console.log('news object ------------>>',newsObj)
 
   const [_res, setRes] = useState()
   const [id, setId] = useState();
