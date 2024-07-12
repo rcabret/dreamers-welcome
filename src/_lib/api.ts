@@ -1,3 +1,4 @@
+
 import { Content } from './../styles/global';
 import { pathToBucket } from '../_utils/Parsers'
 
@@ -170,15 +171,9 @@ export const getNews = async () => {
 
 
 
+
 export const getNewsForPreview = async (entryID:any) => {
-    // const entries = await client.getEntries({
-    //     content_type: 'blog',
-    //     include: 1,
-    //     order: '-fields.date',
-    // })
-    // if (entries.items) {
-    //     return entries.items
-    // }
+ 
     try {
         const entry = await preview.getEntry(entryID);
         
