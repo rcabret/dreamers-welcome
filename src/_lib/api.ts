@@ -381,3 +381,6 @@ export const getPolicy = async (slug: string) => {
         return entries.items[0].fields
     }
 }
+
+
+

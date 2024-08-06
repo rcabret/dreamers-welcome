@@ -191,7 +191,7 @@ console.log("in the news slug ---------->")
     },
   };
 
-  console.log('description ---->',description)
+
   return (
     <>
       <Head>

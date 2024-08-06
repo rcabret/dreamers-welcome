@@ -57,9 +57,9 @@ const Footer = ({ activeBucket }: any) => {
                                     DW RADIO
                                 </a>
                             </li>
-                            <li className='text-sm sm:text-xl'>
+                            {/* <li className='text-sm sm:text-xl'>
                                 <a href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target='_blank'>GIFT CARDS</a>
-                            </li>
+                            </li> */}
                         </ul>
                         <ul>
                             <li className='text-sm sm:text-xl'>
@@ -150,9 +150,9 @@ const Footer = ({ activeBucket }: any) => {
                                 DW RADIO
                             </a>
                         </li>
-                        <li className='text-sm sm:text-xl'>
+                        {/* <li className='text-sm sm:text-xl'>
                             <a href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted" target='_blank'>GIFT CARDS</a>
-                        </li>
+                        </li> */}
                     </ul>
 
                 </>)}

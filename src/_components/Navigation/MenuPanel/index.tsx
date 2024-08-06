@@ -94,14 +94,14 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                                 DW RADIO
                             </a>
                         </li>
-                        <li>
+                        {/* <li>
                             <a
                                 href="https://giftup.app/place-order/f4fbef08-de2d-4d8e-c896-08db98c383e8?platform=hosted"
                                 target="_blank"
                             >
                                 GIFT CARDS
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                     <ul>
                         <li>
