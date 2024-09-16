@@ -9,6 +9,7 @@ import GuideItem from '../../_components/GuideItem'
 import { pathToBucket } from '../../_utils/Parsers'
 import Head from 'next/head'
 
+console.log("here in the guide bookd --------------")
 const links: { name: string; slug: string }[] = [
     {
         name: 'VIEW ALL',

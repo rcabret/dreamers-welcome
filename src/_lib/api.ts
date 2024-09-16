@@ -1,4 +1,7 @@
 
+
+
+
 import { Content } from './../styles/global';
 import { pathToBucket } from '../_utils/Parsers'
 
@@ -238,7 +241,7 @@ export const getGuides = async (bucket?: string) => {
     }
 
     const entries = await client.getEntries(query)
-
+    console.log("guidess ------",entries)
     if (entries.items) {
         return entries.items
     }
@@ -250,6 +253,7 @@ export const getGuidesPage = async (bucket: string) => {
         'fields.bucket[in]': pathToBucket(bucket),
     })
     if (entries.items) {
+        console.log("guide 2 --------",entries)
         return entries.items[0].fields
     }
 }
@@ -376,11 +380,8 @@ export const getPolicy = async (slug: string) => {
         'fields.slug': slug,
         include: 1,
     })
-
     if (entries.items) {
         return entries.items[0].fields
     }
 }
-
-
 
