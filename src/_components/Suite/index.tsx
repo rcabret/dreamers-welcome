@@ -37,8 +37,8 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
     }
 
     const { fields } = data
-    console.log("fields -----",fields)
-    const { highlights, features, description } = fields
+    console.log("fields -----", fields)
+    const { highlights = [], features = [], description } = fields
 
     const breakpoint = useContext(viewportContext)
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -51,55 +51,52 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
         setIsModalOpen(false)
     }
 
-    const filteredHighlights = highlights.filter(
+    // Ensure highlights is an array before calling .filter
+    const filteredHighlights = Array.isArray(highlights) ? highlights.filter(
         (highlight: { fields: { highlightName: string } }) =>
             highlight?.fields?.highlightName !== 'Floorplan'
-    )
-//    console.log("highlights ----------->>>>>>",highlights)
-    const floorplanHighlight = highlights.filter(
+    ) : []
+
+    const floorplanHighlight = Array.isArray(highlights) ? highlights.filter(
         (highlight: { fields: { highlightName: string } }) =>
             highlight?.fields?.highlightName === 'Floorplan'
-    )
+    ) : []
+
+    // Default message if no floorplan highlight is found
+    const floorplanMessage = floorplanHighlight.length === 0 ? "" : null
 
     return (
         <>
-              <div className="overview_wrapper">
-                    {description ? (
-                     <>
-                       <Block
-                        hideSeparator
-                        title="OVERVIEW"
-                        content={<MarkdownModule data={description} />}
-                    />
-                     {floorplanHighlight?.length > 0 && (
-                      <button className="cmn_btn floor_plan" onClick={openModal}>
-                      Floorplan
-                       </button>
-                      )}
-                    </>
- 
-                      ) : (
-                         floorplanHighlight?.length > 0 && (
-    
-                             <button className="cmn_btn floor_plan" onClick={openModal}>
-                              Floorplan
+            <div className="overview_wrapper">
+                {description ? (
+                    <>
+                        <Block
+                            hideSeparator
+                            title="OVERVIEW"
+                            content={<MarkdownModule data={description} />}
+                        />
+                        {floorplanHighlight.length > 0 ? (
+                            <button className="cmn_btn floor_plan" onClick={openModal}>
+                                Floorplan
                             </button>
-                             )
-                              )}
-                          </div>
-            
-             <Modal isOpen={isModalOpen} onClose={closeModal} title="FLOORPLAN">
-                {/* {floorplanHighlight && (
-                    <Highlight
-                        slug={propertySlug}
-                        title={floorplanHighlight[0]?.fields.highlightName}
-                        blurb={floorplanHighlight[0]?.fields.blurb}
-                        images={floorplanHighlight[0]?.fields.images}
-                    />
-                )} */}
-            
-              <div className='floor_images_carousal'>
-              <Swiper
+                        ) : (
+                            <p>{floorplanMessage}</p>
+                        )}
+                    </>
+                ) : (
+                    floorplanHighlight.length > 0 ? (
+                        <button className="cmn_btn floor_plan" onClick={openModal}>
+                            Floorplan
+                        </button>
+                    ) : (
+                        <p>{floorplanMessage}</p>
+                    )
+                )}
+            </div>
+
+            <Modal isOpen={isModalOpen} onClose={closeModal} title="FLOORPLAN">
+                <div className='floor_images_carousal'>
+                    <Swiper
                         slidesPerView={1}
                         spaceBetween={20}
                         pagination={{
@@ -108,30 +105,30 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                         modules={[Pagination]}
                         className="mySwiper"
                     >
-                        {floorplanHighlight?.map((element: string, index) => {
-                            return element?.fields?.images.map(
-                                (images: string, imgIndex) => {
-                                    return (
-                                        <SwiperSlide>
-                                            {' '}
+                        {floorplanHighlight.length > 0 ? (
+                            floorplanHighlight.map((element: string, index) => 
+                                element?.fields?.images.map(
+                                    (images: string, imgIndex) => (
+                                        <SwiperSlide key={index + '-' + imgIndex}>
                                             <img
-                                                key={index + '-' + imgIndex}
                                                 src={images.fields.file.url}
                                                 alt={images.fields.description}
                                             />
                                         </SwiperSlide>
                                     )
-                                }
+                                )
                             )
-                        })}
+                        ) : (
+                            <p>{floorplanMessage}</p>
+                        )}
                     </Swiper>
                 </div>
             </Modal>
-            {filteredHighlights && highlights.length
+
+            {filteredHighlights && filteredHighlights.length > 0
                 ? filteredHighlights.map((x: { fields: any }, i: number) => {
                       const { highlightName, blurb, images, slug } = x.fields
                       return (
-                          // @ts-ignore
                           <Highlight
                               key={`${slug}-${Math.random() * i}`}
                               slug={propertySlug}
@@ -145,6 +142,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                       )
                   })
                 : null}
+                
             {features && (
                 <Block
                     title="FEATURES"
@@ -156,19 +154,18 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                                 columns={features.length}
                                 sideScrollOnMobile={false}
                             >
-                                {features &&
-                                    features.map((feature: any) => (
-                                        <BlockListWrap
-                                            key={feature.fields.title}
-                                        >
-                                            <Header size={4}>
-                                                {feature.fields.title}
-                                            </Header>
-                                            <MarkdownModule
-                                                data={feature.fields.text}
-                                            />
-                                        </BlockListWrap>
-                                    ))}
+                                {features.map((feature: any) => (
+                                    <BlockListWrap
+                                        key={feature.fields.title}
+                                    >
+                                        <Header size={4}>
+                                            {feature.fields.title}
+                                        </Header>
+                                        <MarkdownModule
+                                            data={feature.fields.text}
+                                        />
+                                    </BlockListWrap>
+                                ))}
                             </GridModule>
                         ) : (
                             <CollapsableList data={features} />
@@ -181,3 +178,4 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
 }
 
 export default Suite
+
