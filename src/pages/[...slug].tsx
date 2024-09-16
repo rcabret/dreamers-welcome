@@ -89,7 +89,7 @@ const Property = ({
   const router = useRouter()
 
   // console.log("suites---->>>>",suites)
-
+ console.log("property name ----------",propertyName)
   const pType = propertyType[0]
   const showSubNav = pType === 'Suites' || pType === 'Hotel'
   const [activeView, setView] = useState(suites[0])
@@ -269,6 +269,13 @@ const Property = ({
       title:
         'Wald Haus by DW | Laidback Luxury Vacation House Rental in Rainforest',
     },
+    // maru:{
+    //   link: 'https://www.dreamerswelcome.com/maru',
+    //   description:
+    //     'All guests staying at MARU have access to a bounty of experiences from yoga by the sea to waterfalls and snorkeling trails.',
+    //   title:
+    //     'All guests staying at MARU have access to a bounty of experiences from yoga by the sea to waterfalls and snorkeling trails.',
+    // },
   }
 
   // Convert propertyName to lowercase and replace spaces with underscores to match the object keys
@@ -278,7 +285,7 @@ const Property = ({
     description: '',
     title: '',
   }
-
+  
   console.log('in the ...slug page,property name ---------', propertyName)
 
   return (

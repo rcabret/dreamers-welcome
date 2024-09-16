@@ -28,11 +28,16 @@ interface SuiteProps {
     hideFirstSeparator?: boolean
 }
 
+
+
+
 const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
     if (data && !data.fields) {
         return null
     }
+
     const { fields } = data
+    console.log("fields -----",fields)
     const { highlights, features, description } = fields
 
     const breakpoint = useContext(viewportContext)
@@ -50,7 +55,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
         (highlight: { fields: { highlightName: string } }) =>
             highlight?.fields?.highlightName !== 'Floorplan'
     )
-
+//    console.log("highlights ----------->>>>>>",highlights)
     const floorplanHighlight = highlights.filter(
         (highlight: { fields: { highlightName: string } }) =>
             highlight?.fields?.highlightName === 'Floorplan'
