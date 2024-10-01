@@ -196,7 +196,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
             />
           </a>
         </Link>
-
+     
         <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
           <StyledButton href="/about">READ MORE</StyledButton>
         </StyledBlurb>

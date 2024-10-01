@@ -286,7 +286,7 @@ const Property = ({
     title: '',
   }
   
-  console.log('in the ...slug page,property name ---------', propertyName)
+  
 
   return (
     <>
@@ -545,6 +545,7 @@ export async function getStaticProps(context: { params: { slug: string } }) {
 
 export async function getStaticPaths() {
   const allProperties = await getAllPropertiesForPaths()
+ 
 
   // @ts-ignore
   let paths: { params: { slug: string[] } }[] = []

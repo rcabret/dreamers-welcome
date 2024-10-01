@@ -12,7 +12,7 @@ const Privacy = ({ data, setNavTheme, seoData }: any) => {
     setNavTheme('dark')
   }, [])
 
-  console.log('privacy')
+  
   return (
     <>
       <Head>

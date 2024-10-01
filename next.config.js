@@ -23,6 +23,17 @@ const nextConfig = {
     experimental: {
         esmExternals: false,
         largePageDataBytes: 2 * 1024 * 1024 * 1024,
+    },
+
+    // Add redirects here
+    async redirects() {
+        return [
+            {
+                source: '/drift-away', // The path you want to redirect from
+                destination: '/', // The path you want to redirect to
+                permanent: true, // Set to true for permanent redirect (301)
+            },
+        ]
     }
 }
 

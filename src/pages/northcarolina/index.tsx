@@ -35,7 +35,7 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
   } = data
 
   
-
+console.log("here --- in the north carolina ")
 
   const [stays, setStays] = useState(null)
   useEffect(() => {

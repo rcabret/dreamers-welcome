@@ -43,13 +43,16 @@ const links_NC: { name: string; slug: string }[] = [
         name: 'HOTELS',
         slug: "Hotel",
     },
-    {
-        name: 'HOUSES',
-        slug: "House",
-    }
+    // {
+    //     name: 'HOUSES',
+    //     slug: "House",
+    // }
 ]
 
+
+
 const Stays = ({ properties, setNavTheme, setHeaderData, blurb, seoData }: Props) => {
+
     const breakpoint = useContext(viewportContext)
     const router = useRouter()
     const [bucket, setBucket] = useState('');
@@ -90,7 +93,7 @@ const Stays = ({ properties, setNavTheme, setHeaderData, blurb, seoData }: Props
         ...properties,
     ])
 
-
+   
 
     useEffect(() => {
         const queryTag = (router.query.type as string) || ('view_all' as string)
