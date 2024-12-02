@@ -336,7 +336,20 @@ const Property = ({
           bookNowLink={bookNowLink}
         />
       </BannerGridImage>
-      {blurb && blurb.length && <Blurb text={blurb} />}
+      {blurb && blurb.length && <Blurb text={blurb} className={`${slug === 'selva' && "selva_wrapper"}`} />}
+
+      {/* button to navigate on virtual tour */}
+      {slug === 'selva' && (
+        <div className="virtual-tour-button">
+      <Link href={`/${slug}-virtual-tour`}>
+        <button className="cmn_btn virtual_tour">
+          View Our Space in Virtual Tour
+        </button>
+      </Link>
+
+        </div>
+      )}
+
       {concept && (
         <Block
           title="CONCEPT"

@@ -37,7 +37,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
     }
 
     const { fields } = data
-    console.log("fields -----", fields)
+    console.log("fields -----")
     const { highlights = [], features = [], description } = fields
 
     const breakpoint = useContext(viewportContext)

@@ -400,7 +400,22 @@ button.cmn_btn.floor_plan {
 .join_us_wrapper .mobile_input {
     margin: 15px 0px;
 }
-
+// selva css
+.captur3d-3d-tour iframe {
+    width: 100%;
+    height: calc(100vh - 65px);
+}
+div.selva_wrapper {
+    min-height: unset;
+    padding-bottom: 0px;
+}
+.virtual-tour-button{
+    padding-bottom: 5rem;
+    text-align: center;
+}
+button.cmn_btn.virtual_tour {
+    padding: 0px 20px;
+}
 @media(min-width:1921px){
     .modal-content {
         max-width: 50%;
