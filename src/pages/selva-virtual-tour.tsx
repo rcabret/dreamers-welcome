@@ -2,7 +2,7 @@
 import React,{useEffect} from 'react';
 import Head from 'next/head';
 import { Content } from '../styles/global';
-import { StyledButton } from '../_components/PropertyGridItem/styles';
+
 
 
 

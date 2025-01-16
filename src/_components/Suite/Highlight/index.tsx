@@ -23,7 +23,6 @@ const Highlight = ({
     slug,
 }: HighlightProps) => {
     const breakpoint = useContext(viewportContext)
-console.log('breakpoint====>',breakpoint)
     const getCarouselHeight = () => {
         switch (breakpoint) {
             case 'tablet':
