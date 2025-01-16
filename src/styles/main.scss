@@ -403,7 +403,7 @@ button.cmn_btn.floor_plan {
 // selva css
 .captur3d-3d-tour iframe {
     width: 100%;
-    height: calc(100vh - 65px);
+    height: 100vh;
 }
 div.selva_wrapper {
     min-height: unset;
@@ -415,6 +415,21 @@ div.selva_wrapper {
 }
 button.cmn_btn.virtual_tour {
     padding: 0px 20px;
+}
+.modal-overlay.iframe_modal {
+    padding: 0;
+}
+
+.modal-overlay.iframe_modal .modal-content {
+    padding: 0;
+    border-radius: unset;
+    max-width: 100%;
+    height: 100vh;
+}
+
+.modal-overlay.iframe_modal .modal_header {
+    position: absolute;
+    right: 8px;
 }
 @media(min-width:1921px){
     .modal-content {
@@ -546,5 +561,10 @@ button.cmn_btn.virtual_tour {
     .submit_btn{
         margin-bottom: 10px;
     }
+  
+    .swiper-slide .swiper_images, .swiper-slide .swiper_images>div {
+        width: 100%;
+    }
+    
 }
 

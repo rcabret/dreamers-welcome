@@ -33,7 +33,7 @@ class ImageGridSlider extends Component {
             slidesPerView,
             slug,
             isProperties = false,
-            spaceBetween = 0,
+            spaceBetween = 20,
             fixedHeight,
         } = props as SwiperProps
 
@@ -128,11 +128,12 @@ class ImageGridSlider extends Component {
                                         ) : (
                                             <GridImage
                                                 fixedHeight={this.state.height}
-                                                sizes="50vw"
-                                                ratio="natural"
+                                                // sizes="50vw"
+                                                // ratio="natural"
                                                 imageObj={x}
                                                 border={false}
                                                 borderRadius={true}
+                                                 className="swiper_images"
                                             />
                                         )}
                                     </SwiperSlide>

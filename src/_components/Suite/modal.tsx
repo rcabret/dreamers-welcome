@@ -7,13 +7,14 @@ interface ModalProps {
     onClose: () => void;
     children: React.ReactNode;
     title:string;
+    className:string;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children,title }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children,title,className }) => {
     return (
         <>
             {isOpen && (
-                <div className="modal-overlay">
+                <div className={`modal-overlay ${className}`} >
                     <div className="modal-content">
                         <div className='flex modal_header mt-5 '>
                         <h4>{title}</h4>

@@ -36,7 +36,7 @@ import { bucketToPath } from '../_utils/Parsers'
 import safeJsonStringify from 'safe-json-stringify'
 import { viewportContext } from '../_utils/ViewportProvider'
 import Head from 'next/head'
-
+import Modal from '../_components/Suite/modal'
 const CollapsableList = dynamic(
   () => import('../_components/UI/CollapsableList')
 )
@@ -95,6 +95,10 @@ const Property = ({
   const [activeView, setView] = useState(suites[0])
   const [activeSlug, setSlug] = useState()
   const [lightbox, toggleLightbox] = useState<boolean>(false)
+  const[openModal,setOpenModal] = useState<boolean>(false)
+  const closeModal = () =>{
+    setOpenModal(false)
+  }
   const [extraData, setExtraData] = useState<{
     otherStays: any
     carouselImages: any
@@ -341,14 +345,33 @@ const Property = ({
       {/* button to navigate on virtual tour */}
       {slug === 'selva' && (
         <div className="virtual-tour-button">
-      <Link href={`/${slug}-virtual-tour`}>
-        <button className="cmn_btn virtual_tour">
+      {/* <Link href={`/${slug}-virtual-tour`}> */}
+        <button className="cmn_btn virtual_tour" onClick={()=> setOpenModal(!openModal)}>
           View Our Space in Virtual Tour
         </button>
-      </Link>
-
+      {/* </Link> */}
+        
         </div>
+
       )}
+   {openModal &&   <Modal className={"iframe_modal"} isOpen={openModal} onClose={closeModal} >
+   <div className='iframe_modal'>
+    <div className="virtual-tour-container">    
+  
+  <div className="captur3d-3d-tour">
+    <iframe
+      width="920"
+      height="540"
+      src="https://digital-evolution.captur3d.io/view/stephan-watts/selva-by-dw-laidback-luxury-vacation-house-rental-in-luquillo"
+      allowFullScreen
+      mozAllowFullScreen="true"
+      webkitAllowFullScreen="true"
+      allow="xr-spatial-tracking; clipboard-write"
+    ></iframe>
+  </div>
+</div>
+      </div>
+   </Modal> }
 
       {concept && (
         <Block

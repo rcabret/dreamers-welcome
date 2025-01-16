@@ -2,6 +2,7 @@
 import React,{useEffect} from 'react';
 import Head from 'next/head';
 import { Content } from '../styles/global';
+import { StyledButton } from '../_components/PropertyGridItem/styles';
 
 
 
@@ -39,7 +40,7 @@ const VirtualTour = ({setNavTheme}:any) => {
           <iframe
             width="920"
             height="540"
-            src="https://digital-evolution.captur3d.io/view/stephan-watts/selva-by-dw-laidback-luxury-vacation-house-rental-in-luquillo"
+            src="https://mattertraffic.com/E5m3bJYCQKz"
             allowFullScreen
             mozAllowFullScreen="true"
             webkitAllowFullScreen="true"
@@ -48,6 +49,7 @@ const VirtualTour = ({setNavTheme}:any) => {
         </div>
       </div>
 </Content>
+
     </>
   );
 };

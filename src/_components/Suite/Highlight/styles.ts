@@ -51,7 +51,8 @@ export const SliderWrap = styled.div`
 
     @media (max-width: ${BREAKPOINTS.MOBILE}) {
         .swiper {
-            margin-left: ${rem(15)};
+            margin-left: ${rem(10)};
+            margin-RIGHT: ${rem(10)};
         }
     }
 `
