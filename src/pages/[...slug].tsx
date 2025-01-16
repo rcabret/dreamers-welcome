@@ -342,7 +342,7 @@ const Property = ({
       {slug === 'selva' && (
     <div className="virtual-tour-button">
         <Link href={`/${slug}-virtual-tour`}>
-            <button className="cm_btn virtual_tour">
+            <button className="cmn_btn virtual_tour">
                 View our Space in Virtual Tour
             </button>
         </Link>
