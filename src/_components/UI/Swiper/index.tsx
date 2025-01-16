@@ -128,12 +128,12 @@ class ImageGridSlider extends Component {
                                         ) : (
                                             <GridImage
                                                 fixedHeight={this.state.height}
-                                                // sizes="50vw"
+                                                sizes="50vw"
                                                 // ratio="natural"
                                                 imageObj={x}
                                                 border={false}
                                                 borderRadius={true}
-                                                 className="swiper_images"
+                                                  className="swiper_images"
                                             />
                                         )}
                                     </SwiperSlide>

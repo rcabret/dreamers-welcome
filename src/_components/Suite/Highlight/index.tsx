@@ -39,7 +39,7 @@ const Highlight = ({
             case 'tablet':
                 return 'auto'
             case 'mobile':
-                return 1
+                return 1.2
             case 'desktop':
             default:
                 return 'auto'
