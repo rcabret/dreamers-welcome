@@ -23,6 +23,7 @@ const Highlight = ({
     slug,
 }: HighlightProps) => {
     const breakpoint = useContext(viewportContext)
+
     const getCarouselHeight = () => {
         switch (breakpoint) {
             case 'tablet':
@@ -34,27 +35,14 @@ const Highlight = ({
                 return 500
         }
     }
-    const getCarouselSlides = () => {
-        switch (breakpoint) {
-            case 'tablet':
-                return 'auto'
-            case 'mobile':
-                return 1.2
-            case 'desktop':
-            default:
-                return 'auto'
-        }
-    }
 
     const [height, setHeight] = useState(getCarouselHeight())
-    const [slides, setSlides] = useState(getCarouselSlides())
     
 
 
     
     useEffect(() => {
         setHeight(getCarouselHeight())
-        setSlides(getCarouselSlides())
     }, [breakpoint])
 
 
@@ -73,8 +61,6 @@ const Highlight = ({
                             slug={slug}
                             items={images}
                             spaceBetween={20}
-                            slidesPerView={slides}
-                            centeredSlides={true}
                         />
                     </SliderWrap>
                     <HighlightBlurb>
