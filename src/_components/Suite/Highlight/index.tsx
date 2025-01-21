@@ -89,7 +89,7 @@ const Highlight = ({
             />
           </SliderWrap>
           <HighlightBlurb>
-            {blurb && <MarkdownModule data={blurb} />}
+            {blurb && <div className='mobile_content'><MarkdownModule data={blurb} /></div>}
           </HighlightBlurb>
         </>
       }
