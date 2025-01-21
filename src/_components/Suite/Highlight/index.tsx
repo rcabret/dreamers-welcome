@@ -71,7 +71,8 @@ const Highlight = ({
   }, [breakpoint]);
 
   return (
-    <Block
+   <div className='service_slides'>
+     <Block
       title={title}
       fullWidth
       hideSeparator={hideSeparator}
@@ -94,6 +95,7 @@ const Highlight = ({
         </>
       }
     />
+   </div>
   );
 };
 
