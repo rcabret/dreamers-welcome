@@ -84,6 +84,7 @@ console.log("here --- in the north carolina ")
           title="OUR STAYS"
           fullWidth
           noPaddingBottom
+          
           link="/stays/northcarolina"
           content={
             <StaysSwiperWrap className="stays_grid">

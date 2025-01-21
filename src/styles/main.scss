@@ -431,6 +431,11 @@ button.cmn_btn.virtual_tour {
     position: absolute;
     right: 8px;
 }
+.puerto_grids {
+    position: relative;
+    left: -0.625rem;
+    width: calc(100% + 1.25rem);
+}
 @media(min-width:1921px){
     .modal-content {
         max-width: 50%;

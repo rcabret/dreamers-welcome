@@ -98,13 +98,14 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
 
       {stays && (
         <Block
+         className="stays_outer"
           title="OUR STAYS"
           fullWidth
-          showOverflow
+          
           noPaddingBottom
           link="/stays/puertorico"
           content={
-            <StaysSwiperWrap className="stays_grid">
+            <StaysSwiperWrap className="stays_grid puerto_grids">
               <GridModule columns={3}>
                 {stays &&
                   stays.length &&
