@@ -50,12 +50,12 @@ const Highlight = ({
 
   const getBreakpoints = () => ({
     320: {
-      slidesPerView: 2,
       spaceBetween: 10,
+      centeredSlides:true
     },
     768: {
-      slidesPerView: 'auto',
       spaceBetween: 15,
+      centeredSlides:false
     },
   
   });
@@ -85,9 +85,6 @@ const Highlight = ({
               slug={slug}
               items={images}
               spaceBetween={20}
-              centeredSlides={true}
-              slidesOffsetBefore={10} // Add padding on the left
-              slidesOffsetAfter={10}
               breakpoints={breakpoints}
             />
           </SliderWrap>
