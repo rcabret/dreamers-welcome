@@ -33,6 +33,16 @@ const nextConfig = {
                 destination: '/', // The path you want to redirect to
                 permanent: true, // Set to true for permanent redirect (301)
             },
+            {
+                source: '/experiences', 
+                destination: '/experiences/puertorico',
+                permanent: true,
+            },
+            {
+                source: '/guidebooks', 
+                destination: '/guidebooks/puertorico',
+                permanent: true,
+            },
         ]
     }
 }
