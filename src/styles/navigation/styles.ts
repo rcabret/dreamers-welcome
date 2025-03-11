@@ -16,6 +16,8 @@ export const SubNav = styled.div`
     padding: 0 ${rem(20)};
     padding-bottom: ${rem(5)};
     border-bottom: 1px solid #c1c1c1;
+            overflow-x: scroll !important;
+        white-space: nowrap !important;
     @media(max-width:991px){
         overflow-x: scroll !important;
     white-space: nowrap !important; 
