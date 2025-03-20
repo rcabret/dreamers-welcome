@@ -28,7 +28,7 @@ module.exports = {
         }
     });
      
-    return slugs;
+    return slugs.filter(url => url.startsWith('https://www.dreamerswelcome.com/'));
     };
     const slugs = await getAllNewsSlugs();
 
