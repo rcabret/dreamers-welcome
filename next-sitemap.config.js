@@ -66,7 +66,7 @@ module.exports = {
           return `${config.siteUrl}/news/field?Id=${item.sys.id}`;
         }
     })
-    .filter(slug => !excludedUrls.includes(slug));
+    .filter(slug => !excludedUrls.some(url => slug.startsWith(url)));
      
     return slugs;
     };
