@@ -55,29 +55,45 @@ module.exports = {
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://dreamerswelcome.com',
   generateRobotsTxt: true,
   sitemapSize: 5000,
-  outDir: './public', 
+  outDir: './public',
   additionalPaths: async (config) => {
     const getAllNewsSlugs = async () => {
+
       const entries = await client.getEntries({
         content_type: 'blog',
         select: 'fields.slug,sys.id',
-    });
-  
-    
-    const slugs = entries.items
-    .map(item => {
-        if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) { 
-          return item.fields.slug;
-        } else if (item.fields && item.fields.slug) {   
-          return `${config.siteUrl}/news/${item.fields.slug}`;
-        } else {   
-          return `${config.siteUrl}/news/field?Id=${item.sys.id}`;
-        }
-    })
-    .filter(slug => !excludedUrls.some(url => slug.includes(url)));
+      });
 
-    return slugs;
+
+      const slugs = entries.items
+        .map(item => {
+          if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) {
+            return item.fields.slug;
+          } else if (item.fields && item.fields.slug) {
+            return `${config.siteUrl}/news/${item.fields.slug}`;
+          } else {
+            return `${config.siteUrl}/news/field?Id=${item.sys.id}`;
+          }
+        })
+        .filter(slug => {
+          // Convert to lowercase to avoid case sensitivity issues
+          const lowerSlug = slug.toLowerCase();
+
+          // Ensure we exclude "dreamerswelcome.com" in all variations
+          if (lowerSlug.includes("dreamerswelcome.com")) {
+            console.log(`Excluded: ${lowerSlug}`); // Debugging log
+            return false;
+          }
+
+          // Exclude all URLs from `excludedUrls`
+          const isExcluded = excludedUrls.some(url => lowerSlug.includes(url.toLowerCase()));
+          if (isExcluded) console.log(`Excluded from list: ${lowerSlug}`);
+
+          return !isExcluded;
+        });
+        return slugs;
     };
+
     const slugs = await getAllNewsSlugs();
 
 
