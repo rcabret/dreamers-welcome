@@ -39,7 +39,15 @@ const excludedUrls = [
   "https://pursuitist.com/5-places-to-experience-first-class-wellness-in-puerto-rico",
   "https://passportmagazine.com/explore-lgbtq-san-juan-puerto-rico",
   "https://www.theglobeandmail.com/life/travel/article-i-wanted-more-than-a-boring-beach-vacation-so-i-took-my-family-to",
-  "https://www.townandcountrymag.com/leisure/travel-guide/a63225670/san-juan-puerto-rico-travel-guide"
+  "https://www.townandcountrymag.com/leisure/travel-guide/a63225670/san-juan-puerto-rico-travel-guide",
+  "https://www.dreamerswelcome.com/dreamers-nc",
+  "https://dreamerswelcome.com/dreamers-nc/suites",
+  "https://dreamerswelcome.com/dreamers-nc/rooms",
+  "https://dreamerswelcome.com/booking-policy/dreamers",
+  "https://dreamerswelcome.com/northcarolina",
+  "https://dreamerswelcome.com/experiences/northcarolina",
+  "https://dreamerswelcome.com/guidebooks/northcarolina",
+  "https://dreamerswelcome.com/stays/northcarolina"
 ];
 
 

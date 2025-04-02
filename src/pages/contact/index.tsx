@@ -192,10 +192,12 @@ const Contact = ({ properties, setNavTheme, setHeaderData, seoData }: any) => {
                                         <option>GENERAL PROPERTY</option>
                                         {properties &&
                                             properties.length &&
-                                            properties.map((p: any) => (
+                                            properties
+                                            .filter((p: any) => p.propertyName !== "Dreamers")
+                                            .map((p: any) => (
                                                 <option>
                                                     {p.propertyName.toUpperCase()}{' '}
-                                                    {`(${p.bucket[0]})`}
+                                                    {/* {`(${p.bucket[0]})`} */}
                                                 </option>
                                             ))}
                                     </>

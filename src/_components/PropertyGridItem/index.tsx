@@ -22,7 +22,10 @@ interface GridItemProps {
 const PropertyGridItem = ({
     propertyObj,
     collapsed = false,
-}: GridItemProps) => {
+}: GridItemProps) => {  
+    if (propertyObj.propertyName === "Dreamers") {
+        return null; 
+    }
     const {
         bannerDescriptionList,
         tileImage,

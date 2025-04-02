@@ -148,7 +148,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
         fullHeight
       />
       <FlexContainer>
-        <BottomAnchor onClick={() => scrollToBottom()}>
+        {/* <BottomAnchor onClick={() => scrollToBottom()}>
           <Header size={3}>
             CHOOSE <br /> YOUR DESTINATION
           </Header>
@@ -157,7 +157,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
               <polyline points="0 10, 30 38, 60 10" />
             </svg>
           </button>
-        </BottomAnchor>
+        </BottomAnchor> */}
         <BannerContent headerText={landing.title} showOpacity={false} />
         <Circle id="circle">
           <div />
@@ -181,7 +181,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
             />
           </a>
         </Link>
-        <Link href={'/northcarolina'} passHref prefetch={false}>
+        {/* <Link href={'/northcarolina'} passHref prefetch={false}>
           <a>
             <Block
               noPaddingBottom
@@ -195,7 +195,7 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
               }
             />
           </a>
-        </Link>
+        </Link> */}
      
         <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
           <StyledButton href="/about">READ MORE</StyledButton>

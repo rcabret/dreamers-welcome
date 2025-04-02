@@ -34,15 +34,36 @@ const nextConfig = {
                 permanent: true, // Set to true for permanent redirect (301)
             },
             {
-                source: '/experiences', 
+                source: '/experiences',
                 destination: '/experiences/puertorico',
                 permanent: true,
             },
             {
-                source: '/guidebooks', 
+                source: '/guidebooks',
                 destination: '/guidebooks/puertorico',
                 permanent: true,
             },
+            {
+                source: '/northcarolina',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/experiences/northcarolina',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/dreamers-nc',
+                destination: '/',
+                permanent: true,
+            },
+            {
+                source: '/guidebooks/northcarolina',
+                destination: '/',
+                permanent: true,
+            },
+
         ]
     }
 }

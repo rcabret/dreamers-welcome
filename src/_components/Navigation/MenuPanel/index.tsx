@@ -65,17 +65,19 @@ const MenuPanel = ({ opened, activeBucket, onClose }: any) => {
                 <MainList id="main_list" onClick={() => onClose(false)}>
                     <li>
                         <Link href={router.query ? getLink('stays') : ""}>STAYS</Link>
+                        {/* <Link href="/stays/puertorico">STAYS</Link>  */}
                     </li>
                     <li>
-                        <Link href="/news">NEWS</Link>
+                        <Link href="/news">NEWS</Link> 
                     </li>
                     <li>
                         <Link href={router.query ? getLink('experiences') : ""}>EXPERIENCES</Link>
-                        {!activeBucket && <aside />}
+                        {/* {!activeBucket && <aside />}  */} 
+                        {/* commented this line above when scrub north carolina */}
                     </li>
                     <li>
                         <Link href={router.query ? getLink('guidebooks') : ""}>GUIDEBOOKS</Link>
-                        {!activeBucket && <aside />}
+                        {/* {!activeBucket && <aside />} */}
                     </li>
                 </MainList>
                 <div className="anchorSection flex justify-around" onClick={() => onClose(false)}>

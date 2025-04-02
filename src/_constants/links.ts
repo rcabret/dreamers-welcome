@@ -3,8 +3,8 @@ export const bucketLinks = [
         label: 'Puerto Rico',
         slug: 'puertorico',
     },
-    {
-        label: 'North Carolina',
-        slug: 'northcarolina',
-    },
+    // {
+    //     label: 'North Carolina',
+    //     slug: 'northcarolina',
+    // },
 ]
