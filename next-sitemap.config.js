@@ -68,30 +68,31 @@ module.exports = {
       const slugs = entries.items
         .map(item => {
           if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) {
-            return item.fields.slug;
+            return item.fields.slug.toLowerCase(); // Convert to lowercase
           } else if (item.fields && item.fields.slug) {
-            return `${config.siteUrl}/news/${item.fields.slug}`;
+            return `${config.siteUrl}/news/${item.fields.slug}`.toLowerCase();
           } else {
-            return `${config.siteUrl}/news/field?Id=${item.sys.id}`;
+            return `${config.siteUrl}/news/field?Id=${item.sys.id}`.toLowerCase();
           }
         })
         .filter(slug => {
-          // Convert to lowercase to avoid case sensitivity issues
-          const lowerSlug = slug.toLowerCase();
+          // Normalize by removing "www." for consistent checking
+          const normalizedSlug = slug.replace(/^https?:\/\/(www\.)?/, 'https://');
 
-          // Ensure we exclude "dreamerswelcome.com" in all variations
-          if (lowerSlug.includes("dreamerswelcome.com")) {
-            console.log(`Excluded: ${lowerSlug}`); // Debugging log
-            return false;
+          // Normalize excluded URLs as well
+          const normalizedExcludedUrls = excludedUrls.map(url => url.toLowerCase().replace(/^https?:\/\/(www\.)?/, 'https://'));
+
+          // Check if slug is exactly in the excluded list
+          const isExcluded = normalizedExcludedUrls.includes(normalizedSlug);
+
+          if (isExcluded) {
+            console.log(`Excluded from list: ${slug}`);
           }
-
-          // Exclude all URLs from `excludedUrls`
-          const isExcluded = excludedUrls.some(url => lowerSlug.includes(url.toLowerCase()));
-          if (isExcluded) console.log(`Excluded from list: ${lowerSlug}`);
 
           return !isExcluded;
         });
-        return slugs;
+
+      return slugs;
     };
 
     const slugs = await getAllNewsSlugs();
