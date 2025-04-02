@@ -74,8 +74,8 @@ module.exports = {
           return `${config.siteUrl}/news/field?Id=${item.sys.id}`;
         }
     })
-    .filter(slug => !excludedUrls.some(url => slug.startsWith(url)));
-     
+    .filter(slug => !excludedUrls.some(url => slug.includes(url)));
+
     return slugs;
     };
     const slugs = await getAllNewsSlugs();
