@@ -52,49 +52,48 @@ const excludedUrls = [
 
 
 module.exports = {
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://dreamerswelcome.com',
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL,
   generateRobotsTxt: true,
   sitemapSize: 5000,
   outDir: './public',
   additionalPaths: async (config) => {
     const getAllNewsSlugs = async () => {
-
       const entries = await client.getEntries({
         content_type: 'blog',
         select: 'fields.slug,sys.id',
       });
 
 
+      console.log("Excluded URLs (Normalized):", excludedUrls.map(url => url.toLowerCase()));
+
       const slugs = entries.items
         .map(item => {
+          let slugUrl;
+
           if (item.fields && item.fields.slug && item.fields.slug.startsWith('https')) {
-            return item.fields.slug.toLowerCase(); // Convert to lowercase
+            slugUrl = item.fields.slug.toLowerCase();
           } else if (item.fields && item.fields.slug) {
-            return `${config.siteUrl}/news/${item.fields.slug}`.toLowerCase();
+            slugUrl = `${config.siteUrl}/news/${item.fields.slug}`.toLowerCase();
           } else {
-            return `${config.siteUrl}/news/field?Id=${item.sys.id}`.toLowerCase();
+            slugUrl = `${config.siteUrl}/news/field?Id=${item.sys.id}`.toLowerCase();
           }
+
+          console.log(`Generated Slug: ${slugUrl}`);
+          return slugUrl;
         })
         .filter(slug => {
-          // Normalize by removing "www." for consistent checking
           const normalizedSlug = slug.replace(/^https?:\/\/(www\.)?/, 'https://');
-
-          // Normalize excluded URLs as well
           const normalizedExcludedUrls = excludedUrls.map(url => url.toLowerCase().replace(/^https?:\/\/(www\.)?/, 'https://'));
 
-          // Check if slug is exactly in the excluded list
           const isExcluded = normalizedExcludedUrls.includes(normalizedSlug);
-
-          if (isExcluded) {
-            console.log(`Excluded from list: ${slug}`);
-          }
+          console.log(`Checking: ${normalizedSlug}, Excluded: ${isExcluded}`);
 
           return !isExcluded;
         });
 
+
       return slugs;
     };
-
     const slugs = await getAllNewsSlugs();
 
 
