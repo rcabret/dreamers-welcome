@@ -1,4 +1,4 @@
-import { getLandingpage } from '../_lib/api'
+import { getLandingpage,getHomepage,getStaysForHomepage } from '../_lib/api'
 import dynamic from 'next/dynamic'
 const BannerGridImage = dynamic(() =>
   import('../styles/global').then((module) => module.BannerGridImage)
@@ -19,7 +19,7 @@ const Circle = dynamic(() =>
 const FlexContainer = dynamic(() =>
   import('../styles/landing/styles').then((module) => module.FlexContainer)
 )
-const StyledBlurb = dynamic(() =>
+const StyledBlurb = dynamic(() => 
   import('../styles/landing/styles').then((module) => module.StyledBlurb)
 )
 const StyledButton = dynamic(() =>
@@ -38,11 +38,47 @@ const Header = dynamic(() =>
   import('../_components/Typography/Header').then((module) => module.default)
 )
 import Script from 'next/script'
-
+import Blurb from '../_components/UI/Blurb'
 import { sendConversionEvent } from './api/fbConversionApi'
 import { viewportContext } from '../_utils/ViewportProvider'
+import safeJsonStringify from 'safe-json-stringify'
+import styled from 'styled-components'
+import { rem } from 'polished'
+import { GridModule,StyledBlockForGrid } from '../styles/global'
+import PropertyGridItem from '../_components/PropertyGridItem'
+import NewsItem from '../_components/NewsItem'
+import ExperienceItem from '../_components/ExperienceItem'
+const StaysSwiperWrap = styled.div`
+  overflow: hidden;
+  width: 100%;
+  margin-top: ${rem(20)};
 
-const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
+  .swiper {
+    overflow: visible;
+    margin-left: ${rem(20)};
+    position: relative;
+    margin-right: ${rem(20)};
+  }
+
+  .swiper-slide {
+    max-width: 30%;
+    min-width: ${rem(370)};
+  }
+
+  .navigation-wrap {
+    top: ${rem(-46)};
+  }
+`
+const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
+  const {
+    coverImage,
+    mobileCoverImage,
+    blurb,
+    guides,
+    experiences,
+    news
+  } = data
+  
   const [prData, setPRData] = useState<{
     temperature: string
     time: string
@@ -53,12 +89,24 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
   }>()
 
   const breakpoint = useContext(viewportContext)
-
+  const [stays, setStays] = useState(null)
   useEffect(() => {
-    setNavTheme('dark')
-    setHeaderData({
+    setNavTheme('light')
+    const data = {
+      bucket: 'Puerto Rico',
       simpleNav: false,
-    })
+      property: '',
+    }
+    setHeaderData(data)
+
+     const getStays = async () => {
+          const rawData = await getStaysForHomepage('puertorico')
+          const stringData = safeJsonStringify(rawData)
+          const data = JSON.parse(stringData)
+          const { stays } = data
+          setStays(stays)
+        }
+        getStays()
   }, [])
 
   useEffect(() => {
@@ -141,30 +189,94 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
           <link rel="canonical" href={seoData?.canonicalUrl} />
         }
       </Head>
-      <BannerGridImage
-        imageObj={landing.coverImage}
+     <div className='home_header'>
+     <BannerGridImage
+        imageObj={coverImage}
+        mobileImageObj={mobileCoverImage}
         border={false}
         borderRadius={false}
         fullHeight
+        className='header_wrapper'
       />
-      <FlexContainer>
-        {/* <BottomAnchor onClick={() => scrollToBottom()}>
-          <Header size={3}>
-            CHOOSE <br /> YOUR DESTINATION
-          </Header>
-          <button>
-            <svg viewBox="0 0 60 40">
-              <polyline points="0 10, 30 38, 60 10" />
-            </svg>
-          </button>
-        </BottomAnchor> */}
-        <BannerContent headerText={landing.title} showOpacity={false} />
-        <Circle id="circle">
-          <div />
-          <div id="inner" />
-        </Circle>
-      </FlexContainer>
-      <ContentWrap id="view">
+        <BannerContent headerText={"Dreamers Welcome - Luxury Vacation Rentals and Boutique Hotel in Puerto Rico"} showOpacity={false} />
+     </div>
+       <Blurb text={blurb} />
+       {stays && (
+        <Block
+         className="stays_outer"
+          title="OUR STAYS"
+          fullWidth
+          
+          noPaddingBottom
+          link="/stays/puertorico"
+          content={
+            <StaysSwiperWrap className="stays_grid puerto_grids">
+              <GridModule columns={3}>
+                {stays &&
+                  stays.length &&
+                  stays
+                    .slice(0, 3)
+                    .map((p: any) => (
+                      <PropertyGridItem propertyObj={p.fields} />
+                    ))}
+              </GridModule>
+            </StaysSwiperWrap>
+          }
+        />
+      )}
+        <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
+          <StyledButton href="/about">READ MORE</StyledButton>
+        </StyledBlurb>
+        {guides && guides.length && (
+        <StyledBlockForGrid
+          title="GUIDEBOOKS"
+          fullWidth
+          noPaddingBottom
+          link="/guidebooks/puertorico"
+          content={
+            <GridModule columns={guides.length} sideScrollOnMobile>
+              {guides &&
+                guides.length &&
+                guides.map((guide: any) => <GuideItem data={guide.fields} />)}
+            </GridModule>
+          }
+        />
+      )}
+      {experiences && experiences.length && (
+        <StyledBlockForGrid
+          title="EXPERIENCES"
+          fullWidth
+          noPaddingBottom
+          link="/experiences/puertorico"
+          content={
+            <GridModule columns={experiences.length} sideScrollOnMobile>
+              {experiences &&
+                experiences.length &&
+                experiences.map((exp: any) => (
+                  <ExperienceItem data={exp.fields} />
+                ))}
+            </GridModule>
+          }
+          
+        />
+      )}
+      {news && news.length && (
+                  <StyledBlockForGrid
+                    title="IN THE NEWS"
+                    fullWidth
+                    noPaddingBottom
+                    link="/news"
+                    content={
+                      <GridModule columns={news.length} sideScrollOnMobile>
+                        {news.length &&
+                          news.map((x: any, i: number) => (
+                            <NewsItem key={x.slug + i} newsObj={x?.fields} />
+                          ))}
+                      </GridModule>
+                    }
+                  />
+                )}
+      {/* <ContentWrap id="view">
         <div id="innerMain" />
         <Link href={'/puertorico'} passHref prefetch={false}>
           <a>
@@ -181,26 +293,11 @@ const Home = ({ landing, setNavTheme, setHeaderData, seoData }: any) => {
             />
           </a>
         </Link>
-        {/* <Link href={'/northcarolina'} passHref prefetch={false}>
-          <a>
-            <Block
-              noPaddingBottom
-              fullWidth
-              // title={`${ncData?.temperature}\u00b0`}
-              title={ncData?.temperature && `${ncData.temperature}°`}
-              content={
-                <StyledHeader size={1} uppercase>
-                  North Carolina
-                </StyledHeader>
-              }
-            />
-          </a>
-        </Link> */}
-     
+
         <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
           <StyledButton href="/about">READ MORE</StyledButton>
         </StyledBlurb>
-      </ContentWrap>
+      </ContentWrap> */}
     </>
   )
 }
@@ -209,10 +306,15 @@ export default Home
 
 export async function getStaticProps() {
   const landing = await getLandingpage()
-
+  const rawData = await getHomepage('puertorico')
+  
+   const stringData = safeJsonStringify(rawData)
+    const data = JSON.parse(stringData)
+    const seoData = data?.seoMetadata?.fields
   return {
     props: {
       landing,
+      data,
       seoData: landing?.seoMetadata?.fields ?? null,
     },
   }

@@ -97,7 +97,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
                 <Backdrop opened={opened} onClick={() => setPanel(false)} />
             </Navigation>
             <RightAnchor opened={opened}>
-                {breakpoint === 'desktop' && (
+                {/* {breakpoint === 'desktop' && (
                     <NavbarDropdown
                         bucket={headerData?.bucket}
                         dark={showDarkTheme || opened}
@@ -105,7 +105,7 @@ const TopNav = ({ headerData, navTheme }: any) => {
                         links={bucketLinks}
                         defaultLabel="CHOOSE DESTINATION"
                     />
-                )}
+                )} */}
 
                 <HamburgerWrap onClick={() => setPanel(!opened)}>
                     <NavToggle

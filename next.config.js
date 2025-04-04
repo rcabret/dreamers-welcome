@@ -63,6 +63,11 @@ const nextConfig = {
                 destination: '/',
                 permanent: true,
             },
+            {
+                source: '/puertorico',
+                destination: '/',
+                permanent: true,
+            },
 
         ]
     }

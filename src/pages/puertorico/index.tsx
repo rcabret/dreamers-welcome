@@ -4,6 +4,7 @@ import {
   GridModule,
   StyledBlockForGrid,
 } from '../../styles/global'
+import { getLandingpage } from '../../_lib/api'
 import BannerContent from '../../_components/UI/BannerContent'
 import Blurb from '../../_components/UI/Blurb'
 import Block from '../../_components/UI/Block'
@@ -17,7 +18,12 @@ import safeJsonStringify from 'safe-json-stringify'
 import dynamic from 'next/dynamic'
 import PropertyGridItem from '../../_components/PropertyGridItem'
 import Head from 'next/head'
-
+const StyledBlurb = dynamic(() => 
+  import('../../styles/landing/styles').then((module) => module.StyledBlurb)
+)
+const StyledButton = dynamic(() =>
+  import('../../styles/landing/styles').then((module) => module.StyledButton)
+)
 const ImageGridSlider = dynamic(() => import('../../_components/UI/Swiper'))
 
 const StaysSwiperWrap = styled.div`
@@ -41,7 +47,7 @@ const StaysSwiperWrap = styled.div`
     top: ${rem(-46)};
   }
 `
-const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
+const Index = ({ data,landing, setNavTheme, setHeaderData, seoData }: any) => {
   const {
     blurb,
     title,
@@ -54,6 +60,7 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
 
 
   console.log("guides length ------",guides)
+  console.log(landing,"landing")
   const [stays, setStays] = useState(null)
   console.log('here__')
   useEffect(() => {
@@ -71,6 +78,7 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
       const rawData = await getStaysForHomepage('puertorico')
       const stringData = safeJsonStringify(rawData)
       const data = JSON.parse(stringData)
+      
       const { stays } = data
       setStays(stays)
     }
@@ -92,7 +100,7 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
         fullHeight
         sizes={'100vw'}
       >
-        <BannerContent headerText={title} />
+        <BannerContent headerText={"Dreamers Welcome - Luxury Vacation Rentals and Boutique Hotel in Puerto Rico"} />
       </BannerGridImage>
       <Blurb text={blurb} />
 
@@ -119,7 +127,9 @@ const Index = ({ data, setNavTheme, setHeaderData, seoData }: any) => {
           }
         />
       )}
-
+{/*  */}  <StyledBlurb text={landing.blurb} eyebrow="DW GROUP" borderTop>
+<StyledButton href="/about">READ MORE</StyledButton>
+        </StyledBlurb>
       {guides && guides.length && (
         <StyledBlockForGrid
           title="GUIDEBOOKS"
@@ -178,13 +188,18 @@ export default Index
 
 export async function getStaticProps() {
   const rawData = await getHomepage('puertorico')
+ 
+   const landing = await getLandingpage()
+   
   const stringData = safeJsonStringify(rawData)
   const data = JSON.parse(stringData)
+  console.log("final test---",data)
   const seoData = data?.seoMetadata?.fields
 
 
   return {
     props: {
+      landing,
       data,
       seoData: {
         metaTitle:
@@ -195,7 +210,9 @@ export async function getStaticProps() {
           "Puerto Rico's sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams.",
         canonicalUrl:
           seoData?.canonicalUrl ?? 'https://www.dreamerswelcome.com/puertorico',
+          
       },
     },
   }
 }
+
