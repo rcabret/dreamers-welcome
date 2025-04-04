@@ -73,12 +73,7 @@ const Contact = ({ properties, setNavTheme, setHeaderData, seoData }: any) => {
         }
 
         if (data.property !== 'GENERAL PROPERTY') {
-            const propertyObj = properties.filter((x: any) => {
-                return (
-                    `${x.propertyName.toUpperCase()} (${x.bucket[0]})` ===
-                    data.property
-                )
-            })[0]
+            const propertyObj = properties.find((x: any) => x.propertyName == data.property);
             data.bucket = propertyObj.bucket[0].toUpperCase()
         } else {
             data.bucket = 'DESTINATION N/A'

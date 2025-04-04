@@ -189,17 +189,16 @@ const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
           <link rel="canonical" href={seoData?.canonicalUrl} />
         }
       </Head>
-     <div className='home_header'>
-     <BannerGridImage
+      <BannerGridImage
         imageObj={coverImage}
         mobileImageObj={mobileCoverImage}
         border={false}
         borderRadius={false}
         fullHeight
-        className='header_wrapper'
-      />
-        <BannerContent headerText={"Dreamers Welcome - Luxury Vacation Rentals and Boutique Hotel in Puerto Rico"} showOpacity={false} />
-     </div>
+        sizes={'100vw'}
+      >
+        <BannerContent headerText={"Dreamers Welcome - Luxury Vacation Rentals and Boutique Hotel in Puerto Rico"} />
+      </BannerGridImage>
        <Blurb text={blurb} />
        {stays && (
         <Block
