@@ -76,7 +76,8 @@ const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
     blurb,
     guides,
     experiences,
-    news
+    news,
+    title
   } = data
   
   const [prData, setPRData] = useState<{
@@ -197,7 +198,7 @@ const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
         borderRadius={false}
         fullHeight
       />
-        <BannerContent headerText={"Dreamers Welcome - Luxury Vacation Rentals and Boutique Hotel in Puerto Rico"} showOpacity={false} />
+        <BannerContent headerText={title} showOpacity={false} />
     
        <Blurb text={blurb} />
        {stays && (

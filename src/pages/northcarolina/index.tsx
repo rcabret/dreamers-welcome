@@ -164,7 +164,7 @@ export async function getStaticProps() {
   const stringData = safeJsonStringify(rawData)
   const data = JSON.parse(stringData)
   const seoData = data?.seoMetadata?.fields
-
+ console.log("here 0------")
   return {
     props: {
       data,

@@ -204,7 +204,7 @@ export async function getStaticProps() {
       seoData: {
         metaTitle:
           seoData?.metaTitle ??
-          'Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW',
+          'Laidback Luxury Vacation Rentals & Boutique Hotel in Puerto Rico | DW',  
         metaDescription:
           seoData?.metaDescription ??
           "Puerto Rico's sunniest rental homes, apartments, and a design-forward boutique hotel that rivals all your rosiest tropical dreams.",

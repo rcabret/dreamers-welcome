@@ -1,6 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // staticPageGenerationTimeout: 200000,
     reactStrictMode: false,
     compiler: {
         styledComponents: true,
@@ -9,15 +8,10 @@ const nextConfig = {
         domains: ['images.ctfassets.net', 'downloads.ctfassets.net'],
     },
     eslint: {
-        // Warning: This allows production builds to successfully complete even if
-        // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
     typescript: {
-        // !! WARN !!
-        // Dangerously allow production builds to successfully complete even if
-        // your project has type errors.
-        // !! WARN !!
+
         ignoreBuildErrors: true,
     },
     experimental: {
@@ -43,18 +37,9 @@ const nextConfig = {
                 destination: '/guidebooks/puertorico',
                 permanent: true,
             },
-            {
-                source: '/northcarolina',
-                destination: '/',
-                permanent: true,
-            },
+   
             {
                 source: '/experiences/northcarolina',
-                destination: '/',
-                permanent: true,
-            },
-            {
-                source: '/dreamers-nc',
                 destination: '/',
                 permanent: true,
             },
