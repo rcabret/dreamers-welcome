@@ -37,7 +37,11 @@ const nextConfig = {
                 destination: '/guidebooks/puertorico',
                 permanent: true,
             },
-   
+            {
+                source: '/northcarolina',
+                destination: '/',
+                permanent: true,
+            },
             {
                 source: '/experiences/northcarolina',
                 destination: '/',
