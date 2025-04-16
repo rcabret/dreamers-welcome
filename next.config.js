@@ -57,6 +57,11 @@ const nextConfig = {
                 destination: '/',
                 permanent: true,
             },
+            {
+                source: '/dreamers-nc',
+                destination: '/',
+                permanent: true,
+            },
 
         ]
     }
