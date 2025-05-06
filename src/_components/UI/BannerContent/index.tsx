@@ -64,6 +64,7 @@ const OpacityLayer = styled.aside`
 
 interface BannerContentProps {
     headerText: string
+    headerSubtitle: string
     headerSubheader?: string
     bookNowLink?: string
     description?: string[] | string
@@ -74,6 +75,7 @@ interface BannerContentProps {
 const BannerContent = ({
     description,
     headerText,
+    headerSubtitle,
     headerSubheader,
     bookNowLink,
     showOpacity = true,
@@ -86,6 +88,9 @@ const BannerContent = ({
                 <Text>
                     <Header size={1} uppercase>
                         {headerText}
+                    </Header>
+                   <Header size={2} className='mt-5 subTitle'>
+                        {headerSubtitle}
                     </Header>
                     {headerSubheader && (
                         <BodyText size="lg">{headerSubheader}</BodyText>

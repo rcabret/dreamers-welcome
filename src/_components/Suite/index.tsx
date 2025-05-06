@@ -143,7 +143,7 @@ const Suite = ({ data, hideFirstSeparator, propertySlug = '' }: SuiteProps) => {
                   })
                 : null}
                 
-            {features && (
+            {features.length > 0 && (
                 <Block
                     title="FEATURES"
                     noPaddingBottom

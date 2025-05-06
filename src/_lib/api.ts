@@ -36,7 +36,7 @@ export const getHomepage = async (url: string) => {
     const entries = await client.getEntries({
         content_type: 'homepage',
         'fields.slug': url,
-        select: 'fields.slug,fields.title,fields.blurb,fields.coverImage,fields.mobileCoverImage,fields.news,fields.experiences,fields.guides',
+        select: 'fields.slug,fields.title,fields.subtitle,fields.blurb,fields.coverImage,fields.mobileCoverImage,fields.news,fields.experiences,fields.guides',
         include: 1,
     })
     if (entries.items) {

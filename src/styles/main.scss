@@ -454,6 +454,11 @@ div.puerto_grids {
     background: rgba(0, 0, 0, 0.12);
     z-index: 1;
 }
+.subTitle {
+    max-width: 640px;
+    margin: auto;
+    width: 100%;
+}
 @media(min-width:1921px){
     .modal-content {
         max-width: 50%;
@@ -560,11 +565,17 @@ div.puerto_grids {
     .grid_desc, .grid_desc p {
         margin-bottom: 0px !important;
     }
+   
 }
+
+
 @media(max-width:640px){
     .grid_view h2 {
         line-height: 44px;
     }  
+    .subTitle {
+        max-width: 258px;
+    }
 }
 
 .text_wrapper_1 .separator {

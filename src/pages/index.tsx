@@ -70,6 +70,8 @@ const StaysSwiperWrap = styled.div`
   }
 `
 const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
+ console.log(data,"data");
+ 
   const {
     coverImage,
     mobileCoverImage,
@@ -77,7 +79,8 @@ const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
     guides,
     experiences,
     news,
-    title
+    title,
+    subtitle
   } = data
   
   const [prData, setPRData] = useState<{
@@ -190,7 +193,7 @@ const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
           <link rel="canonical" href={seoData?.canonicalUrl} />
         }
       </Head>
-   
+
      <BannerGridImage
         imageObj={coverImage}
         mobileImageObj={mobileCoverImage}
@@ -198,7 +201,7 @@ const Home = ({data, landing, setNavTheme, setHeaderData, seoData }: any) => {
         borderRadius={false}
         fullHeight
       />
-        <BannerContent headerText={title} showOpacity={false} />
+        <BannerContent headerText={title} headerSubtitle={subtitle} showOpacity={false} />
     
        <Blurb text={blurb} />
        {stays && (
@@ -307,7 +310,6 @@ export default Home
 export async function getStaticProps() {
   const landing = await getLandingpage()
   const rawData = await getHomepage('puertorico')
-  
    const stringData = safeJsonStringify(rawData)
     const data = JSON.parse(stringData)
     const seoData = data?.seoMetadata?.fields
