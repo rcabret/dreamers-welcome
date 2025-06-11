@@ -147,7 +147,9 @@ export default GuideBooks
 
 export async function getStaticProps(context: { params: { slug: string } }) {
     const guides = await getGuides(context.params.slug)
+
     const guidesPage = await getGuidesPage(context.params.slug)
+    console.log("guide page---",guidesPage)
     const seoData = guidesPage?.seoMetadata?.fields
     const defaultSeoTitle = context.params.slug === 'northcarolina'
         ? 'North Carolina Guidebooks | Dreamers Welcome'

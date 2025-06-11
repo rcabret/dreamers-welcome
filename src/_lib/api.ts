@@ -236,16 +236,62 @@ export const getGuides = async (bucket?: string) => {
     let query: any = {
         content_type: 'guide',
     }
+
     if (bucket) {
         query['fields.bucket[in]'] = pathToBucket(bucket)
     }
 
     const entries = await client.getEntries(query)
-    console.log("guidess ------",entries)
+
     if (entries.items) {
-        return entries.items
+        const cleanedItems = entries.items.map(item => {
+            const cleanedOtherGuides = (item.fields.otherGuides || []).map((og: any) => ({
+                ...og,
+                fields: {
+                    ...og.fields,
+                    otherGuides: [],
+                },
+            }))
+
+            const cleanedDescription = cleanRichText(item.fields.description)
+
+            return {
+                ...item,
+                fields: {
+                    ...item.fields,
+                    otherGuides: cleanedOtherGuides,
+                    description: cleanedDescription,
+                },
+            }
+        })
+
+        return cleanedItems
     }
 }
+
+const cleanRichText = (node: any): any => {
+    if (Array.isArray(node)) {
+        return node.map(cleanRichText)
+    }
+
+    if (typeof node === 'object' && node !== null) {
+        const cleanedNode = { ...node }
+        if (
+            cleanedNode?.data?.target?.fields?.otherGuides
+        ) {
+            cleanedNode.data.target.fields.otherGuides = []
+        }
+
+        if (cleanedNode.content) {
+            cleanedNode.content = cleanRichText(cleanedNode.content)
+        }
+
+        return cleanedNode
+    }
+
+    return node
+}
+
 
 export const getGuidesPage = async (bucket: string) => {
     const entries = await client.getEntries({
