@@ -9,7 +9,7 @@ import GuideItem from '../../_components/GuideItem'
 import { pathToBucket } from '../../_utils/Parsers'
 import Head from 'next/head'
 
-console.log("here in the guide bookd --------------")
+
 const links: { name: string; slug: string }[] = [
     {
         name: 'VIEW ALL',
@@ -146,10 +146,9 @@ const GuideBooks = ({
 export default GuideBooks
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const guides = await getGuides(context.params.slug)
-
+    const guides = await getGuides()
+    console.log("guides ---",guides)
     const guidesPage = await getGuidesPage(context.params.slug)
-    console.log("guide page---",guidesPage)
     const seoData = guidesPage?.seoMetadata?.fields
     const defaultSeoTitle = context.params.slug === 'northcarolina'
         ? 'North Carolina Guidebooks | Dreamers Welcome'
@@ -185,4 +184,3 @@ export async function getStaticPaths(context: { params: { slug: string } }) {
         fallback: false,
     }
 }
-

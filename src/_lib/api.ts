@@ -1,9 +1,7 @@
-
-
-
-
-import { Content } from './../styles/global';
 import { pathToBucket } from '../_utils/Parsers'
+import { Entry } from 'contentful'
+type GuideEntry = Entry<any>
+import { removeCircularReference } from '../_utils/circulardpndcyClean'
 
 
 const client = require('contentful').createClient({
@@ -223,6 +221,7 @@ export const getAbout = async () => {
 }
 
 export const getGuide = async (slug: string) => {
+    console.log(" slud and entries ---")
     const entries = await client.getEntries({
         content_type: 'guide',
         'fields.slug': slug,
@@ -232,65 +231,53 @@ export const getGuide = async (slug: string) => {
     }
 }
 
-export const getGuides = async (bucket?: string) => {
-    let query: any = {
-        content_type: 'guide',
-    }
+export const getGuides = async ({ slug, bucket }: { slug?: string; bucket?: string } = {} ) => {
+  let query: any = {
+    content_type: 'guide',
+    include: 2,
+  }
+console.log('slug value:', slug, bucket )
+  if (slug) query['fields.slug'] = slug
+  if (bucket) query['fields.bucket[in]'] = pathToBucket(bucket)
 
-    if (bucket) {
-        query['fields.bucket[in]'] = pathToBucket(bucket)
-    }
+  const entries = await client.getEntries(query)
+     console.log("slug -----",entries)
+  const items: GuideEntry[] = entries.items.map((item:any) =>
+  removeUndefined(removeCircularReferences(item))
+)
 
-    const entries = await client.getEntries(query)
-
-    if (entries.items) {
-        const cleanedItems = entries.items.map(item => {
-            const cleanedOtherGuides = (item.fields.otherGuides || []).map((og: any) => ({
-                ...og,
-                fields: {
-                    ...og.fields,
-                    otherGuides: [],
-                },
-            }))
-
-            const cleanedDescription = cleanRichText(item.fields.description)
-
-            return {
-                ...item,
-                fields: {
-                    ...item.fields,
-                    otherGuides: cleanedOtherGuides,
-                    description: cleanedDescription,
-                },
-            }
-        })
-
-        return cleanedItems
-    }
+  return items
 }
 
-const cleanRichText = (node: any): any => {
-    if (Array.isArray(node)) {
-        return node.map(cleanRichText)
+
+function removeCircularReferences(obj: any, seen = new WeakSet()): any {
+  if (obj !== null && typeof obj === 'object') {
+    if (seen.has(obj)) return '[Circular]'
+
+    seen.add(obj)
+    for (const key in obj) {
+      obj[key] = removeCircularReferences(obj[key], seen)
     }
-
-    if (typeof node === 'object' && node !== null) {
-        const cleanedNode = { ...node }
-        if (
-            cleanedNode?.data?.target?.fields?.otherGuides
-        ) {
-            cleanedNode.data.target.fields.otherGuides = []
-        }
-
-        if (cleanedNode.content) {
-            cleanedNode.content = cleanRichText(cleanedNode.content)
-        }
-
-        return cleanedNode
-    }
-
-    return node
+  }
+  return obj
 }
+
+function removeUndefined(obj: any): any {
+  if (Array.isArray(obj)) {
+    return obj.map(removeUndefined)
+  } else if (obj !== null && typeof obj === 'object') {
+    const cleaned: Record<string, any> = {}
+    for (const key in obj) {
+      const value = removeUndefined(obj[key])
+      if (value !== undefined) {
+        cleaned[key] = value
+      }
+    }
+    return cleaned
+  }
+  return obj
+}
+
 
 
 export const getGuidesPage = async (bucket: string) => {

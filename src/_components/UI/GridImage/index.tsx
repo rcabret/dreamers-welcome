@@ -40,11 +40,18 @@ const GridImage = ({
 }: GridImageProps) => {
     if (!imageObj) {
         return null
-    }
+    } 
 
     const breakpoint = useContext(viewportContext)
     const imageToRender =
         breakpoint === 'mobile' && mobileImageObj ? mobileImageObj : imageObj
+    if (
+        !imageToRender?.fields?.file?.url ||
+        !imageToRender.fields.file.details?.image
+    ) {
+
+        return null
+    }
 
     const { fields } = imageToRender
     const { file, description } = fields
@@ -87,7 +94,7 @@ const GridImage = ({
                 {imageToRender ? (
                     <>
                         <aside />
-                        <Image src={`https:${url}${widthQuery && !sizes? `?w=${widthQuery}`: ''}` || '/'} alt={description} layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`}  />
+                        <Image src={`https:${url}${widthQuery && !sizes ? `?w=${widthQuery}` : ''}` || '/'} alt={description} layout="fill" sizes={sizes} objectFit={ratio !== 'lightbox' ? 'cover' : 'contain'} placeholder="blur" blurDataURL={`https:${url}?q=10`} />
                         {children && children}
                     </>
                 ) : (

@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import Head from  'next/head'
-
 import {
     BannerGridImage,
     GridModule,
@@ -16,6 +15,7 @@ import Blurb from '../../_components/UI/Blurb'
 import MarkdownModule from '../../_components/Typography/MarkdownModule'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
+
 const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
     const {
         bannerImage,
@@ -26,7 +26,7 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
         description,
         otherGuides,
     } = guide
-    console.log('guide ---------',guide)
+
 
     useEffect(() => {
         setNavTheme('light')
@@ -113,19 +113,26 @@ const GuideBook = ({ guide, setNavTheme, setHeaderData, seoData }: any) => {
 export default GuideBook
 
 export async function getStaticProps(context: { params: { slug: string } }) {
-    const guide = await getGuide(context.params.slug)
-    const seoData = guide?.seoMetadata?.fields
+ const guide = await getGuide(context.params.slug);
+
+    if (!guide) {
+        return {
+            notFound: true,
+        };
+    }
+
+    const seoData = guide?.seoMetadata?.fields ?? null;
 
     return {
         props: {
             guide,
-            seoData: seoData ?? null
+            seoData,
         },
-    }
+    };
 }
-console.log("here in guidebook---------")
+
 export async function getStaticPaths() {
-    const guides = await getGuides()
+    const guides = await getGuides({})
     const paths: any = []
     guides.forEach((x: { fields: { slug: string } }) => {
         const { slug } = x.fields
