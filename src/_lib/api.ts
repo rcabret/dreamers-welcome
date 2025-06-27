@@ -220,6 +220,7 @@ export const getAbout = async () => {
     }
 }
 
+
 export const getGuide = async (slug: string) => {
     console.log(" slud and entries ---")
     const entries = await client.getEntries({
