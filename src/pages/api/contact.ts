@@ -72,7 +72,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         <div><p>${message}</p></div>
       `,
         }
-
+ 
         await transporter.sendMail(mailOptions)
 
         res.status(200).json({ success: true, message: 'Email sent successfully' })
